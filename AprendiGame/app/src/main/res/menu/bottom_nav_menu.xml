@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/navigation_ranking"
+        android:icon="@drawable/ranking_icon"
+        android:title="Ranking" />
+
+
+    <item
+        android:id="@+id/navigation_questionarios"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Questionario" />
+
+    <item
+        android:id="@+id/navigation_presença"
+        android:icon="@drawable/icon_presenca"
+        android:title="Presença" />
+
+</menu>
