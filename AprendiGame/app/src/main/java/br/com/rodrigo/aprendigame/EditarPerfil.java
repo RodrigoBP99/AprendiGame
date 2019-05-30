@@ -1,5 +1,6 @@
 package br.com.rodrigo.aprendigame;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,21 +10,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
+import br.com.rodrigo.aprendigame.Fragments.PerfilFragment;
 import br.com.rodrigo.aprendigame.Model.Usuario;
 
 public class EditarPerfil extends AppCompatActivity {
 
     private Toolbar toolbar;
 
-    private Usuario usuario = new Usuario();
-    private UsuarioDAO usuarioDAO = new UsuarioDAO(this);
+    private Usuario usuario;
     private ImageView imageViewPerfil;
     private EditText editTextPerfilNome;
     private EditText editTextPerfilIdade;
     private EditText editTextPerfilTurma;
     private EditText editTextPerfilInstituicao;
+    private EditText editTextPerfilEmail;
+    private EditText editTextPerfilEndereco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +50,33 @@ public class EditarPerfil extends AppCompatActivity {
         });
 
 
-        editTextPerfilNome = findViewById(R.id.editTextPerfilNome);
+        UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
+
+        editTextPerfilNome = findViewById(R.id.editTextEditarPerfilNome);
         editTextPerfilIdade = findViewById(R.id.editTextEditarPerfilIdade);
         editTextPerfilTurma = findViewById(R.id.editTextEditarPerfilTurma);
         editTextPerfilInstituicao = findViewById(R.id.editTextEditarPerfilInstituicao);
+        editTextPerfilEmail = findViewById(R.id.editTextEditarPerfilEmail);
+        editTextPerfilEndereco = findViewById(R.id.editTextEditarPerfilEndereco);
         imageViewPerfil = findViewById(R.id.imageViewEditarPerfilFoto);
+
+
+
+        String userName = getIntent().getStringExtra(PerfilFragment.USUARIO);
+
+        try {
+            usuario = usuarioDAO.selectedUsuario(userName);
+            editTextPerfilNome.setText(usuario.getNome());
+            editTextPerfilIdade.setText(usuario.getIdade());
+            editTextPerfilTurma.setText(usuario.getTurma());
+            editTextPerfilInstituicao.setText(usuario.getInstituicao());
+            editTextPerfilEmail.setText(usuario.getEmail());
+            editTextPerfilEndereco.setText(usuario.getEndereco());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
     }
 
     @Override
@@ -68,8 +94,9 @@ public class EditarPerfil extends AppCompatActivity {
                 usuario.setIdade(editTextPerfilIdade.getText().toString());
                 usuario.setTurma(editTextPerfilTurma.getText().toString());
                 usuario.setInstituicao(editTextPerfilInstituicao.getText().toString());
-
-                usuarioDAO.atualizar(usuario);
+                usuario.setEmail(editTextPerfilEmail.getText().toString());
+                usuario.setEndereco(editTextPerfilEndereco.getText().toString());
+                new UsuarioDAO(getApplicationContext()).atualizar(usuario);
 
                 finish();
         }

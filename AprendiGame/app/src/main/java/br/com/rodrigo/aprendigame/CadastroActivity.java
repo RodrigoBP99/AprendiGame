@@ -88,9 +88,7 @@ public class CadastroActivity extends AppCompatActivity {
                     if (bdUsuario.checkUser(username) == true){
                         Toast.makeText(CadastroActivity.this, "Usuario já existe", Toast.LENGTH_SHORT).show();
                     } else {
-
                         //Melhorar a verificação da senha
-
                         if (senha.length() < 6) {
                             Toast.makeText(CadastroActivity.this, "A senha deve conter mais de 6 caracteres", Toast.LENGTH_LONG).show();
                         } else {

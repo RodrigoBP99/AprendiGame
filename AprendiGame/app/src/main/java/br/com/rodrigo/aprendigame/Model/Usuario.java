@@ -8,6 +8,7 @@ public class Usuario {
 
     private Integer id;
     private String userName;
+    private String fotoperfil;
     private String nome;
     private String idade;
     private String turma;
@@ -31,6 +32,14 @@ public class Usuario {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getFotoperfil() {
+        return fotoperfil;
+    }
+
+    public void setFotoperfil(String fotoperfil) {
+        this.fotoperfil = fotoperfil;
     }
 
     public String getNome() {
@@ -89,7 +98,7 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public ContentValues getValues(){
+    public ContentValues getValues() {
         ContentValues valores = new ContentValues();
         valores.put(DBHelper.COLUNA_USERNAME, userName);
         valores.put(DBHelper.COLUNA_NOME, nome);

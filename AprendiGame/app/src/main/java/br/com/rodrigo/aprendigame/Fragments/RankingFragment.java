@@ -7,7 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
+import br.com.rodrigo.aprendigame.LoginActivity;
+import br.com.rodrigo.aprendigame.Model.Usuario;
 import br.com.rodrigo.aprendigame.R;
 
 /**
@@ -15,7 +19,8 @@ import br.com.rodrigo.aprendigame.R;
  */
 public class RankingFragment extends Fragment {
 
-
+    private TextView textViewNome;
+    private Usuario usuario;
     public RankingFragment() {
         // Required empty public constructor
     }
@@ -34,5 +39,18 @@ public class RankingFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutFeedRanking, new RankingFeedFragment()).commit();
+        textViewNome = getView().findViewById(R.id.textViewNomeRanking);
+
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO(getContext());
+
+        String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERNAME);
+
+        try {
+            usuario = usuarioDAO.selectedUsuario(userName);
+            textViewNome.setText(usuario.getNome());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

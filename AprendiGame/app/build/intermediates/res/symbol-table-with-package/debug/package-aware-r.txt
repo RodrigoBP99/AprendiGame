@@ -1124,6 +1124,7 @@ id editTextEditarPerfilEmail
 id editTextEditarPerfilEndereco
 id editTextEditarPerfilIdade
 id editTextEditarPerfilInstituicao
+id editTextEditarPerfilNome
 id editTextEditarPerfilTurma
 id editTextEmail
 id editTextEndereco
@@ -1132,7 +1133,6 @@ id editTextInstituicao
 id editTextLoginSenha
 id editTextLoginUserName
 id editTextNome
-id editTextPerfilNome
 id editTextSenha
 id editTextTurma
 id editTextUserName
@@ -1207,6 +1207,7 @@ id parentPanel
 id parent_matrix
 id percent
 id perfil
+id pesquisar
 id pin
 id progressBar2
 id progress_circular
@@ -1280,12 +1281,12 @@ id textViewIdadePerfil
 id textViewInstituicaoPerfil
 id textViewMateriaQuestionario
 id textViewNomePerfil
+id textViewNomeRanking
 id textViewNotaQuestionario
 id textViewTitleAPP
 id textViewTituloQuestionario
 id textViewToolbarTitleEditar
 id textViewTurmaPerfil
-id textView_nomeRanking
 id text_input_password_toggle
 id textinput_counter
 id textinput_error

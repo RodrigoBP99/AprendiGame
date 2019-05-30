@@ -17,7 +17,7 @@
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
-        android:id="@+id/textView_nomeRanking"
+        android:id="@+id/textViewNomeRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

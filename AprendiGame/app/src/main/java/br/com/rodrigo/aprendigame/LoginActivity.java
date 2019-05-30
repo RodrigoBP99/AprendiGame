@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
 
+
 public class LoginActivity extends AppCompatActivity {
 
     private UsuarioDAO usuarioDAO;
@@ -20,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextView textViewCadastro;
     private EditText editTextUserNameLogin;
     private EditText editTextSenhaLogin;
+    public final static String USERNAME = "userName";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (usuarioDAO.autentica(editTextUserNameLogin.getText().toString().trim(), editTextSenhaLogin.getText().toString().trim())){
                     Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
-                    mainActivity.putExtra("userName", editTextUserNameLogin.getText().toString().trim());
+                    mainActivity.putExtra(USERNAME, editTextUserNameLogin.getText().toString().trim());
                     startActivity(mainActivity);
                     finish();
                 } else {
