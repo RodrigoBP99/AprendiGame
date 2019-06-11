@@ -3,6 +3,7 @@ package br.com.rodrigo.aprendigame.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,6 +25,8 @@ public class RankingFragment extends Fragment {
 
     private TextView textViewNome;
     private Usuario usuario;
+
+    private BottomNavigationView bottomNavigationView;
 
     public RankingFragment() {
         // Required empty public constructor
@@ -51,6 +54,8 @@ public class RankingFragment extends Fragment {
         switch (item.getItemId()){
             case R.id.perfil:
                 getFragmentManager().beginTransaction().replace(R.id.main_layout, new PerfilFragment()).commit();
+                bottomNavigationView = getActivity().findViewById(R.id.nav_view_main);
+                bottomNavigationView.setVisibility(View.GONE);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -74,5 +79,12 @@ public class RankingFragment extends Fragment {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bottomNavigationView = getActivity().findViewById(R.id.nav_view_main);
+        bottomNavigationView.setVisibility(View.VISIBLE);
     }
 }

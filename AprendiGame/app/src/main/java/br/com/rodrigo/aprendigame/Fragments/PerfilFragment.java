@@ -3,6 +3,8 @@ package br.com.rodrigo.aprendigame.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -44,6 +46,7 @@ public class PerfilFragment extends Fragment {
         setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_perfil, container, false);
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
