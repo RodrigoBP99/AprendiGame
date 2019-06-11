@@ -3,10 +3,11 @@ package br.com.rodrigo.aprendigame.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,7 +32,6 @@ public class PerfilFragment extends Fragment {
     private TextView textViewEndereco;
     public final static String USUARIO = "username";
 
-
     public PerfilFragment() {
         // Required empty public constructor
     }
@@ -41,13 +41,35 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_perfil, container, false);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.toolbar_perfil_edit, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.buttonEditarPerfil:
+                Intent editarPerfil = new Intent(getContext(), EditarPerfil.class);
+                editarPerfil.putExtra(USUARIO, pegarUsuario());
+                startActivity(editarPerfil);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    public String pegarUsuario(){
+        final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERNAME);
+        return userName;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         textViewNome = getActivity().findViewById(R.id.textViewNomePerfil);
         textViewIdade = getActivity().findViewById(R.id.textViewIdadePerfil);
@@ -71,18 +93,5 @@ public class PerfilFragment extends Fragment {
         } catch (Exception e){
             e.printStackTrace();
         }
-
-
-        FloatingActionButton floatingActionButtonEditarPerfil = getView().findViewById(R.id.floatingActionButton_editarPerfil);
-
-        floatingActionButtonEditarPerfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent editarPerfil = new Intent(getContext(), EditarPerfil.class);
-                editarPerfil.putExtra(USUARIO, userName);
-                startActivity(editarPerfil);
-            }
-        });
-
     }
 }

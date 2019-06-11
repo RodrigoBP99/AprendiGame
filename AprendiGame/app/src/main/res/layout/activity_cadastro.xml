@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
-                android:text="Cadastro"
+                android:text="CADASTRO"
                 android:textColor="@android:color/black"
                 android:textSize="30dp"
                 android:textStyle="bold" />
@@ -82,11 +82,11 @@
                 android:textColorHint="@android:color/black">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextTurma"
+                    android:id="@+id/editTextInstituicao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/black"
-                    android:hint="Turma"
+                    android:hint="Instituicao"
                     android:inputType="textShortMessage|textCapWords"
                     android:textColor="@android:color/black" />
             </android.support.design.widget.TextInputLayout>
@@ -97,11 +97,11 @@
                 android:textColorHint="@android:color/black">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextInstituicao"
+                    android:id="@+id/editTextTurma"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/black"
-                    android:hint="Instituicao"
+                    android:hint="Turma"
                     android:inputType="textShortMessage|textCapWords"
                     android:textColor="@android:color/black" />
             </android.support.design.widget.TextInputLayout>
@@ -178,9 +178,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="30dp"
-                    android:background="@android:color/black"
+                    android:background="@color/cardview_shadow_start_color"
                     android:text="Cancelar"
-                    android:textColor="@android:color/holo_red_dark" />
+                    android:textColor="@android:color/black" />
 
                 <Button
                     android:id="@+id/buttonConfirmarCadastro"

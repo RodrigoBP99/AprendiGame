@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -21,6 +24,7 @@ public class RankingFragment extends Fragment {
 
     private TextView textViewNome;
     private Usuario usuario;
+
     public RankingFragment() {
         // Required empty public constructor
     }
@@ -30,8 +34,25 @@ public class RankingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_ranking, container, false);
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.toolbar_main_perfil, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.perfil:
+                getFragmentManager().beginTransaction().replace(R.id.main_layout, new PerfilFragment()).commit();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -52,5 +73,6 @@ public class RankingFragment extends Fragment {
         } catch (Exception e){
             e.printStackTrace();
         }
+
     }
 }

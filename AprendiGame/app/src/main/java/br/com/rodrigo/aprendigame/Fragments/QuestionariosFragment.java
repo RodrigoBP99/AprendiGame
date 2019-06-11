@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,7 +25,7 @@ import br.com.rodrigo.aprendigame.R;
 public class QuestionariosFragment extends Fragment {
 
     private QuestionariosAdapter adapter;
-    ArrayList<Questionario> questionarios = new ArrayList<>();
+    private ArrayList<Questionario> questionarios = new ArrayList<>();
 
     public QuestionariosFragment() {
         // Required empty public constructor
@@ -33,7 +36,24 @@ public class QuestionariosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_questionarios, container, false);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.toolbar_main_search, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.buttonSeachQuestionario:
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -64,13 +84,13 @@ public class QuestionariosFragment extends Fragment {
 
         questionarios.add(questionario5);
 
-        Questionario questionario6 = new Questionario("Equação do Segundo Gral", "Pedro Costa", "Matematica", "--/10");
+        Questionario questionario6 = new Questionario("Equação do Segundo Grau", "Pedro Costa", "Matematica", "--/10");
 
         questionarios.add(questionario6);
 
 
 
-        adapter = new QuestionariosAdapter(questionarios);
+        adapter = new QuestionariosAdapter(questionarios, getContext());
         recyclerViewQuestionarios.setAdapter(adapter);
     }
 }

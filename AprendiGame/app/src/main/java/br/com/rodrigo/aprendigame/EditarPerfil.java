@@ -1,6 +1,6 @@
 package br.com.rodrigo.aprendigame;
 
-import android.content.Intent;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,9 +8,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
 import br.com.rodrigo.aprendigame.Fragments.PerfilFragment;
@@ -45,6 +45,12 @@ public class EditarPerfil extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                View view = getCurrentFocus();
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
                 finish();
             }
         });
@@ -59,7 +65,6 @@ public class EditarPerfil extends AppCompatActivity {
         editTextPerfilEmail = findViewById(R.id.editTextEditarPerfilEmail);
         editTextPerfilEndereco = findViewById(R.id.editTextEditarPerfilEndereco);
         imageViewPerfil = findViewById(R.id.imageViewEditarPerfilFoto);
-
 
 
         String userName = getIntent().getStringExtra(PerfilFragment.USUARIO);
@@ -97,6 +102,12 @@ public class EditarPerfil extends AppCompatActivity {
                 usuario.setEmail(editTextPerfilEmail.getText().toString());
                 usuario.setEndereco(editTextPerfilEndereco.getText().toString());
                 new UsuarioDAO(getApplicationContext()).atualizar(usuario);
+
+                View view = getCurrentFocus();
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
 
                 finish();
         }

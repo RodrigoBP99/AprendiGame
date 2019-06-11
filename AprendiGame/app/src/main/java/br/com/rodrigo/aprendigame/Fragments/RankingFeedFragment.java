@@ -68,7 +68,7 @@ public class RankingFeedFragment extends Fragment {
 
         questionarios.add(questionario6);
 
-        adapter = new QuestionariosAdapter(questionarios);
+        adapter = new QuestionariosAdapter(questionarios, getContext());
         recyclerViewQuestionarios.setAdapter(adapter);
     }
 }

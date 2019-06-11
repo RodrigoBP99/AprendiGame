@@ -1,4 +1,4 @@
-#Tue May 28 21:03:10 BRT 2019
+#Mon Jun 10 11:51:19 BRT 2019
 base.0=C\:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGame\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\1
 path.0=classes.dex
 renamed.0=classes.dex

@@ -9,7 +9,7 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_main"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
 
     <LinearLayout
         android:id="@+id/main_layout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/nav_view_main"
@@ -44,9 +44,15 @@
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/nav_view_main"
+        style="@style/Animation.AppCompat.DropDownUp"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:background="@color/colorPrimary"
+        app:itemHorizontalTranslationEnabled="true"
+        app:itemIconSize="30sp"
+        app:itemIconTint="@android:color/black"
+        app:itemTextColor="@color/colorText"
+        app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

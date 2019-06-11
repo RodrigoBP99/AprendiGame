@@ -150,6 +150,10 @@ attr chipStartPadding
 attr chipStrokeColor
 attr chipStrokeWidth
 attr chipStyle
+attr civ_border_color
+attr civ_border_overlay
+attr civ_border_width
+attr civ_circle_background_color
 attr closeIcon
 attr closeIconEnabled
 attr closeIconEndPadding
@@ -643,6 +647,7 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color ic_launcher_background
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -692,6 +697,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color questionarioAdapter
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -1033,6 +1039,7 @@ drawable ic_notifications_black_24dp
 drawable icon_check
 drawable icon_presenca
 drawable icon_voltar
+drawable logo_app
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1049,7 +1056,9 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable perfil_icon
+drawable questionario_icon
 drawable ranking_icon
+drawable search_icon
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -1090,8 +1099,11 @@ id blocking
 id bottom
 id buttonCancelarCadastro
 id buttonConfirmarCadastro
+id buttonEditarPerfil
 id buttonLogin
 id buttonPanel
+id buttonPresenca
+id buttonSeachQuestionario
 id buttonTrocarFoto
 id cancel_action
 id center
@@ -1149,7 +1161,6 @@ id fill_horizontal
 id fill_vertical
 id filled
 id fixed
-id floatingActionButton_editarPerfil
 id forever
 id fragmento_leitorQR
 id ghost_view
@@ -1162,6 +1173,7 @@ id icon
 id icon_group
 id ifRoom
 id image
+id imageView
 id imageViewEditarPerfilFoto
 id imageViewPerfil
 id imageView_ranking
@@ -1175,6 +1187,7 @@ id layoutLogin
 id left
 id line1
 id line3
+id linearLayout
 id linearLayoutFeedRanking
 id linearLayout_questionario
 id listMode
@@ -1207,12 +1220,12 @@ id parentPanel
 id parent_matrix
 id percent
 id perfil
-id pesquisar
 id pin
 id progressBar2
 id progress_circular
 id progress_horizontal
 id radio
+id recycleViewPresencas
 id recycleViewRankingFeed
 id recycleView_questionarios
 id right
@@ -1283,7 +1296,10 @@ id textViewMateriaQuestionario
 id textViewNomePerfil
 id textViewNomeRanking
 id textViewNotaQuestionario
+id textViewPresencaData
+id textViewPresencaProfessor
 id textViewTitleAPP
+id textViewTitlePrensenca
 id textViewTituloQuestionario
 id textViewToolbarTitleEditar
 id textViewTurmaPerfil
@@ -1291,6 +1307,7 @@ id text_input_password_toggle
 id textinput_counter
 id textinput_error
 id textinput_helper_text
+id textviewPresencaAula
 id time
 id title
 id titleDividerNoCustom
@@ -1367,6 +1384,7 @@ layout activity_cadastro
 layout activity_editar_perfil
 layout activity_login
 layout activity_main
+layout activity_presenca
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -1403,6 +1421,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout presenca_adapter
 layout questionarios_adapter
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
@@ -1410,11 +1429,18 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu bottom_nav_menu
 menu toolbar_editar_perfil
-menu toolbar_menu
+menu toolbar_main_perfil
+menu toolbar_main_presenca
+menu toolbar_main_search
+menu toolbar_perfil_edit
 mipmap ic_launcher
 mipmap ic_launcher_round
-mipmap perfil_icon_launcher
-mipmap perfil_icon_launcher_round
+mipmap logo_app
+mipmap logo_app_launcher
+mipmap logo_app_launcher_round
+mipmap perfil_foto
+mipmap perfil_foto_launcher
+mipmap perfil_foto_launcher_round
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -2002,6 +2028,7 @@ styleable ButtonBarLayout allowStacking
 styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCornerRadius cardElevation cardMaxElevation cardPreventCornerOverlap cardUseCompatPadding contentPadding contentPaddingBottom contentPaddingLeft contentPaddingRight contentPaddingTop
 styleable Chip android_textAppearance android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipStartPadding chipStrokeColor chipStrokeWidth closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible hideMotionSpec iconEndPadding iconStartPadding rippleColor showMotionSpec textEndPadding textStartPadding
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical singleLine singleSelection
+styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_circle_background_color
 styleable CollapsingToolbarLayout collapsedTitleGravity collapsedTitleTextAppearance contentScrim expandedTitleGravity expandedTitleMargin expandedTitleMarginBottom expandedTitleMarginEnd expandedTitleMarginStart expandedTitleMarginTop expandedTitleTextAppearance scrimAnimationDuration scrimVisibleHeightTrigger statusBarScrim title titleEnabled toolbarId
 styleable CollapsingToolbarLayout_Layout layout_collapseMode layout_collapseParallaxMultiplier
 styleable ColorStateListItem android_color android_alpha alpha

@@ -1,11 +1,13 @@
 package br.com.rodrigo.aprendigame.Adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -14,9 +16,12 @@ import br.com.rodrigo.aprendigame.R;
 
 public class QuestionariosAdapter extends RecyclerView.Adapter<QuestionariosAdapter.ViewHolderQuestionario>{
 
+    private Context context;
     private ArrayList<Questionario> questionarios;
-    public QuestionariosAdapter(ArrayList<Questionario> questionarios){
+
+    public QuestionariosAdapter(ArrayList<Questionario> questionarios, Context context){
         this.questionarios = questionarios;
+        this.context = context;
     }
 
     @NonNull
@@ -27,13 +32,20 @@ public class QuestionariosAdapter extends RecyclerView.Adapter<QuestionariosAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderQuestionario viewHolder, int posicao) {
+    public void onBindViewHolder(@NonNull final ViewHolderQuestionario viewHolder, final int posicao) {
 
-        Questionario questionario = questionarios.get(posicao);
+        final Questionario questionario = questionarios.get(posicao);
         viewHolder.textViewTituloQuestionario.setText(questionario.getTituloQuestionario());
         viewHolder.textViewAutorQuestionario.setText(questionario.getAutorQuestionario());
         viewHolder.textViewMateriaQuestionario.setText(questionario.getMateriaQuestionario());
         viewHolder.textViewNotaQuestionario.setText(questionario.getNotaQuestionario());
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Titulo: " + questionario.getTituloQuestionario(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
