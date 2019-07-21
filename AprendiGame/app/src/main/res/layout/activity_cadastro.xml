@@ -178,15 +178,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="30dp"
-                    android:background="@color/cardview_shadow_start_color"
+                    android:background="@android:color/white"
+                    android:elevation="5dp"
                     android:text="Cancelar"
-                    android:textColor="@android:color/black" />
+                    android:textColor="#FF0000" />
 
                 <Button
                     android:id="@+id/buttonConfirmarCadastro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
+                    android:background="@android:color/white"
+                    android:elevation="5dp"
                     android:text="Confirmar"
                     android:textColor="@color/design_default_color_primary" />
             </LinearLayout>

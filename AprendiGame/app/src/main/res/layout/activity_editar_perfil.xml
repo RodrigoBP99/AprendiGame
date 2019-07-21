@@ -76,7 +76,9 @@
                     android:backgroundTint="@android:color/black"
                     android:hint="Nome"
                     android:inputType="textCapWords"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:textColorHighlight="@android:color/holo_green_light"
+                    android:textColorLink="@android:color/holo_green_light" />
 
             </android.support.design.widget.TextInputLayout>
 

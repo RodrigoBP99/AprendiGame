@@ -53,7 +53,13 @@ public class CadastroActivity extends AppCompatActivity {
         buttonCancelarCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this);
+                alerta.setTitle("Um momento, amigo(a)!").setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).setNegativeButton("Não", null).setMessage("Tem certeza que deseja cancelar seu Cadastro?").show();
             }
         });
 
@@ -80,7 +86,6 @@ public class CadastroActivity extends AppCompatActivity {
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
 
-
                 if (username.isEmpty() || nome.isEmpty() || idade.isEmpty() || turma.isEmpty() || instituicao.isEmpty() || email.isEmpty() || endereco.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty()) {
                     Toast.makeText(CadastroActivity.this, "Todos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
                 } else {
@@ -105,7 +110,7 @@ public class CadastroActivity extends AppCompatActivity {
 
                                 bdUsuario.salvar(usuario);
 
-                                Toast.makeText(CadastroActivity.this, "Cadastro Realizado", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CadastroActivity.this, "Cadastro Realizado Com Sucesso!", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
                                 Toast.makeText(CadastroActivity.this, "Senha incorreta", Toast.LENGTH_LONG).show();

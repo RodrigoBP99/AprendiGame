@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/buttonPresenca"
-        android:icon="@drawable/icon_presenca"
+        android:icon="@drawable/presenca_realizada_icon"
         android:title="Presença"
         app:showAsAction="always" />
 

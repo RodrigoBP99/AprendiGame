@@ -161,7 +161,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_search_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_chevron_right_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -171,8 +171,10 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="search_icon" />
-                            <entry key="sourceFile" value="C:\Users\Cliente\Desktop\Fotos app\capa.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="color" value="0004ff" />
+                            <entry key="outputName" value="presenca_realizada_icon" />
+                            <entry key="sourceFile" value="C:\Users\Cliente\Desktop\clipboard-check-outline.svg" />
                           </map>
                         </option>
                       </PersistentState>

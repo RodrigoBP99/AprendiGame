@@ -624,6 +624,7 @@ color colorBackground
 color colorPrimary
 color colorPrimaryDark
 color colorText
+color decoracaocolor
 color design_bottom_navigation_shadow_color
 color design_default_color_primary
 color design_default_color_primary_dark
@@ -1036,6 +1037,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_notifications_black_24dp
+drawable icon_avancar_presenca
 drawable icon_check
 drawable icon_presenca
 drawable icon_voltar
@@ -1056,6 +1058,7 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable perfil_icon
+drawable presenca_realizada_icon
 drawable questionario_icon
 drawable ranking_icon
 drawable search_icon
@@ -1189,6 +1192,7 @@ id line1
 id line3
 id linearLayout
 id linearLayoutFeedRanking
+id linearLayoutPresenca
 id linearLayout_questionario
 id listMode
 id list_item
@@ -1221,9 +1225,11 @@ id parent_matrix
 id percent
 id perfil
 id pin
+id presencaTeste
 id progressBar2
 id progress_circular
 id progress_horizontal
+id questionarioLayout
 id radio
 id recycleViewPresencas
 id recycleViewRankingFeed
@@ -1285,6 +1291,7 @@ id textInputLayout2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
 id textView2
 id textViewAutorQuestionario
 id textViewCadastro
@@ -1297,6 +1304,7 @@ id textViewNomePerfil
 id textViewNomeRanking
 id textViewNotaQuestionario
 id textViewPresencaData
+id textViewPresencaHora
 id textViewPresencaProfessor
 id textViewTitleAPP
 id textViewTitlePrensenca
@@ -1312,6 +1320,7 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id toolbar
 id toolbar_editarPerfil
 id toolbar_main
 id top
@@ -1385,6 +1394,8 @@ layout activity_editar_perfil
 layout activity_login
 layout activity_main
 layout activity_presenca
+layout activity_presenca_realizada
+layout activity_questionario
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String BANCO_NOME = "aprendigame";
+
     public static final String TABELA_NOME = "usuario";
 
     public static final String COLUNA_ID = "_ID";
@@ -20,6 +21,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUNA_SENHA = "SENHA";
 
 
+    public static final String TABELA_PRESENCA = "presenca";
+
+    public static final String COLUNA_ID_PRESENCA = "_ID";
+    public static final String COLUNA_DATA = "DATA";
+    public static final String COLUNA_AULA = "AULA";
+    public static final String COLUNA_PROFESSOR = "PROFESSOR";
+    public static final String COLUNA_HORA = "HORA";
+
+
+
     private static final String CRIAR_TABELA = "CREATE TABLE " +
             TABELA_NOME + "( " +
             COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -29,6 +40,14 @@ public class DBHelper extends SQLiteOpenHelper {
             COLUNA_ENDERECO + " TEXT, " + COLUNA_SENHA + " TEXT)";
 
 
+    private static final String CRIAR_TABELA_PRESENCA = "CREATE TABLE " +
+            TABELA_PRESENCA + "( " +
+            COLUNA_ID_PRESENCA + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUNA_DATA + " TEXT, " +
+            COLUNA_AULA + " TEXT, " +
+            COLUNA_PROFESSOR + " TEXT, " +
+            COLUNA_HORA + " TEXT)";
+
     public DBHelper(Context context) {
         super(context, BANCO_NOME, null, 1);
     }
@@ -36,6 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CRIAR_TABELA);
+        db.execSQL(CRIAR_TABELA_PRESENCA);
     }
 
     @Override

@@ -36,8 +36,9 @@ public class LoginActivity extends AppCompatActivity {
         editTextUserNameLogin = findViewById(R.id.editTextLoginUserName);
         editTextSenhaLogin = findViewById(R.id.editTextLoginSenha);
 
-        editTextUserNameLogin.setText("rodrigo");
+
         editTextSenhaLogin.setText("123456");
+        editTextUserNameLogin.setText("teste");
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override

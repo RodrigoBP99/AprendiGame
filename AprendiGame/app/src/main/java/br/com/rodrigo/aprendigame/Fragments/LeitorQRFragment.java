@@ -15,9 +15,11 @@ import android.widget.Toast;
 import com.google.zxing.Result;
 
 
-import java.util.Arrays;
+import java.util.Calendar;
 
-import br.com.rodrigo.aprendigame.PresencaActivity;
+import br.com.rodrigo.aprendigame.DB.PresencaDAO;
+import br.com.rodrigo.aprendigame.Model.Presenca;
+import br.com.rodrigo.aprendigame.PresencaRealizadaActivity;
 import br.com.rodrigo.aprendigame.R;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -26,7 +28,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
  */
 public class LeitorQRFragment extends Fragment implements ZXingScannerView.ResultHandler {
 
-    ZXingScannerView ScannerView;
+    private ZXingScannerView ScannerView;
 
     public LeitorQRFragment() {
         // Required empty public constructor
@@ -53,7 +55,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case(R.id.buttonPresenca):
-                Intent presencaIntent = new Intent(getContext(), PresencaActivity.class);
+                Intent presencaIntent = new Intent(getContext(), PresencaRealizadaActivity.class);
                 startActivity(presencaIntent);
         }
 
@@ -70,8 +72,30 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         rawResult.toString();
         String texto = String.valueOf(rawResult);
         String array[] = texto.split("&");
-        Toast.makeText(getActivity(), Arrays.toString(array), Toast.LENGTH_LONG).show();
-        getActivity().onBackPressed();
+
+
+        Calendar agora = Calendar.getInstance();
+        int horaAtual = agora.get(Calendar.HOUR_OF_DAY);
+        int minutos = agora.get(Calendar.MINUTE);
+        String hora = horaAtual + ":" + minutos;
+
+
+        try {
+            Presenca presenca = new Presenca();
+            presenca.setData(array[0]);
+            presenca.setAula(array[1]);
+            presenca.setProfessor(array[2]);
+            presenca.setHora(hora);
+            PresencaDAO presencaDAO = new PresencaDAO(getContext());
+            presencaDAO.inserir(presenca);
+        } catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getContext(), "QR Code Invalido!", Toast.LENGTH_SHORT).show();
+        }
+
+        Intent intent = new Intent(getContext(), PresencaRealizadaActivity.class);
+        startActivity(intent);
+
     }
 
 

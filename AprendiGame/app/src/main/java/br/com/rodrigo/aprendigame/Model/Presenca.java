@@ -2,14 +2,19 @@ package br.com.rodrigo.aprendigame.Model;
 
 public class Presenca {
 
+    private int id;
     private String aula;
     private String professor;
     private String data;
+    private String hora;
 
-    public Presenca(String data, String professor, String aula) {
-        this.aula = aula;
-        this.professor = professor;
-        this.data = data;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getAula() {
@@ -35,4 +40,13 @@ public class Presenca {
     public void setData(String data) {
         this.data = data;
     }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
 }
