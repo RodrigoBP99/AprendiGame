@@ -4,13 +4,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.rodrigo.aprendigame.Adapter.PresencaAdapter;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PresencaRealizadaActivity extends AppCompatActivity {
 
@@ -30,6 +36,27 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
 
         adapter = new PresencaAdapter(list);
         recyclerViewPresenca.setAdapter(adapter);
+
+        try {
+
+            SetupRest.apiService.listPresenca().enqueue(new Callback<List<Presenca>>() {
+                @Override
+                public void onResponse(Call<List<Presenca>> call, Response<List<Presenca>> response) {
+
+                    adapter.update(response.body());
+                    Log.e("Sucesso", call.toString());
+                }
+
+                @Override
+                public void onFailure(Call<List<Presenca>> call, Throwable t) {
+
+                    Log.e("Erro", call.toString());
+                    t.printStackTrace();
+                }
+            });
+        } catch (Exception e){
+
+        }
 
         if (isOnline() == true){
             presencaDAO.limparLista();

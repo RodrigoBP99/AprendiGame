@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.R;
@@ -43,6 +44,11 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
     @Override
     public int getItemCount() {
         return presencas.size();
+    }
+
+    public void update(List<Presenca> presencasLista){
+        this.presencas = (ArrayList<Presenca>) presencasLista;
+        notifyDataSetChanged();
     }
 
     public class PresencaViewHolder extends RecyclerView.ViewHolder {

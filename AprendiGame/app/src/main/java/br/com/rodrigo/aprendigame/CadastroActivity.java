@@ -24,7 +24,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     private EditText editTextUserName;
     private EditText editTextNome;
-    private EditText editTextIdade;
+    private EditText editTextDataNascimento;
     private EditText editTextTurma;
     private EditText editTextInstituicao;
     private EditText editTextEmail;
@@ -39,7 +39,7 @@ public class CadastroActivity extends AppCompatActivity {
 
         editTextUserName = findViewById(R.id.editTextUserName);
         editTextNome = findViewById(R.id.editTextNome);
-        editTextIdade = findViewById(R.id.editTextIdade);
+        editTextDataNascimento = findViewById(R.id.editTextDataNascimento);
         editTextTurma = findViewById(R.id.editTextTurma);
         editTextInstituicao = findViewById(R.id.editTextInstituicao);
         editTextEmail = findViewById(R.id.editTextEmail);
@@ -70,7 +70,7 @@ public class CadastroActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String username = editTextUserName.getText().toString().trim();
                 final String nome = editTextNome.getText().toString().trim();
-                final String idade = editTextIdade.getText().toString().trim();
+                final String dataNascimento = editTextDataNascimento.getText().toString().trim();
                 final String turma = editTextTurma.getText().toString().trim();
                 final String instituicao = editTextInstituicao.getText().toString().trim();
                 final String email = editTextEmail.getText().toString().trim();
@@ -86,7 +86,7 @@ public class CadastroActivity extends AppCompatActivity {
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
 
-                if (username.isEmpty() || nome.isEmpty() || idade.isEmpty() || turma.isEmpty() || instituicao.isEmpty() || email.isEmpty() || endereco.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty()) {
+                if (username.isEmpty() || nome.isEmpty() || dataNascimento.isEmpty() || turma.isEmpty() || instituicao.isEmpty() || email.isEmpty() || endereco.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty()) {
                     Toast.makeText(CadastroActivity.this, "Todos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
                 } else {
 
@@ -101,7 +101,7 @@ public class CadastroActivity extends AppCompatActivity {
 
                                 usuario.setUserName(username);
                                 usuario.setNome(nome);
-                                usuario.setIdade(idade);
+                                usuario.setIdade(dataNascimento);
                                 usuario.setTurma(editTextTurma.getText().toString().trim());
                                 usuario.setInstituicao(editTextInstituicao.getText().toString().trim());
                                 usuario.setEmail(editTextEmail.getText().toString().trim());
