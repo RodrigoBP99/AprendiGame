@@ -5,21 +5,21 @@
     build-mode="COLD"
     density="xhdpi"
     format="10"
-    ir-eligibility="FIELD_TYPE_CHANGE"
+    ir-eligibility="FIELD_REMOVED"
     plugin-version="3.4.0"
-    timestamp="1563050778889"
+    timestamp="1564433523630"
     token="4774974174082759216"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="1582" />
+        duration="1526" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="272" />
+        duration="264" />
     <task
         name="verifier"
         duration="30" />
@@ -27,19 +27,16 @@
     <artifact
         location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
         type="SPLIT" />
-    <artifact
-        location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-        type="SPLIT" />
 
     <build
         build-mode="FULL"
-        timestamp="1563048355503"
+        timestamp="1564433317894"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
+            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
@@ -63,16 +60,13 @@
             location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-            type="SPLIT" />
-        <artifact
             location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
@@ -80,26 +74,11 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="FIELD_TYPE_CHANGE"
-        timestamp="1563049145326"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="FIELD_TYPE_CHANGE"
-        timestamp="1563050778889"
+        ir-eligibility="FIELD_REMOVED"
+        timestamp="1564433523630"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
     </build>
 

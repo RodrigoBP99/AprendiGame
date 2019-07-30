@@ -38,18 +38,15 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
         recyclerViewPresenca.setAdapter(adapter);
 
         try {
-
             SetupRest.apiService.listPresenca().enqueue(new Callback<List<Presenca>>() {
                 @Override
                 public void onResponse(Call<List<Presenca>> call, Response<List<Presenca>> response) {
-
                     adapter.update(response.body());
                     Log.e("Sucesso", call.toString());
                 }
 
                 @Override
                 public void onFailure(Call<List<Presenca>> call, Throwable t) {
-
                     Log.e("Erro", call.toString());
                     t.printStackTrace();
                 }

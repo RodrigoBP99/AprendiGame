@@ -116,7 +116,7 @@ ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\Andro
 	android:name
 		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:18:19-51
 activity#br.com.rodrigo.aprendigame.MainActivity
-ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:19:9-50
+ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:19:9-49
 	android:name
 		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:19:19-47
 activity#br.com.rodrigo.aprendigame.EditarPerfil

@@ -21,7 +21,11 @@ import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.PresencaRealizadaActivity;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,16 +92,44 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
             presenca.setHora(hora);
             PresencaDAO presencaDAO = new PresencaDAO(getContext());
             presencaDAO.inserir(presenca);
+
+
+            Intent intent = new Intent(getContext(), PresencaRealizadaActivity.class);
+            startActivity(intent);
+            try {
+                SetupRest.apiService.createPresenca(presenca).enqueue(new Callback<Presenca>() {
+                    @Override
+                    public void onResponse(Call<Presenca> call, Response<Presenca> response) {
+                        if (!response.isSuccessful()){
+                            Toast.makeText(getContext(), response.code(), Toast.LENGTH_SHORT).show();
+                        }
+                        Presenca presencaResponse = response.body();
+
+                        String content = "";
+                        content += "Code: " + response.code() + "\n";
+                        content += "ID: " + presencaResponse.getId() + "\n";
+                        content += "Data: " + presencaResponse.getData() + "\n";
+                        content += "Aula: " + presencaResponse.getAula() + "\n";
+                        content += "Professor: " + presencaResponse.getProfessor() + "\n";
+                        content += "Hora: " + presencaResponse.getHora() + "\n";
+
+                        Toast.makeText(getContext(), content, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Presenca> call, Throwable t) {
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e){
+
+            }
+
         } catch (Exception e){
             e.printStackTrace();
             Toast.makeText(getContext(), "QR Code Invalido!", Toast.LENGTH_SHORT).show();
         }
-
-        Intent intent = new Intent(getContext(), PresencaRealizadaActivity.class);
-        startActivity(intent);
-
     }
-
 
     @Override
     public void onPause() {

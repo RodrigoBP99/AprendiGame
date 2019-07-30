@@ -16,7 +16,7 @@
         <activity android:name=".PresencaRealizadaActivity" />
         <activity android:name=".PresencaActivity" />
         <activity android:name=".CadastroActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"/>
         <activity android:name=".EditarPerfil" />
         <activity android:name=".LoginActivity">
             <intent-filter>

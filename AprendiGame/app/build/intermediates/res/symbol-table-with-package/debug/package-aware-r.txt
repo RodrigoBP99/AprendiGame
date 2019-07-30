@@ -1135,6 +1135,7 @@ id dimensions
 id direct
 id disableHome
 id editTextConfirmaSenha
+id editTextDataNascimento
 id editTextEditarPerfilEmail
 id editTextEditarPerfilEndereco
 id editTextEditarPerfilIdade
@@ -1143,7 +1144,6 @@ id editTextEditarPerfilNome
 id editTextEditarPerfilTurma
 id editTextEmail
 id editTextEndereco
-id editTextIdade
 id editTextInstituicao
 id editTextLoginSenha
 id editTextLoginUserName
