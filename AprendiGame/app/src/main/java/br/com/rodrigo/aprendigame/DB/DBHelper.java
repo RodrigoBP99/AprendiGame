@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String TABELA_PRESENCA = "presenca";
 
-    public static final String COLUNA_ID_PRESENCA = "_ID";
+    public static final String COLUNA_ID_PRESENCA = "ID";
     public static final String COLUNA_DATA = "DATA";
     public static final String COLUNA_AULA = "AULA";
     public static final String COLUNA_PROFESSOR = "PROFESSOR";
@@ -42,7 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String CRIAR_TABELA_PRESENCA = "CREATE TABLE " +
             TABELA_PRESENCA + "( " +
-            COLUNA_ID_PRESENCA + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUNA_ID_PRESENCA + " TEXT PRIMARY KEY, " +
             COLUNA_DATA + " TEXT, " +
             COLUNA_AULA + " TEXT, " +
             COLUNA_PROFESSOR + " TEXT, " +

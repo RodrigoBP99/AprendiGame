@@ -39,10 +39,6 @@
             android:name="com.squareup.picasso.PicassoProvider"
             android:authorities="br.com.rodrigo.aprendigame.com.squareup.picasso"
             android:exported="false" />
-        <provider
-            android:name="com.android.tools.ir.server.InstantRunContentProvider"
-            android:authorities="br.com.rodrigo.aprendigame.com.android.tools.ir.server.InstantRunContentProvider"
-            android:multiprocess="true" />
     </application>
 
 </manifest>

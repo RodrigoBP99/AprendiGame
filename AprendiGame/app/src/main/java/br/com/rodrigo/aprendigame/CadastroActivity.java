@@ -90,11 +90,11 @@ public class CadastroActivity extends AppCompatActivity {
                     Toast.makeText(CadastroActivity.this, "Todos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
                 } else {
 
-                    if (bdUsuario.checkUser(username) == true){
+                    if (bdUsuario.checkUserName(username) == true){
                         Toast.makeText(CadastroActivity.this, "Usuario já existe", Toast.LENGTH_SHORT).show();
                     } else {
                         //Melhorar a verificação da senha
-                        if (senha.length() < 6 || senha.matches("\\w*")) {
+                        if (senha.length() < 6) {
                             Toast.makeText(CadastroActivity.this, "A senha deve conter mais de 6 caracteres", Toast.LENGTH_LONG).show();
                         } else {
                             if (confirmarSenha.equals(senha)) {
@@ -108,7 +108,7 @@ public class CadastroActivity extends AppCompatActivity {
                                 usuario.setEndereco(endereco);
                                 usuario.setSenha(senha);
 
-                                bdUsuario.salvar(usuario);
+                                bdUsuario.salvarUsuario(usuario);
 
                                 Toast.makeText(CadastroActivity.this, "Cadastro Realizado Com Sucesso!", Toast.LENGTH_SHORT).show();
                                 finish();

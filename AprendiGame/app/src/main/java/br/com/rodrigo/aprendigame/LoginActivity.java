@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
 
-                if (usuarioDAO.autentica(editTextUserNameLogin.getText().toString().trim(), editTextSenhaLogin.getText().toString().trim())){
+                if (usuarioDAO.autenticaUsuario(editTextUserNameLogin.getText().toString().trim(), editTextSenhaLogin.getText().toString().trim())){
                     Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
                     mainActivity.putExtra(USERNAME, editTextUserNameLogin.getText().toString().trim());
                     startActivity(mainActivity);

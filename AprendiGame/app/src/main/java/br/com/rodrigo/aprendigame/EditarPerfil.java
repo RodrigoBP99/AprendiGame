@@ -70,7 +70,7 @@ public class EditarPerfil extends AppCompatActivity {
         String userName = getIntent().getStringExtra(PerfilFragment.USUARIO);
 
         try {
-            usuario = usuarioDAO.selectedUsuario(userName);
+            usuario = usuarioDAO.selectUsuario(userName);
             editTextPerfilNome.setText(usuario.getNome());
             editTextPerfilIdade.setText(usuario.getIdade());
             editTextPerfilTurma.setText(usuario.getTurma());
@@ -101,7 +101,7 @@ public class EditarPerfil extends AppCompatActivity {
                 usuario.setInstituicao(editTextPerfilInstituicao.getText().toString());
                 usuario.setEmail(editTextPerfilEmail.getText().toString());
                 usuario.setEndereco(editTextPerfilEndereco.getText().toString());
-                new UsuarioDAO(getApplicationContext()).atualizar(usuario);
+                new UsuarioDAO(getApplicationContext()).atualizaUsuario(usuario);
 
                 View view = getCurrentFocus();
                 if (view != null) {

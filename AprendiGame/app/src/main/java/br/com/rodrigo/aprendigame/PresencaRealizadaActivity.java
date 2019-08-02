@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,34 +33,15 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
 
         final PresencaDAO presencaDAO = new PresencaDAO(PresencaRealizadaActivity.this);
 
-        ArrayList<Presenca> list = (ArrayList<Presenca>) presencaDAO.buscar();
+        ArrayList<Presenca> list = (ArrayList<Presenca>) presencaDAO.buscarListaPresenca();
 
         adapter = new PresencaAdapter(list);
         recyclerViewPresenca.setAdapter(adapter);
 
-        try {
-            SetupRest.apiService.listPresenca().enqueue(new Callback<List<Presenca>>() {
-                @Override
-                public void onResponse(Call<List<Presenca>> call, Response<List<Presenca>> response) {
-                    adapter.update(response.body());
-                    Log.e("Sucesso", call.toString());
-                }
+        enviarLista(list);
 
-                @Override
-                public void onFailure(Call<List<Presenca>> call, Throwable t) {
-                    Log.e("Erro", call.toString());
-                    t.printStackTrace();
-                }
-            });
-        } catch (Exception e){
+        pegaLista();
 
-        }
-
-        if (isOnline() == true){
-            presencaDAO.limparLista();
-        } else {
-            isOnline();
-        }
     }
 
 
@@ -74,5 +56,51 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
         catch (InterruptedException e) { e.printStackTrace(); }
 
         return false;
+    }
+
+    private void pegaLista(){
+        try {
+            SetupRest.apiService.listPresenca().enqueue(new Callback<List<Presenca>>() {
+                @Override
+                public void onResponse(Call<List<Presenca>> call, Response<List<Presenca>> response) {
+                    if (response.isSuccessful()){
+                        adapter.update(response.body());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Presenca>> call, Throwable t) {
+                    Log.e("Erro", call.toString());
+                    t.printStackTrace();
+                    Toast.makeText(PresencaRealizadaActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e){
+        }
+    }
+
+    private void enviarLista(ArrayList<Presenca> lista){
+        try{
+            SetupRest.apiService.enviaLista(lista).enqueue(new Callback<ArrayList<Presenca>>() {
+                @Override
+                public void onResponse(Call<ArrayList<Presenca>> call, Response<ArrayList<Presenca>> response) {
+                    if (response.isSuccessful()){
+                        if (isOnline() == true){
+                            PresencaDAO presencaDAO = new PresencaDAO(PresencaRealizadaActivity.this);
+                            presencaDAO.limparPresencas();
+                        }
+                        Toast.makeText(PresencaRealizadaActivity.this, "Enviou com sucesso", Toast.LENGTH_SHORT).show();
+                    }
+                    Toast.makeText(PresencaRealizadaActivity.this, "Deu erro", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<Presenca>> call, Throwable t) {
+
+                }
+            });
+        } catch (Exception e){
+
+        }
     }
 }

@@ -3,8 +3,6 @@ package br.com.rodrigo.aprendigame.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -86,7 +84,7 @@ public class PerfilFragment extends Fragment {
         final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERNAME);
 
         try {
-            usuario = usuarioDAO.selectedUsuario(userName);
+            usuario = usuarioDAO.selectUsuario(userName);
             textViewNome.setText(usuario.getNome());
             textViewIdade.setText("Idade: " + usuario.getIdade());
             textViewTurma.setText("Turma: " + usuario.getTurma());

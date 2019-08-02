@@ -73,7 +73,7 @@ public class RankingFragment extends Fragment {
         String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERNAME);
 
         try {
-            usuario = usuarioDAO.selectedUsuario(userName);
+            usuario = usuarioDAO.selectUsuario(userName);
             textViewNome.setText(usuario.getNome());
         } catch (Exception e){
             e.printStackTrace();

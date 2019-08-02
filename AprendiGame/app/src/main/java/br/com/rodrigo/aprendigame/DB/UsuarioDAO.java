@@ -15,7 +15,7 @@ public class UsuarioDAO extends DBHelper {
         super(applicationContext);
     }
 
-    public void salvar(Usuario usuario){
+    public void salvarUsuario(Usuario usuario){
         if (usuario.getId() == null){
             getWritableDatabase().insert(TABELA_NOME, null, usuario.getValues());
         } else {
@@ -23,21 +23,7 @@ public class UsuarioDAO extends DBHelper {
         }
     }
 
-    private Usuario novoUsuario(Cursor cursor){
-        Usuario usuario = new Usuario();
-        usuario.setUserName(cursor.getString(cursor.getColumnIndex(COLUNA_USERNAME)));
-        usuario.setNome(cursor.getString(cursor.getColumnIndex(COLUNA_NOME)));
-        usuario.setIdade(cursor.getString(cursor.getColumnIndex(COLUNA_IDADE)));
-        usuario.setTurma(cursor.getString(cursor.getColumnIndex(COLUNA_TURMA)));
-        usuario.setInstituicao(cursor.getString(cursor.getColumnIndex(COLUNA_INSTITUICAO)));
-        usuario.setEmail(cursor.getString(cursor.getColumnIndex(COLUNA_EMAIL)));
-        usuario.setEndereco(cursor.getString(cursor.getColumnIndex(COLUNA_ENDERECO)));
-        usuario.setSenha(cursor.getString(cursor.getColumnIndex(COLUNA_SENHA)));
-
-        return usuario;
-    }
-
-    public boolean autentica(String userName, String senha){
+    public boolean autenticaUsuario(String userName, String senha){
         String[] collumns = {COLUNA_ID};
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -58,7 +44,7 @@ public class UsuarioDAO extends DBHelper {
     }
 
 
-    public boolean checkUser(String userName){
+    public boolean checkUserName(String userName){
         String[] collumns = {COLUNA_ID};
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -78,7 +64,7 @@ public class UsuarioDAO extends DBHelper {
         return false;
     }
 
-    public void atualizar(Usuario usuario){
+    public void atualizaUsuario(Usuario usuario){
         ContentValues valores = new ContentValues();
         valores.put(COLUNA_NOME, usuario.getNome());
         valores.put(COLUNA_IDADE, usuario.getIdade());
@@ -91,7 +77,7 @@ public class UsuarioDAO extends DBHelper {
         db.update(TABELA_NOME, valores, COLUNA_ID + " = ? ", new String[]{"" + usuario.getId()});
     }
 
-    public Usuario selectedUsuario(String userName){
+    public Usuario selectUsuario(String userName){
         Usuario usuario = new Usuario();
         SQLiteDatabase db = this.getWritableDatabase();
 

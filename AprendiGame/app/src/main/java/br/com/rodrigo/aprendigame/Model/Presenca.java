@@ -2,18 +2,18 @@ package br.com.rodrigo.aprendigame.Model;
 
 public class Presenca {
 
-    private int id;
+    private String id;
     private String aula;
     private String professor;
     private String data;
     private String hora;
 
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

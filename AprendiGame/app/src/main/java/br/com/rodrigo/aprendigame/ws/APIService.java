@@ -1,5 +1,6 @@
 package br.com.rodrigo.aprendigame.ws;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.rodrigo.aprendigame.Model.Presenca;
@@ -14,6 +15,9 @@ public interface APIService {
 
     @POST("novaPresenca")
     Call<Presenca> createPresenca(@Body Presenca presenca);
+
+    @POST("listaPresencas")
+    Call<ArrayList<Presenca>> enviaLista(@Body ArrayList<Presenca> presencas);
 
     @Headers({
             "Content-Type: application/json",

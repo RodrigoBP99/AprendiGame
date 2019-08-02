@@ -19,9 +19,10 @@ public class PresencaDAO {
         db = auxBD.getWritableDatabase();
     }
 
-    public void inserir(Presenca presenca){
+    public void inserirPresenca(Presenca presenca){
         ContentValues values = new ContentValues();
 
+        values.put("ID", presenca.getId());
         values.put("DATA", presenca.getData());
         values.put("AULA", presenca.getAula());
         values.put("PROFESSOR", presenca.getProfessor());
@@ -30,18 +31,14 @@ public class PresencaDAO {
         db.insert("presenca", null, values);
     }
 
-    public void deletar(Presenca presenca){
-        db.delete("presenca", "_ID = " + presenca.getId(), null);
-    }
-
-    public void limparLista(){
+    public void limparPresencas(){
         db.execSQL("delete from " + "presenca");
         db.close();
     }
 
-    public List<Presenca> buscar(){
+    public List<Presenca> buscarListaPresenca(){
         List<Presenca> list = new ArrayList<>();
-        String[] colunas = new String[]{"_ID", "DATA", "AULA", "PROFESSOR", "HORA"};
+        String[] colunas = new String[]{"ID", "DATA", "AULA", "PROFESSOR", "HORA"};
 
         Cursor cursor = db.query("presenca", colunas, null, null, null, null, null);
 
@@ -49,7 +46,7 @@ public class PresencaDAO {
             cursor.moveToFirst();
         do {
             Presenca p = new Presenca();
-            p.setId(cursor.getInt(0));
+            p.setId(cursor.getString(0));
             p.setData(cursor.getString(1));
             p.setAula(cursor.getString(2));
             p.setProfessor(cursor.getString(3));
