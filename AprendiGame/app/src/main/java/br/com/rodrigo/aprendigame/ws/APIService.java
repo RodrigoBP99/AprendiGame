@@ -16,8 +16,13 @@ public interface APIService {
     @POST("novaPresenca")
     Call<Presenca> createPresenca(@Body Presenca presenca);
 
+    /*
     @POST("listaPresencas")
-    Call<ArrayList<Presenca>> enviaLista(@Body ArrayList<Presenca> presencas);
+    Call<ArrayList<Presenca>> enviaLista(@Body ArrayList<Presenca> presencas); */
+
+
+    @POST("listaPresencas")
+    Call<String> enviaLista(@Body ArrayList<Presenca> presencas);
 
     @Headers({
             "Content-Type: application/json",
