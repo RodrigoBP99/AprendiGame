@@ -81,9 +81,9 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
 
     private void enviarLista(ArrayList<Presenca> lista){
         try{
-            SetupRest.apiService.enviaLista(lista).enqueue(new Callback<String>() {
+            SetupRest.apiService.enviaLista(lista).enqueue(new Callback<ArrayList<Presenca>>() {
                 @Override
-                public void onResponse(Call<String> call, Response<String> response) {
+                public void onResponse(Call<ArrayList<Presenca>> call, Response<ArrayList<Presenca>> response) {
                     if (response.isSuccessful()){
                         if (isOnline() == true){
                             PresencaDAO presencaDAO = new PresencaDAO(PresencaRealizadaActivity.this);
@@ -93,9 +93,8 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
                     }
                     Toast.makeText(PresencaRealizadaActivity.this, "Deu erro", Toast.LENGTH_SHORT).show();
                 }
-
                 @Override
-                public void onFailure(Call<String> call, Throwable t) {
+                public void onFailure(Call<ArrayList<Presenca>> call, Throwable t) {
 
                 }
             });
