@@ -8,7 +8,6 @@ public class Usuario {
 
     private Integer id;
     private String userName;
-    private String fotoperfil;
     private String nome;
     private String idade;
     private String turma;
@@ -26,20 +25,8 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getFotoperfil() {
-        return fotoperfil;
-    }
-
-    public void setFotoperfil(String fotoperfil) {
-        this.fotoperfil = fotoperfil;
     }
 
     public String getNome() {
@@ -88,10 +75,6 @@ public class Usuario {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public String getSenha() {
-        return senha;
     }
 
     public void setSenha(String senha) {

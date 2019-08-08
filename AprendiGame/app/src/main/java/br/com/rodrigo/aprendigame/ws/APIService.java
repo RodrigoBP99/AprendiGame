@@ -18,7 +18,7 @@ public interface APIService {
 
 
     @POST("listaPresencas")
-    Call<ArrayList<Presenca>> enviaLista(@Body ArrayList<Presenca> presencas);
+    Call<ArrayList<Presenca>> sendList(@Body ArrayList<Presenca> presencas);
 
 
     @Headers({

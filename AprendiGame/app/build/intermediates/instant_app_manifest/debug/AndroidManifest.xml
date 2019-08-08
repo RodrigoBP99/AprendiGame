@@ -22,13 +22,13 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="br.com.rodrigo.aprendigame.QuestionarioActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.PresencaRealizadaActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.PresencaActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.CadastroActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.MainActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.EditarPerfil" />
-        <activity android:name="br.com.rodrigo.aprendigame.LoginActivity" >
+        <activity android:name="br.com.rodrigo.aprendigame.Activity.QuestionarioActivity" />
+        <activity android:name="br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity" />
+        <activity android:name="br.com.rodrigo.aprendigame.Activity.PresencaActivity" />
+        <activity android:name="br.com.rodrigo.aprendigame.Activity.CadastroActivity" />
+        <activity android:name="br.com.rodrigo.aprendigame.Activity.MainActivity" />
+        <activity android:name="br.com.rodrigo.aprendigame.Activity.EditarPerfil" />
+        <activity android:name="br.com.rodrigo.aprendigame.Activity.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

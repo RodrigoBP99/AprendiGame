@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import br.com.rodrigo.aprendigame.Model.Questionario;
-import br.com.rodrigo.aprendigame.QuestionarioActivity;
+import br.com.rodrigo.aprendigame.Activity.QuestionarioActivity;
 import br.com.rodrigo.aprendigame.R;
 
 public class QuestionariosAdapter extends RecyclerView.Adapter<QuestionariosAdapter.ViewHolderQuestionario>{
@@ -55,7 +55,11 @@ public class QuestionariosAdapter extends RecyclerView.Adapter<QuestionariosAdap
 
     @Override
     public int getItemCount() {
-        return questionarios.size();
+        if (questionarios != null){
+            return questionarios.size();
+        } else {
+            return 0;
+        }
     }
 
     public class ViewHolderQuestionario extends RecyclerView.ViewHolder{

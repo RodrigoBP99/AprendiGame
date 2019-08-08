@@ -16,7 +16,7 @@ public class SetupRest {
                 .addInterceptor(interceptor).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.retrofit.com")
+                .baseUrl("https://retrofit.com")
                 .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();

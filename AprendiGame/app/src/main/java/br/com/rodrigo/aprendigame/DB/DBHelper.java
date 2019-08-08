@@ -8,7 +8,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String BANCO_NOME = "aprendigame";
 
-    public static final String TABELA_NOME = "usuario";
+    public static final String TABELA_USUARIO = "usuario";
 
     public static final String COLUNA_ID = "_ID";
     public static final String COLUNA_USERNAME = "USERNAME";
@@ -31,8 +31,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-    private static final String CRIAR_TABELA = "CREATE TABLE " +
-            TABELA_NOME + "( " +
+    private static final String CREATE_TABLE_USUARIO = "CREATE TABLE " +
+            TABELA_USUARIO + "( " +
             COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUNA_USERNAME + " TEXT UNIQUE, " + COLUNA_NOME + " TEXT, " +
             COLUNA_IDADE + " TEXT, " + COLUNA_TURMA + " TEXT, " +
@@ -40,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
             COLUNA_ENDERECO + " TEXT, " + COLUNA_SENHA + " TEXT)";
 
 
-    private static final String CRIAR_TABELA_PRESENCA = "CREATE TABLE " +
+    private static final String CREATE_TABLE_PRESENCA = "CREATE TABLE " +
             TABELA_PRESENCA + "( " +
             COLUNA_ID_PRESENCA + " TEXT PRIMARY KEY, " +
             COLUNA_DATA + " TEXT, " +
@@ -54,8 +54,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CRIAR_TABELA);
-        db.execSQL(CRIAR_TABELA_PRESENCA);
+        db.execSQL(CREATE_TABLE_USUARIO);
+        db.execSQL(CREATE_TABLE_PRESENCA);
     }
 
     @Override

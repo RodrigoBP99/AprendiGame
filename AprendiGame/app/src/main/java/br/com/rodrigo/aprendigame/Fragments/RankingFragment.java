@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
-import br.com.rodrigo.aprendigame.LoginActivity;
+import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.Model.Usuario;
 import br.com.rodrigo.aprendigame.R;
 
@@ -67,9 +67,7 @@ public class RankingFragment extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutFeedRanking, new RankingFeedFragment()).commit();
         textViewNome = getView().findViewById(R.id.textViewNomeRanking);
 
-
         UsuarioDAO usuarioDAO = new UsuarioDAO(getContext());
-
         String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERNAME);
 
         try {
@@ -78,7 +76,6 @@ public class RankingFragment extends Fragment {
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     @Override

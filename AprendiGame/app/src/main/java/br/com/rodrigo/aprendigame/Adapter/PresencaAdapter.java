@@ -18,7 +18,7 @@ import br.com.rodrigo.aprendigame.R;
 
 public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.PresencaViewHolder> {
 
-    ArrayList<Presenca> presencas;
+    private ArrayList<Presenca> presencas;
 
     public PresencaAdapter(ArrayList<Presenca> presencas) {
         this.presencas = presencas;

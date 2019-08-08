@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
-import br.com.rodrigo.aprendigame.EditarPerfil;
-import br.com.rodrigo.aprendigame.LoginActivity;
+import br.com.rodrigo.aprendigame.Activity.EditarPerfil;
+import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.Model.Usuario;
 import br.com.rodrigo.aprendigame.R;
 
@@ -80,7 +80,6 @@ public class PerfilFragment extends Fragment {
         textViewEndereco = getActivity().findViewById(R.id.textViewEnderecoPerfil);
 
         UsuarioDAO usuarioDAO = new UsuarioDAO(getContext());
-
         final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERNAME);
 
         try {

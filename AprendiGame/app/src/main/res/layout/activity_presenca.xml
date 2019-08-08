@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/linearLayoutPresenca"
-    tools:context=".PresencaActivity"
+    tools:context=".Activity.PresencaActivity"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -56,11 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/icon_avancar_presenca" />
-            </FrameLayout>
+                </FrameLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -94,11 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/icon_avancar_presenca" />
-            </FrameLayout>
+                </FrameLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -132,11 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/icon_avancar_presenca" />
-            </FrameLayout>
+                </FrameLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -170,11 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/icon_avancar_presenca" />
-            </FrameLayout>
+                </FrameLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -208,11 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/icon_avancar_presenca" />
-            </FrameLayout>
+               </FrameLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -247,11 +227,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/icon_avancar_presenca" />
             </FrameLayout>
 
         </android.support.v7.widget.CardView>

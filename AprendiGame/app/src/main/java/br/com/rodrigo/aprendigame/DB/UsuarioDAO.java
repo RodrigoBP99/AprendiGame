@@ -17,9 +17,9 @@ public class UsuarioDAO extends DBHelper {
 
     public void salvarUsuario(Usuario usuario){
         if (usuario.getId() == null){
-            getWritableDatabase().insert(TABELA_NOME, null, usuario.getValues());
+            getWritableDatabase().insert(TABELA_USUARIO, null, usuario.getValues());
         } else {
-            getWritableDatabase().update(TABELA_NOME, usuario.getValues(), "_ID = ?", new String[]{usuario.getId().toString()});
+            getWritableDatabase().update(TABELA_USUARIO, usuario.getValues(), "_ID = ?", new String[]{usuario.getId().toString()});
         }
     }
 
@@ -30,7 +30,7 @@ public class UsuarioDAO extends DBHelper {
         String selection = COLUNA_USERNAME + " = ? " + " AND " + COLUNA_SENHA + " = ? ";
         String[] selectionArgs = { userName, senha};
 
-        Cursor cursor = db.query(TABELA_NOME, collumns, selection, selectionArgs, null, null, null);
+        Cursor cursor = db.query(TABELA_USUARIO, collumns, selection, selectionArgs, null, null, null);
 
         int cursorCount = cursor.getCount();
         cursor.close();
@@ -51,7 +51,7 @@ public class UsuarioDAO extends DBHelper {
         String selection = COLUNA_USERNAME + " = ? ";
         String[] selectionArgs = { userName};
 
-        Cursor cursor = db.query(TABELA_NOME, collumns, selection, selectionArgs, null, null, null);
+        Cursor cursor = db.query(TABELA_USUARIO, collumns, selection, selectionArgs, null, null, null);
 
         int cursorCount = cursor.getCount();
         cursor.close();
@@ -74,7 +74,7 @@ public class UsuarioDAO extends DBHelper {
         valores.put(COLUNA_ENDERECO, usuario.getEndereco());
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(TABELA_NOME, valores, COLUNA_ID + " = ? ", new String[]{"" + usuario.getId()});
+        db.update(TABELA_USUARIO, valores, COLUNA_ID + " = ? ", new String[]{"" + usuario.getId()});
     }
 
     public Usuario selectUsuario(String userName){
@@ -85,7 +85,7 @@ public class UsuarioDAO extends DBHelper {
         String selection = COLUNA_USERNAME + " = ?";
         String[] selectionArgs = {userName};
 
-        Cursor cursor = db.query(TABELA_NOME, collumns, selection, selectionArgs, null, null, null);
+        Cursor cursor = db.query(TABELA_USUARIO, collumns, selection, selectionArgs, null, null, null);
 
         if (cursor.moveToFirst()){
             usuario.setId(cursor.getInt(cursor.getColumnIndex(COLUNA_ID)));

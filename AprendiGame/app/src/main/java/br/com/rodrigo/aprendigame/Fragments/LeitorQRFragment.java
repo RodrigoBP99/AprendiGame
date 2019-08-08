@@ -19,7 +19,7 @@ import java.util.Calendar;
 
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
-import br.com.rodrigo.aprendigame.PresencaRealizadaActivity;
+import br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -37,7 +37,6 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     public LeitorQRFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,7 +61,6 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                 Intent presencaIntent = new Intent(getContext(), PresencaRealizadaActivity.class);
                 startActivity(presencaIntent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -77,12 +75,10 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         String texto = String.valueOf(rawResult);
         String array[] = texto.split("&");
 
-
         Calendar agora = Calendar.getInstance();
         int horaAtual = agora.get(Calendar.HOUR_OF_DAY);
         int minutos = agora.get(Calendar.MINUTE);
         String hora = horaAtual + ":" + minutos;
-
 
         try {
             Presenca presenca = new Presenca();
@@ -91,11 +87,8 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
             presenca.setAula(array[1]);
             presenca.setProfessor(array[2]);
             presenca.setHora(hora);
-            PresencaDAO presencaDAO = new PresencaDAO(getContext());
-            presencaDAO.inserirPresenca(presenca);
 
-
-            criarPresenca(presenca);
+            createPresenca(presenca);
 
             Intent intent = new Intent(getContext(), PresencaRealizadaActivity.class);
             startActivity(intent);
@@ -104,7 +97,6 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
             e.printStackTrace();
             Toast.makeText(getContext(), "QR Code Invalido!", Toast.LENGTH_SHORT).show();
         }
-
         onResume();
     }
 
@@ -114,7 +106,6 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         ScannerView.stopCamera();
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -122,19 +113,22 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         ScannerView.startCamera();
     }
 
-    public void criarPresenca(Presenca presenca){
+    public void createPresenca(final Presenca presenca){
         try {
             SetupRest.apiService.createPresenca(presenca).enqueue(new Callback<Presenca>() {
+                PresencaDAO presencaDAO = new PresencaDAO(getContext());
                 @Override
                 public void onResponse(Call<Presenca> call, Response<Presenca> response) {
                     if (response.isSuccessful()){
                         Toast.makeText(getContext(), "Presença Enviada", Toast.LENGTH_SHORT).show();
                     }
+                    presencaDAO.inserirPresenca(presenca);
                 }
 
                 @Override
                 public void onFailure(Call<Presenca> call, Throwable t) {
                     Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                    presencaDAO.inserirPresenca(presenca);
                 }
             });
         } catch (Exception e){

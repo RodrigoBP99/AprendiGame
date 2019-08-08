@@ -99,34 +99,34 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Cliente\.g
 		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:9:9-35
 	android:theme
 		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:14:9-40
-activity#br.com.rodrigo.aprendigame.QuestionarioActivity
-ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:15:9-67
+activity#br.com.rodrigo.aprendigame.Activity.QuestionarioActivity
+ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:15:9-76
 	android:name
-		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:15:19-55
-activity#br.com.rodrigo.aprendigame.PresencaRealizadaActivity
-ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:16:9-63
+		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:15:19-64
+activity#br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity
+ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:16:9-72
 	android:name
-		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:16:19-60
-activity#br.com.rodrigo.aprendigame.PresencaActivity
-ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:17:9-54
+		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:16:19-69
+activity#br.com.rodrigo.aprendigame.Activity.PresencaActivity
+ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:17:9-63
 	android:name
-		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:17:19-51
-activity#br.com.rodrigo.aprendigame.CadastroActivity
-ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:18:9-54
+		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:17:19-60
+activity#br.com.rodrigo.aprendigame.Activity.CadastroActivity
+ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:18:9-63
 	android:name
-		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:18:19-51
-activity#br.com.rodrigo.aprendigame.MainActivity
-ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:19:9-49
+		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:18:19-60
+activity#br.com.rodrigo.aprendigame.Activity.MainActivity
+ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:19:9-58
 	android:name
-		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:19:19-47
-activity#br.com.rodrigo.aprendigame.EditarPerfil
-ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:20:9-50
+		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:19:19-56
+activity#br.com.rodrigo.aprendigame.Activity.EditarPerfil
+ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:20:9-59
 	android:name
-		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:20:19-47
-activity#br.com.rodrigo.aprendigame.LoginActivity
+		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:20:19-56
+activity#br.com.rodrigo.aprendigame.Activity.LoginActivity
 ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:21:9-27:20
 	android:name
-		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:21:19-48
+		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:21:19-57
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:22:13-26:29
 action#android.intent.action.MAIN
