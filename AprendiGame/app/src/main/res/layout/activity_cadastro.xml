@@ -31,141 +31,258 @@
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/black">
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextUserName"
+                <ImageView
+                    android:src="@drawable/user_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/black"
-                    android:hint="User Name"
-                    android:inputType="textShortMessage"
-                    android:textColor="@android:color/black" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@android:color/black">
 
-            <android.support.design.widget.TextInputLayout
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editTextUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="User Name"
+                        android:inputType="textShortMessage"
+                        android:textColor="@android:color/black" />
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/black">
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextNome"
+                <ImageView
+                    android:src="@drawable/perfil_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/black"
-                    android:hint="Nome"
-                    android:inputType="textShortMessage|textCapWords"
-                    android:textColor="@android:color/black" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@android:color/black">
 
-            <android.support.design.widget.TextInputLayout
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editTextNome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="Nome"
+                        android:inputType="textShortMessage|textCapWords"
+                        android:textColor="@android:color/black" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/black">
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextDataNascimento"
+                <ImageView
+                    android:src="@drawable/nascimento_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/black"
-                    android:hint="Data de Nascimento"
-                    android:inputType="date"
-                    android:textColor="@android:color/black" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@android:color/black">
 
-            <android.support.design.widget.TextInputLayout
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editTextDataNascimento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="Data de Nascimento"
+                        android:inputType="date"
+                        android:textColor="@android:color/black" />
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/black">
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextInstituicao"
+                <ImageView
+                    android:src="@drawable/instituicao_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/black"
-                    android:hint="Instituicao"
-                    android:inputType="textShortMessage|textCapWords"
-                    android:textColor="@android:color/black" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@android:color/black">
 
-            <android.support.design.widget.TextInputLayout
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editTextInstituicao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="Instituicao"
+                        android:inputType="textShortMessage|textCapWords"
+                        android:textColor="@android:color/black" />
+                </android.support.design.widget.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/black">
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextTurma"
+                <ImageView
+                    android:src="@drawable/turma_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/black"
-                    android:hint="Turma"
-                    android:inputType="textShortMessage|textCapWords"
-                    android:textColor="@android:color/black" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@android:color/black">
 
-            <android.support.design.widget.TextInputLayout
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editTextTurma"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="Turma"
+                        android:inputType="textShortMessage|textCapWords"
+                        android:textColor="@android:color/black" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/black">
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextEmail"
+                <ImageView
+                    android:src="@drawable/email_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/black"
-                    android:hint="E-mail"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@android:color/black" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@android:color/black">
 
-            <android.support.design.widget.TextInputLayout
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editTextEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="E-mail"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@android:color/black" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/black">
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextEndereco"
+                <ImageView
+                    android:src="@drawable/endereco_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/black"
-                    android:hint="Endereço"
-                    android:inputType="textCapWords"
-                    android:textColor="@android:color/black" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@android:color/black">
 
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editTextEndereco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="Endereço"
+                        android:inputType="textCapWords"
+                        android:textColor="@android:color/black" />
+                </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/black">
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextSenha"
+                <ImageView
+                    android:src="@drawable/senha_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/black"
-                    android:hint="Senha"
-                    android:inputType="textPassword"
-                    android:textColor="@android:color/black" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@android:color/black">
 
-            <android.support.design.widget.TextInputLayout
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editTextSenha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="Senha"
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/black" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColorHint="@android:color/black">
+                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/editTextConfirmaSenha"
+                <ImageView
+                    android:src="@drawable/confirma_senha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_marginLeft="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/black"
-                    android:hint="Confirme a Senha"
-                    android:inputType="textPassword"
-                    android:textColor="@android:color/black" />
-            </android.support.design.widget.TextInputLayout>
+                    android:textColorHint="@android:color/black">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/editTextConfirmaSenha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:hint="Confirme a Senha"
+                        android:inputType="textPassword"
+                        android:textColor="@android:color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -173,24 +290,22 @@
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal">
 
-                <Button
+                <ImageButton
                     android:id="@+id/buttonCancelarCadastro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginRight="30dp"
-                    android:background="@android:color/white"
-                    android:elevation="5dp"
-                    android:text="Cancelar"
-                    android:textColor="#FF0000" />
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/botao_cancelar_icon" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/buttonConfirmarCadastro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:elevation="5dp"
-                    android:text="Confirmar"
-                    android:textColor="@color/design_default_color_primary" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/botao_cadastrar_icon" />
             </LinearLayout>
 
         </LinearLayout>

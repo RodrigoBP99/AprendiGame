@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
-import br.com.rodrigo.aprendigame.Activity.EditarPerfil;
+import br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.Model.Usuario;
 import br.com.rodrigo.aprendigame.R;
@@ -56,7 +56,7 @@ public class PerfilFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.buttonEditarPerfil:
-                Intent editarPerfil = new Intent(getContext(), EditarPerfil.class);
+                Intent editarPerfil = new Intent(getContext(), EditarPerfilActivity.class);
                 editarPerfil.putExtra(USUARIO, pegarUsuario());
                 startActivity(editarPerfil);
         }
@@ -73,7 +73,7 @@ public class PerfilFragment extends Fragment {
         super.onResume();
 
         textViewNome = getActivity().findViewById(R.id.textViewNomePerfil);
-        textViewIdade = getActivity().findViewById(R.id.textViewIdadePerfil);
+        textViewIdade = getActivity().findViewById(R.id.textViewNascimentoPerfil);
         textViewTurma = getActivity().findViewById(R.id.textViewTurmaPerfil);
         textViewInstituicao = getActivity().findViewById(R.id.textViewInstituicaoPerfil);
         textViewEmail = getActivity().findViewById(R.id.textViewEmailPerfil);
@@ -85,11 +85,11 @@ public class PerfilFragment extends Fragment {
         try {
             usuario = usuarioDAO.selectUsuario(userName);
             textViewNome.setText(usuario.getNome());
-            textViewIdade.setText("Idade: " + usuario.getIdade());
-            textViewTurma.setText("Turma: " + usuario.getTurma());
-            textViewInstituicao.setText("Instituição: " + usuario.getInstituicao());
-            textViewEmail.setText("E-mail: " + usuario.getEmail());
-            textViewEndereco.setText("Endereço: " + usuario.getEndereco());
+            textViewIdade.setText(usuario.getIdade());
+            textViewTurma.setText(usuario.getTurma());
+            textViewInstituicao.setText(usuario.getInstituicao());
+            textViewEmail.setText(usuario.getEmail());
+            textViewEndereco.setText(usuario.getEndereco());
         } catch (Exception e){
             e.printStackTrace();
         }

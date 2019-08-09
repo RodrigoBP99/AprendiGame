@@ -27,7 +27,7 @@
         <activity android:name="br.com.rodrigo.aprendigame.Activity.PresencaActivity" />
         <activity android:name="br.com.rodrigo.aprendigame.Activity.CadastroActivity" />
         <activity android:name="br.com.rodrigo.aprendigame.Activity.MainActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.Activity.EditarPerfil" />
+        <activity android:name="br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity" />
         <activity android:name="br.com.rodrigo.aprendigame.Activity.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

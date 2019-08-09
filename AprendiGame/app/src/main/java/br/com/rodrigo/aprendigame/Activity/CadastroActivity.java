@@ -1,6 +1,5 @@
 package br.com.rodrigo.aprendigame.Activity;
 
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -8,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
@@ -18,8 +17,8 @@ import br.com.rodrigo.aprendigame.R;
 
 public class CadastroActivity extends AppCompatActivity {
 
-    private Button buttonConfirmarCadastro;
-    private Button buttonCancelarCadastro;
+    private ImageButton buttonConfirmarCadastro;
+    private ImageButton buttonCancelarCadastro;
 
     private Usuario usuario = new Usuario();
 

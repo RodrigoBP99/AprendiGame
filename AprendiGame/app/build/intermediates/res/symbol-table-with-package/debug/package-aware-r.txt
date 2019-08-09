@@ -1023,7 +1023,10 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable botao_cadastrar_icon
+drawable botao_cancelar_icon
 drawable confirma_icon
+drawable confirma_senha
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
 drawable design_ic_visibility
@@ -1031,6 +1034,8 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable editar_perfil_icon
+drawable email_icon
+drawable endereco_icon
 drawable ic_dashboard_black_24dp
 drawable ic_home_black_24dp
 drawable ic_launcher_background
@@ -1039,9 +1044,11 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_notifications_black_24dp
+drawable instituicao_icon
 drawable logo_app
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
+drawable nascimento_icon
 drawable navigation_empty_icon
 drawable notification_action_background
 drawable notification_bg
@@ -1061,8 +1068,11 @@ drawable presenca_realizada_icon
 drawable questionario_icon
 drawable ranking_icon
 drawable search_icon
+drawable senha_icon
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable turma_icon
+drawable user_icon
 drawable voltar_icon
 id ALT
 id CTRL
@@ -1107,7 +1117,6 @@ id buttonLogin
 id buttonPanel
 id buttonPresenca
 id buttonSeachQuestionario
-id buttonTrocarFoto
 id cancel_action
 id center
 id center_horizontal
@@ -1136,9 +1145,9 @@ id direct
 id disableHome
 id editTextConfirmaSenha
 id editTextDataNascimento
+id editTextEditarPerfilDataNascimento
 id editTextEditarPerfilEmail
 id editTextEditarPerfilEndereco
-id editTextEditarPerfilIdade
 id editTextEditarPerfilInstituicao
 id editTextEditarPerfilNome
 id editTextEditarPerfilTurma
@@ -1297,9 +1306,9 @@ id textViewAutorQuestionario
 id textViewCadastro
 id textViewEmailPerfil
 id textViewEnderecoPerfil
-id textViewIdadePerfil
 id textViewInstituicaoPerfil
 id textViewMateriaQuestionario
+id textViewNascimentoPerfil
 id textViewNomePerfil
 id textViewNomeRanking
 id textViewNotaQuestionario

@@ -119,10 +119,10 @@ activity#br.com.rodrigo.aprendigame.Activity.MainActivity
 ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:19:9-58
 	android:name
 		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:19:19-56
-activity#br.com.rodrigo.aprendigame.Activity.EditarPerfil
-ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:20:9-59
+activity#br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity
+ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:20:9-67
 	android:name
-		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:20:19-56
+		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:20:19-64
 activity#br.com.rodrigo.aprendigame.Activity.LoginActivity
 ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGame\app\src\main\AndroidManifest.xml:21:9-27:20
 	android:name

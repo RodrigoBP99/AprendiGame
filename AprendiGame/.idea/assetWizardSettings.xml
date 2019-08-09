@@ -173,8 +173,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="0004ff" />
-                            <entry key="outputName" value="ranking_icon" />
-                            <entry key="sourceFile" value="C:\Users\Cliente\Desktop\APPs\IC\ranking SC.svg" />
+                            <entry key="outputName" value="botao_cancelar_icon" />
+                            <entry key="sourceFile" value="C:\Users\Cliente\Desktop\APPs\IC\botao_cancelar.svg" />
                           </map>
                         </option>
                       </PersistentState>
