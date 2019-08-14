@@ -1,6 +1,5 @@
 package br.com.rodrigo.aprendigame.Fragments;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -64,7 +63,7 @@ public class PerfilFragment extends Fragment {
     }
 
     public String pegarUsuario(){
-        final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERNAME);
+        final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
         return userName;
     }
 
@@ -80,7 +79,7 @@ public class PerfilFragment extends Fragment {
         textViewEndereco = getActivity().findViewById(R.id.textViewEnderecoPerfil);
 
         UsuarioDAO usuarioDAO = new UsuarioDAO(getContext());
-        final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERNAME);
+        final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
 
         try {
             usuario = usuarioDAO.selectUsuario(userName);

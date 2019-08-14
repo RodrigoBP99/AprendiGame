@@ -9,9 +9,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String BANCO_NOME = "aprendigame";
 
     public static final String TABELA_USUARIO = "usuario";
-
     public static final String COLUNA_ID = "_ID";
-    public static final String COLUNA_USERNAME = "USERNAME";
+    public static final String COLUNA_USERMATRICULA = "USERNAME";
     public static final String COLUNA_NOME = "NOME";
     public static final String COLUNA_IDADE = "IDADE";
     public static final String COLUNA_TURMA= "TURMA";
@@ -34,7 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_USUARIO = "CREATE TABLE " +
             TABELA_USUARIO + "( " +
             COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            COLUNA_USERNAME + " TEXT UNIQUE, " + COLUNA_NOME + " TEXT, " +
+            COLUNA_USERMATRICULA + " TEXT UNIQUE, " + COLUNA_NOME + " TEXT, " +
             COLUNA_IDADE + " TEXT, " + COLUNA_TURMA + " TEXT, " +
             COLUNA_INSTITUICAO + " TEXT, " + COLUNA_EMAIL + " TEXT, " +
             COLUNA_ENDERECO + " TEXT, " + COLUNA_SENHA + " TEXT)";

@@ -50,7 +50,6 @@ public class QuestionariosAdapter extends RecyclerView.Adapter<QuestionariosAdap
                 context.startActivity(intent);
             }
         });
-
     }
 
     @Override

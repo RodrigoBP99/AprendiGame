@@ -22,7 +22,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     private Usuario usuario = new Usuario();
 
-    private EditText editTextUserName;
+    private EditText editTextUserMatricula;
     private EditText editTextNome;
     private EditText editTextDataNascimento;
     private EditText editTextTurma;
@@ -37,7 +37,7 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        editTextUserName = findViewById(R.id.editTextUserName);
+        editTextUserMatricula = findViewById(R.id.editTextUserMatricula);
         editTextNome = findViewById(R.id.editTextNome);
         editTextDataNascimento = findViewById(R.id.editTextDataNascimento);
         editTextTurma = findViewById(R.id.editTextTurma);
@@ -85,7 +85,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void cadastroUsuario(){
-        final String username = editTextUserName.getText().toString().trim();
+        final String userMatricula = editTextUserMatricula.getText().toString().trim();
         final String nome = editTextNome.getText().toString().trim();
         final String dataNascimento = editTextDataNascimento.getText().toString().trim();
         final String turma = editTextTurma.getText().toString().trim();
@@ -103,14 +103,14 @@ public class CadastroActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
         // Testa se os campos estão vazios
-        if (username.isEmpty() || nome.isEmpty() || dataNascimento.isEmpty()
+        if (userMatricula.isEmpty() || nome.isEmpty() || dataNascimento.isEmpty()
                 || turma.isEmpty() || instituicao.isEmpty() || email.isEmpty()
                 || endereco.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty())
         {
             Toast.makeText(CadastroActivity.this, "Todos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
         } else {
             // checa se o nome de usuario já existe
-            if (bdUsuario.checkUserName(username) == true){
+            if (bdUsuario.checkUserMatricula(userMatricula) == true){
                 Toast.makeText(CadastroActivity.this, "Usuario já existe", Toast.LENGTH_SHORT).show();
             } else {
                 //verificação da senha
@@ -119,7 +119,7 @@ public class CadastroActivity extends AppCompatActivity {
                 } else {
                     if (confirmarSenha.equals(senha)) {
 
-                        usuario.setUserName(username);
+                        usuario.setMatricula(userMatricula);
                         usuario.setNome(nome);
                         usuario.setIdade(dataNascimento);
                         usuario.setTurma(turma);

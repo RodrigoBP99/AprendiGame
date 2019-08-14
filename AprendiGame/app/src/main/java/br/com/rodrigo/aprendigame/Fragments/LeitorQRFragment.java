@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.google.zxing.Result;
 
-
 import java.util.Calendar;
 
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
@@ -121,8 +120,9 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                 public void onResponse(Call<Presenca> call, Response<Presenca> response) {
                     if (response.isSuccessful()){
                         Toast.makeText(getContext(), "Presença Enviada", Toast.LENGTH_SHORT).show();
+                    } else if(!response.isSuccessful()) {
+                        presencaDAO.inserirPresenca(presenca);
                     }
-                    presencaDAO.inserirPresenca(presenca);
                 }
 
                 @Override

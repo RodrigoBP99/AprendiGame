@@ -68,27 +68,6 @@ public class QuestionariosFragment extends Fragment {
                 "Marcelo Oliveira", "Historia", "--/10");
         questionarios.add(questionario1);
 
-        Questionario questionario2 = new Questionario("Trigonometria",
-                "Pedro Costa", "Matematica", "--/10");
-        questionarios.add(questionario2);
-
-        Questionario questionario3 = new Questionario("Conjugação Verbal",
-                "Priscila Santos", "Portugues", "--/10");
-        questionarios.add(questionario3);
-
-        Questionario questionario4 = new Questionario("Futebol",
-                "Robson Alves", "Educação Fisica", "--/10");
-        questionarios.add(questionario4);
-
-        Questionario questionario5 = new Questionario("Revolução Industrial",
-                "Marcelo Oliveira", "Historia", "--/10");
-        questionarios.add(questionario5);
-
-        Questionario questionario6 = new Questionario("Equação do Segundo Grau",
-                "Pedro Costa", "Matematica", "--/10");
-        questionarios.add(questionario6);
-
-
         adapter = new QuestionariosAdapter(questionarios, getContext());
         recyclerViewQuestionarios.setAdapter(adapter);
     }

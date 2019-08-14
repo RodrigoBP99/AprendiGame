@@ -1154,11 +1154,11 @@ int id editTextEmail 0x7f08004d
 int id editTextEndereco 0x7f08004e
 int id editTextInstituicao 0x7f08004f
 int id editTextLoginSenha 0x7f080050
-int id editTextLoginUserName 0x7f080051
+int id editTextLoginUserMatricula 0x7f080051
 int id editTextNome 0x7f080052
 int id editTextSenha 0x7f080053
 int id editTextTurma 0x7f080054
-int id editTextUserName 0x7f080055
+int id editTextUserMatricula 0x7f080055
 int id edit_query 0x7f080056
 int id end 0x7f080057
 int id end_padder 0x7f080058

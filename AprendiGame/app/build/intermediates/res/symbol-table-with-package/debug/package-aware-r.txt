@@ -1155,11 +1155,11 @@ id editTextEmail
 id editTextEndereco
 id editTextInstituicao
 id editTextLoginSenha
-id editTextLoginUserName
+id editTextLoginUserMatricula
 id editTextNome
 id editTextSenha
 id editTextTurma
-id editTextUserName
+id editTextUserMatricula
 id edit_query
 id end
 id end_padder

@@ -1,6 +1,5 @@
 package br.com.rodrigo.aprendigame.Adapter;
 
-
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +58,6 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
         TextView textViewProfessor;
         TextView textViewAula;
         TextView textViewHora;
-
 
         public PresencaViewHolder(@NonNull View itemView) {
             super(itemView);

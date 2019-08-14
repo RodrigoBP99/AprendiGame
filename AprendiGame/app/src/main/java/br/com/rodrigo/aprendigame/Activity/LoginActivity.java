@@ -20,9 +20,9 @@ public class LoginActivity extends AppCompatActivity {
     private UsuarioDAO usuarioDAO;
     private Button buttonLogin;
     private TextView textViewCadastro;
-    private EditText editTextUserNameLogin;
+    private EditText editTextUserMatriculaLogin;
     private EditText editTextSenhaLogin;
-    public final static String USERNAME = "userName";
+    public final static String USERMATRICULA = "userName";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +33,12 @@ public class LoginActivity extends AppCompatActivity {
 
         buttonLogin = findViewById(R.id.buttonLogin);
         textViewCadastro = findViewById(R.id.textViewCadastro);
-        editTextUserNameLogin = findViewById(R.id.editTextLoginUserName);
+        editTextUserMatriculaLogin = findViewById(R.id.editTextLoginUserMatricula);
         editTextSenhaLogin = findViewById(R.id.editTextLoginSenha);
 
 
         editTextSenhaLogin.setText("123456");
-        editTextUserNameLogin.setText("teste");
+        editTextUserMatriculaLogin.setText("teste");
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,9 +62,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void autenticaLogin(View v){
-        if (usuarioDAO.autenticaUsuario(editTextUserNameLogin.getText().toString().trim(), editTextSenhaLogin.getText().toString().trim())){
+        if (usuarioDAO.autenticaUsuario(editTextUserMatriculaLogin.getText().toString().trim(), editTextSenhaLogin.getText().toString().trim())){
             Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
-            mainActivity.putExtra(USERNAME, editTextUserNameLogin.getText().toString().trim());
+            mainActivity.putExtra(USERMATRICULA, editTextUserMatriculaLogin.getText().toString().trim());
             startActivity(mainActivity);
             finish();
         } else {

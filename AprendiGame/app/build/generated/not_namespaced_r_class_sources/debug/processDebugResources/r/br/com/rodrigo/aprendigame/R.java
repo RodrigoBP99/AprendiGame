@@ -5311,11 +5311,11 @@ public final class R {
     public static final int editTextEndereco=0x7f08004e;
     public static final int editTextInstituicao=0x7f08004f;
     public static final int editTextLoginSenha=0x7f080050;
-    public static final int editTextLoginUserName=0x7f080051;
+    public static final int editTextLoginUserMatricula=0x7f080051;
     public static final int editTextNome=0x7f080052;
     public static final int editTextSenha=0x7f080053;
     public static final int editTextTurma=0x7f080054;
-    public static final int editTextUserName=0x7f080055;
+    public static final int editTextUserMatricula=0x7f080055;
     public static final int edit_query=0x7f080056;
     public static final int end=0x7f080057;
     public static final int end_padder=0x7f080058;

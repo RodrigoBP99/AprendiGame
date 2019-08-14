@@ -1,6 +1,5 @@
 package br.com.rodrigo.aprendigame.DB;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -23,12 +22,12 @@ public class UsuarioDAO extends DBHelper {
         }
     }
 
-    public boolean autenticaUsuario(String userName, String senha){
+    public boolean autenticaUsuario(String userMatricula, String senha){
         String[] collumns = {COLUNA_ID};
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String selection = COLUNA_USERNAME + " = ? " + " AND " + COLUNA_SENHA + " = ? ";
-        String[] selectionArgs = { userName, senha};
+        String selection = COLUNA_USERMATRICULA + " = ? " + " AND " + COLUNA_SENHA + " = ? ";
+        String[] selectionArgs = { userMatricula, senha};
 
         Cursor cursor = db.query(TABELA_USUARIO, collumns, selection, selectionArgs, null, null, null);
 
@@ -44,12 +43,12 @@ public class UsuarioDAO extends DBHelper {
     }
 
 
-    public boolean checkUserName(String userName){
+    public boolean checkUserMatricula(String userMatricula){
         String[] collumns = {COLUNA_ID};
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String selection = COLUNA_USERNAME + " = ? ";
-        String[] selectionArgs = { userName};
+        String selection = COLUNA_USERMATRICULA + " = ? ";
+        String[] selectionArgs = { userMatricula};
 
         Cursor cursor = db.query(TABELA_USUARIO, collumns, selection, selectionArgs, null, null, null);
 
@@ -77,13 +76,13 @@ public class UsuarioDAO extends DBHelper {
         db.update(TABELA_USUARIO, valores, COLUNA_ID + " = ? ", new String[]{"" + usuario.getId()});
     }
 
-    public Usuario selectUsuario(String userName){
+    public Usuario selectUsuario(String userMatricula){
         Usuario usuario = new Usuario();
         SQLiteDatabase db = this.getWritableDatabase();
 
         String[] collumns = {COLUNA_ID, COLUNA_NOME, COLUNA_IDADE, COLUNA_TURMA, COLUNA_INSTITUICAO, COLUNA_EMAIL, COLUNA_ENDERECO};
-        String selection = COLUNA_USERNAME + " = ?";
-        String[] selectionArgs = {userName};
+        String selection = COLUNA_USERMATRICULA + " = ?";
+        String[] selectionArgs = {userMatricula};
 
         Cursor cursor = db.query(TABELA_USUARIO, collumns, selection, selectionArgs, null, null, null);
 

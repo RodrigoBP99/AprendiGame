@@ -1,6 +1,5 @@
 package br.com.rodrigo.aprendigame.Fragments;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -68,7 +67,7 @@ public class RankingFragment extends Fragment {
         textViewNome = getView().findViewById(R.id.textViewNomeRanking);
 
         UsuarioDAO usuarioDAO = new UsuarioDAO(getContext());
-        String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERNAME);
+        String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
 
         try {
             usuario = usuarioDAO.selectUsuario(userName);
