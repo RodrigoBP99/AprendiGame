@@ -89,9 +89,6 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
 
             createPresenca(presenca);
 
-            Intent intent = new Intent(getContext(), PresencaRealizadaActivity.class);
-            startActivity(intent);
-
         } catch (Exception e){
             e.printStackTrace();
             Toast.makeText(getContext(), "QR Code Invalido!", Toast.LENGTH_SHORT).show();
@@ -112,6 +109,12 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         ScannerView.startCamera();
     }
 
+    public void trocarTela(){
+        onPause();
+        Intent intent = new Intent(getContext(), PresencaRealizadaActivity.class);
+        startActivity(intent);
+    }
+
     public void createPresenca(final Presenca presenca){
         try {
             SetupRest.apiService.createPresenca(presenca).enqueue(new Callback<Presenca>() {
@@ -122,6 +125,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                         Toast.makeText(getContext(), "Presença Enviada", Toast.LENGTH_SHORT).show();
                     } else if(!response.isSuccessful()) {
                         presencaDAO.inserirPresenca(presenca);
+                        trocarTela();
                     }
                 }
 
@@ -129,6 +133,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                 public void onFailure(Call<Presenca> call, Throwable t) {
                     Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     presencaDAO.inserirPresenca(presenca);
+                    trocarTela();
                 }
             });
         } catch (Exception e){
