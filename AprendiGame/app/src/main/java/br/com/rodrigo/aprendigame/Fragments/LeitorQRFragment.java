@@ -74,10 +74,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         String texto = String.valueOf(rawResult);
         String array[] = texto.split("&");
 
-        Calendar agora = Calendar.getInstance();
-        int horaAtual = agora.get(Calendar.HOUR_OF_DAY);
-        int minutos = agora.get(Calendar.MINUTE);
-        String hora = horaAtual + ":" + minutos;
+        String hora = getHora();
 
         try {
             Presenca presenca = new Presenca();
@@ -94,6 +91,15 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
             Toast.makeText(getContext(), "QR Code Invalido!", Toast.LENGTH_SHORT).show();
         }
         onResume();
+    }
+
+    private String getHora() {
+        Calendar agora = Calendar.getInstance();
+        int horaAtual = agora.get(Calendar.HOUR_OF_DAY);
+        int minutos = agora.get(Calendar.MINUTE);
+        String hora = String.format("%02d", horaAtual) + ":" + String.format("%02d", minutos);
+
+        return hora;
     }
 
     @Override

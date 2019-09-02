@@ -71,12 +71,7 @@ public class PerfilFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        textViewNome = getActivity().findViewById(R.id.textViewNomePerfil);
-        textViewIdade = getActivity().findViewById(R.id.textViewNascimentoPerfil);
-        textViewTurma = getActivity().findViewById(R.id.textViewTurmaPerfil);
-        textViewInstituicao = getActivity().findViewById(R.id.textViewInstituicaoPerfil);
-        textViewEmail = getActivity().findViewById(R.id.textViewEmailPerfil);
-        textViewEndereco = getActivity().findViewById(R.id.textViewEnderecoPerfil);
+        findViewsById();
 
         UsuarioDAO usuarioDAO = new UsuarioDAO(getContext());
         final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
@@ -92,5 +87,14 @@ public class PerfilFragment extends Fragment {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void findViewsById() {
+        textViewNome = getActivity().findViewById(R.id.textViewNomePerfil);
+        textViewIdade = getActivity().findViewById(R.id.textViewNascimentoPerfil);
+        textViewTurma = getActivity().findViewById(R.id.textViewTurmaPerfil);
+        textViewInstituicao = getActivity().findViewById(R.id.textViewInstituicaoPerfil);
+        textViewEmail = getActivity().findViewById(R.id.textViewEmailPerfil);
+        textViewEndereco = getActivity().findViewById(R.id.textViewEnderecoPerfil);
     }
 }
