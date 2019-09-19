@@ -34,15 +34,27 @@ public class LoginActivity extends AppCompatActivity {
 
         usuarioDAO = new UsuarioDAO(getApplicationContext());
 
-        buttonLogin = findViewById(R.id.buttonLogin);
-        textViewCadastro = findViewById(R.id.textViewCadastro);
-        editTextUserMatriculaLogin = findViewById(R.id.editTextLoginUserMatricula);
-        editTextSenhaLogin = findViewById(R.id.editTextLoginSenha);
-
+        findViewsById();
 
         editTextSenhaLogin.setText("123456");
         editTextUserMatriculaLogin.setText("123456");
 
+        clickLogin();
+
+        clickCadastrarUsuario();
+    }
+
+    private void clickCadastrarUsuario() {
+        textViewCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cadastroActivity = new Intent(LoginActivity.this, CadastroActivity.class);
+                startActivity(cadastroActivity);
+            }
+        });
+    }
+
+    private void clickLogin() {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,14 +68,13 @@ public class LoginActivity extends AppCompatActivity {
                 autenticaLogin(v, userName, senha);
             }
         });
+    }
 
-        textViewCadastro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent cadastroActivity = new Intent(LoginActivity.this, CadastroActivity.class);
-                startActivity(cadastroActivity);
-            }
-        });
+    private void findViewsById() {
+        buttonLogin = findViewById(R.id.buttonLogin);
+        textViewCadastro = findViewById(R.id.textViewCadastro);
+        editTextUserMatriculaLogin = findViewById(R.id.editTextLoginUserMatricula);
+        editTextSenhaLogin = findViewById(R.id.editTextLoginSenha);
     }
 
     public void autenticaLogin(View v, String userName, String senha){

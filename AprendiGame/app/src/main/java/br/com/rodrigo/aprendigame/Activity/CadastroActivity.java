@@ -38,19 +38,19 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        editTextUserMatricula = findViewById(R.id.editTextUserMatricula);
-        editTextNome = findViewById(R.id.editTextNome);
-        editTextDataNascimento = findViewById(R.id.editTextDataNascimento);
-        editTextTurma = findViewById(R.id.editTextTurma);
-        editTextInstituicao = findViewById(R.id.editTextInstituicao);
-        editTextEmail = findViewById(R.id.editTextEmail);
-        editTextEndereco = findViewById(R.id.editTextEndereco);
-        editTextSenha = findViewById(R.id.editTextSenha);
-        editTextConfrimarSenha = findViewById(R.id.editTextConfirmaSenha);
+        findViewsById();
 
+        cancelarCadastro();
 
-        buttonCancelarCadastro = findViewById(R.id.buttonCancelarCadastro);
+        buttonConfirmarCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cadastroUsuario();
+            }
+        });
+    }
 
+    private void cancelarCadastro() {
         buttonCancelarCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,15 +63,20 @@ public class CadastroActivity extends AppCompatActivity {
                 }).setNegativeButton("Não", null).setMessage("Tem certeza que deseja cancelar seu Cadastro?").show();
             }
         });
+    }
 
+    private void findViewsById() {
+        editTextUserMatricula = findViewById(R.id.editTextUserMatricula);
+        editTextNome = findViewById(R.id.editTextNome);
+        editTextDataNascimento = findViewById(R.id.editTextDataNascimento);
+        editTextTurma = findViewById(R.id.editTextTurma);
+        editTextInstituicao = findViewById(R.id.editTextInstituicao);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextEndereco = findViewById(R.id.editTextEndereco);
+        editTextSenha = findViewById(R.id.editTextSenha);
+        editTextConfrimarSenha = findViewById(R.id.editTextConfirmaSenha);
+        buttonCancelarCadastro = findViewById(R.id.buttonCancelarCadastro);
         buttonConfirmarCadastro = findViewById(R.id.buttonConfirmarCadastro);
-
-        buttonConfirmarCadastro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cadastroUsuario();
-            }
-        });
     }
 
     @Override
@@ -111,7 +116,7 @@ public class CadastroActivity extends AppCompatActivity {
             Toast.makeText(CadastroActivity.this, "Todos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
         } else {
             // checa se o nome de usuario já existe
-            if (bdUsuario.checkUserMatricula(userMatricula) == true){
+            if (bdUsuario.checkUserMatricula(userMatricula)){
                 Toast.makeText(CadastroActivity.this, "Matricula já Cadastrada", Toast.LENGTH_SHORT).show();
             } else {
                 //verificação da senha

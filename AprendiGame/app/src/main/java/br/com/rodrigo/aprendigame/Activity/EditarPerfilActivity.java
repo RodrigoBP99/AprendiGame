@@ -29,42 +29,18 @@ public class EditarPerfilActivity extends AppCompatActivity {
     private EditText editTextPerfilInstituicao;
     private EditText editTextPerfilEmail;
     private EditText editTextPerfilEndereco;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_editarPerfil);
-        setSupportActionBar(toolbar);
+        findViewsById();
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(null);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationIcon(R.drawable.voltar_icon);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View view = getCurrentFocus();
-                if (view != null) {
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-                finish();
-            }
-        });
+        montaToolbar();
 
         UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
-
-        editTextPerfilNome = findViewById(R.id.editTextEditarPerfilNome);
-        editTextPerfilDataNascimento = findViewById(R.id.editTextEditarPerfilDataNascimento);
-        editTextPerfilTurma = findViewById(R.id.editTextEditarPerfilTurma);
-        editTextPerfilInstituicao = findViewById(R.id.editTextEditarPerfilInstituicao);
-        editTextPerfilEmail = findViewById(R.id.editTextEditarPerfilEmail);
-        editTextPerfilEndereco = findViewById(R.id.editTextEditarPerfilEndereco);
-        ImageView imageViewPerfil = findViewById(R.id.imageViewEditarPerfilFoto);
 
         String userName = getIntent().getStringExtra(PerfilFragment.USUARIO);
 
@@ -79,6 +55,38 @@ public class EditarPerfilActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void montaToolbar() {
+        setSupportActionBar(toolbar);
+
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(null);
+
+        toolbar.setNavigationIcon(R.drawable.voltar_icon);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = getCurrentFocus();
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+
+                finish();
+            }
+        });
+    }
+
+    private void findViewsById() {
+        editTextPerfilNome = findViewById(R.id.editTextEditarPerfilNome);
+        editTextPerfilDataNascimento = findViewById(R.id.editTextEditarPerfilDataNascimento);
+        editTextPerfilTurma = findViewById(R.id.editTextEditarPerfilTurma);
+        editTextPerfilInstituicao = findViewById(R.id.editTextEditarPerfilInstituicao);
+        editTextPerfilEmail = findViewById(R.id.editTextEditarPerfilEmail);
+        editTextPerfilEndereco = findViewById(R.id.editTextEditarPerfilEndereco);
+        ImageView imageViewPerfil = findViewById(R.id.imageViewEditarPerfilFoto);
+        toolbar = findViewById(R.id.toolbar_editarPerfil);
     }
 
     @Override
