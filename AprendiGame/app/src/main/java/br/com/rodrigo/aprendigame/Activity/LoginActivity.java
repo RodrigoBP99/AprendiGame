@@ -24,6 +24,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextSenhaLogin;
     public final static String USERMATRICULA = "userName";
 
+    private String userName;
+    private String senha;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         editTextSenhaLogin.setText("123456");
-        editTextUserMatriculaLogin.setText("teste");
+        editTextUserMatriculaLogin.setText("123456");
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +51,9 @@ public class LoginActivity extends AppCompatActivity {
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
-                autenticaLogin(v);
+                userName = editTextUserMatriculaLogin.getText().toString().trim();
+                senha = editTextSenhaLogin.getText().toString().trim();
+                autenticaLogin(v, userName, senha);
             }
         });
 
@@ -61,8 +66,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void autenticaLogin(View v){
-        if (usuarioDAO.autenticaUsuario(editTextUserMatriculaLogin.getText().toString().trim(), editTextSenhaLogin.getText().toString().trim())){
+    public void autenticaLogin(View v, String userName, String senha){
+        if (usuarioDAO.autenticaUsuario(userName, senha)){
             Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
             mainActivity.putExtra(USERMATRICULA, editTextUserMatriculaLogin.getText().toString().trim());
             startActivity(mainActivity);

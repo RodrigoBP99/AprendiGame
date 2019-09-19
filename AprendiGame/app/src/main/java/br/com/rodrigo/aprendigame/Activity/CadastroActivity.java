@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -111,7 +112,7 @@ public class CadastroActivity extends AppCompatActivity {
         } else {
             // checa se o nome de usuario já existe
             if (bdUsuario.checkUserMatricula(userMatricula) == true){
-                Toast.makeText(CadastroActivity.this, "Usuario já existe", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CadastroActivity.this, "Matricula já Cadastrada", Toast.LENGTH_SHORT).show();
             } else {
                 //verificação da senha
                 if (senha.length() < 6) {
@@ -119,7 +120,7 @@ public class CadastroActivity extends AppCompatActivity {
                 } else {
                     if (confirmarSenha.equals(senha)) {
 
-                        usuario.setMatricula(userMatricula);
+                        usuario.setId(userMatricula);
                         usuario.setNome(nome);
                         usuario.setIdade(dataNascimento);
                         usuario.setTurma(turma);
@@ -128,10 +129,14 @@ public class CadastroActivity extends AppCompatActivity {
                         usuario.setEndereco(endereco);
                         usuario.setSenha(senha);
 
-                        bdUsuario.salvarUsuario(usuario);
+                        try {
+                            bdUsuario.salvarUsuario(usuario);
+                            Toast.makeText(CadastroActivity.this, "Cadastro Realizado Com Sucesso!", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }catch (Exception e){
+                            Log.w("Cadastro: ", e.getMessage());
+                        }
 
-                        Toast.makeText(CadastroActivity.this, "Cadastro Realizado Com Sucesso!", Toast.LENGTH_SHORT).show();
-                        finish();
                     } else {
                         Toast.makeText(CadastroActivity.this, "Senha incorreta", Toast.LENGTH_LONG).show();
                     }

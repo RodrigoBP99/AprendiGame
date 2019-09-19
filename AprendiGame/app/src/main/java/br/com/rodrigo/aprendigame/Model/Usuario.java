@@ -6,8 +6,7 @@ import br.com.rodrigo.aprendigame.DB.DBHelper;
 
 public class Usuario {
 
-    private Integer id;
-    private String matricula;
+    private String id;
     private String nome;
     private String idade;
     private String turma;
@@ -17,16 +16,12 @@ public class Usuario {
     private String senha;
 
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     public String getNome() {
@@ -83,7 +78,7 @@ public class Usuario {
 
     public ContentValues getValues() {
         ContentValues valores = new ContentValues();
-        valores.put(DBHelper.COLUNA_USERMATRICULA, matricula);
+        valores.put(DBHelper.COLUNA_ID, id);
         valores.put(DBHelper.COLUNA_NOME, nome);
         valores.put(DBHelper.COLUNA_IDADE, idade);
         valores.put(DBHelper.COLUNA_TURMA, turma);

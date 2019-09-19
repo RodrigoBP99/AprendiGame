@@ -16,6 +16,7 @@ import com.google.zxing.Result;
 
 import java.util.Calendar;
 
+import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity;
@@ -73,7 +74,10 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         rawResult.toString();
         String texto = String.valueOf(rawResult);
         String array[] = texto.split("&");
+        String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
 
+        Toast.makeText(getContext(), userName, Toast.LENGTH_SHORT).show();
+        
         String hora = getHora();
 
         try {

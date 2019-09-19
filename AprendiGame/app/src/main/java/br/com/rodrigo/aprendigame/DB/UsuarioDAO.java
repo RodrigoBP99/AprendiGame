@@ -14,20 +14,16 @@ public class UsuarioDAO extends DBHelper {
         super(applicationContext);
     }
 
-    public void salvarUsuario(Usuario usuario){
-        if (usuario.getId() == null){
-            getWritableDatabase().insert(TABELA_USUARIO, null, usuario.getValues());
-        } else {
-            getWritableDatabase().update(TABELA_USUARIO, usuario.getValues(), "_ID = ?", new String[]{usuario.getId().toString()});
-        }
+    public void salvarUsuario(Usuario usuario) {
+        getWritableDatabase().insert(TABELA_USUARIO, null, usuario.getValues());
     }
 
-    public boolean autenticaUsuario(String userMatricula, String senha){
+    public boolean autenticaUsuario(String userMatricula, String senha) {
         String[] collumns = {COLUNA_ID};
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String selection = COLUNA_USERMATRICULA + " = ? " + " AND " + COLUNA_SENHA + " = ? ";
-        String[] selectionArgs = { userMatricula, senha};
+        String selection = COLUNA_ID + " = ? " + " AND " + COLUNA_SENHA + " = ? ";
+        String[] selectionArgs = {userMatricula, senha};
 
         Cursor cursor = db.query(TABELA_USUARIO, collumns, selection, selectionArgs, null, null, null);
 
@@ -36,19 +32,19 @@ public class UsuarioDAO extends DBHelper {
 
         db.close();
 
-        if (cursorCount > 0 ){
+        if (cursorCount > 0) {
             return true;
         }
         return false;
     }
 
 
-    public boolean checkUserMatricula(String userMatricula){
+    public boolean checkUserMatricula(String userMatricula) {
         String[] collumns = {COLUNA_ID};
 
         SQLiteDatabase db = this.getWritableDatabase();
-        String selection = COLUNA_USERMATRICULA + " = ? ";
-        String[] selectionArgs = { userMatricula};
+        String selection = COLUNA_ID + " = ? ";
+        String[] selectionArgs = {userMatricula};
 
         Cursor cursor = db.query(TABELA_USUARIO, collumns, selection, selectionArgs, null, null, null);
 
@@ -57,13 +53,13 @@ public class UsuarioDAO extends DBHelper {
 
         db.close();
 
-        if (cursorCount > 0 ){
+        if (cursorCount > 0) {
             return true;
         }
         return false;
     }
 
-    public void atualizaUsuario(Usuario usuario){
+    public void atualizaUsuario(Usuario usuario) {
         ContentValues valores = new ContentValues();
         valores.put(COLUNA_NOME, usuario.getNome());
         valores.put(COLUNA_IDADE, usuario.getIdade());
@@ -76,18 +72,18 @@ public class UsuarioDAO extends DBHelper {
         db.update(TABELA_USUARIO, valores, COLUNA_ID + " = ? ", new String[]{"" + usuario.getId()});
     }
 
-    public Usuario selectUsuario(String userMatricula){
+    public Usuario selectUsuario(String userMatricula) {
         Usuario usuario = new Usuario();
         SQLiteDatabase db = this.getWritableDatabase();
 
         String[] collumns = {COLUNA_ID, COLUNA_NOME, COLUNA_IDADE, COLUNA_TURMA, COLUNA_INSTITUICAO, COLUNA_EMAIL, COLUNA_ENDERECO};
-        String selection = COLUNA_USERMATRICULA + " = ?";
+        String selection = COLUNA_ID + " = ?";
         String[] selectionArgs = {userMatricula};
 
         Cursor cursor = db.query(TABELA_USUARIO, collumns, selection, selectionArgs, null, null, null);
 
-        if (cursor.moveToFirst()){
-            usuario.setId(cursor.getInt(cursor.getColumnIndex(COLUNA_ID)));
+        if (cursor.moveToFirst()) {
+            usuario.setId(cursor.getString(cursor.getColumnIndex(COLUNA_ID)));
             usuario.setNome(cursor.getString(cursor.getColumnIndex(COLUNA_NOME)));
             usuario.setIdade(cursor.getString(cursor.getColumnIndex(COLUNA_IDADE)));
             usuario.setTurma(cursor.getString(cursor.getColumnIndex(COLUNA_TURMA)));
