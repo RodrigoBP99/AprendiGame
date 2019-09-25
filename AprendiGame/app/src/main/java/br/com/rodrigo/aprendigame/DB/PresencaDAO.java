@@ -57,4 +57,14 @@ public class PresencaDAO {
         }
         return(list);
     }
+
+    public int checkTableSize(){
+        String count = "SELECT count(*) FROM presenca";
+        Cursor cursor = db.rawQuery(count, null);
+        cursor.moveToFirst();
+
+        int iCount = cursor.getInt(0);
+
+        return iCount;
+    }
 }

@@ -1,6 +1,22 @@
 {
     "logs": [
         {
+            "outputFile": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\AprendiGame\\app\\build\\intermediates\\res\\merged\\debug\\values-watch-v20_values-watch-v20.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\AprendiGame\\app\\build\\intermediates\\res\\merged\\debug\\values-mr_values-mr.arsc.flat",
             "map": [
                 {
@@ -28,22 +44,6 @@
                         "startOffsets": "2887",
                         "endColumns": "100",
                         "endOffsets": "2983"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\AprendiGame\\app\\build\\intermediates\\res\\merged\\debug\\values-watch-v20_values-watch-v20.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\values-watch-v20\\values-watch-v20.xml",
-                    "from": {
-                        "startLines": "2,5,8",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,214,385",
-                        "endLines": "4,7,10",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "209,380,553"
                     }
                 }
             ]

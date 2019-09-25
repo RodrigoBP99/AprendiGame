@@ -171,9 +171,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="color" value="0004ff" />
-                            <entry key="outputName" value="botao_cancelar_icon" />
+                            <entry key="outputName" value="icon_avancar_presenca" />
                             <entry key="sourceFile" value="C:\Users\Cliente\Desktop\APPs\IC\botao_cancelar.svg" />
                           </map>
                         </option>

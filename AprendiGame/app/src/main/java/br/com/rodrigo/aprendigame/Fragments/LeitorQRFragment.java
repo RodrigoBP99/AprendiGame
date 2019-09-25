@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,7 @@ import com.google.zxing.Result;
 
 import java.util.Calendar;
 
+import br.com.rodrigo.aprendigame.Activity.AulasActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
@@ -34,6 +36,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
 
     private ZXingScannerView ScannerView;
 
+    private String arrayPresenca[];
     public LeitorQRFragment() {
         // Required empty public constructor
     }
@@ -58,7 +61,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case(R.id.buttonPresenca):
-                Intent presencaIntent = new Intent(getContext(), PresencaRealizadaActivity.class);
+                Intent presencaIntent = new Intent(getContext(), AulasActivity.class);
                 startActivity(presencaIntent);
         }
         return super.onOptionsItemSelected(item);
@@ -73,7 +76,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     public void handleResult(Result rawResult) {
         rawResult.toString();
         String texto = String.valueOf(rawResult);
-        String array[] = texto.split("&");
+        arrayPresenca = texto.split("&");
         String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
 
         Toast.makeText(getContext(), userName, Toast.LENGTH_SHORT).show();
@@ -83,9 +86,9 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         try {
             Presenca presenca = new Presenca();
             presenca.setId(texto);
-            presenca.setData(array[0]);
-            presenca.setAula(array[1]);
-            presenca.setProfessor(array[2]);
+            presenca.setData(arrayPresenca[0]);
+            presenca.setAula(arrayPresenca[1]);
+            presenca.setProfessor(arrayPresenca[2]);
             presenca.setHora(hora);
 
             createPresenca(presenca);
@@ -102,7 +105,6 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         int horaAtual = agora.get(Calendar.HOUR_OF_DAY);
         int minutos = agora.get(Calendar.MINUTE);
         String hora = String.format("%02d", horaAtual) + ":" + String.format("%02d", minutos);
-
         return hora;
     }
 
@@ -119,31 +121,32 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         ScannerView.startCamera();
     }
 
-    public void trocarTela(){
-        onPause();
-        Intent intent = new Intent(getContext(), PresencaRealizadaActivity.class);
-        startActivity(intent);
-    }
-
     public void createPresenca(final Presenca presenca){
         try {
-            SetupRest.apiService.createPresenca(presenca).enqueue(new Callback<Presenca>() {
+            SetupRest.apiService.createPresenca(arrayPresenca[1],presenca).enqueue(new Callback<Presenca>() {
                 PresencaDAO presencaDAO = new PresencaDAO(getContext());
                 @Override
                 public void onResponse(Call<Presenca> call, Response<Presenca> response) {
                     if (response.isSuccessful()){
-                        Toast.makeText(getContext(), "Presença Enviada", Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(getContext(), "Presença Realizada", Toast.LENGTH_SHORT).show();
+
                     } else if(!response.isSuccessful()) {
+
                         presencaDAO.inserirPresenca(presenca);
-                        trocarTela();
+                        Toast.makeText(getContext(), "Presença Realizada", Toast.LENGTH_SHORT).show();
+
                     }
+
+                    Intent intent = new Intent(getContext(), PresencaRealizadaActivity.class);
+                    intent.putExtra("aula", arrayPresenca[1]);
+                    startActivity(intent);
                 }
 
                 @Override
                 public void onFailure(Call<Presenca> call, Throwable t) {
-                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                    presencaDAO.inserirPresenca(presenca);
-                    trocarTela();
+
+                    Log.e("SendPresencaErro: ", t.getMessage());
                 }
             });
         } catch (Exception e){
