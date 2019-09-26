@@ -1,17 +1,21 @@
 package br.com.rodrigo.aprendigame.Model;
 
+import android.content.ContentValues;
+
+import br.com.rodrigo.aprendigame.DB.DBHelper;
+
 public class Aula {
 
-    private int idAula;
+    private String idAula;
     private String nomeAula;
     private String professorAula;
     private String nomeCurso;
 
-    public int getIdAula() {
+    public String getIdAula() {
         return idAula;
     }
 
-    public void setIdAula(int idAula) {
+    public void setIdAula(String idAula) {
         this.idAula = idAula;
     }
 
@@ -37,5 +41,15 @@ public class Aula {
 
     public void setNomeCurso(String nomeCurso) {
         this.nomeCurso = nomeCurso;
+    }
+
+    public ContentValues getValues(){
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.COLUNA_ID_ALUNO, idAula);
+        values.put(DBHelper.COLUNA_TITULO_AULA, nomeAula);
+        values.put(DBHelper.COLUNA_PROFESSOR_PRESENCA, professorAula);
+        values.put(DBHelper.COLUNA_CURSO_AULA, nomeCurso);
+
+        return values;
     }
 }

@@ -66,15 +66,15 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private void findViewsById() {
-        editTextUserMatricula = findViewById(R.id.editTextUserMatricula);
-        editTextNome = findViewById(R.id.editTextNome);
-        editTextDataNascimento = findViewById(R.id.editTextDataNascimento);
-        editTextTurma = findViewById(R.id.editTextTurma);
-        editTextInstituicao = findViewById(R.id.editTextInstituicao);
-        editTextEmail = findViewById(R.id.editTextEmail);
-        editTextEndereco = findViewById(R.id.editTextEndereco);
-        editTextSenha = findViewById(R.id.editTextSenha);
-        editTextConfrimarSenha = findViewById(R.id.editTextConfirmaSenha);
+        editTextUserMatricula = findViewById(R.id.editTextUserMatriculaCadastro);
+        editTextNome = findViewById(R.id.editTextNomeCadastro);
+        editTextDataNascimento = findViewById(R.id.editTextDataNascimentoCadastro);
+        editTextTurma = findViewById(R.id.editTextTurmaCadastro);
+        editTextInstituicao = findViewById(R.id.editTextInstituicaoCadastro);
+        editTextEmail = findViewById(R.id.editTextEmailCadastro);
+        editTextEndereco = findViewById(R.id.editTextEnderecoCadastro);
+        editTextSenha = findViewById(R.id.editTextSenhaCadastro);
+        editTextConfrimarSenha = findViewById(R.id.editTextConfirmaSenhaCadastro);
         buttonCancelarCadastro = findViewById(R.id.buttonCancelarCadastro);
         buttonConfirmarCadastro = findViewById(R.id.buttonConfirmarCadastro);
     }
@@ -103,6 +103,7 @@ public class CadastroActivity extends AppCompatActivity {
 
         UsuarioDAO bdUsuario = new UsuarioDAO(getApplicationContext());
 
+        //Metodo para fechar teclado
         View view = getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -116,37 +117,48 @@ public class CadastroActivity extends AppCompatActivity {
             Toast.makeText(CadastroActivity.this, "Todos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
         } else {
             // checa se o nome de usuario já existe
-            if (bdUsuario.checkUserMatricula(userMatricula)){
-                Toast.makeText(CadastroActivity.this, "Matricula já Cadastrada", Toast.LENGTH_SHORT).show();
+            checkUserUnique(userMatricula, nome, dataNascimento, turma, instituicao, email, endereco, senha, confirmarSenha, bdUsuario);
+        }
+    }
+
+    private void checkUserUnique(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, String confirmarSenha, UsuarioDAO bdUsuario) {
+        if (bdUsuario.checkUserMatricula(userMatricula)){
+            Toast.makeText(CadastroActivity.this, "Matricula já Cadastrada", Toast.LENGTH_SHORT).show();
+        } else {
+            //verificação da senha
+            checkPasswordRegister(userMatricula, nome, dataNascimento, turma, instituicao, email, endereco, senha, confirmarSenha, bdUsuario);
+        }
+    }
+
+    private void checkPasswordRegister(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, String confirmarSenha, UsuarioDAO bdUsuario) {
+        //verificação da senha
+        if (senha.length() < 6) {
+            Toast.makeText(CadastroActivity.this, "A senha deve conter mais de 6 caracteres", Toast.LENGTH_LONG).show();
+        } else {
+            if (confirmarSenha.equals(senha)) {
+                registerUser(userMatricula, nome, dataNascimento, turma, instituicao, email, endereco, senha, bdUsuario);
             } else {
-                //verificação da senha
-                if (senha.length() < 6) {
-                    Toast.makeText(CadastroActivity.this, "A senha deve conter mais de 6 caracteres", Toast.LENGTH_LONG).show();
-                } else {
-                    if (confirmarSenha.equals(senha)) {
-
-                        usuario.setId(userMatricula);
-                        usuario.setNome(nome);
-                        usuario.setIdade(dataNascimento);
-                        usuario.setTurma(turma);
-                        usuario.setInstituicao(instituicao);
-                        usuario.setEmail(email);
-                        usuario.setEndereco(endereco);
-                        usuario.setSenha(senha);
-
-                        try {
-                            bdUsuario.salvarUsuario(usuario);
-                            Toast.makeText(CadastroActivity.this, "Cadastro Realizado Com Sucesso!", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }catch (Exception e){
-                            Log.w("Cadastro: ", e.getMessage());
-                        }
-
-                    } else {
-                        Toast.makeText(CadastroActivity.this, "Senha incorreta", Toast.LENGTH_LONG).show();
-                    }
-                }
+                Toast.makeText(CadastroActivity.this, "Senha incorreta", Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    private void registerUser(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, UsuarioDAO bdUsuario) {
+        try {
+            usuario.setId(userMatricula);
+            usuario.setNome(nome);
+            usuario.setIdade(dataNascimento);
+            usuario.setTurma(turma);
+            usuario.setInstituicao(instituicao);
+            usuario.setEmail(email);
+            usuario.setEndereco(endereco);
+            usuario.setSenha(senha);
+
+            bdUsuario.salvarUsuario(usuario);
+            Toast.makeText(CadastroActivity.this, "Cadastro Realizado Com Sucesso!", Toast.LENGTH_SHORT).show();
+            finish();
+        }catch (Exception e){
+            Log.w("Cadastro: ", e.getMessage());
         }
     }
 }

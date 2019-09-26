@@ -67,16 +67,16 @@ public class MainActivity extends AppCompatActivity {
 
         trocarFragmento(new RankingFragment(), "inicio");
 
-        navView = findViewById(R.id.nav_view_main);
+        navView = findViewById(R.id.navViewMain);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        toolbar = findViewById(R.id.toolbar_main);
+        toolbar = findViewById(R.id.toolbarMainActivity);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
     }
 
 
     public void trocarFragmento(Fragment fragment, String tag){
-        getSupportFragmentManager().beginTransaction().replace(R.id.main_layout, fragment, tag).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutMainActivity, fragment, tag).commit();
     }
 
     private void requestCameraPermission(){
@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
         Fragment fragment = getSupportFragmentManager().findFragmentByTag("inicio");
         if (fragment != null && fragment.isVisible()){
             AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);

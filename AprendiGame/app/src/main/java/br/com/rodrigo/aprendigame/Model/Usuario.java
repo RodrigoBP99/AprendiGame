@@ -78,14 +78,14 @@ public class Usuario {
 
     public ContentValues getValues() {
         ContentValues valores = new ContentValues();
-        valores.put(DBHelper.COLUNA_ID, id);
-        valores.put(DBHelper.COLUNA_NOME, nome);
-        valores.put(DBHelper.COLUNA_IDADE, idade);
-        valores.put(DBHelper.COLUNA_TURMA, turma);
-        valores.put(DBHelper.COLUNA_INSTITUICAO, instituicao);
-        valores.put(DBHelper.COLUNA_EMAIL, email);
-        valores.put(DBHelper.COLUNA_ENDERECO, endereco);
-        valores.put(DBHelper.COLUNA_SENHA, senha);
+        valores.put(DBHelper.COLUNA_ID_USER, id);
+        valores.put(DBHelper.COLUNA_NOME_USER, nome);
+        valores.put(DBHelper.COLUNA_IDADE_USER, idade);
+        valores.put(DBHelper.COLUNA_TURMA_USER, turma);
+        valores.put(DBHelper.COLUNA_INSTITUICAO_USER, instituicao);
+        valores.put(DBHelper.COLUNA_EMAIL_USER, email);
+        valores.put(DBHelper.COLUNA_ENDERECO_USER, endereco);
+        valores.put(DBHelper.COLUNA_SENHA_USER, senha);
 
         return valores;
     }

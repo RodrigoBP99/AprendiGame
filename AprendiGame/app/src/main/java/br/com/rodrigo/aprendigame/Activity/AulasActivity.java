@@ -3,6 +3,7 @@ package br.com.rodrigo.aprendigame.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.rodrigo.aprendigame.Adapter.AulaAdapter;
+import br.com.rodrigo.aprendigame.DB.AulaDAO;
 import br.com.rodrigo.aprendigame.Model.Aula;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
@@ -30,13 +32,21 @@ public class AulasActivity extends AppCompatActivity {
 
         idAluno = getIntent().getStringExtra(LoginActivity.USERMATRICULA);
 
+        setListAulaRecycle();
+
+    }
+
+    private void setListAulaRecycle() {
         RecyclerView recyclerViewAulas = findViewById(R.id.recycleViewAulas);
         DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerViewAulas.addItemDecoration(itemDecoration);
+        recyclerViewAulas.setLayoutManager(new LinearLayoutManager(this));
 
-        aulaAdapter = new AulaAdapter(this);
+        AulaDAO aulaDAO = new AulaDAO(this);
+        ArrayList<Aula> listAula = (ArrayList<Aula>) aulaDAO.getListAula();
+
+        aulaAdapter = new AulaAdapter(listAula, this);
         getAula();
-
         recyclerViewAulas.setAdapter(aulaAdapter);
     }
 
@@ -46,10 +56,10 @@ public class AulasActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<List<Aula>> call, Response<List<Aula>> response) {
                     if (response.isSuccessful()){
-                        aulaAdapter.atualiza((ArrayList<Aula>) response.body());
+                        aulaAdapter.atualiza(response.body());
                     }else {
                         Log.e("getAula: ", call.toString());
-                        Toast.makeText(AulasActivity.this, "Ocorreu um pequeno erro /n Tente Novamente mais tarde", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AulasActivity.this, "Ocorreu um pequeno imprevisto/nTente Novamente mais tarde", Toast.LENGTH_SHORT).show();
                     }
                 }
 

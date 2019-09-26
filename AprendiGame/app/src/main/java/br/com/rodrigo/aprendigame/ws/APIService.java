@@ -29,7 +29,7 @@ public interface APIService {
     })
 
     @GET("presenca/{idAula}/{idAluno}")
-    Call<List<Presenca>> listPresenca(@Path("idAluno") String idAluno, @Path("idAula") String idAula);
+    Call<List<Presenca>> listPresenca(@Path("idAula") String idAula, @Path("idAluno") String idAluno);
 
     @Headers({
             "Content-Type: application/json",

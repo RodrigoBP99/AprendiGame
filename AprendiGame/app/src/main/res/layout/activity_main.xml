@@ -8,7 +8,7 @@
     tools:context=".Activity.MainActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_main"
+        android:id="@+id/toolbarMainActivity"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/colorPrimary"
@@ -32,17 +32,17 @@
 
 
     <LinearLayout
-        android:id="@+id/main_layout"
+        android:id="@+id/linearLayoutMainActivity"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view_main"
+        app:layout_constraintBottom_toTopOf="@+id/navViewMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_main"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMainActivity"></LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/nav_view_main"
+        android:id="@+id/navViewMain"
         style="@style/Animation.AppCompat.DropDownUp"
         android:layout_width="0dp"
         android:layout_height="45dp"

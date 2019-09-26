@@ -38,12 +38,16 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
         findViewsById();
 
-        montaToolbar();
+        setToolbar();
 
         UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
 
         String userName = getIntent().getStringExtra(PerfilFragment.USUARIO);
 
+        setUserInformation(usuarioDAO, userName);
+    }
+
+    private void setUserInformation(UsuarioDAO usuarioDAO, String userName) {
         try {
             usuario = usuarioDAO.selectUsuario(userName);
             editTextPerfilNome.setText(usuario.getNome());
@@ -57,7 +61,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
         }
     }
 
-    private void montaToolbar() {
+    private void setToolbar() {
         setSupportActionBar(toolbar);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -86,7 +90,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
         editTextPerfilEmail = findViewById(R.id.editTextEditarPerfilEmail);
         editTextPerfilEndereco = findViewById(R.id.editTextEditarPerfilEndereco);
         ImageView imageViewPerfil = findViewById(R.id.imageViewEditarPerfilFoto);
-        toolbar = findViewById(R.id.toolbar_editarPerfil);
+        toolbar = findViewById(R.id.toolbarEditarPerfil);
     }
 
     @Override

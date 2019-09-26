@@ -35,8 +35,10 @@ import retrofit2.Response;
 public class LeitorQRFragment extends Fragment implements ZXingScannerView.ResultHandler {
 
     private ZXingScannerView ScannerView;
+    private String idAluno;
 
     private String arrayPresenca[];
+
     public LeitorQRFragment() {
         // Required empty public constructor
     }
@@ -46,6 +48,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ScannerView = new ZXingScannerView(getActivity());
+        idAluno = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
         setHasOptionsMenu(true);
         return ScannerView;
     }
@@ -55,6 +58,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         menu.clear();
         inflater.inflate(R.menu.toolbar_main_presenca, menu);
         super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override
@@ -75,29 +79,37 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     @Override
     public void handleResult(Result rawResult) {
         rawResult.toString();
+
         String texto = String.valueOf(rawResult);
         arrayPresenca = texto.split("&");
-        String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
-
-        Toast.makeText(getContext(), userName, Toast.LENGTH_SHORT).show();
         
         String hora = getHora();
 
-        try {
-            Presenca presenca = new Presenca();
-            presenca.setId(texto);
-            presenca.setData(arrayPresenca[0]);
-            presenca.setAula(arrayPresenca[1]);
-            presenca.setProfessor(arrayPresenca[2]);
-            presenca.setHora(hora);
+        createNewPresenca(texto, hora);
+    }
 
-            createPresenca(presenca);
+    private void createNewPresenca(String texto, String hora) {
+        PresencaDAO presencaDAO = new PresencaDAO(getContext());
+        if (presencaDAO.checkScannedPresenca(texto)){
+            Toast.makeText(getContext(), "Essa presença já foi realizada!!!", Toast.LENGTH_SHORT).show();
+            onResume();
+        } else {
+            try {
+                Presenca presenca = new Presenca();
+                presenca.setId(texto);
+                presenca.setData(arrayPresenca[0]);
+                presenca.setAula(arrayPresenca[1]);
+                presenca.setProfessor(arrayPresenca[2]);
+                presenca.setIdAluno(idAluno);
+                presenca.setHora(hora);
 
-        } catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(getContext(), "QR Code Invalido!", Toast.LENGTH_SHORT).show();
+                createPresenca(presenca);
+
+            } catch (Exception e){
+                e.printStackTrace();
+                Toast.makeText(getContext(), "QR Code Invalido!", Toast.LENGTH_SHORT).show();
+            }
         }
-        onResume();
     }
 
     private String getHora() {
@@ -129,15 +141,10 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                 public void onResponse(Call<Presenca> call, Response<Presenca> response) {
                     if (response.isSuccessful()){
 
-                        Toast.makeText(getContext(), "Presença Realizada", Toast.LENGTH_SHORT).show();
-
-                    } else if(!response.isSuccessful()) {
-
+                        Toast.makeText(getContext(), "Presença Atualizada", Toast.LENGTH_SHORT).show();
+                    } else{
                         presencaDAO.inserirPresenca(presenca);
-                        Toast.makeText(getContext(), "Presença Realizada", Toast.LENGTH_SHORT).show();
-
                     }
-
                     Intent intent = new Intent(getContext(), PresencaRealizadaActivity.class);
                     intent.putExtra("aula", arrayPresenca[1]);
                     startActivity(intent);
@@ -145,7 +152,6 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
 
                 @Override
                 public void onFailure(Call<Presenca> call, Throwable t) {
-
                     Log.e("SendPresencaErro: ", t.getMessage());
                 }
             });

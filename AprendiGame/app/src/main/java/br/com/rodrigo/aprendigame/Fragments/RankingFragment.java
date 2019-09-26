@@ -52,8 +52,8 @@ public class RankingFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.perfil:
-                getFragmentManager().beginTransaction().replace(R.id.main_layout, new PerfilFragment()).commit();
-                bottomNavigationView = getActivity().findViewById(R.id.nav_view_main);
+                getFragmentManager().beginTransaction().replace(R.id.linearLayoutMainActivity, new PerfilFragment()).commit();
+                bottomNavigationView = getActivity().findViewById(R.id.navViewMain);
                 bottomNavigationView.setVisibility(View.GONE);
         }
         return super.onOptionsItemSelected(item);
@@ -80,7 +80,7 @@ public class RankingFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        bottomNavigationView = getActivity().findViewById(R.id.nav_view_main);
+        bottomNavigationView = getActivity().findViewById(R.id.navViewMain);
         bottomNavigationView.setVisibility(View.VISIBLE);
     }
 }

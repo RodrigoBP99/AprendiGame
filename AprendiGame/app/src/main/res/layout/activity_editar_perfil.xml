@@ -9,7 +9,7 @@
     tools:context=".Activity.EditarPerfilActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_editarPerfil"
+        android:id="@+id/toolbarEditarPerfil"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/colorPrimary">

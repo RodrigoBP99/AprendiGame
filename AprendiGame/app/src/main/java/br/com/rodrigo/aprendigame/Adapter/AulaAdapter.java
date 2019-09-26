@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity;
 import br.com.rodrigo.aprendigame.Model.Aula;
@@ -21,7 +23,7 @@ public class AulaAdapter extends RecyclerView.Adapter<AulaAdapter.AulaViewHolder
     private Context context;
     private String AULA = "aula";
 
-    public AulaAdapter(Context context) {
+    public AulaAdapter(ArrayList<Aula> aulaArrayList, Context context) {
         this.aulaArrayList = aulaArrayList;
         this.context = context;
     }
@@ -45,7 +47,7 @@ public class AulaAdapter extends RecyclerView.Adapter<AulaAdapter.AulaViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PresencaRealizadaActivity.class);
-                intent.putExtra(AULA, aula.getIdAula());
+                intent.putExtra(AULA, (Serializable) aula);
                 context.startActivity(intent);
             }
         });
@@ -60,10 +62,9 @@ public class AulaAdapter extends RecyclerView.Adapter<AulaAdapter.AulaViewHolder
         }
     }
 
-    public void atualiza(ArrayList<Aula> aulas) {
-        this.aulaArrayList = aulas;
+    public void atualiza(List<Aula> aulas) {
+        this.aulaArrayList = (ArrayList<Aula>) aulas;
         notifyDataSetChanged();
-
     }
 
     public class AulaViewHolder extends RecyclerView.ViewHolder {
@@ -76,7 +77,7 @@ public class AulaAdapter extends RecyclerView.Adapter<AulaAdapter.AulaViewHolder
 
             textViewNomeAula = itemView.findViewById(R.id.textViewNomeAula);
             textViewProfessorAula = itemView.findViewById(R.id.textViewProfessorAula);
-            textViewAulaCurso = itemView.findViewById(R.id.textViewNomeCurso);
+            textViewAulaCurso = itemView.findViewById(R.id.textViewNomeCursoAula);
 
         }
     }

@@ -9,7 +9,7 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView_ranking"
+        android:id="@+id/imageViewRanking"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
@@ -57,7 +57,7 @@
     </FrameLayout>
 
     <ProgressBar
-        android:id="@+id/progressBar2"
+        android:id="@+id/progressBarRanking"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

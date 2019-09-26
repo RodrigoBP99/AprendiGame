@@ -60,7 +60,7 @@ public class QuestionariosFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        RecyclerView recyclerViewQuestionarios = getView().findViewById(R.id.recycleView_questionarios);
+        RecyclerView recyclerViewQuestionarios = getView().findViewById(R.id.recycleViewQuestionarios);
         recyclerViewQuestionarios.setLayoutManager(new LinearLayoutManager(getContext()));
 
 

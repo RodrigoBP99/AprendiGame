@@ -1,5 +1,6 @@
 package br.com.rodrigo.aprendigame.Adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,9 +18,11 @@ import br.com.rodrigo.aprendigame.R;
 public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.PresencaViewHolder> {
 
     private ArrayList<Presenca> presencas;
+    private Context context;
 
-    public PresencaAdapter(ArrayList<Presenca> presencas) {
+    public PresencaAdapter(ArrayList<Presenca> presencas, Context context) {
         this.presencas = presencas;
+        this.context = context;
     }
 
     @NonNull

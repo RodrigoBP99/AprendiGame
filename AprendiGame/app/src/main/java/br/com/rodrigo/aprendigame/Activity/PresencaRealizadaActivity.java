@@ -1,5 +1,6 @@
 package br.com.rodrigo.aprendigame.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import br.com.rodrigo.aprendigame.Adapter.PresencaAdapter;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
+import br.com.rodrigo.aprendigame.Model.Aula;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
@@ -31,23 +33,31 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_presenca_realizada);
 
+        Intent intent = getIntent();
         //pega o id do aluno e da aula escolhida para recuperar as respectivas presenças
         idAula = getIntent().getStringExtra("aula");
         idAluno = getIntent().getStringExtra(LoginActivity.USERMATRICULA);
 
+        setListPresencaRecycle();
 
+        getListPresencas();
+    }
+
+    private void setListPresencaRecycle() {
         RecyclerView recyclerViewPresenca = findViewById(R.id.recycleViewPresencas);
         recyclerViewPresenca.setLayoutManager(new LinearLayoutManager(PresencaRealizadaActivity.this));
 
         presencaDAO = new PresencaDAO(PresencaRealizadaActivity.this);
 
-        ArrayList<Presenca> list = (ArrayList<Presenca>) presencaDAO.buscarListaPresenca();
+        ArrayList<Presenca> list = (ArrayList<Presenca>) presencaDAO.buscarPresencaAula(idAula);
 
-        adapter = new PresencaAdapter(list);
+        adapter = new PresencaAdapter(list, this);
         recyclerViewPresenca.setAdapter(adapter);
 
-        sendList(list, presencaDAO);
-        getListPresencas();
+
+        if (presencaDAO.checkTableSize() > 0) {
+            sendList(list, presencaDAO);
+        }
     }
 
     public void getListPresencas(){
@@ -77,9 +87,7 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ArrayList<Presenca>> call, Response<ArrayList<Presenca>> response) {
                     if (response.isSuccessful()){
-                        if (presencaDAO.checkTableSize() <= 0){
-                            presencaDAO.limparPresencas();
-                        }
+                        presencaDAO.limparPresencas();
                     }
                 }
                 @Override

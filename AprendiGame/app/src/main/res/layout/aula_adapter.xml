@@ -34,7 +34,7 @@
                 tools:text="Nome do professor que da a aula" />
 
             <TextView
-                android:id="@+id/textViewNomeCurso"
+                android:id="@+id/textViewNomeCursoAula"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Nome do Curso a qual a aula pertence" />
@@ -51,7 +51,6 @@
             android:layout_height="match_parent">
 
             <ImageButton
-
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:backgroundTint="@android:color/transparent"

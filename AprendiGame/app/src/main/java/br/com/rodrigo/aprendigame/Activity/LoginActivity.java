@@ -58,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //metodo fechar teclado
                 View view = getCurrentFocus();
                 if (view != null) {
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -72,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void findViewsById() {
         buttonLogin = findViewById(R.id.buttonLogin);
-        textViewCadastro = findViewById(R.id.textViewCadastro);
+        textViewCadastro = findViewById(R.id.textViewCadastroRedirect);
         editTextUserMatriculaLogin = findViewById(R.id.editTextLoginUserMatricula);
         editTextSenhaLogin = findViewById(R.id.editTextLoginSenha);
     }

@@ -48,7 +48,7 @@
                     android:textColorHint="@android:color/black">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/editTextUserMatricula"
+                        android:id="@+id/editTextUserMatriculaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/black"
@@ -77,7 +77,7 @@
                     android:textColorHint="@android:color/black">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/editTextNome"
+                        android:id="@+id/editTextNomeCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/black"
@@ -105,7 +105,7 @@
                     android:textColorHint="@android:color/black">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/editTextDataNascimento"
+                        android:id="@+id/editTextDataNascimentoCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/black"
@@ -134,7 +134,7 @@
                     android:textColorHint="@android:color/black">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/editTextInstituicao"
+                        android:id="@+id/editTextInstituicaoCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/black"
@@ -163,7 +163,7 @@
                     android:textColorHint="@android:color/black">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/editTextTurma"
+                        android:id="@+id/editTextTurmaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/black"
@@ -190,7 +190,7 @@
                     android:textColorHint="@android:color/black">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/editTextEmail"
+                        android:id="@+id/editTextEmailCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/black"
@@ -218,7 +218,7 @@
                     android:textColorHint="@android:color/black">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/editTextEndereco"
+                        android:id="@+id/editTextEnderecoCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/black"
@@ -246,7 +246,7 @@
                     android:textColorHint="@android:color/black">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/editTextSenha"
+                        android:id="@+id/editTextSenhaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/black"
@@ -273,7 +273,7 @@
                     android:textColorHint="@android:color/black">
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/editTextConfirmaSenha"
+                        android:id="@+id/editTextConfirmaSenhaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@android:color/black"
