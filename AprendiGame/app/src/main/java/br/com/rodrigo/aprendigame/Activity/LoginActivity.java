@@ -11,13 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
+import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 
 
 public class LoginActivity extends AppCompatActivity {
 
-    private UsuarioDAO usuarioDAO;
+    private StudentDAO usuarioDAO;
     private Button buttonLogin;
     private TextView textViewCadastro;
     private EditText editTextUserMatriculaLogin;
@@ -32,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        usuarioDAO = new UsuarioDAO(getApplicationContext());
+        usuarioDAO = new StudentDAO(getApplicationContext());
 
         findViewsById();
 
@@ -67,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 userName = editTextUserMatriculaLogin.getText().toString().trim();
                 senha = editTextSenhaLogin.getText().toString().trim();
-                autenticaLogin(v, userName, senha);
+                autenticaLogin(Long.valueOf(userName));
             }
         });
     }
@@ -79,14 +80,16 @@ public class LoginActivity extends AppCompatActivity {
         editTextSenhaLogin = findViewById(R.id.editTextLoginSenha);
     }
 
-    public void autenticaLogin(View v, String userName, String senha){
-        if (usuarioDAO.autenticaUsuario(userName, senha)){
-            Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
-            mainActivity.putExtra(USERMATRICULA, editTextUserMatriculaLogin.getText().toString().trim());
-            startActivity(mainActivity);
-            finish();
-        } else {
-            Snackbar.make(v,"Senha ou User Name Incorreto!", Snackbar.LENGTH_SHORT).show();
-        }
+    public void autenticaLogin(Long userName){
+        Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
+        mainActivity.putExtra(USERMATRICULA, userName);
+
+        Student student = new Student();
+        student.setId(Long.valueOf(userName));
+
+        usuarioDAO.salvarUsuario(student);
+        startActivity(mainActivity);
+
+        finish();
     }
 }

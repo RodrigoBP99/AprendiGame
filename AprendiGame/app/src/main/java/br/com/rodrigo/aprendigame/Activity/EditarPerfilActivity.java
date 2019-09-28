@@ -13,18 +13,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.Objects;
 
-import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Fragments.PerfilFragment;
-import br.com.rodrigo.aprendigame.Model.Usuario;
+import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EditarPerfilActivity extends AppCompatActivity {
 
-    private Usuario usuario;
+    private Student usuario;
+    private ImageView imageViewPerfil;
     private EditText editTextPerfilNome;
-    private EditText editTextPerfilDataNascimento;
+    private EditText editTextCurso;
     private EditText editTextPerfilTurma;
     private EditText editTextPerfilInstituicao;
     private EditText editTextPerfilEmail;
@@ -40,22 +47,34 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
         setToolbar();
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
+        StudentDAO usuarioDAO = new StudentDAO(getApplicationContext());
 
         String userName = getIntent().getStringExtra(PerfilFragment.USUARIO);
 
         setUserInformation(usuarioDAO, userName);
     }
 
-    private void setUserInformation(UsuarioDAO usuarioDAO, String userName) {
+    private void setUserInformation(StudentDAO usuarioDAO, String userName) {
         try {
-            usuario = usuarioDAO.selectUsuario(userName);
-            editTextPerfilNome.setText(usuario.getNome());
-            editTextPerfilDataNascimento.setText(usuario.getIdade());
-            editTextPerfilTurma.setText(usuario.getTurma());
-            editTextPerfilInstituicao.setText(usuario.getInstituicao());
-            editTextPerfilEmail.setText(usuario.getEmail());
-            editTextPerfilEndereco.setText(usuario.getEndereco());
+
+            SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
+                @Override
+                public void onResponse(Call<Student> call, Response<Student> response) {
+                    if (response.isSuccessful()) {
+                        Student student = response.body();
+                        editTextPerfilNome.setText(student.getName());
+                        editTextPerfilTurma.setText(student.getCourse());
+
+                        Picasso.get().load(student.getPhoto()).into(imageViewPerfil);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Student> call, Throwable t) {
+
+                }
+            });
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -84,12 +103,12 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     private void findViewsById() {
         editTextPerfilNome = findViewById(R.id.editTextEditarPerfilNome);
-        editTextPerfilDataNascimento = findViewById(R.id.editTextEditarPerfilDataNascimento);
+        editTextCurso = findViewById(R.id.editTextEditarPerfilDataNascimento);
         editTextPerfilTurma = findViewById(R.id.editTextEditarPerfilTurma);
         editTextPerfilInstituicao = findViewById(R.id.editTextEditarPerfilInstituicao);
         editTextPerfilEmail = findViewById(R.id.editTextEditarPerfilEmail);
         editTextPerfilEndereco = findViewById(R.id.editTextEditarPerfilEndereco);
-        ImageView imageViewPerfil = findViewById(R.id.imageViewEditarPerfilFoto);
+        imageViewPerfil = findViewById(R.id.imageViewEditarPerfilFoto);
         toolbar = findViewById(R.id.toolbarEditarPerfil);
     }
 
@@ -104,7 +123,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.salvarPerfil) {
             final String nome = editTextPerfilNome.getText().toString();
-            final String dataNascimento = editTextPerfilDataNascimento.getText().toString();
+            final String dataNascimento = editTextCurso.getText().toString();
             final String turma = editTextPerfilTurma.getText().toString();
             final String instituicao = editTextPerfilInstituicao.getText().toString();
             final String email = editTextPerfilEmail.getText().toString();
@@ -116,13 +135,6 @@ public class EditarPerfilActivity extends AppCompatActivity {
             {
                 Toast.makeText(EditarPerfilActivity.this, "Preencha os campos vazios", Toast.LENGTH_LONG).show();
             } else {
-                usuario.setNome(nome);
-                usuario.setIdade(dataNascimento);
-                usuario.setTurma(turma);
-                usuario.setInstituicao(instituicao);
-                usuario.setEmail(email);
-                usuario.setEndereco(endereco);
-                new UsuarioDAO(getApplicationContext()).atualizaUsuario(usuario);
 
                 finish();
             }

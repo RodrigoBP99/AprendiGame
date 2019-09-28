@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
-import br.com.rodrigo.aprendigame.Model.Usuario;
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
+import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 
 public class CadastroActivity extends AppCompatActivity {
@@ -21,7 +21,7 @@ public class CadastroActivity extends AppCompatActivity {
     private ImageButton buttonConfirmarCadastro;
     private ImageButton buttonCancelarCadastro;
 
-    private Usuario usuario = new Usuario();
+    private Student usuario = new Student();
 
     private EditText editTextUserMatricula;
     private EditText editTextNome;
@@ -101,7 +101,7 @@ public class CadastroActivity extends AppCompatActivity {
         final String senha = editTextSenha.getText().toString();
         final String confirmarSenha = editTextConfrimarSenha.getText().toString();
 
-        UsuarioDAO bdUsuario = new UsuarioDAO(getApplicationContext());
+        StudentDAO bdUsuario = new StudentDAO(getApplicationContext());
 
         //Metodo para fechar teclado
         View view = getCurrentFocus();
@@ -117,20 +117,12 @@ public class CadastroActivity extends AppCompatActivity {
             Toast.makeText(CadastroActivity.this, "Todos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
         } else {
             // checa se o nome de usuario já existe
-            checkUserUnique(userMatricula, nome, dataNascimento, turma, instituicao, email, endereco, senha, confirmarSenha, bdUsuario);
-        }
-    }
-
-    private void checkUserUnique(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, String confirmarSenha, UsuarioDAO bdUsuario) {
-        if (bdUsuario.checkUserMatricula(userMatricula)){
-            Toast.makeText(CadastroActivity.this, "Matricula já Cadastrada", Toast.LENGTH_SHORT).show();
-        } else {
-            //verificação da senha
             checkPasswordRegister(userMatricula, nome, dataNascimento, turma, instituicao, email, endereco, senha, confirmarSenha, bdUsuario);
         }
     }
 
-    private void checkPasswordRegister(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, String confirmarSenha, UsuarioDAO bdUsuario) {
+
+    private void checkPasswordRegister(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, String confirmarSenha, StudentDAO bdUsuario) {
         //verificação da senha
         if (senha.length() < 6) {
             Toast.makeText(CadastroActivity.this, "A senha deve conter mais de 6 caracteres", Toast.LENGTH_LONG).show();
@@ -143,18 +135,10 @@ public class CadastroActivity extends AppCompatActivity {
         }
     }
 
-    private void registerUser(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, UsuarioDAO bdUsuario) {
+    private void registerUser(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, StudentDAO bdUsuario) {
         try {
-            usuario.setId(userMatricula);
-            usuario.setNome(nome);
-            usuario.setIdade(dataNascimento);
-            usuario.setTurma(turma);
-            usuario.setInstituicao(instituicao);
-            usuario.setEmail(email);
-            usuario.setEndereco(endereco);
-            usuario.setSenha(senha);
 
-            bdUsuario.salvarUsuario(usuario);
+
             Toast.makeText(CadastroActivity.this, "Cadastro Realizado Com Sucesso!", Toast.LENGTH_SHORT).show();
             finish();
         }catch (Exception e){

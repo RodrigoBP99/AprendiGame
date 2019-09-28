@@ -14,10 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.com.rodrigo.aprendigame.Adapter.QuestionariosAdapter;
-import br.com.rodrigo.aprendigame.Model.Questionario;
+import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +30,7 @@ import br.com.rodrigo.aprendigame.R;
 public class QuestionariosFragment extends Fragment {
 
     private QuestionariosAdapter adapter;
-    private ArrayList<Questionario> questionarios = new ArrayList<>();
+    private List<Quizz> questionarios = new ArrayList<>();
 
     public QuestionariosFragment() {
         // Required empty public constructor
@@ -63,12 +68,24 @@ public class QuestionariosFragment extends Fragment {
         RecyclerView recyclerViewQuestionarios = getView().findViewById(R.id.recycleViewQuestionarios);
         recyclerViewQuestionarios.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        adapter = new QuestionariosAdapter((ArrayList<Quizz>) questionarios, getContext());
 
-        Questionario questionario1 = new Questionario("Segunda Guerra Mundial",
-                "Marcelo Oliveira", "Historia", "--/10");
-        questionarios.add(questionario1);
+        try{
+            SetupRest.apiService.getListQuizz().enqueue(new Callback<List<Quizz>>() {
+                @Override
+                public void onResponse(Call<List<Quizz>> call, Response<List<Quizz>> response) {
+                    questionarios = response.body();
+                    adapter.updateQuizzes(questionarios);
+                }
 
-        adapter = new QuestionariosAdapter(questionarios, getContext());
+                @Override
+                public void onFailure(Call<List<Quizz>> call, Throwable t) {
+
+                }
+            });
+        }catch (Exception e){
+
+        }
         recyclerViewQuestionarios.setAdapter(adapter);
     }
 }

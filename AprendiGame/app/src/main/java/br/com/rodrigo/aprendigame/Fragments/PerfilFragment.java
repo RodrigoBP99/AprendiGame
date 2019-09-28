@@ -9,26 +9,36 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
+import com.squareup.picasso.Picasso;
+
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
-import br.com.rodrigo.aprendigame.Model.Usuario;
+import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.WsHelper.HelperWs;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PerfilFragment extends Fragment {
 
-    private Usuario usuario;
+    private Student usuario;
     private TextView textViewNome;
     private TextView textViewIdade;
     private TextView textViewTurma;
     private TextView textViewInstituicao;
     private TextView textViewEmail;
     private TextView textViewEndereco;
+    private ImageView imageViewPerfil;
+
     public final static String USUARIO = "username";
 
     public PerfilFragment() {
@@ -53,7 +63,7 @@ public class PerfilFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.buttonEditarPerfil:
                 Intent editarPerfil = new Intent(getContext(), EditarPerfilActivity.class);
                 editarPerfil.putExtra(USUARIO, pegarUsuario());
@@ -62,7 +72,7 @@ public class PerfilFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public String pegarUsuario(){
+    public String pegarUsuario() {
         final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
         return userName;
     }
@@ -73,18 +83,31 @@ public class PerfilFragment extends Fragment {
 
         findViewsById();
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO(getContext());
+        StudentDAO usuarioDAO = new StudentDAO(getContext());
         final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
 
+        SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                if (response.isSuccessful()) {
+                    Student student = response.body();
+                    textViewNome.setText(student.getName());
+
+                    Picasso.get().load(student.getPhoto()).into(imageViewPerfil);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+
+            }
+        });
+
+
+        //recuperar usuario
         try {
-            usuario = usuarioDAO.selectUsuario(userName);
-            textViewNome.setText(usuario.getNome());
-            textViewIdade.setText(usuario.getIdade());
-            textViewTurma.setText(usuario.getTurma());
-            textViewInstituicao.setText(usuario.getInstituicao());
-            textViewEmail.setText(usuario.getEmail());
-            textViewEndereco.setText(usuario.getEndereco());
-        } catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -96,5 +119,6 @@ public class PerfilFragment extends Fragment {
         textViewInstituicao = getActivity().findViewById(R.id.textViewInstituicaoPerfil);
         textViewEmail = getActivity().findViewById(R.id.textViewEmailPerfil);
         textViewEndereco = getActivity().findViewById(R.id.textViewEnderecoPerfil);
+        imageViewPerfil = getActivity().findViewById(R.id.imageViewPerfil);
     }
 }

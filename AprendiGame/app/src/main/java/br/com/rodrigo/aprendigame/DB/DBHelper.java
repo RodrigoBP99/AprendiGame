@@ -8,18 +8,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String BANCO_NOME = "aprendigame";
 
+    public static final String TABELA_STUDENT = "student";
 
-    public static final String TABELA_USUARIO = "usuario";
-
-    public static final String COLUNA_ID_USER = "ID";
-    public static final String COLUNA_NOME_USER = "NOME";
-    public static final String COLUNA_IDADE_USER = "IDADE";
-    public static final String COLUNA_TURMA_USER = "TURMA";
-    public static final String COLUNA_INSTITUICAO_USER = "INSTITUICAO";
-    public static final String COLUNA_EMAIL_USER = "EMAIL";
-    public static final String COLUNA_ENDERECO_USER = "ENDERECO";
-    public static final String COLUNA_SENHA_USER = "SENHA";
-
+    public static final String COLUNA_ID_STUDENT = "ID";
 
     public static final String TABELA_PRESENCA = "presenca";
 
@@ -37,16 +28,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUNA_TITULO_AULA = "TITULO";
     public static final String COLUNA_CURSO_AULA = "CURSO";
 
-    private static final String CREATE_TABLE_USUARIO = "CREATE TABLE " +
-            TABELA_USUARIO + "( " +
-            COLUNA_ID_USER + " TEXT PRIMARY KEY, " +
-            COLUNA_NOME_USER + " TEXT, " +
-            COLUNA_IDADE_USER + " TEXT, " +
-            COLUNA_TURMA_USER + " TEXT, " +
-            COLUNA_INSTITUICAO_USER + " TEXT, " +
-            COLUNA_EMAIL_USER + " TEXT, " +
-            COLUNA_ENDERECO_USER + " TEXT, " +
-            COLUNA_SENHA_USER + " TEXT)";
+    private static final String CREATE_TABLE_STUDENT = "CREATE TABLE " +
+            TABELA_STUDENT + "( " +
+            COLUNA_ID_STUDENT + " INTEGER PRIMARY KEY)";
 
     private static final String CREATE_TABLE_PRESENCA = "CREATE TABLE " +
             TABELA_PRESENCA + "( " +
@@ -70,7 +54,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_USUARIO);
+        db.execSQL(CREATE_TABLE_STUDENT);
         db.execSQL(CREATE_TABLE_PRESENCA);
         db.execSQL(CREATE_TABLE_AULA);
     }
@@ -78,7 +62,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_PRESENCA);
-        db.execSQL("DROP TABLE IF EXISTS " + TABELA_USUARIO);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_STUDENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_AULA);
         onCreate(db);
     }

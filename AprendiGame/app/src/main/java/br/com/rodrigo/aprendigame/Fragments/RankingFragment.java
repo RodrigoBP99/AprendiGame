@@ -12,10 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import br.com.rodrigo.aprendigame.DB.UsuarioDAO;
+import br.com.rodrigo.aprendigame.Activity.MainActivity;
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
-import br.com.rodrigo.aprendigame.Model.Usuario;
+import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.WsHelper.HelperWs;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +29,7 @@ import br.com.rodrigo.aprendigame.R;
 public class RankingFragment extends Fragment {
 
     private TextView textViewNome;
-    private Usuario usuario;
+    private Student usuario;
 
     private BottomNavigationView bottomNavigationView;
 
@@ -50,7 +56,7 @@ public class RankingFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.perfil:
                 getFragmentManager().beginTransaction().replace(R.id.linearLayoutMainActivity, new PerfilFragment()).commit();
                 bottomNavigationView = getActivity().findViewById(R.id.navViewMain);
@@ -66,13 +72,28 @@ public class RankingFragment extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutFeedRanking, new RankingFeedFragment()).commit();
         textViewNome = getView().findViewById(R.id.textViewNomeRanking);
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO(getContext());
+        StudentDAO usuarioDAO = new StudentDAO(getContext());
         String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
 
         try {
-            usuario = usuarioDAO.selectUsuario(userName);
-            textViewNome.setText(usuario.getNome());
-        } catch (Exception e){
+            SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
+                @Override
+                public void onResponse(Call<Student> call, Response<Student> response) {
+                    if (response.isSuccessful()) {
+                        Student student = response.body();
+                        textViewNome.setText(student.getName());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Student> call, Throwable t) {
+
+                }
+            });
+
+
+            textViewNome.setText(usuario.getName());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

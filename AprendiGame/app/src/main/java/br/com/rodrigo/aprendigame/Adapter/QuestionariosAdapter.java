@@ -11,17 +11,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import br.com.rodrigo.aprendigame.Model.Questionario;
+import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.Activity.QuestionarioActivity;
 import br.com.rodrigo.aprendigame.R;
 
 public class QuestionariosAdapter extends RecyclerView.Adapter<QuestionariosAdapter.ViewHolderQuestionario>{
 
     private Context context;
-    private ArrayList<Questionario> questionarios;
+    private ArrayList<Quizz> questionarios;
 
-    public QuestionariosAdapter(ArrayList<Questionario> questionarios, Context context){
+    public QuestionariosAdapter(ArrayList<Quizz> questionarios, Context context){
         this.questionarios = questionarios;
         this.context = context;
     }
@@ -36,16 +37,16 @@ public class QuestionariosAdapter extends RecyclerView.Adapter<QuestionariosAdap
     @Override
     public void onBindViewHolder(@NonNull final ViewHolderQuestionario viewHolder, final int posicao) {
 
-        final Questionario questionario = questionarios.get(posicao);
-        viewHolder.textViewTituloQuestionario.setText(questionario.getTituloQuestionario());
-        viewHolder.textViewAutorQuestionario.setText(questionario.getAutorQuestionario());
-        viewHolder.textViewMateriaQuestionario.setText(questionario.getMateriaQuestionario());
-        viewHolder.textViewNotaQuestionario.setText(questionario.getNotaQuestionario());
+        final Quizz questionario = questionarios.get(posicao);
+        viewHolder.textViewTituloQuestionario.setText(questionario.getTitle());
+        viewHolder.textViewAutorQuestionario.setText(questionario.getTeacher().getName());
+        viewHolder.textViewMateriaQuestionario.setText(questionario.getCourseUnit().getName());
+        viewHolder.textViewNotaQuestionario.setText(questionario.getAmountOfQuestions());
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Abrindo " + questionario.getTituloQuestionario(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Abrindo " + questionario.getTitle(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, QuestionarioActivity.class);
                 context.startActivity(intent);
             }
@@ -59,6 +60,11 @@ public class QuestionariosAdapter extends RecyclerView.Adapter<QuestionariosAdap
         } else {
             return 0;
         }
+    }
+
+    public void updateQuizzes(List<Quizz> quizzes){
+        this.questionarios = (ArrayList<Quizz>) quizzes;
+        notifyDataSetChanged();
     }
 
     public class ViewHolderQuestionario extends RecyclerView.ViewHolder{

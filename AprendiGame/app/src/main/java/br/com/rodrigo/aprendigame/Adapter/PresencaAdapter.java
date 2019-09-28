@@ -45,7 +45,7 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
     @Override
     public int getItemCount() {
         if (presencas != null){
-        return presencas.size();
+            return presencas.size();
         } else {
             return 0;
         }

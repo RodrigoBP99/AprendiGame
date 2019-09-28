@@ -5,6 +5,8 @@ import java.util.List;
 
 import br.com.rodrigo.aprendigame.Model.Aula;
 import br.com.rodrigo.aprendigame.Model.Presenca;
+import br.com.rodrigo.aprendigame.Model.Quizz;
+import br.com.rodrigo.aprendigame.Model.Student;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -38,4 +40,10 @@ public interface APIService {
 
     @GET("aula/{idAluno}")
     Call<List<Aula>> listAula(@Path("idAluno") String idAluno);
+
+    @GET("students/{idStudent}")
+    Call<Student> getStudent(@Path("idStudent") Long idStudent);
+
+    @GET("quizzes")
+    Call<List<Quizz>> getListQuizz();
 }
