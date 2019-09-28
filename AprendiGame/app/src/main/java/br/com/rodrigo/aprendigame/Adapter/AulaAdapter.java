@@ -14,17 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity;
-import br.com.rodrigo.aprendigame.Model.Aula;
+import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.R;
 
 public class AulaAdapter extends RecyclerView.Adapter<AulaAdapter.AulaViewHolder> {
 
-    private ArrayList<Aula> aulaArrayList;
+    private ArrayList<CoursesUnit> coursesUnitArrayList;
     private Context context;
     private String AULA = "aula";
 
-    public AulaAdapter(ArrayList<Aula> aulaArrayList, Context context) {
-        this.aulaArrayList = aulaArrayList;
+    public AulaAdapter(ArrayList<CoursesUnit> coursesUnitArrayList, Context context) {
+        this.coursesUnitArrayList = coursesUnitArrayList;
         this.context = context;
     }
 
@@ -37,17 +37,13 @@ public class AulaAdapter extends RecyclerView.Adapter<AulaAdapter.AulaViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull AulaViewHolder aulaViewHolder, int posicao) {
-        final Aula aula = aulaArrayList.get(posicao);
-
-        aulaViewHolder.textViewNomeAula.setText(aula.getNomeAula());
-        aulaViewHolder.textViewProfessorAula.setText(aula.getProfessorAula());
-        aulaViewHolder.textViewAulaCurso.setText(aula.getNomeCurso());
+        final CoursesUnit coursesUnit = coursesUnitArrayList.get(posicao);
 
         aulaViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PresencaRealizadaActivity.class);
-                intent.putExtra(AULA, (Serializable) aula);
+                intent.putExtra(AULA, (Serializable) coursesUnit);
                 context.startActivity(intent);
             }
         });
@@ -55,15 +51,15 @@ public class AulaAdapter extends RecyclerView.Adapter<AulaAdapter.AulaViewHolder
 
     @Override
     public int getItemCount() {
-        if(aulaArrayList == null){
-            return aulaArrayList.size();
+        if(coursesUnitArrayList == null){
+            return coursesUnitArrayList.size();
         } else {
             return 0;
         }
     }
 
-    public void atualiza(List<Aula> aulas) {
-        this.aulaArrayList = (ArrayList<Aula>) aulas;
+    public void atualiza(List<CoursesUnit> coursesUnitList){
+        this.coursesUnitArrayList = (ArrayList<CoursesUnit>) coursesUnitList;
         notifyDataSetChanged();
     }
 

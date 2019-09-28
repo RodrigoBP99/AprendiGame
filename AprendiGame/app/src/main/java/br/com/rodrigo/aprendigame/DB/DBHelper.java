@@ -41,13 +41,6 @@ public class DBHelper extends SQLiteOpenHelper {
             COLUNA_PROFESSOR_PRESENCA + " TEXT, " +
             COLUNA_HORA_PRESENCA + " TEXT)";
 
-    private static final String CREATE_TABLE_AULA = "CREATE TABLE " +
-            TABELA_AULA + "( " +
-            COLUNA_ID_AULA + " TEXT PRIMARY KEY, " +
-            COLUNA_TITULO_AULA + " TEXT, " +
-            COLUNA_PROFESSOR_PRESENCA + " TEXT, " +
-            COLUNA_CURSO_AULA + " TEXT)";
-
     public DBHelper(Context context) {
         super(context, BANCO_NOME, null, 1);
     }
@@ -56,14 +49,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_STUDENT);
         db.execSQL(CREATE_TABLE_PRESENCA);
-        db.execSQL(CREATE_TABLE_AULA);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_PRESENCA);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_STUDENT);
-        db.execSQL("DROP TABLE IF EXISTS " + TABELA_AULA);
         onCreate(db);
     }
 }

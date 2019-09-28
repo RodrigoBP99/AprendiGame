@@ -5,15 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import br.com.rodrigo.aprendigame.Adapter.PresencaAdapter;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
-import br.com.rodrigo.aprendigame.Model.Aula;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
@@ -61,24 +58,7 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
     }
 
     public void getListPresencas(){
-        try {
-            SetupRest.apiService.listPresenca(idAula, idAluno).enqueue(new Callback<List<Presenca>>() {
-                @Override
-                public void onResponse(Call<List<Presenca>> call, Response<List<Presenca>> response) {
-                    if (response.isSuccessful()){
-                        adapter.update(response.body());
-                    }
-                }
 
-                @Override
-                public void onFailure(Call<List<Presenca>> call, Throwable t) {
-                    Log.e("Erro", call.toString());
-                    t.printStackTrace();
-                    Log.e("ListPresencaErro: ", t.getMessage());
-                }
-            });
-        } catch (Exception e){
-        }
     }
 
     public void sendList(ArrayList<Presenca> lista, final PresencaDAO presencaDAO){

@@ -3,7 +3,7 @@ package br.com.rodrigo.aprendigame.ws;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.rodrigo.aprendigame.Model.Aula;
+import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.Model.Student;
@@ -20,23 +20,14 @@ public interface APIService {
     @POST("novaPresenca/{idAula}")
     Call<Presenca> createPresenca(@Path("idAula") String idAula, @Body Presenca presenca);
 
-
     @POST("listaPresencas/{idAula}")
     Call<ArrayList<Presenca>> sendList(@Path("idAula") String idAula, @Body ArrayList<Presenca> presencas);
 
-
     @Headers({
             "Content-Type: application/json",
             "Accept: application/json"
     })
 
-    @GET("presenca/{idAula}/{idAluno}")
-    Call<List<Presenca>> listPresenca(@Path("idAula") String idAula, @Path("idAluno") String idAluno);
-
-    @Headers({
-            "Content-Type: application/json",
-            "Accept: application/json"
-    })
 
     @GET("aula/{idAluno}")
     Call<List<Aula>> listAula(@Path("idAluno") String idAluno);
@@ -46,4 +37,7 @@ public interface APIService {
 
     @GET("quizzes")
     Call<List<Quizz>> getListQuizz();
+
+    @GET("/courses/{id}")
+    Call<List<CoursesUnit>> getListCourseUnit(@Path("id") Long idStudent);
 }

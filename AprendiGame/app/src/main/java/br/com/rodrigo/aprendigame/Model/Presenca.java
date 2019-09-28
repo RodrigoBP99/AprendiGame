@@ -2,6 +2,9 @@ package br.com.rodrigo.aprendigame.Model;
 
 import android.content.ContentValues;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import br.com.rodrigo.aprendigame.DB.DBHelper;
 
 public class Presenca {
@@ -11,8 +14,6 @@ public class Presenca {
     private String professor;
     private String idAluno;
     private String data;
-    private String hora;
-
 
     public String getId() {
         return id;
@@ -54,14 +55,6 @@ public class Presenca {
         this.data = data;
     }
 
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
     public ContentValues getValues() {
         ContentValues valores = new ContentValues();
         valores.put(DBHelper.COLUNA_ID_PRESENCA, id);
@@ -69,7 +62,6 @@ public class Presenca {
         valores.put(DBHelper.COLUNA_PROFESSOR_PRESENCA, professor);
         valores.put(DBHelper.COLUNA_ID_ALUNO, idAluno);
         valores.put(DBHelper.COLUNA_DATA_PRESENCA, data);
-        valores.put(DBHelper.COLUNA_HORA_PRESENCA, hora);
 
         return valores;
     }

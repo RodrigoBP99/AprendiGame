@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 import com.google.zxing.Result;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import br.com.rodrigo.aprendigame.Activity.AulasActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
@@ -82,7 +84,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
 
         String texto = String.valueOf(rawResult);
         arrayPresenca = texto.split("&");
-        
+
         String hora = getHora();
 
         createNewPresenca(texto, hora);
@@ -97,11 +99,10 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
             try {
                 Presenca presenca = new Presenca();
                 presenca.setId(texto);
-                presenca.setData(arrayPresenca[0]);
                 presenca.setAula(arrayPresenca[1]);
                 presenca.setProfessor(arrayPresenca[2]);
                 presenca.setIdAluno(idAluno);
-                presenca.setHora(hora);
+                presenca.setData(getHora());
 
                 createPresenca(presenca);
 
@@ -114,10 +115,11 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
 
     private String getHora() {
         Calendar agora = Calendar.getInstance();
-        int horaAtual = agora.get(Calendar.HOUR_OF_DAY);
-        int minutos = agora.get(Calendar.MINUTE);
-        String hora = String.format("%02d", horaAtual) + ":" + String.format("%02d", minutos);
-        return hora;
+        Date date = agora.getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String horaAtual = simpleDateFormat.format(date);
+
+        return horaAtual;
     }
 
     @Override

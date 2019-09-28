@@ -36,10 +36,9 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
     public void onBindViewHolder(@NonNull PresencaViewHolder presencaViewHolder, int posicao) {
         final Presenca presenca = presencas.get(posicao);
 
-        presencaViewHolder.textViewData.setText(presenca.getData());
+        presencaViewHolder.textViewData.setText(presenca.getData().toString());
         presencaViewHolder.textViewProfessor.setText("Professor: " + presenca.getProfessor());
         presencaViewHolder.textViewAula.setText("Aula: " + presenca.getAula());
-        presencaViewHolder.textViewHora.setText("Hora: "  + "\n" + presenca.getHora());
     }
 
     @Override

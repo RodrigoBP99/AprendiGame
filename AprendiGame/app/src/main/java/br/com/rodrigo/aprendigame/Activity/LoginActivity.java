@@ -10,6 +10,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
@@ -36,9 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         usuarioDAO = new StudentDAO(getApplicationContext());
 
         findViewsById();
-
-        editTextSenhaLogin.setText("123456");
-        editTextUserMatriculaLogin.setText("123456");
 
         clickLogin();
 

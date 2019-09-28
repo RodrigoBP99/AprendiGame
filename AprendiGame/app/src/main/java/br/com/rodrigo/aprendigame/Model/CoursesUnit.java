@@ -1,9 +1,14 @@
 package br.com.rodrigo.aprendigame.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CoursesUnit {
 
     private Long id;
     private String name;
+    private List<Teacher> teachers;
+    private List<CourseClass> courseClasses;
 
     public Long getId() {
         return id;

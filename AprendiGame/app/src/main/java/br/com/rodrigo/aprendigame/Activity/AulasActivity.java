@@ -5,15 +5,12 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.rodrigo.aprendigame.Adapter.AulaAdapter;
-import br.com.rodrigo.aprendigame.DB.AulaDAO;
-import br.com.rodrigo.aprendigame.Model.Aula;
+import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import retrofit2.Call;
@@ -24,6 +21,7 @@ public class AulasActivity extends AppCompatActivity {
 
     private String idAluno;
     private AulaAdapter aulaAdapter;
+    private List<CoursesUnit> coursesUnitList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,33 +41,27 @@ public class AulasActivity extends AppCompatActivity {
         recyclerViewAulas.setLayoutManager(new LinearLayoutManager(this));
 
         AulaDAO aulaDAO = new AulaDAO(this);
-        ArrayList<Aula> listAula = (ArrayList<Aula>) aulaDAO.getListAula();
 
-        aulaAdapter = new AulaAdapter(listAula, this);
+        aulaAdapter = new AulaAdapter((ArrayList<CoursesUnit>) coursesUnitList, this);
         getAula();
         recyclerViewAulas.setAdapter(aulaAdapter);
     }
 
     private void getAula() {
         try {
-            SetupRest.apiService.listAula(idAluno).enqueue(new Callback<List<Aula>>() {
+            SetupRest.apiService.getListCourseUnit(1L).enqueue(new Callback<List<CoursesUnit>>() {
                 @Override
-                public void onResponse(Call<List<Aula>> call, Response<List<Aula>> response) {
-                    if (response.isSuccessful()){
-                        aulaAdapter.atualiza(response.body());
-                    }else {
-                        Log.e("getAula: ", call.toString());
-                        Toast.makeText(AulasActivity.this, "Ocorreu um pequeno imprevisto/nTente Novamente mais tarde", Toast.LENGTH_SHORT).show();
-                    }
+                public void onResponse(Call<List<CoursesUnit>> call, Response<List<CoursesUnit>> response) {
+                    coursesUnitList = response.body();
+                    aulaAdapter.atualiza(coursesUnitList);
                 }
 
                 @Override
-                public void onFailure(Call<List<Aula>> call, Throwable t) {
-                    Log.e("getAulaErro: ", t.getMessage());
-                    Toast.makeText(AulasActivity.this, "Erro na conexão com servidor", Toast.LENGTH_SHORT).show();
+                public void onFailure(Call<List<CoursesUnit>> call, Throwable t) {
+
                 }
             });
-        } catch (Exception e){
+        }catch (Exception e){
 
         }
     }

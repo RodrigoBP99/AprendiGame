@@ -25,30 +25,6 @@ public class PresencaDAO extends DBHelper{
         db.close();
     }
 
-    public List<Presenca> buscarListaPresenca(){
-        List<Presenca> list = new ArrayList<>();
-        String[] colunas = new String[]{COLUNA_ID_PRESENCA, COLUNA_DATA_PRESENCA, COLUNA_AULA_PRESENCA, COLUNA_PROFESSOR_PRESENCA, COLUNA_HORA_PRESENCA};
-
-        SQLiteDatabase db = getWritableDatabase();
-        Cursor cursor = db.query(TABELA_PRESENCA, colunas, null, null, null, null, null);
-
-        if(cursor.getCount() > 0){
-            cursor.moveToFirst();
-        do {
-            Presenca p = new Presenca();
-            p.setId(cursor.getString(cursor.getColumnIndex(COLUNA_ID_PRESENCA)));
-            p.setData(cursor.getString(cursor.getColumnIndex(COLUNA_DATA_PRESENCA)));
-            p.setAula(cursor.getString(cursor.getColumnIndex(COLUNA_AULA_PRESENCA)));
-            p.setProfessor(cursor.getString(cursor.getColumnIndex(COLUNA_PROFESSOR_PRESENCA)));
-            p.setIdAluno(cursor.getString(cursor.getColumnIndex(COLUNA_ID_ALUNO)));
-            p.setHora(cursor.getString(cursor.getColumnIndex(COLUNA_HORA_PRESENCA)));
-
-            list.add(p);
-          }while (cursor.moveToNext());
-        }
-        return(list);
-    }
-
     public List<Presenca> buscarPresencaAula(String idAula){
         List<Presenca> list = new ArrayList<>();
         String[] colunas = new String[]{COLUNA_ID_PRESENCA, COLUNA_DATA_PRESENCA, COLUNA_AULA_PRESENCA, COLUNA_PROFESSOR_PRESENCA, COLUNA_ID_ALUNO, COLUNA_HORA_PRESENCA};
@@ -63,11 +39,11 @@ public class PresencaDAO extends DBHelper{
             do {
                 Presenca p = new Presenca();
                 p.setId(cursor.getString(cursor.getColumnIndex(COLUNA_ID_PRESENCA)));
-                p.setData(cursor.getString(cursor.getColumnIndex(COLUNA_DATA_PRESENCA)));
                 p.setAula(cursor.getString(cursor.getColumnIndex(COLUNA_AULA_PRESENCA)));
                 p.setProfessor(cursor.getString(cursor.getColumnIndex(COLUNA_PROFESSOR_PRESENCA)));
                 p.setIdAluno(cursor.getString(cursor.getColumnIndex(COLUNA_ID_ALUNO)));
-                p.setHora(cursor.getString(cursor.getColumnIndex(COLUNA_HORA_PRESENCA)));
+
+                //p.setData(cursor.getString(cursor.getColumnIndex(COLUNA_DATA_PRESENCA)));
 
                 list.add(p);
             }while (cursor.moveToNext());
