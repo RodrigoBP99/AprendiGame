@@ -1,7 +1,0 @@
-#Sat Sep 28 18:20:08 BRT 2019
-base.0=C\:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\AprendiGame\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out
-path.1=classes.dex
-renamed.1=classes2.dex
-path.0=classes.dex
-renamed.0=classes.dex
-base.1=C\:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\AprendiGame\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out
