@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.QuestionarioActivity"></activity>
         <activity android:name=".Activity.PresencaRealizadaActivity" />
-        <activity android:name=".Activity.AulasActivity" />
+        <activity android:name=".Activity.CourseUnitActivity" />
         <activity android:name=".Activity.CadastroActivity" />
         <activity android:name=".Activity.MainActivity"/>
         <activity android:name=".Activity.EditarPerfilActivity" />

@@ -21,14 +21,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import br.com.rodrigo.aprendigame.Fragments.LeitorQRFragment;
-import br.com.rodrigo.aprendigame.Fragments.QuestionariosFragment;
+import br.com.rodrigo.aprendigame.Fragments.QuizzFragment;
 import br.com.rodrigo.aprendigame.Fragments.RankingFragment;
-import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
-import br.com.rodrigo.aprendigame.ws.SetupRest;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_questionarios:
-                    trocarFragmento(new QuestionariosFragment(), "questionario");
+                    trocarFragmento(new QuizzFragment(), "questionario");
                     return true;
 
                 case R.id.navigation_presença:

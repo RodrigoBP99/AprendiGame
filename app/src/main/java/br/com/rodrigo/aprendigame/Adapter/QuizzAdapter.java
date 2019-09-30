@@ -17,7 +17,7 @@ import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.Activity.QuestionarioActivity;
 import br.com.rodrigo.aprendigame.R;
 
-public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.ViewHolderQuizz>{
+public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHolder>{
 
     private Context context;
     private ArrayList<Quizz> quizzes;
@@ -29,21 +29,21 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.ViewHolderQu
 
     @NonNull
     @Override
-    public ViewHolderQuizz onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View viewQuizz = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.questionarios_adapter, viewGroup, false);
-        return new ViewHolderQuizz(viewQuizz);
+    public QuizzViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View viewQuizz = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.quizzes_adapter, viewGroup, false);
+        return new QuizzViewHolder(viewQuizz);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolderQuizz viewHolder, final int posicao) {
+    public void onBindViewHolder(@NonNull final QuizzViewHolder quizzViewHolder, final int posicao) {
 
         final Quizz quizz = quizzes.get(posicao);
-        viewHolder.textViewTitleQuizz.setText(quizz.getTitle());
-        viewHolder.textViewTeacherQuizz.setText(quizz.getTeacher().getName());
-        viewHolder.textViewCourseUnitQuizz.setText(quizz.getCourseUnit().getName());
-        viewHolder.textViewAmountQuestionsQuizz.setText(quizz.getAmountOfQuestions());
+        quizzViewHolder.textViewTitleQuizz.setText(quizz.getTitle());
+        quizzViewHolder.textViewTeacherQuizz.setText(quizz.getTeacher().getName());
+        quizzViewHolder.textViewCourseUnitQuizz.setText(quizz.getCourseUnit().getName());
+        quizzViewHolder.textViewAmountQuestionsQuizz.setText(quizz.getAmountOfQuestions());
 
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        quizzViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Abrindo " + quizz.getTitle(), Toast.LENGTH_SHORT).show();
@@ -67,14 +67,14 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.ViewHolderQu
         notifyDataSetChanged();
     }
 
-    public class ViewHolderQuizz extends RecyclerView.ViewHolder{
+    public class QuizzViewHolder extends RecyclerView.ViewHolder{
 
         private TextView textViewTitleQuizz;
         private TextView textViewTeacherQuizz;
         private TextView textViewCourseUnitQuizz;
         private TextView textViewAmountQuestionsQuizz;
 
-        public ViewHolderQuizz(@NonNull View itemView) {
+        public QuizzViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textViewTitleQuizz = itemView.findViewById(R.id.textViewTitleQuizz);

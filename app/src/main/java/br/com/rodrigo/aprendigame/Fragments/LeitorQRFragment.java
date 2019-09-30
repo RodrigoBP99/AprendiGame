@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import br.com.rodrigo.aprendigame.Activity.AulasActivity;
+import br.com.rodrigo.aprendigame.Activity.CourseUnitActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
@@ -67,7 +67,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case(R.id.buttonPresenca):
-                Intent presencaIntent = new Intent(getContext(), AulasActivity.class);
+                Intent presencaIntent = new Intent(getContext(), CourseUnitActivity.class);
                 startActivity(presencaIntent);
         }
         return super.onOptionsItemSelected(item);

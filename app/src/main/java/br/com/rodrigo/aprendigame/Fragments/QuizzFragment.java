@@ -27,12 +27,12 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuestionariosFragment extends Fragment {
+public class QuizzFragment extends Fragment {
 
     private QuizzAdapter adapter;
-    private List<Quizz> questionarios = new ArrayList<>();
+    private List<Quizz> quizzes = new ArrayList<>();
 
-    public QuestionariosFragment() {
+    public QuizzFragment() {
         // Required empty public constructor
     }
 
@@ -42,7 +42,7 @@ public class QuestionariosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.fragment_questionarios, container, false);
+        return inflater.inflate(R.layout.fragment_quizz, container, false);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class QuestionariosFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.buttonSeachQuestionario:
+            case R.id.buttonSearchQuizz:
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -65,17 +65,17 @@ public class QuestionariosFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        RecyclerView recyclerViewQuestionarios = getView().findViewById(R.id.recycleViewQuestionarios);
-        recyclerViewQuestionarios.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView recyclerViewQuizzes = getView().findViewById(R.id.recycleViewQuizzes);
+        recyclerViewQuizzes.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new QuizzAdapter((ArrayList<Quizz>) questionarios, getContext());
+        adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, getContext());
 
         try{
             SetupRest.apiService.getListQuizz().enqueue(new Callback<List<Quizz>>() {
                 @Override
                 public void onResponse(Call<List<Quizz>> call, Response<List<Quizz>> response) {
-                    questionarios = response.body();
-                    adapter.updateQuizzes(questionarios);
+                    quizzes = response.body();
+                    adapter.updateQuizzes(quizzes);
                 }
 
                 @Override
@@ -86,6 +86,6 @@ public class QuestionariosFragment extends Fragment {
         }catch (Exception e){
 
         }
-        recyclerViewQuestionarios.setAdapter(adapter);
+        recyclerViewQuizzes.setAdapter(adapter);
     }
 }

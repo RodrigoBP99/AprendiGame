@@ -22,7 +22,7 @@
             android:background="@color/decoracaocolor" />
 
         <LinearLayout
-            android:id="@+id/linearLayout_questionario"
+            android:id="@+id/linearLayoutQuizz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorBackground"
