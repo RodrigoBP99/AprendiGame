@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorBackground"
     android:orientation="vertical">
 
@@ -28,32 +29,32 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textViewTituloQuestionario"
+                android:id="@+id/textViewTitleQuizz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:text="Titulo do Questionario"
+                tools:text="Titulo do Questionario"
                 android:textColor="@android:color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewAutorQuestionario"
+                android:id="@+id/textViewTeacherQuizz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
-                android:text="Nome do autor do Questionario"
+                tools:text="Nome do autor do Questionario"
                 android:textColor="@android:color/black"
                 android:textSize="14dp" />
 
             <TextView
-                android:id="@+id/textViewMateriaQuestionario"
+                android:id="@+id/textViewCourseUnitQuizz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="Materia a qual o questionario pertence"
+                tools:text="Materia a qual o questionario pertence"
                 android:textColor="@android:color/black"
                 android:textSize="12dp" />
         </LinearLayout>
@@ -65,10 +66,10 @@
             android:layout_marginEnd="20dp">
 
             <TextView
-                android:id="@+id/textViewNotaQuestionario"
+                android:id="@+id/textViewAmountQuestionsQuizz"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Nota"
+                tools:text="Nota"
                 android:textColor="@android:color/black" />
         </FrameLayout>
 

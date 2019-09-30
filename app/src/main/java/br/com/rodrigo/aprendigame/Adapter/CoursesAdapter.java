@@ -39,13 +39,15 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.AulaView
     public void onBindViewHolder(@NonNull AulaViewHolder aulaViewHolder, int posicao) {
         final CoursesUnit coursesUnit = coursesUnitArrayList.get(posicao);
 
-        aulaViewHolder.textViewAulaCurso.setText(coursesUnit.getName());
+        aulaViewHolder.textViewNomeAula.setText(coursesUnit.getName());
+        aulaViewHolder.textViewProfessorAula.setText("");
+        aulaViewHolder.textViewAulaCurso.setText("");
 
         aulaViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, PresencaRealizadaActivity.class);
-                intent.putExtra(AULA, (Serializable) coursesUnit);
+                intent.putExtra(AULA, String.valueOf(coursesUnit.getId()));
                 context.startActivity(intent);
             }
         });
@@ -53,7 +55,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.AulaView
 
     @Override
     public int getItemCount() {
-        if(coursesUnitArrayList == null){
+        if(coursesUnitArrayList != null){
             return coursesUnitArrayList.size();
         } else {
             return 0;

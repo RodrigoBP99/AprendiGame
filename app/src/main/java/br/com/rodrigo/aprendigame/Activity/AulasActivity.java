@@ -19,7 +19,6 @@ import retrofit2.Response;
 
 public class AulasActivity extends AppCompatActivity {
 
-    private String idAluno;
     private CoursesAdapter aulaAdapter;
     private List<CoursesUnit> coursesUnitList;
 
@@ -27,8 +26,6 @@ public class AulasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aulas);
-
-        idAluno = getIntent().getStringExtra(LoginActivity.USERMATRICULA);
 
         setListAulaRecycle();
 

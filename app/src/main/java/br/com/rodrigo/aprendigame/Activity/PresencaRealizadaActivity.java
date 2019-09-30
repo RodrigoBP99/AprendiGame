@@ -22,7 +22,6 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
 
     private PresencaAdapter adapter;
     private String idAula;
-    private String idAluno;
     private PresencaDAO presencaDAO;
 
     @Override
@@ -30,17 +29,10 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_presenca_realizada);
 
-        Intent intent = getIntent();
         //pega o id do aluno e da aula escolhida para recuperar as respectivas presenças
-        idAula = getIntent().getStringExtra("aula");
-        idAluno = getIntent().getStringExtra(LoginActivity.USERMATRICULA);
+        Intent intent = getIntent();
+        idAula = intent.getStringExtra("aula");
 
-        setListPresencaRecycle();
-
-        getListPresencas();
-    }
-
-    private void setListPresencaRecycle() {
         RecyclerView recyclerViewPresenca = findViewById(R.id.recycleViewPresencas);
         recyclerViewPresenca.setLayoutManager(new LinearLayoutManager(PresencaRealizadaActivity.this));
 
@@ -50,10 +42,12 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
 
         adapter = new PresencaAdapter(list, this);
         recyclerViewPresenca.setAdapter(adapter);
+    }
 
+    private void setListPresencaRecycle() {
 
         if (presencaDAO.checkTableSize() > 0) {
-            sendList(list, presencaDAO);
+            //sendList(list, presencaDAO);
         }
     }
 

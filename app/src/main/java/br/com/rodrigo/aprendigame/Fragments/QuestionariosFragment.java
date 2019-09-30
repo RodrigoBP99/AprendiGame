@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.rodrigo.aprendigame.Adapter.QuestionariosAdapter;
+import br.com.rodrigo.aprendigame.Adapter.QuizzAdapter;
 import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
@@ -29,7 +29,7 @@ import retrofit2.Response;
  */
 public class QuestionariosFragment extends Fragment {
 
-    private QuestionariosAdapter adapter;
+    private QuizzAdapter adapter;
     private List<Quizz> questionarios = new ArrayList<>();
 
     public QuestionariosFragment() {
@@ -68,7 +68,7 @@ public class QuestionariosFragment extends Fragment {
         RecyclerView recyclerViewQuestionarios = getView().findViewById(R.id.recycleViewQuestionarios);
         recyclerViewQuestionarios.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new QuestionariosAdapter((ArrayList<Quizz>) questionarios, getContext());
+        adapter = new QuizzAdapter((ArrayList<Quizz>) questionarios, getContext());
 
         try{
             SetupRest.apiService.getListQuizz().enqueue(new Callback<List<Quizz>>() {

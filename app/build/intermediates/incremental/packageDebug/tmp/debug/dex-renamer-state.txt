@@ -1,4 +1,4 @@
-#Mon Sep 30 13:11:16 BRT 2019
+#Mon Sep 30 13:42:11 BRT 2019
 base.0=C\:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\out
 path.1=classes.dex
 renamed.1=classes2.dex

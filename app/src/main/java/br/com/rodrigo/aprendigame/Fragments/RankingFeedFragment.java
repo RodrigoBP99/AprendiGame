@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import br.com.rodrigo.aprendigame.Adapter.QuestionariosAdapter;
+import br.com.rodrigo.aprendigame.Adapter.QuizzAdapter;
 import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
 
@@ -21,7 +21,7 @@ import br.com.rodrigo.aprendigame.R;
  */
 public class RankingFeedFragment extends Fragment {
 
-    private QuestionariosAdapter adapter;
+    private QuizzAdapter adapter;
     ArrayList<Quizz> questionarios = new ArrayList<>();
 
     public RankingFeedFragment() {
@@ -44,7 +44,7 @@ public class RankingFeedFragment extends Fragment {
         recyclerViewQuestionarios.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        adapter = new QuestionariosAdapter(questionarios, getContext());
+        adapter = new QuizzAdapter(questionarios, getContext());
         recyclerViewQuestionarios.setAdapter(adapter);
     }
 }

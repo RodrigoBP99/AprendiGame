@@ -17,8 +17,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-import br.com.rodrigo.aprendigame.DB.StudentDAO;
-import br.com.rodrigo.aprendigame.Fragments.PerfilFragment;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
@@ -28,14 +26,8 @@ import retrofit2.Response;
 
 public class EditarPerfilActivity extends AppCompatActivity {
 
-    private Student usuario;
     private ImageView imageViewPerfil;
     private EditText editTextPerfilNome;
-    private EditText editTextCurso;
-    private EditText editTextPerfilTurma;
-    private EditText editTextPerfilInstituicao;
-    private EditText editTextPerfilEmail;
-    private EditText editTextPerfilEndereco;
     private Toolbar toolbar;
 
     @Override
@@ -58,7 +50,6 @@ public class EditarPerfilActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Student student = response.body();
                         editTextPerfilNome.setText(student.getName());
-                        editTextPerfilTurma.setText(student.getCourse());
 
                         Picasso.get().load(student.getPhoto()).into(imageViewPerfil);
                     }
@@ -97,11 +88,6 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     private void findViewsById() {
         editTextPerfilNome = findViewById(R.id.editTextEditarPerfilNome);
-        editTextCurso = findViewById(R.id.editTextEditarPerfilDataNascimento);
-        editTextPerfilTurma = findViewById(R.id.editTextEditarPerfilTurma);
-        editTextPerfilInstituicao = findViewById(R.id.editTextEditarPerfilInstituicao);
-        editTextPerfilEmail = findViewById(R.id.editTextEditarPerfilEmail);
-        editTextPerfilEndereco = findViewById(R.id.editTextEditarPerfilEndereco);
         imageViewPerfil = findViewById(R.id.imageViewEditarPerfilFoto);
         toolbar = findViewById(R.id.toolbarEditarPerfil);
     }
@@ -117,28 +103,19 @@ public class EditarPerfilActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.salvarPerfil) {
             final String nome = editTextPerfilNome.getText().toString();
-            final String dataNascimento = editTextCurso.getText().toString();
-            final String turma = editTextPerfilTurma.getText().toString();
-            final String instituicao = editTextPerfilInstituicao.getText().toString();
-            final String email = editTextPerfilEmail.getText().toString();
-            final String endereco = editTextPerfilEndereco.getText().toString();
 
-            if (nome.isEmpty() || dataNascimento.isEmpty()
-                    || turma.isEmpty() || instituicao.isEmpty() || email.isEmpty()
-                    || endereco.isEmpty())
+            if (nome.isEmpty())
             {
                 Toast.makeText(EditarPerfilActivity.this, "Preencha os campos vazios", Toast.LENGTH_LONG).show();
             } else {
 
                 finish();
             }
-
             View view = getCurrentFocus();
             if (view != null) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-
         }
         return super.onOptionsItemSelected(item);
     }
