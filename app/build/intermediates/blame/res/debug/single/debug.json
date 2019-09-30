@@ -40,6 +40,10 @@
         "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\confirma_senha.png"
     },
     {
+        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_quizz.xml.flat",
+        "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\layout\\activity_quizz.xml"
+    },
+    {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_mtrl_chip_close_circle.xml.flat",
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\cf6be507607c61f98e0c93597a6282b5\\res\\drawable\\ic_mtrl_chip_close_circle.xml"
     },
@@ -64,20 +68,20 @@
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\cf6be507607c61f98e0c93597a6282b5\\res\\drawable-xhdpi-v4\\design_ic_visibility.png"
     },
     {
-        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_popup_menu_header_item_layout.xml.flat",
-        "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\layout\\abc_popup_menu_header_item_layout.xml"
-    },
-    {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_mtrl_chip_checked_circle.xml.flat",
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\cf6be507607c61f98e0c93597a6282b5\\res\\drawable\\ic_mtrl_chip_checked_circle.xml"
     },
     {
-        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
-        "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png"
+        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_popup_menu_header_item_layout.xml.flat",
+        "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\layout\\abc_popup_menu_header_item_layout.xml"
     },
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
+        "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\drawable-xhdpi-v4\\abc_list_pressed_holo_dark.9.png"
     },
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -126,6 +130,10 @@
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_in_top.xml.flat",
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\anim\\abc_slide_in_top.xml"
+    },
+    {
+        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_quizzes_adapter.xml.flat",
+        "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\layout\\quizzes_adapter.xml"
     },
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -512,6 +520,10 @@
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\drawable-mdpi-v4\\abc_list_focused_holo.9.png"
     },
     {
+        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_quizz.xml.flat",
+        "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\layout\\fragment_quizz.xml"
+    },
+    {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\menu_bottom_nav_menu.xml.flat",
         "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\menu\\bottom_nav_menu.xml"
     },
@@ -800,12 +812,12 @@
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\457253c315205ea17dc7532a91fcb1c5\\res\\layout\\notification_template_big_media_narrow.xml"
     },
     {
-        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_questionarios_adapter.xml.flat",
-        "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\layout\\questionarios_adapter.xml"
-    },
-    {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\drawable-mdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_course_unit_adapter.xml.flat",
+        "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\layout\\course_unit_adapter.xml"
     },
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\color-v23_abc_tint_edittext.xml.flat",
@@ -914,10 +926,6 @@
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\drawable-xhdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
-        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_aula_adapter.xml.flat",
-        "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\layout\\aula_adapter.xml"
     },
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
@@ -1334,6 +1342,10 @@
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\drawable-xxhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_course_unit.xml.flat",
+        "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\layout\\activity_course_unit.xml"
     },
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
@@ -1808,10 +1820,6 @@
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\drawable\\abc_ic_search_api_material.xml"
     },
     {
-        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_questionario.xml.flat",
-        "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\layout\\activity_questionario.xml"
-    },
-    {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_list_selector_background_transition_holo_light.xml.flat",
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6dc1be6fdc2473c672cab85f24e2a9a5\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
@@ -1910,10 +1918,6 @@
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\6330bcbed0557976e0a55d4e97ae43d6\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
-    },
-    {
-        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_aulas.xml.flat",
-        "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\layout\\activity_aulas.xml"
     },
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -2050,10 +2054,6 @@
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\animator_design_fab_hide_motion_spec.xml.flat",
         "source": "C:\\Users\\Cliente\\.gradle\\caches\\transforms-2\\files-2.1\\cf6be507607c61f98e0c93597a6282b5\\res\\animator\\design_fab_hide_motion_spec.xml"
-    },
-    {
-        "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_questionarios.xml.flat",
-        "source": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\src\\main\\res\\layout\\fragment_questionarios.xml"
     },
     {
         "merged": "C:\\Users\\Cliente\\AndroidStudioProjects\\AprendiGameRepositorio\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",

@@ -7,7 +7,7 @@ public class CoursesUnit {
 
     private Long id;
     private String name;
-    private List<Teacher> teachers;
+    private List<Teacher> teacher;
     private List<CourseClass> courseClasses;
 
     public Long getId() {
@@ -27,11 +27,11 @@ public class CoursesUnit {
     }
 
     public List<Teacher> getTeachers() {
-        return teachers;
+        return teacher;
     }
 
     public void setTeachers(List<Teacher> teachers) {
-        this.teachers = teachers;
+        this.teacher = teachers;
     }
 
     public List<CourseClass> getCourseClasses() {

@@ -39,8 +39,8 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
         final CoursesUnit coursesUnit = coursesUnits.get(posicao);
 
         courseUnitViewHolder.textViewNameCourseUnit.setText(coursesUnit.getName());
-        courseUnitViewHolder.textViewTeachersCourseUnit.setText("");
 
+        courseUnitViewHolder.textViewTeachersCourseUnit.setText(getTeachersName(coursesUnit));
         courseUnitViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +49,20 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
                 context.startActivity(intent);
             }
         });
+    }
+
+    private String getTeachersName(CoursesUnit coursesUnit) {
+        String teachersName = "";
+        int i = 0;
+        if (i <= coursesUnit.getTeachers().size()){
+            if (coursesUnit.getTeachers().size() > 1) {
+                teachersName += coursesUnit.getTeachers().get(i).getName() + " / ";
+            } else {
+                teachersName += coursesUnit.getTeachers().get(i).getName();
+            }
+            i++;
+        }
+        return teachersName;
     }
 
     @Override

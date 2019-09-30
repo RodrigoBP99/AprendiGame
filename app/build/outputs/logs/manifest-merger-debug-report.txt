@@ -107,10 +107,10 @@ activity#br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity
 ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGameRepositorio\app\src\main\AndroidManifest.xml:16:9-72
 	android:name
 		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGameRepositorio\app\src\main\AndroidManifest.xml:16:19-69
-activity#br.com.rodrigo.aprendigame.Activity.AulasActivity
-ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGameRepositorio\app\src\main\AndroidManifest.xml:17:9-60
+activity#br.com.rodrigo.aprendigame.Activity.CourseUnitActivity
+ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGameRepositorio\app\src\main\AndroidManifest.xml:17:9-65
 	android:name
-		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGameRepositorio\app\src\main\AndroidManifest.xml:17:19-57
+		ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGameRepositorio\app\src\main\AndroidManifest.xml:17:19-62
 activity#br.com.rodrigo.aprendigame.Activity.CadastroActivity
 ADDED from C:\Users\Cliente\AndroidStudioProjects\AprendiGameRepositorio\app\src\main\AndroidManifest.xml:18:9-63
 	android:name

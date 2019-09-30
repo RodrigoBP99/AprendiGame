@@ -102,7 +102,7 @@ public class PerfilFragment extends Fragment {
     }
 
     private void findViewsById() {
-        textViewNameStudent = getActivity().findViewById(R.id.textViewNomePerfil);
+        textViewNameStudent = getActivity().findViewById(R.id.textViewNameStudentPerfil);
         textViewPoints = getActivity().findViewById(R.id.textViewPointsPerfil);
         textViewCourse = getActivity().findViewById(R.id.textViewCourseStudentPerfil);
         textViewLevel = getActivity().findViewById(R.id.textViewActualLevelPerfil);

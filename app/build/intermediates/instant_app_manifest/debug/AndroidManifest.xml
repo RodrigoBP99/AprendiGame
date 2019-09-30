@@ -24,7 +24,7 @@
         android:theme="@style/AppTheme" >
         <activity android:name="br.com.rodrigo.aprendigame.Activity.QuestionarioActivity" />
         <activity android:name="br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.Activity.AulasActivity" />
+        <activity android:name="br.com.rodrigo.aprendigame.Activity.CourseUnitActivity" />
         <activity android:name="br.com.rodrigo.aprendigame.Activity.CadastroActivity" />
         <activity android:name="br.com.rodrigo.aprendigame.Activity.MainActivity" />
         <activity android:name="br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity" />

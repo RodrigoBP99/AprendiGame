@@ -31,7 +31,7 @@ public class PresencaRealizadaActivity extends AppCompatActivity {
 
         //pega o id do aluno e da aula escolhida para recuperar as respectivas presenças
         Intent intent = getIntent();
-        idAula = intent.getStringExtra("aula");
+        idAula = intent.getStringExtra("courseUnit");
 
         RecyclerView recyclerViewPresenca = findViewById(R.id.recycleViewPresencas);
         recyclerViewPresenca.setLayoutManager(new LinearLayoutManager(PresencaRealizadaActivity.this));
