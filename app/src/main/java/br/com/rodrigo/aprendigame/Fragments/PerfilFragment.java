@@ -14,12 +14,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
-import br.com.rodrigo.aprendigame.WsHelper.HelperWs;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +29,7 @@ import retrofit2.Response;
 public class PerfilFragment extends Fragment {
 
     private Student usuario;
-    private TextView textViewNome;
+    private TextView textViewNameStudent;
     private TextView textViewIdade;
     private TextView textViewTurma;
     private TextView textViewInstituicao;
@@ -83,15 +81,12 @@ public class PerfilFragment extends Fragment {
 
         findViewsById();
 
-        StudentDAO usuarioDAO = new StudentDAO(getContext());
-        final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
-
         SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()) {
                     Student student = response.body();
-                    textViewNome.setText(student.getName());
+                    textViewNameStudent.setText(student.getName());
 
                     Picasso.get().load(student.getPhoto()).into(imageViewPerfil);
                 }
@@ -113,7 +108,7 @@ public class PerfilFragment extends Fragment {
     }
 
     private void findViewsById() {
-        textViewNome = getActivity().findViewById(R.id.textViewNomePerfil);
+        textViewNameStudent = getActivity().findViewById(R.id.textViewNomePerfil);
         textViewIdade = getActivity().findViewById(R.id.textViewNascimentoPerfil);
         textViewTurma = getActivity().findViewById(R.id.textViewTurmaPerfil);
         textViewInstituicao = getActivity().findViewById(R.id.textViewInstituicaoPerfil);

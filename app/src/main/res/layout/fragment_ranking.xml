@@ -9,19 +9,19 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageViewRanking"
+        android:id="@+id/imageViewPerfilStudentRanking"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:scaleType="centerCrop"
-        android:src="@mipmap/perfil_foto_launcher" />
+        tools:src="@mipmap/perfil_foto_launcher" />
 
     <TextView
-        android:id="@+id/textViewNomeRanking"
+        android:id="@+id/textViewNameStudentRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Nome da Pessoa"
+        tools:text="Nome da Pessoa"
         android:textColor="@android:color/black"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -31,7 +31,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:text="Pontos: \n300 / 1000"
+        tools:text="Pontos:"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/textViewPointsStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="18dp" />
@@ -41,14 +50,16 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/textViewActualLevelStudentRanking"
             android:layout_marginStart="3dp"
-            android:text="LVL: 3"
+            tools:text="LVL: 3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/textViewNextLevelStudentRanking"
             android:layout_gravity="right"
-            android:text="LVL: 4"
+            tools:text="LVL: 4"
             android:layout_marginEnd="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -63,9 +74,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="#E6E6E6"
-        android:max="1000"
+        tools:max="1000"
+        tools:progress="300"
         android:padding="5dp"
-        android:progress="300"
         android:progressBackgroundTint="@android:color/black"
         android:progressTint="@color/decoracaocolor"
         android:visibility="visible" />

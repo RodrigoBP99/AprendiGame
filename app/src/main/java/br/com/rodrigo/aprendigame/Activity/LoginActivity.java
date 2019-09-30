@@ -42,6 +42,9 @@ public class LoginActivity extends AppCompatActivity {
 
         findViewsById();
 
+        editTextUserMatriculaLogin.setText("1");
+        editTextSenhaLogin.setText("1");
+
         clickLogin();
 
         clickCadastrarUsuario();
@@ -86,12 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
         mainActivity.putExtra(USERMATRICULA, userName);
 
-        Student student = new Student();
-        student.setId(Long.valueOf(userName));
-
-        usuarioDAO.salvarUsuario(student);
         startActivity(mainActivity);
-
         finish();
     }
 }

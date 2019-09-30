@@ -10,14 +10,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import br.com.rodrigo.aprendigame.Activity.MainActivity;
+import com.squareup.picasso.Picasso;
+
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
-import br.com.rodrigo.aprendigame.WsHelper.HelperWs;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,8 +30,13 @@ import retrofit2.Response;
  */
 public class RankingFragment extends Fragment {
 
-    private TextView textViewNome;
-    private Student usuario;
+    private TextView textViewName;
+    private TextView textViewPoints;
+    private ImageView imageViewPerfilStudent;
+    private TextView textViewActualLevel;
+    private TextView textViewNextLevel;
+    private ProgressBar progressBarRanking;
+
 
     private BottomNavigationView bottomNavigationView;
 
@@ -70,7 +77,8 @@ public class RankingFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutFeedRanking, new RankingFeedFragment()).commit();
-        textViewNome = getView().findViewById(R.id.textViewNomeRanking);
+
+        findViewsById();
 
         StudentDAO usuarioDAO = new StudentDAO(getContext());
         String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
@@ -81,7 +89,14 @@ public class RankingFragment extends Fragment {
                 public void onResponse(Call<Student> call, Response<Student> response) {
                     if (response.isSuccessful()) {
                         Student student = response.body();
-                        textViewNome.setText(student.getName());
+                        textViewName.setText(student.getName());
+                        textViewPoints.setText(student.getPoints() + "/" + student.getRequiredPoints());
+                        textViewActualLevel.setText("Lvl. " + student.getActualLevel());
+                        textViewNextLevel.setText("Lvl. " + student.getNextLevel());
+                        progressBarRanking.setMax((int) student.getRequiredPoints());
+                        progressBarRanking.setProgress((int) student.getPoints());
+                        Picasso.get().load(student.getPhoto()).into(imageViewPerfilStudent);
+
                     }
                 }
 
@@ -91,11 +106,18 @@ public class RankingFragment extends Fragment {
                 }
             });
 
-
-            textViewNome.setText(usuario.getName());
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void findViewsById() {
+        textViewName = getView().findViewById(R.id.textViewNameStudentRanking);
+        textViewPoints = getView().findViewById(R.id.textViewPointsStudent);
+        textViewActualLevel = getView().findViewById(R.id.textViewActualLevelStudentRanking);
+        textViewNextLevel = getView().findViewById(R.id.textViewNextLevelStudentRanking);
+        imageViewPerfilStudent = getView().findViewById(R.id.imageViewPerfilStudentRanking);
+        progressBarRanking = getView().findViewById(R.id.progressBarRanking);
     }
 
     @Override
