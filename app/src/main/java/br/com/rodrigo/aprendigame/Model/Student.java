@@ -15,9 +15,6 @@ public class Student {
     private int actualLevel;
     private int nextLevel;
 
-    private String senha;
-
-
     public Long getId() {
         return id;
     }

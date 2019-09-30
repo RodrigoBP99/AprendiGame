@@ -47,16 +47,11 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
         setToolbar();
 
-        StudentDAO usuarioDAO = new StudentDAO(getApplicationContext());
-
-        String userName = getIntent().getStringExtra(PerfilFragment.USUARIO);
-
-        setUserInformation(usuarioDAO, userName);
+        setUserInformation();
     }
 
-    private void setUserInformation(StudentDAO usuarioDAO, String userName) {
+    private void setUserInformation() {
         try {
-
             SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
                 @Override
                 public void onResponse(Call<Student> call, Response<Student> response) {
@@ -74,7 +69,6 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
                 }
             });
-
         }catch (Exception e){
             e.printStackTrace();
         }

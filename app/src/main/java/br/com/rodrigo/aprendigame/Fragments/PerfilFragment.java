@@ -28,16 +28,11 @@ import retrofit2.Response;
  */
 public class PerfilFragment extends Fragment {
 
-    private Student usuario;
     private TextView textViewNameStudent;
-    private TextView textViewIdade;
-    private TextView textViewTurma;
-    private TextView textViewInstituicao;
-    private TextView textViewEmail;
-    private TextView textViewEndereco;
+    private TextView textViewPoints;
+    private TextView textViewCourse;
+    private TextView textViewLevel;
     private ImageView imageViewPerfil;
-
-    public final static String USUARIO = "username";
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -64,7 +59,6 @@ public class PerfilFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.buttonEditarPerfil:
                 Intent editarPerfil = new Intent(getContext(), EditarPerfilActivity.class);
-                editarPerfil.putExtra(USUARIO, pegarUsuario());
                 startActivity(editarPerfil);
         }
         return super.onOptionsItemSelected(item);
@@ -81,27 +75,27 @@ public class PerfilFragment extends Fragment {
 
         findViewsById();
 
-        SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
-            @Override
-            public void onResponse(Call<Student> call, Response<Student> response) {
-                if (response.isSuccessful()) {
-                    Student student = response.body();
-                    textViewNameStudent.setText(student.getName());
-
-                    Picasso.get().load(student.getPhoto()).into(imageViewPerfil);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Student> call, Throwable t) {
-
-            }
-        });
-
-
         //recuperar usuario
         try {
+            SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
+                @Override
+                public void onResponse(Call<Student> call, Response<Student> response) {
+                    if (response.isSuccessful()) {
+                        Student student = response.body();
 
+                        Picasso.get().load(student.getPhoto()).into(imageViewPerfil);
+                        textViewNameStudent.setText(student.getName());
+                        textViewCourse.setText(student.getCourse());
+                        textViewPoints.setText(String.valueOf(student.getPoints()));
+                        textViewLevel.setText(String.valueOf(student.getActualLevel()));
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Student> call, Throwable t) {
+
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -109,11 +103,9 @@ public class PerfilFragment extends Fragment {
 
     private void findViewsById() {
         textViewNameStudent = getActivity().findViewById(R.id.textViewNomePerfil);
-        textViewIdade = getActivity().findViewById(R.id.textViewNascimentoPerfil);
-        textViewTurma = getActivity().findViewById(R.id.textViewTurmaPerfil);
-        textViewInstituicao = getActivity().findViewById(R.id.textViewInstituicaoPerfil);
-        textViewEmail = getActivity().findViewById(R.id.textViewEmailPerfil);
-        textViewEndereco = getActivity().findViewById(R.id.textViewEnderecoPerfil);
+        textViewPoints = getActivity().findViewById(R.id.textViewPointsPerfil);
+        textViewCourse = getActivity().findViewById(R.id.textViewCourseStudentPerfil);
+        textViewLevel = getActivity().findViewById(R.id.textViewActualLevelPerfil);
         imageViewPerfil = getActivity().findViewById(R.id.imageViewPerfil);
     }
 }
