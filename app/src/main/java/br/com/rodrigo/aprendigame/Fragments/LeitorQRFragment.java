@@ -1,6 +1,7 @@
 package br.com.rodrigo.aprendigame.Fragments;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,7 +40,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     private ZXingScannerView ScannerView;
     private String idAluno;
 
-    private String arrayPresenca[];
+    private String[] arrayPresenca;
 
     public LeitorQRFragment() {
         // Required empty public constructor
@@ -52,6 +53,8 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         ScannerView = new ZXingScannerView(getActivity());
         idAluno = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
         setHasOptionsMenu(true);
+
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         return ScannerView;
     }
 
@@ -74,8 +77,9 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onStop() {
+        super.onStop();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
     }
 
     @Override
@@ -85,12 +89,10 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         String texto = String.valueOf(rawResult);
         arrayPresenca = texto.split("&");
 
-        String hora = getHora();
-
-        createNewPresenca(texto, hora);
+        createNewPresenca(texto);
     }
 
-    private void createNewPresenca(String texto, String hora) {
+    private void createNewPresenca(String texto) {
         PresencaDAO presencaDAO = new PresencaDAO(getContext());
         if (presencaDAO.checkScannedPresenca(texto)){
             Toast.makeText(getContext(), "Essa presença já foi realizada!!!", Toast.LENGTH_SHORT).show();
@@ -131,6 +133,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ScannerView.setResultHandler(this);
         ScannerView.startCamera();
     }

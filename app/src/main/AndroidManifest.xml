@@ -12,13 +12,20 @@
         android:roundIcon="@mipmap/logo_app_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.QuestionarioActivity"></activity>
-        <activity android:name=".Activity.PresencaRealizadaActivity" />
-        <activity android:name=".Activity.CourseUnitActivity" />
-        <activity android:name=".Activity.CadastroActivity" />
-        <activity android:name=".Activity.MainActivity"/>
-        <activity android:name=".Activity.EditarPerfilActivity" />
-        <activity android:name=".Activity.LoginActivity">
+        <activity android:name=".Activity.QuestionarioActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
+        <activity android:name=".Activity.PresencaRealizadaActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name=".Activity.CourseUnitActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name=".Activity.CadastroActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name=".Activity.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name=".Activity.EditarPerfilActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name=".Activity.LoginActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
