@@ -22,13 +22,27 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="br.com.rodrigo.aprendigame.Activity.QuestionarioActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.Activity.CourseUnitActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.Activity.CadastroActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.Activity.MainActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity" />
-        <activity android:name="br.com.rodrigo.aprendigame.Activity.LoginActivity" >
+        <activity
+            android:name="br.com.rodrigo.aprendigame.Activity.QuestionarioActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
+            android:name="br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
+            android:name="br.com.rodrigo.aprendigame.Activity.CourseUnitActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
+            android:name="br.com.rodrigo.aprendigame.Activity.CadastroActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
+            android:name="br.com.rodrigo.aprendigame.Activity.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
+            android:name="br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
+            android:name="br.com.rodrigo.aprendigame.Activity.LoginActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
