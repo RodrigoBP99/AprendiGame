@@ -14,6 +14,7 @@ import java.util.List;
 
 import br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity;
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
+import br.com.rodrigo.aprendigame.Model.Teacher;
 import br.com.rodrigo.aprendigame.R;
 
 public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.CourseUnitViewHolder> {
@@ -53,14 +54,12 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
 
     private String getTeachersName(CoursesUnit coursesUnit) {
         String teachersName = "";
-        int i = 0;
-        if (i <= coursesUnit.getTeachers().size()){
+        for(Teacher teacher : coursesUnit.getTeachers()){
             if (coursesUnit.getTeachers().size() > 1) {
-                teachersName += coursesUnit.getTeachers().get(i).getName() + " / ";
+                teachersName += teacher.getName() + "; ";
             } else {
-                teachersName += coursesUnit.getTeachers().get(i).getName();
+                teachersName = teacher.getName();
             }
-            i++;
         }
         return teachersName;
     }
