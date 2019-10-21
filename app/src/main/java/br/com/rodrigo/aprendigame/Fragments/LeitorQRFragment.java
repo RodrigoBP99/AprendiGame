@@ -3,7 +3,6 @@ package br.com.rodrigo.aprendigame.Fragments;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,7 +50,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ScannerView = new ZXingScannerView(getActivity());
-        idAluno = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
+        idAluno = getActivity().getIntent().getStringExtra(LoginActivity.STUDENT);
         setHasOptionsMenu(true);
 
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

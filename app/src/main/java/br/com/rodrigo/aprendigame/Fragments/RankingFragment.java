@@ -80,32 +80,16 @@ public class RankingFragment extends Fragment {
 
         findViewsById();
 
-        StudentDAO usuarioDAO = new StudentDAO(getContext());
-        String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
 
         try {
-            SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
-                @Override
-                public void onResponse(Call<Student> call, Response<Student> response) {
-                    if (response.isSuccessful()) {
-                        Student student = response.body();
-                        textViewName.setText(student.getName());
-                        textViewPoints.setText(student.getPoints() + "/" + student.getRequiredPoints());
-                        textViewActualLevel.setText("Lvl. " + student.getActualLevel());
-                        textViewNextLevel.setText("Lvl. " + student.getNextLevel());
-                        progressBarRanking.setMax((int) student.getRequiredPoints());
-                        progressBarRanking.setProgress((int) student.getPoints());
-                        Picasso.get().load(student.getPhoto()).into(imageViewPerfilStudent);
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Student> call, Throwable t) {
-
-                }
-            });
-
+            Student student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
+            textViewName.setText(student.getName());
+            textViewPoints.setText(student.getPoints() + "/" + student.getRequiredPoints());
+            textViewActualLevel.setText("Lvl. " + student.getActualLevel());
+            textViewNextLevel.setText("Lvl. " + student.getNextLevel());
+            progressBarRanking.setMax((int) student.getRequiredPoints());
+            progressBarRanking.setProgress((int) student.getPoints());
+            Picasso.get().load(student.getPhoto()).into(imageViewPerfilStudent);
         } catch (Exception e) {
             e.printStackTrace();
         }

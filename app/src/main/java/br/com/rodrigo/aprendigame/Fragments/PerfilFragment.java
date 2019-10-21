@@ -64,11 +64,6 @@ public class PerfilFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public String pegarUsuario() {
-        final String userName = getActivity().getIntent().getStringExtra(LoginActivity.USERMATRICULA);
-        return userName;
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -77,25 +72,14 @@ public class PerfilFragment extends Fragment {
 
         //recuperar usuario
         try {
-            SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
-                @Override
-                public void onResponse(Call<Student> call, Response<Student> response) {
-                    if (response.isSuccessful()) {
-                        Student student = response.body();
+            Student student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
 
-                        Picasso.get().load(student.getPhoto()).into(imageViewPerfil);
-                        textViewNameStudent.setText(student.getName());
-                        textViewCourse.setText(student.getCourse());
-                        textViewPoints.setText(String.valueOf(student.getPoints()));
-                        textViewLevel.setText(String.valueOf(student.getActualLevel()));
-                    }
-                }
+            Picasso.get().load(student.getPhoto()).into(imageViewPerfil);
+            textViewNameStudent.setText(student.getName());
+            textViewCourse.setText(student.getCourse());
+            textViewPoints.setText(String.valueOf(student.getPoints()));
+            textViewLevel.setText(String.valueOf(student.getActualLevel()));
 
-                @Override
-                public void onFailure(Call<Student> call, Throwable t) {
-
-                }
-            });
         } catch (Exception e) {
             e.printStackTrace();
         }
