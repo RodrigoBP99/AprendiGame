@@ -1,4 +1,4 @@
 
 # AprendiGame
 
-Aplicativo destidano ao projeto de Iniciação Cientifica
+Aplicativo destinado ao projeto de Iniciação Cientifica
