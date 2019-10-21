@@ -42,6 +42,7 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
         courseUnitViewHolder.textViewNameCourseUnit.setText(coursesUnit.getName());
 
         courseUnitViewHolder.textViewTeachersCourseUnit.setText(getTeachersName(coursesUnit));
+        courseUnitViewHolder.textViewCourseClassTotal.setText("Aulas: \n" + coursesUnit.getCourseClasses().size());
         courseUnitViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +51,7 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
                 context.startActivity(intent);
             }
         });
+
     }
 
     private String getTeachersName(CoursesUnit coursesUnit) {
@@ -81,12 +83,14 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
     public class CourseUnitViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewNameCourseUnit;
         private TextView textViewTeachersCourseUnit;
+        private TextView textViewCourseClassTotal;
 
         public CourseUnitViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textViewNameCourseUnit = itemView.findViewById(R.id.textViewNameCourseUnit);
             textViewTeachersCourseUnit = itemView.findViewById(R.id.textViewTeachersCourseUnit);
+            textViewCourseClassTotal = itemView.findViewById(R.id.textViewTotalCourseClass);
         }
     }
 }

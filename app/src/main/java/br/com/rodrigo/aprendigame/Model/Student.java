@@ -2,9 +2,11 @@ package br.com.rodrigo.aprendigame.Model;
 
 import android.content.ContentValues;
 
+import java.io.Serializable;
+
 import br.com.rodrigo.aprendigame.DB.DBHelper;
 
-public class Student {
+public class Student implements Serializable {
 
     private Long id;
     private String name;
