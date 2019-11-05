@@ -14,6 +14,8 @@ import br.com.rodrigo.aprendigame.Adapter.QuizzAdapter;
 import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,17 +23,19 @@ import retrofit2.Response;
 public class QuizzActivity extends AppCompatActivity {
     private QuizzAdapter adapter;
     private List<Quizz> quizzes;
+    @BindView(R.id.recycleViewQuizz)
+    RecyclerView recyclerViewQuizz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz);
+        ButterKnife.bind(this);
 
-        RecyclerView recyclerView = findViewById(R.id.recycleViewQuizz);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewQuizz.setLayoutManager(new LinearLayoutManager(this));
         getQuizzList();
         adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, getApplicationContext());
-        recyclerView.setAdapter(adapter);
+        recyclerViewQuizz.setAdapter(adapter);
     }
 
     private void getQuizzList() {
@@ -41,7 +45,6 @@ public class QuizzActivity extends AppCompatActivity {
                 public void onResponse(Call<List<Quizz>> call, Response<List<Quizz>> response) {
                         quizzes = response.body();
                         adapter.updateQuizzes(quizzes);
-
                 }
 
                 @Override

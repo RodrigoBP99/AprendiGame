@@ -29,16 +29,16 @@ public class LoginActivity extends AppCompatActivity {
     private StudentDAO usuarioDAO;
 
     @BindView(R.id.buttonLogin)
-     Button buttonLogin;
+    Button buttonLogin;
 
     @BindView(R.id.textViewCadastroRedirect)
-     TextView textViewCadastro;
+    TextView textViewCadastro;
 
     @BindView(R.id.editTextLoginUserMatricula)
-     EditText editTextUserMatriculaLogin;
+    EditText editTextUserMatriculaLogin;
 
     @BindView(R.id.editTextLoginSenha)
-     EditText editTextSenhaLogin;
+    EditText editTextSenhaLogin;
 
     public final static String STUDENT = "student";
 
@@ -49,22 +49,18 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         ButterKnife.bind(this);
 
         usuarioDAO = new StudentDAO(getApplicationContext());
 
         editTextUserMatriculaLogin.setText("1");
         editTextSenhaLogin.setText("1");
-
-        clickCadastrarUsuario();
     }
 
-    private void clickCadastrarUsuario() {
-        textViewCadastro.setOnClickListener(v -> {
-            Intent cadastroActivity = new Intent(LoginActivity.this, CadastroActivity.class);
-            startActivity(cadastroActivity);
-        });
+    @OnClick(R.id.textViewCadastroRedirect)
+    void cadastroRedirect(){
+        Intent cadastroActivity = new Intent(LoginActivity.this, CadastroActivity.class);
+        startActivity(cadastroActivity);
     }
 
     @OnClick(R.id.buttonLogin) void login(){

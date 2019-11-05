@@ -15,13 +15,14 @@ import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CourseUnitActivity extends AppCompatActivity {
 
-    @BindView(R.id.recycleViewCourseUnits) RecyclerView recyclerViewAulas;
+    @BindView(R.id.recycleViewCourseUnitActivity) RecyclerView recyclerViewCourseUnits;
     private CoursesUnitAdapter courseUnitAdapter;
     private List<CoursesUnit> coursesUnitList;
 
@@ -29,6 +30,7 @@ public class CourseUnitActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_unit);
+        ButterKnife.bind(this);
 
         setListAulaRecycle();
 
@@ -36,12 +38,12 @@ public class CourseUnitActivity extends AppCompatActivity {
 
     private void setListAulaRecycle() {
         DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerViewAulas.addItemDecoration(itemDecoration);
-        recyclerViewAulas.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewCourseUnits.addItemDecoration(itemDecoration);
+        recyclerViewCourseUnits.setLayoutManager(new LinearLayoutManager(this));
 
         courseUnitAdapter = new CoursesUnitAdapter((ArrayList<CoursesUnit>) coursesUnitList, this);
         getCourseUnit();
-        recyclerViewAulas.setAdapter(courseUnitAdapter);
+        recyclerViewCourseUnits.setAdapter(courseUnitAdapter);
     }
 
     private void getCourseUnit() {

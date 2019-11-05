@@ -16,7 +16,7 @@
         android:textSize="30sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewPresencas"
+        android:id="@+id/recycleViewCourseClass"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

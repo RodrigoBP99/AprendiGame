@@ -21,22 +21,26 @@ import java.util.Objects;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EditarPerfilActivity extends AppCompatActivity {
 
-    private ImageView imageViewPerfil;
-    private EditText editTextPerfilNome;
-    private Toolbar toolbar;
+    @BindView(R.id.imageViewEditarPerfilFoto)
+    ImageView imageViewPerfil;
+    @BindView(R.id.editTextEditarPerfilNome)
+    EditText editTextPerfilNome;
+    @BindView(R.id.toolbarEditarPerfil)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil);
-
-        findViewsById();
+        ButterKnife.bind(this);
 
         setToolbar();
 
@@ -73,24 +77,15 @@ public class EditarPerfilActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(null);
 
         toolbar.setNavigationIcon(R.drawable.voltar_icon);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View view = getCurrentFocus();
-                if (view != null) {
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-
-                finish();
+        toolbar.setNavigationOnClickListener(v -> {
+            View view = getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-        });
-    }
 
-    private void findViewsById() {
-        editTextPerfilNome = findViewById(R.id.editTextEditarPerfilNome);
-        imageViewPerfil = findViewById(R.id.imageViewEditarPerfilFoto);
-        toolbar = findViewById(R.id.toolbarEditarPerfil);
+            finish();
+        });
     }
 
     @Override

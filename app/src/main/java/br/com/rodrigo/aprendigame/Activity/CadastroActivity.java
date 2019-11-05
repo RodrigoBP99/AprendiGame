@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,68 +15,52 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CadastroActivity extends AppCompatActivity {
 
-    private ImageButton buttonConfirmarCadastro;
-    private ImageButton buttonCancelarCadastro;
-
     private Student usuario = new Student();
 
-    private EditText editTextUserMatricula;
-    private EditText editTextNome;
-    private EditText editTextDataNascimento;
-    private EditText editTextTurma;
-    private EditText editTextInstituicao;
-    private EditText editTextEmail;
-    private EditText editTextEndereco;
-    private EditText editTextSenha;
-    private EditText editTextConfrimarSenha;
+    @BindView(R.id.editTextUserMatriculaCadastro)
+    EditText editTextUserMatricula;
+    @BindView(R.id.editTextNomeCadastro)
+    EditText editTextNome;
+    @BindView(R.id.editTextDataNascimentoCadastro)
+    EditText editTextDataNascimento;
+    @BindView(R.id.editTextTurmaCadastro)
+    EditText editTextTurma;
+    @BindView(R.id.editTextInstituicaoCadastro)
+    EditText editTextInstituicao;
+    @BindView(R.id.editTextEmailCadastro)
+    EditText editTextEmail;
+    @BindView(R.id.editTextEnderecoCadastro)
+    EditText editTextEndereco;
+    @BindView(R.id.editTextSenhaCadastro)
+    EditText editTextSenha;
+    @BindView(R.id.editTextConfirmaSenhaCadastro)
+    EditText editTextConfrimarSenha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
-
-        findViewsById();
-
-        cancelarCadastro();
-
-        buttonConfirmarCadastro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cadastroUsuario();
-            }
-        });
+        ButterKnife.bind(this);
     }
 
-    private void cancelarCadastro() {
-        buttonCancelarCadastro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this);
-                alerta.setTitle("Um momento, amigo(a)!").setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                }).setNegativeButton("Não", null).setMessage("Tem certeza que deseja cancelar seu Cadastro?").show();
-            }
-        });
+    @OnClick(R.id.buttonConfirmarCadastro) void confirmRegister(){
+        cadastroUsuario();
     }
 
-    private void findViewsById() {
-        editTextUserMatricula = findViewById(R.id.editTextUserMatriculaCadastro);
-        editTextNome = findViewById(R.id.editTextNomeCadastro);
-        editTextDataNascimento = findViewById(R.id.editTextDataNascimentoCadastro);
-        editTextTurma = findViewById(R.id.editTextTurmaCadastro);
-        editTextInstituicao = findViewById(R.id.editTextInstituicaoCadastro);
-        editTextEmail = findViewById(R.id.editTextEmailCadastro);
-        editTextEndereco = findViewById(R.id.editTextEnderecoCadastro);
-        editTextSenha = findViewById(R.id.editTextSenhaCadastro);
-        editTextConfrimarSenha = findViewById(R.id.editTextConfirmaSenhaCadastro);
-        buttonCancelarCadastro = findViewById(R.id.buttonCancelarCadastro);
-        buttonConfirmarCadastro = findViewById(R.id.buttonConfirmarCadastro);
+    @OnClick(R.id.buttonCancelarCadastro) void cancelRegister(){
+        AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this);
+        alerta.setTitle("Um momento, amigo(a)!").setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        }).setNegativeButton("Não", null).setMessage("Tem certeza que deseja cancelar seu Cadastro?").show();
     }
 
     @Override
@@ -122,7 +105,6 @@ public class CadastroActivity extends AppCompatActivity {
         }
     }
 
-
     private void checkPasswordRegister(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, String confirmarSenha, StudentDAO bdUsuario) {
         //verificação da senha
         if (senha.length() < 6) {
@@ -138,8 +120,6 @@ public class CadastroActivity extends AppCompatActivity {
 
     private void registerUser(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, StudentDAO bdUsuario) {
         try {
-
-
             Toast.makeText(CadastroActivity.this, "Cadastro Realizado Com Sucesso!", Toast.LENGTH_SHORT).show();
             finish();
         }catch (Exception e){
