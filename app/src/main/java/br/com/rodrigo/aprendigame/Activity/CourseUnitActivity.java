@@ -1,10 +1,11 @@
 package br.com.rodrigo.aprendigame.Activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +14,14 @@ import br.com.rodrigo.aprendigame.Adapter.CoursesUnitAdapter;
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
+import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CourseUnitActivity extends AppCompatActivity {
 
+    @BindView(R.id.recycleViewCourseUnits) RecyclerView recyclerViewAulas;
     private CoursesUnitAdapter courseUnitAdapter;
     private List<CoursesUnit> coursesUnitList;
 
@@ -32,7 +35,6 @@ public class CourseUnitActivity extends AppCompatActivity {
     }
 
     private void setListAulaRecycle() {
-        RecyclerView recyclerViewAulas = findViewById(R.id.recycleViewAulas);
         DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerViewAulas.addItemDecoration(itemDecoration);
         recyclerViewAulas.setLayoutManager(new LinearLayoutManager(this));
