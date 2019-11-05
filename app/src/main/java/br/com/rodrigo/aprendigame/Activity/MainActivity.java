@@ -21,7 +21,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import br.com.rodrigo.aprendigame.Fragments.LeitorQRFragment;
-import br.com.rodrigo.aprendigame.Fragments.QuizzFragment;
+import br.com.rodrigo.aprendigame.Fragments.CourseUnitFragment;
 import br.com.rodrigo.aprendigame.Fragments.RankingFragment;
 import br.com.rodrigo.aprendigame.R;
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_questionarios:
-                    trocarFragmento(new QuizzFragment(), "questionario");
+                    trocarFragmento(new CourseUnitFragment(), "questionario");
                     return true;
 
                 case R.id.navigation_presença:

@@ -12,9 +12,9 @@
         android:roundIcon="@mipmap/logo_app_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.QuestionarioActivity"
+        <activity android:name=".Activity.QuizzActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"></activity>
-        <activity android:name=".Activity.PresencaRealizadaActivity"
+        <activity android:name=".Activity.CourseClassActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".Activity.CourseUnitActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"/>

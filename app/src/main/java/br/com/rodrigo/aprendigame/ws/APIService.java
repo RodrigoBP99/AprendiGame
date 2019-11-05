@@ -21,7 +21,7 @@ public interface APIService {
     Call<Presenca> createPresenca(@Path("idAula") String idAula, @Body Presenca presenca);
 
     @POST("listaPresencas/{idAula}")
-    Call<ArrayList<Presenca>> sendList(@Path("idAula") String idAula, @Body ArrayList<Presenca> presencas);
+    Call<List<Presenca>> sendList(@Path("idAula") String idAula, @Body ArrayList<Presenca> presencas);
 
     @Headers({
             "Content-Type: application/json",

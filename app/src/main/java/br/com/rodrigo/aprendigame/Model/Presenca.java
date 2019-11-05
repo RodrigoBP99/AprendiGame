@@ -2,9 +2,6 @@ package br.com.rodrigo.aprendigame.Model;
 
 import android.content.ContentValues;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import br.com.rodrigo.aprendigame.DB.DBHelper;
 
 public class Presenca {

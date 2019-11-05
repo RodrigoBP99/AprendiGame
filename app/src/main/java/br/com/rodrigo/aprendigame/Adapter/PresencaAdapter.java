@@ -1,6 +1,7 @@
 package br.com.rodrigo.aprendigame.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.rodrigo.aprendigame.Activity.QuizzActivity;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.R;
 
@@ -36,9 +38,16 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
     public void onBindViewHolder(@NonNull PresencaViewHolder presencaViewHolder, int posicao) {
         final Presenca presenca = presencas.get(posicao);
 
-        presencaViewHolder.textViewData.setText(presenca.getData().toString());
         presencaViewHolder.textViewProfessor.setText("Professor: " + presenca.getProfessor());
         presencaViewHolder.textViewAula.setText("Aula: " + presenca.getAula());
+        presencaViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, QuizzActivity.class);
+                intent.putExtra("presenca", presenca.getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -16,8 +16,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.rodrigo.aprendigame.Adapter.QuizzAdapter;
-import br.com.rodrigo.aprendigame.Model.Quizz;
+import br.com.rodrigo.aprendigame.Adapter.CoursesUnitAdapter;
+import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import retrofit2.Call;
@@ -27,12 +27,12 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QuizzFragment extends Fragment {
+public class CourseUnitFragment extends Fragment {
 
-    private QuizzAdapter adapter;
-    private List<Quizz> quizzes = new ArrayList<>();
+    private CoursesUnitAdapter coursesUnitAdapter;
+    private List<CoursesUnit> coursesUnits;
 
-    public QuizzFragment() {
+    public CourseUnitFragment() {
         // Required empty public constructor
     }
 
@@ -42,7 +42,7 @@ public class QuizzFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.fragment_quizz, container, false);
+        return inflater.inflate(R.layout.fragment_course_unit, container, false);
     }
 
     @Override
@@ -65,27 +65,29 @@ public class QuizzFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        RecyclerView recyclerViewQuizzes = getView().findViewById(R.id.recycleViewQuizzes);
-        recyclerViewQuizzes.setLayoutManager(new LinearLayoutManager(getContext()));
+        RecyclerView recyclerView = getView().findViewById(R.id.recycleViewCourseUnits);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        getCourseUnit();
+        coursesUnitAdapter = new CoursesUnitAdapter((ArrayList<CoursesUnit>) coursesUnits, getContext());
+        recyclerView.setAdapter(coursesUnitAdapter);
+    }
 
-        adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, getContext());
-
-        try{
-            SetupRest.apiService.getListQuizz().enqueue(new Callback<List<Quizz>>() {
+    private void getCourseUnit() {
+        try {
+            SetupRest.apiService.getListCourseUnit(1L).enqueue(new Callback<List<CoursesUnit>>() {
                 @Override
-                public void onResponse(Call<List<Quizz>> call, Response<List<Quizz>> response) {
-                    quizzes = response.body();
-                    adapter.updateQuizzes(quizzes);
+                public void onResponse(Call<List<CoursesUnit>> call, Response<List<CoursesUnit>> response) {
+                    coursesUnits = response.body();
+                    coursesUnitAdapter.atualiza(coursesUnits);
                 }
 
                 @Override
-                public void onFailure(Call<List<Quizz>> call, Throwable t) {
+                public void onFailure(Call<List<CoursesUnit>> call, Throwable t) {
 
                 }
             });
         }catch (Exception e){
 
         }
-        recyclerViewQuizzes.setAdapter(adapter);
     }
 }

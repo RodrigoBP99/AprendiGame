@@ -5,14 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.QuestionarioActivity"
+    tools:context=".Activity.QuizzActivity"
     android:orientation="vertical"
     android:id="@+id/questionarioLayout">
-
     <TextView
-        android:text="Activity para carregar questionario ao clickar para abrir ele"
+        android:id="@+id/textViewPresencaData"
+        android:textSize="30sp"
+        android:text="Questionarios"
+        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleViewQuizz"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </android.support.v7.widget.LinearLayoutCompat>

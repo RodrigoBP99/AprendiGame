@@ -23,7 +23,6 @@ import br.com.rodrigo.aprendigame.Activity.CourseUnitActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
-import br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -149,9 +148,6 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                     } else{
                         presencaDAO.inserirPresenca(presenca);
                     }
-                    Intent intent = new Intent(getContext(), PresencaRealizadaActivity.class);
-                    intent.putExtra("aula", arrayPresenca[1]);
-                    startActivity(intent);
                 }
 
                 @Override

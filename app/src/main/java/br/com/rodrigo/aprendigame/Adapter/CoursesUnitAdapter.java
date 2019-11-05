@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.rodrigo.aprendigame.Activity.PresencaRealizadaActivity;
+import br.com.rodrigo.aprendigame.Activity.CourseClassActivity;
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.Model.Teacher;
 import br.com.rodrigo.aprendigame.R;
@@ -46,7 +46,7 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
         courseUnitViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, PresencaRealizadaActivity.class);
+                Intent intent = new Intent(context, CourseClassActivity.class);
                 intent.putExtra(COURSEUNIT, String.valueOf(coursesUnit.getId()));
                 context.startActivity(intent);
             }

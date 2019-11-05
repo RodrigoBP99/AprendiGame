@@ -7,8 +7,8 @@
         android:title="Ranking" />
     <item
         android:id="@+id/navigation_questionarios"
-        android:icon="@drawable/questionario_icon"
-        android:title="Questionario" />
+        android:icon="@drawable/diciplinas_icon"
+        android:title="Diciplinas" />
     <item
         android:id="@+id/navigation_presença"
         android:icon="@drawable/presenca_icon"

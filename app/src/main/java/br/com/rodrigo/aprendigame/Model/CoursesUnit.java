@@ -1,6 +1,5 @@
 package br.com.rodrigo.aprendigame.Model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CoursesUnit {
