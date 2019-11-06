@@ -14,6 +14,8 @@ import java.util.List;
 
 import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHolder>{
 
@@ -67,18 +69,19 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
 
     public class QuizzViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView textViewTitleQuizz;
-        private TextView textViewTeacherQuizz;
-        private TextView textViewCourseUnitQuizz;
-        private TextView textViewAmountQuestionsQuizz;
+        @BindView(R.id.textViewTitleQuizz)
+        TextView textViewTitleQuizz;
+        @BindView(R.id.textViewTeacherQuizz)
+        TextView textViewTeacherQuizz;
+        @BindView(R.id.textViewCourseUnitQuizz)
+        TextView textViewCourseUnitQuizz;
+        @BindView(R.id.textViewAmountQuestionsQuizz)
+        TextView textViewAmountQuestionsQuizz;
 
         public QuizzViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewTitleQuizz = itemView.findViewById(R.id.textViewTitleQuizz);
-            textViewTeacherQuizz = itemView.findViewById(R.id.textViewTeacherQuizz);
-            textViewCourseUnitQuizz = itemView.findViewById(R.id.textViewCourseUnitQuizz);
-            textViewAmountQuestionsQuizz = itemView.findViewById(R.id.textViewAmountQuestionsQuizz);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

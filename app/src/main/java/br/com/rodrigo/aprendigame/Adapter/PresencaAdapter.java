@@ -17,6 +17,8 @@ import java.util.List;
 import br.com.rodrigo.aprendigame.Activity.QuizzActivity;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.PresencaViewHolder> {
 
@@ -66,18 +68,19 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
     }
 
     public class PresencaViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.textViewPresencaData)
         TextView textViewData;
+        @BindView(R.id.textViewPresencaProfessor)
         TextView textViewProfessor;
+        @BindView(R.id.textviewPresencaAula)
         TextView textViewAula;
+        @BindView(R.id.textViewPresencaHora)
         TextView textViewHora;
 
         public PresencaViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewData = itemView.findViewById(R.id.textViewPresencaData);
-            textViewProfessor = itemView.findViewById(R.id.textViewPresencaProfessor);
-            textViewAula = itemView.findViewById(R.id.textviewPresencaAula);
-            textViewHora = itemView.findViewById(R.id.textViewPresencaHora);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

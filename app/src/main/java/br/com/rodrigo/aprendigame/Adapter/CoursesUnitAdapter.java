@@ -1,5 +1,6 @@
 package br.com.rodrigo.aprendigame.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import br.com.rodrigo.aprendigame.Activity.CourseClassActivity;
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.Model.Teacher;
 import br.com.rodrigo.aprendigame.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.CourseUnitViewHolder> {
 
@@ -82,16 +85,17 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
     }
 
     public class CourseUnitViewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewNameCourseUnit;
-        private TextView textViewTeachersCourseUnit;
-        private TextView textViewCourseClassTotal;
+        @BindView(R.id.textViewNameCourseUnit)
+        TextView textViewNameCourseUnit;
+        @BindView(R.id.textViewTeachersCourseUnit)
+        TextView textViewTeachersCourseUnit;
+        @BindView(R.id.textViewTotalCourseClass)
+        TextView textViewCourseClassTotal;
 
         public CourseUnitViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewNameCourseUnit = itemView.findViewById(R.id.textViewNameCourseUnit);
-            textViewTeachersCourseUnit = itemView.findViewById(R.id.textViewTeachersCourseUnit);
-            textViewCourseClassTotal = itemView.findViewById(R.id.textViewTotalCourseClass);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
