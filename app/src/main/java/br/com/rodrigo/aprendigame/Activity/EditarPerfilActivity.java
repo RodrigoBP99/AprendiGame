@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.Objects;
 
@@ -56,7 +56,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
                         Student student = response.body();
                         editTextPerfilNome.setText(student.getName());
 
-                        Picasso.get().load(student.getPhoto()).into(imageViewPerfil);
+                        Glide.with(EditarPerfilActivity.this).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
                     }
                 }
 

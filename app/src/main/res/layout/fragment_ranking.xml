@@ -9,7 +9,7 @@
     tools:context=".Fragments.RankingFragment">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/imageViewPerfilStudentRanking"
         android:layout_width="100dp"
         android:layout_height="100dp"

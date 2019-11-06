@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import br.com.rodrigo.aprendigame.Adapter.QuizzAdapter;
 import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +25,10 @@ import br.com.rodrigo.aprendigame.R;
 public class RankingFeedFragment extends Fragment {
 
     private QuizzAdapter adapter;
-    ArrayList<Quizz> questionarios = new ArrayList<>();
+    private ArrayList<Quizz> questionarios = new ArrayList<>();
+    @BindView(R.id.recycleViewRankingFeed)
+    RecyclerView recyclerViewQuestionarios;
+
 
     public RankingFeedFragment() {
         // Required empty public constructor
@@ -40,8 +45,7 @@ public class RankingFeedFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        RecyclerView recyclerViewQuestionarios = getView().findViewById(R.id.recycleViewRankingFeed);
+        ButterKnife.bind(this, getActivity());
         recyclerViewQuestionarios.setLayoutManager(new LinearLayoutManager(getContext()));
 
 

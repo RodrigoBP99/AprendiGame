@@ -11,25 +11,33 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PerfilFragment extends Fragment {
 
-    private TextView textViewNameStudent;
-    private TextView textViewPoints;
-    private TextView textViewCourse;
-    private TextView textViewLevel;
-    private ImageView imageViewPerfil;
+    @BindView(R.id.textViewNameStudentPerfil)
+    TextView textViewNameStudent;
+    @BindView(R.id.textViewPointsPerfil)
+    TextView textViewPoints;
+    @BindView(R.id.textViewCourseStudentPerfil)
+    TextView textViewCourse;
+    @BindView(R.id.textViewActualLevelPerfil)
+    TextView textViewLevel;
+    @BindView(R.id.imageViewPerfil)
+    ImageView imageViewPerfil;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -41,7 +49,14 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
+
         return inflater.inflate(R.layout.fragment_perfil, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ButterKnife.bind(this, getActivity());
     }
 
     @Override
@@ -64,14 +79,11 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        findViewsById();
-
         //recuperar usuario
         try {
             Student student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
 
-            Picasso.get().load(student.getPhoto()).into(imageViewPerfil);
+            Glide.with(getView()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
             textViewNameStudent.setText(student.getName());
             textViewCourse.setText(student.getCourse());
             textViewPoints.setText(String.valueOf(student.getPoints()));
@@ -82,11 +94,4 @@ public class PerfilFragment extends Fragment {
         }
     }
 
-    private void findViewsById() {
-        textViewNameStudent = getActivity().findViewById(R.id.textViewNameStudentPerfil);
-        textViewPoints = getActivity().findViewById(R.id.textViewPointsPerfil);
-        textViewCourse = getActivity().findViewById(R.id.textViewCourseStudentPerfil);
-        textViewLevel = getActivity().findViewById(R.id.textViewActualLevelPerfil);
-        imageViewPerfil = getActivity().findViewById(R.id.imageViewPerfil);
-    }
 }

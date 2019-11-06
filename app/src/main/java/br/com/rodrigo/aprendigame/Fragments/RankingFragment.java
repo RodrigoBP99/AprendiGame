@@ -14,24 +14,32 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.squareup.picasso.Picasso;
 
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RankingFragment extends Fragment {
 
-    private TextView textViewName;
-    private TextView textViewPoints;
-    private ImageView imageViewPerfilStudent;
-    private TextView textViewActualLevel;
-    private TextView textViewNextLevel;
-    private ProgressBar progressBarRanking;
+    @BindView(R.id.textViewNameStudentRanking)
+    TextView textViewName;
+    @BindView(R.id.textViewPointsStudent)
+    TextView textViewPoints;
+    @BindView(R.id.imageViewPerfilStudentRanking)
+    ImageView imageViewPerfilStudent;
+    @BindView(R.id.textViewActualLevelStudentRanking)
+    TextView textViewActualLevel;
+    @BindView(R.id.textViewNextLevelStudentRanking)
+    TextView textViewNextLevel;
+    @BindView(R.id.progressBarRanking)
+    ProgressBar progressBarRanking;
 
 
     private BottomNavigationView bottomNavigationView;
@@ -71,11 +79,9 @@ public class RankingFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ButterKnife.bind(this, getActivity());
 
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutFeedRanking, new RankingFeedFragment()).commit();
-
-        findViewsById();
-
 
         try {
             Student student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
@@ -85,19 +91,10 @@ public class RankingFragment extends Fragment {
             textViewNextLevel.setText("Lvl. " + student.getNextLevel());
             progressBarRanking.setMax((int) student.getRequiredPoints());
             progressBarRanking.setProgress((int) student.getPoints());
-            Picasso.get().load(student.getPhoto()).into(imageViewPerfilStudent);
+            Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfilStudent);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void findViewsById() {
-        textViewName = getView().findViewById(R.id.textViewNameStudentRanking);
-        textViewPoints = getView().findViewById(R.id.textViewPointsStudent);
-        textViewActualLevel = getView().findViewById(R.id.textViewActualLevelStudentRanking);
-        textViewNextLevel = getView().findViewById(R.id.textViewNextLevelStudentRanking);
-        imageViewPerfilStudent = getView().findViewById(R.id.imageViewPerfilStudentRanking);
-        progressBarRanking = getView().findViewById(R.id.progressBarRanking);
     }
 
     @Override
