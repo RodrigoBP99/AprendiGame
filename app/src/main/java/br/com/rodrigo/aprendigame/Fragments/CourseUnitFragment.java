@@ -42,24 +42,7 @@ public class CourseUnitFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_course_unit, container, false);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-        inflater.inflate(R.menu.toolbar_main_search, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.buttonSearchQuizz:
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
