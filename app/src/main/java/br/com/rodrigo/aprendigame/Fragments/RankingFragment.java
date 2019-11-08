@@ -41,9 +41,6 @@ public class RankingFragment extends Fragment {
     @BindView(R.id.progressBarRanking)
     ProgressBar progressBarRanking;
 
-
-    private BottomNavigationView bottomNavigationView;
-
     public RankingFragment() {
         // Required empty public constructor
     }
@@ -53,27 +50,8 @@ public class RankingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_ranking, container, false);
 
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-        inflater.inflate(R.menu.toolbar_main_perfil, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.perfil:
-                getFragmentManager().beginTransaction().replace(R.id.linearLayoutMainActivity, new PerfilFragment()).commit();
-                bottomNavigationView = getActivity().findViewById(R.id.navViewMain);
-                bottomNavigationView.setVisibility(View.GONE);
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -95,12 +73,5 @@ public class RankingFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        bottomNavigationView = getActivity().findViewById(R.id.navViewMain);
-        bottomNavigationView.setVisibility(View.VISIBLE);
     }
 }
