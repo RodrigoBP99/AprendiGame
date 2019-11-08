@@ -40,19 +40,35 @@
                     android:id="@+id/textViewTeachersCourseUnit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:layout_alignParentStart="true"
                     android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/textViewTotalCourseClass"
+                    android:layout_toStartOf="@+id/linearLayoutAulasQuantidade"
                     tools:text="Nome do professor que da a aula" />
 
 
-                <TextView
-                    android:id="@+id/textViewTotalCourseClass"
+                <LinearLayout
+                    android:id="@+id/linearLayoutAulasQuantidade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:textAlignment="center"
-                    tools:text="Total de aulas" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewTotalCourseClass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        tools:text="Total de aulas" />
+
+                    <TextView
+                        android:id="@+id/textViewAulasPresente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        tools:text="Aulas presente" />
+                </LinearLayout>
+
 
             </RelativeLayout>
 

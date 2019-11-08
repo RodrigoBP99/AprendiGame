@@ -1,7 +1,6 @@
 package br.com.rodrigo.aprendigame.Activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;

@@ -1,6 +1,5 @@
 package br.com.rodrigo.aprendigame.Adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -46,7 +45,8 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
         courseUnitViewHolder.textViewNameCourseUnit.setText(coursesUnit.getName());
 
         courseUnitViewHolder.textViewTeachersCourseUnit.setText(getTeachersName(coursesUnit));
-        courseUnitViewHolder.textViewCourseClassTotal.setText(context.getString(R.string.aula) +"\n" + coursesUnit.getCourseClasses().size());
+        courseUnitViewHolder.textViewCourseClassTotal.setText(context.getString(R.string.aula) +" \n" + coursesUnit.getCourseClasses().size());
+        courseUnitViewHolder.textViewCourseClassPresent.setText(context.getString(R.string.presencas) + " \n");
         courseUnitViewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, CourseClassActivity.class);
             intent.putExtra(COURSEUNIT, String.valueOf(coursesUnit.getId()));
@@ -88,6 +88,8 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
         TextView textViewTeachersCourseUnit;
         @BindView(R.id.textViewTotalCourseClass)
         TextView textViewCourseClassTotal;
+        @BindView(R.id.textViewAulasPresente)
+        TextView textViewCourseClassPresent;
 
         public CourseUnitViewHolder(@NonNull View itemView) {
             super(itemView);
