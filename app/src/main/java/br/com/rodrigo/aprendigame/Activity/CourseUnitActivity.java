@@ -1,6 +1,7 @@
 package br.com.rodrigo.aprendigame.Activity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -25,7 +26,8 @@ public class CourseUnitActivity extends AppCompatActivity {
     @BindView(R.id.recycleViewCourseUnitActivity) RecyclerView recyclerViewCourseUnits;
     private CoursesUnitAdapter courseUnitAdapter;
     private List<CoursesUnit> coursesUnitList;
-
+    @BindView(R.id.textViewTitleToolbarMain)
+    TextView textViewTitleToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,12 @@ public class CourseUnitActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setListAulaRecycle();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        textViewTitleToolbar.setText("Diciplinas");
     }
 
     private void setListAulaRecycle() {

@@ -85,7 +85,7 @@
             android:background="#E6E6E6"
             android:padding="5dp"
             android:progressBackgroundTint="@android:color/black"
-            android:progressTint="@color/decoracaocolor"
+            android:progressTint="@color/colorText"
             android:visibility="visible"
             tools:max="1000"
             tools:progress="300" />

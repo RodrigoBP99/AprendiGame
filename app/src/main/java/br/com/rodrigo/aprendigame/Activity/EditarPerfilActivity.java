@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,8 @@ public class EditarPerfilActivity extends AppCompatActivity {
     EditText editTextPerfilNome;
     @BindView(R.id.toolbarEditarPerfil)
     Toolbar toolbar;
+    @BindView(R.id.textViewTitleToolbarMain)
+    TextView textViewTitleToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,13 @@ public class EditarPerfilActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setToolbar();
-
         setUserInformation();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        textViewTitleToolbar.setText("Editar Perfil");
     }
 
     private void setUserInformation() {
@@ -55,7 +63,6 @@ public class EditarPerfilActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         Student student = response.body();
                         editTextPerfilNome.setText(student.getName());
-
                         Glide.with(EditarPerfilActivity.this).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
                     }
                 }
@@ -72,10 +79,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     private void setToolbar() {
         setSupportActionBar(toolbar);
-
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(null);
-
         toolbar.setNavigationIcon(R.drawable.voltar_icon);
         toolbar.setNavigationOnClickListener(v -> {
             View view = getCurrentFocus();
@@ -83,7 +87,6 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-
             finish();
         });
     }

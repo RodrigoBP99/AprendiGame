@@ -2,8 +2,10 @@ package br.com.rodrigo.aprendigame.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +24,10 @@ public class CourseClassActivity extends AppCompatActivity {
     private String idAula;
     private PresencaDAO presencaDAO;
     @BindView(R.id.recycleViewCourseClass) RecyclerView recyclerViewCourseClass;
+    @BindView(R.id.toolbarCourseClass)
+    Toolbar toolbar;
+    @BindView(R.id.textViewTitleToolbarMain)
+    TextView textViewTitleToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,12 @@ public class CourseClassActivity extends AppCompatActivity {
 
         adapter = new PresencaAdapter(list, this);
         recyclerViewCourseClass.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        textViewTitleToolbar.setText("Aulas");
     }
 
     private void setListPresencaRecycle() {

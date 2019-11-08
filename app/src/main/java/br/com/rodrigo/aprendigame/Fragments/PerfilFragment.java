@@ -39,6 +39,9 @@ public class PerfilFragment extends Fragment {
     @BindView(R.id.imageViewPerfil)
     ImageView imageViewPerfil;
 
+    @BindView(R.id.textViewTitleToolbarMain)
+    TextView textViewTittleToolbar;
+
     public PerfilFragment() {
         // Required empty public constructor
     }
@@ -57,6 +60,13 @@ public class PerfilFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
+        textViewTittleToolbar.setText("Perfil");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        textViewTittleToolbar.setText(R.string.app_name);
     }
 
     @Override

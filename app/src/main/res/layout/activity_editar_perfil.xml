@@ -9,26 +9,13 @@
     android:orientation="vertical"
     tools:context=".Activity.EditarPerfilActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <include
         android:id="@+id/toolbarEditarPerfil"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/colorPrimary"
+        layout="@layout/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/scrollViewEditarPerfil">
-
-        <TextView
-            android:id="@+id/textViewToolbarTitleEditar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Editar Perfil"
-            android:textColor="@color/colorText"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.Toolbar>
+        app:layout_constraintBottom_toTopOf="@+id/scrollViewEditarPerfil"/>
 
     <ScrollView
         android:id="@+id/scrollViewEditarPerfil"

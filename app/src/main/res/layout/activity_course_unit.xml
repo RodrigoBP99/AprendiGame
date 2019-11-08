@@ -9,29 +9,20 @@
     tools:context=".Activity.CourseUnitActivity"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
+    <include
         android:id="@+id/toolbarCourseUnitActivity"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
+        layout="@layout/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/recycleViewCourseUnitActivity">
-
-        <TextView
-            android:id="@+id/textViewTitleCourseUnitActivity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Diciplinas"
-            android:textColor="@color/colorText"
-            android:textSize="25sp"/>
-    </androidx.appcompat.widget.Toolbar>
+    </include>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewCourseUnitActivity"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/colorBackgroundRecycleView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

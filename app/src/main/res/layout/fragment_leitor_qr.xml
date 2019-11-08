@@ -5,8 +5,7 @@
     android:id="@+id/fragmento_leitorQR"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.LeitorQRFragment"
-    android:background="@android:color/white">
+    tools:context=".Fragments.LeitorQRFragment">
 
 
 </FrameLayout>

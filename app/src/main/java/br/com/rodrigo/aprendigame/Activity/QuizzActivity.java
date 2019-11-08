@@ -2,6 +2,7 @@ package br.com.rodrigo.aprendigame.Activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,7 +26,8 @@ public class QuizzActivity extends AppCompatActivity {
     private List<Quizz> quizzes;
     @BindView(R.id.recycleViewQuizz)
     RecyclerView recyclerViewQuizz;
-
+    @BindView(R.id.textViewTitleToolbarMain)
+    TextView textViewTitleToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,12 @@ public class QuizzActivity extends AppCompatActivity {
         getQuizzList();
         adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, getApplicationContext());
         recyclerViewQuizz.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        textViewTitleToolbar.setText("Questionarios");
     }
 
     private void getQuizzList() {

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 
 import android.os.Bundle;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.navViewMain)
     BottomNavigationView navView;
+    @BindView(R.id.textViewTitleToolbarMain)
+    TextView textViewTitleToolbar;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -67,9 +70,13 @@ public class MainActivity extends AppCompatActivity {
 
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(null);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        textViewTitleToolbar.setText(R.string.app_name);
+    }
 
     public void trocarFragmento(Fragment fragment, String tag){
         getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutMainActivity, fragment, tag).commit();
