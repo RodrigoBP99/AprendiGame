@@ -43,14 +43,14 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
         quizzViewHolder.textViewCourseUnitQuizz.setText(quizz.getCourseUnit().getName());
         quizzViewHolder.textViewAmountQuestionsQuizz.setText(quizz.getAmountOfQuestions());
 
-        /*quizzViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Abrindo " + quizz.getTitle(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, QuizzActivity.class);
-                context.startActivity(intent);
-            }
-        });*/
+//        quizzViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(context, context.getString(R.string.abrindo) + " " + quizz.getTitle(), Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(context, QuizzActivity.class);
+//                context.startActivity(intent);
+//            }
+//        });
     }
 
     @Override

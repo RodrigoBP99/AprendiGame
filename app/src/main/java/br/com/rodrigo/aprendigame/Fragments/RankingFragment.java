@@ -62,8 +62,8 @@ public class RankingFragment extends Fragment {
             Student student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
             textViewName.setText(student.getName());
             textViewPoints.setText(student.getPoints() + "/" + student.getRequiredPoints());
-            textViewActualLevel.setText("Lvl. " + student.getActualLevel());
-            textViewNextLevel.setText("Lvl. " + student.getNextLevel());
+            textViewActualLevel.setText(getString(R.string.lvl) + ". " + student.getActualLevel());
+            textViewNextLevel.setText(getString(R.string.lvl) + ". " + student.getNextLevel());
             progressBarRanking.setMax((int) student.getRequiredPoints());
             progressBarRanking.setProgress((int) student.getPoints());
             Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfilStudent);

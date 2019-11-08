@@ -46,14 +46,11 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
         courseUnitViewHolder.textViewNameCourseUnit.setText(coursesUnit.getName());
 
         courseUnitViewHolder.textViewTeachersCourseUnit.setText(getTeachersName(coursesUnit));
-        courseUnitViewHolder.textViewCourseClassTotal.setText("Aulas: \n" + coursesUnit.getCourseClasses().size());
-        courseUnitViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, CourseClassActivity.class);
-                intent.putExtra(COURSEUNIT, String.valueOf(coursesUnit.getId()));
-                context.startActivity(intent);
-            }
+        courseUnitViewHolder.textViewCourseClassTotal.setText(context.getString(R.string.aula) +"\n" + coursesUnit.getCourseClasses().size());
+        courseUnitViewHolder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, CourseClassActivity.class);
+            intent.putExtra(COURSEUNIT, String.valueOf(coursesUnit.getId()));
+            context.startActivity(intent);
         });
 
     }

@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<Student> call, Throwable t) {
-                    Toast.makeText(LoginActivity.this, "Erro ao logar\nVerifique sua coneção com a internet!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.erro_logar), Toast.LENGTH_LONG).show();
                     buttonLogin.setClickable(true);
                 }
             });

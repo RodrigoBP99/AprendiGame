@@ -40,7 +40,7 @@ public class CourseUnitActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        textViewTitleToolbar.setText("Diciplinas");
+        textViewTitleToolbar.setText(getString(R.string.diciplinas));
     }
 
     private void setListAulaRecycle() {

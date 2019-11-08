@@ -94,7 +94,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     private void createNewPresenca(String texto) {
         PresencaDAO presencaDAO = new PresencaDAO(getContext());
         if (presencaDAO.checkScannedPresenca(texto)){
-            Toast.makeText(getContext(), "Essa presença já foi realizada!!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.qrCode_ja_lido), Toast.LENGTH_SHORT).show();
             onResume();
         } else {
             try {
@@ -109,7 +109,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
 
             } catch (Exception e){
                 e.printStackTrace();
-                Toast.makeText(getContext(), "QR Code Invalido!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.qrCode_invalido), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -145,7 +145,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                 public void onResponse(Call<Presenca> call, Response<Presenca> response) {
                     if (response.isSuccessful()){
 
-                        Toast.makeText(getContext(), "Presença Atualizada", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.presenca_atualizada), Toast.LENGTH_SHORT).show();
                     } else{
                         presencaDAO.inserirPresenca(presenca);
                     }

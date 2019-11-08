@@ -52,7 +52,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        textViewTitleToolbar.setText("Editar Perfil");
+        textViewTitleToolbar.setText(getString(R.string.editar_perfil));
     }
 
     private void setUserInformation() {
@@ -105,7 +105,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
             if (nome.isEmpty())
             {
-                Toast.makeText(EditarPerfilActivity.this, "Preencha os campos vazios", Toast.LENGTH_LONG).show();
+                Toast.makeText(EditarPerfilActivity.this, getString(R.string.preencha_campos_vazios), Toast.LENGTH_LONG).show();
             } else {
 
                 finish();

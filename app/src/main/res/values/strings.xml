@@ -7,4 +7,44 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Cadastro Activity -->
+    <string name="titulo_alerta_cancelar_cadastro">Um momento, amigo(a)!</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="messagem_cancelar_cadastro">Tem certeza que deseja cancelar seu Cadastro?</string>
+    <string name="senha_deve_ter_mais_caracteres">A senha deve conter mais de 6 caracteres</string>
+    <string name="confirma_senha_incorreta">Confirmação de Senha incorreta</string>
+    <string name="sucesso_cadastro">Cadastro Realizado Com Sucesso!</string>
+
+    <!-- Course class & course unit -->
+    <string name="aulas">Aulas</string>
+    <string name="diciplinas">Diciplinas</string>
+    <!-- Editar perfil -->
+    <string name="preencha_campos_vazios">Preencha os campos vazios</string>
+    <string name="editar_perfil">Editar Perfil</string>
+    <!-- login activity -->
+    <string name="erro_logar">Erro ao logar Verifique sua coneção com a internet!</string>
+    <!-- quizz activity -->
+    <string name="questionarios">Questionarios</string>
+    <!-- main activity -->
+    <string name="title_permissao_camera">Permissão Nescessaria</string>
+    <string name="message_permissao_camera">Essa permissão é essencial!</string>
+    <string name="ok">ok</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="permissao_negada">Permissão Negada</string>
+    <string name="atencao">Atenção!</string>
+    <!-- adapters -->
+    <string name="professor">Professor:</string>
+    <string name="aula">Aula:</string>
+    <string name="abrindo">Abrindo</string>
+    <!-- leitor QR fragment -->
+    <string name="qrCode_ja_lido">Essa presença já foi realizada!!!</string>
+    <string name="qrCode_invalido">QR Code Invalido!</string>
+    <string name="presenca_atualizada">Presença Atualizada</string>
+    <!-- perfil fragment -->
+    <string name="perfil">Perfil</string>
+    <string name="lvl">Lvl.</string>
+
+
 </resources>

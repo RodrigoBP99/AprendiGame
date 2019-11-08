@@ -55,23 +55,19 @@ public class CadastroActivity extends AppCompatActivity {
 
     @OnClick(R.id.buttonCancelarCadastro) void cancelRegister(){
         AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this);
-        alerta.setTitle("Um momento, amigo(a)!").setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        }).setNegativeButton("Não", null).setMessage("Tem certeza que deseja cancelar seu Cadastro?").show();
+        alerta.setTitle(getString(R.string.titulo_alerta_cancelar_cadastro))
+                .setPositiveButton(getString(R.string.sim), (dialog, which) ->
+                        finish()).setNegativeButton(getString(R.string.nao), null)
+                .setMessage(getString(R.string.messagem_cancelar_cadastro)).show();
     }
 
     @Override
     public void onBackPressed() {
         AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this);
-        alerta.setTitle("Um momento, amigo(a)!").setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        }).setNegativeButton("Não", null).setMessage("Tem certeza que deseja cancelar seu Cadastro?").show();
+        alerta.setTitle(R.string.titulo_alerta_cancelar_cadastro)
+                .setPositiveButton(R.string.sim, (dialog, which) ->
+                finish()).setNegativeButton(R.string.nao, null)
+                .setMessage(R.string.messagem_cancelar_cadastro).show();
     }
 
     public void cadastroUsuario(){
@@ -98,29 +94,32 @@ public class CadastroActivity extends AppCompatActivity {
                 || turma.isEmpty() || instituicao.isEmpty() || email.isEmpty()
                 || endereco.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty())
         {
-            Toast.makeText(CadastroActivity.this, "Todos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
+            Toast.makeText(CadastroActivity.this, getString(R.string.preencha_campos_vazios), Toast.LENGTH_LONG).show();
         } else {
             // checa se o nome de usuario já existe
             checkPasswordRegister(userMatricula, nome, dataNascimento, turma, instituicao, email, endereco, senha, confirmarSenha, bdUsuario);
         }
     }
 
-    private void checkPasswordRegister(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, String confirmarSenha, StudentDAO bdUsuario) {
+    private void checkPasswordRegister(String userMatricula, String nome, String dataNascimento, String turma,
+                                       String instituicao, String email, String endereco, String senha, String confirmarSenha,
+                                       StudentDAO bdUsuario) {
         //verificação da senha
         if (senha.length() < 6) {
-            Toast.makeText(CadastroActivity.this, "A senha deve conter mais de 6 caracteres", Toast.LENGTH_LONG).show();
+            Toast.makeText(CadastroActivity.this, getString(R.string.senha_deve_ter_mais_caracteres), Toast.LENGTH_LONG).show();
         } else {
             if (confirmarSenha.equals(senha)) {
                 registerUser(userMatricula, nome, dataNascimento, turma, instituicao, email, endereco, senha, bdUsuario);
             } else {
-                Toast.makeText(CadastroActivity.this, "Senha incorreta", Toast.LENGTH_LONG).show();
+                Toast.makeText(CadastroActivity.this, getString(R.string.confirma_senha_incorreta), Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private void registerUser(String userMatricula, String nome, String dataNascimento, String turma, String instituicao, String email, String endereco, String senha, StudentDAO bdUsuario) {
+    private void registerUser(String userMatricula, String nome, String dataNascimento, String turma,
+                              String instituicao, String email, String endereco, String senha, StudentDAO bdUsuario) {
         try {
-            Toast.makeText(CadastroActivity.this, "Cadastro Realizado Com Sucesso!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CadastroActivity.this, getString(R.string.sucesso_cadastro), Toast.LENGTH_SHORT).show();
             finish();
         }catch (Exception e){
             Log.w("Cadastro: ", e.getMessage());

@@ -60,7 +60,7 @@ public class PerfilFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
-        textViewTittleToolbar.setText("Perfil");
+        textViewTittleToolbar.setText(getString(R.string.perfil));
     }
 
     @Override

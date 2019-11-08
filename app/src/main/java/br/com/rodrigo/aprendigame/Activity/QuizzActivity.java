@@ -43,7 +43,7 @@ public class QuizzActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        textViewTitleToolbar.setText("Questionarios");
+        textViewTitleToolbar.setText(getString(R.string.questionarios));
     }
 
     private void getQuizzList() {

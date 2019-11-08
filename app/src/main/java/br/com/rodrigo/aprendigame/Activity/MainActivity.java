@@ -2,14 +2,17 @@ package br.com.rodrigo.aprendigame.Activity;
 
 import android.Manifest;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -85,10 +88,11 @@ public class MainActivity extends AppCompatActivity {
     private void requestCameraPermission(){
         if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.CAMERA)){
             new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("Permissão Nescessaria")
-                    .setMessage("Essa permissão é essencial!")
-                    .setPositiveButton("ok", (dialog, which) -> ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, CameraPermission))
-                    .setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss())
+                    .setTitle(getString(R.string.title_permissao_camera))
+                    .setMessage(getString(R.string.message_permissao_camera))
+                    .setPositiveButton(getString(R.string.ok), (dialog, which) ->
+                            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, CameraPermission))
+                    .setNegativeButton(getString(R.string.cancelar), (dialog, which) -> dialog.dismiss())
                     .create().show();
         } else {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA}, CameraPermission);
@@ -101,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 trocarFragmento(new LeitorQRFragment(), "leitorQR");
             } else {
-                Toast.makeText(MainActivity.this, "Permissão Negada", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getString(R.string.permissao_negada), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -111,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = getSupportFragmentManager().findFragmentByTag("inicio");
         if (fragment != null && fragment.isVisible()){
             AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
-            alerta.setTitle("Atenção!").setPositiveButton("Sim", (dialog, which) -> finish()).setNegativeButton("Não", null).setMessage("Deseja Sair do Aplicativo?").show();
+            alerta.setTitle(getString(R.string.atencao)).setPositiveButton(R.string.sim, (dialog, which) ->
+                    finish()).setNegativeButton(R.string.nao, null).setMessage("Deseja Sair do Aplicativo?").show();
         } else {
             navView.setSelectedItemId(R.id.navigation_course_unit);
         }

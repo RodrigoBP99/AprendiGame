@@ -52,7 +52,7 @@ public class CourseClassActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        textViewTitleToolbar.setText("Aulas");
+        textViewTitleToolbar.setText(getString(R.string.aulas));
     }
 
     private void setListPresencaRecycle() {
