@@ -59,8 +59,6 @@ public class RankingFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
 
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutFeedRanking, new RankingFeedFragment()).commit();
-
         try {
             Student student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
             textViewName.setText(student.getName());

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +38,8 @@ public class CourseUnitFragment extends Fragment {
     private CoursesUnitAdapter coursesUnitAdapter;
     private List<CoursesUnit> coursesUnits;
 
+    @BindView(R.id.recycleViewCourseUnits)
+    RecyclerView recyclerView;
     @BindView(R.id.navViewMain)
     BottomNavigationView bottomNavigationView;
 
@@ -51,7 +54,7 @@ public class CourseUnitFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-        ButterKnife.bind(this, getActivity());
+
         return inflater.inflate(R.layout.fragment_course_unit, container, false);
     }
 
@@ -82,8 +85,10 @@ public class CourseUnitFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ButterKnife.bind(this, getActivity());
 
-        RecyclerView recyclerView = getView().findViewById(R.id.recycleViewCourseUnits);
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         getCourseUnit();
         coursesUnitAdapter = new CoursesUnitAdapter((ArrayList<CoursesUnit>) coursesUnits, getContext());

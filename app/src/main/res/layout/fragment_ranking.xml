@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,102 +8,87 @@
     android:orientation="vertical"
     tools:context=".Fragments.RankingFragment">
 
-
-    <ImageView
-        android:id="@+id/imageViewPerfilStudentRanking"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:scaleType="centerCrop"
-        tools:src="@mipmap/perfil_foto_launcher" />
-
-    <TextView
-        android:id="@+id/textViewNameStudentRanking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        tools:text="Nome da Pessoa"
-        android:textColor="@android:color/black"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:text="Pontos:"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="18dp" />
-
-    <TextView
-        android:id="@+id/textViewPointsStudent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="18dp" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/textViewActualLevelStudentRanking"
-            android:layout_marginStart="3dp"
-            tools:text="LVL: 3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/textViewNextLevelStudentRanking"
-            android:layout_gravity="right"
-            tools:text="LVL: 4"
-            android:layout_marginEnd="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-    </FrameLayout>
-
-    <ProgressBar
-        android:id="@+id/progressBarRanking"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="#E6E6E6"
-        tools:max="1000"
-        tools:progress="300"
-        android:padding="5dp"
-        android:progressBackgroundTint="@android:color/black"
-        android:progressTint="@color/decoracaocolor"
-        android:visibility="visible" />
-
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="2dp"
-        app:cardMaxElevation="2dp"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linearLayoutFeedRanking"
+        <ImageView
+            android:id="@+id/imageViewPerfilStudentRanking"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            tools:src="@mipmap/perfil_foto_launcher" />
+
+        <TextView
+            android:id="@+id/textViewNameStudentRanking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            tools:text="Nome da Pessoa" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:text="Pontos:"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/textViewPointsStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18dp" />
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorBackground"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/textViewActualLevelStudentRanking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                tools:text="LVL: 3" />
 
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/textViewNextLevelStudentRanking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginEnd="3dp"
+                tools:text="LVL: 4" />
 
 
+        </FrameLayout>
 
+        <ProgressBar
+            android:id="@+id/progressBarRanking"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="#E6E6E6"
+            android:padding="5dp"
+            android:progressBackgroundTint="@android:color/black"
+            android:progressTint="@color/decoracaocolor"
+            android:visibility="visible"
+            tools:max="1000"
+            tools:progress="300" />
+    </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

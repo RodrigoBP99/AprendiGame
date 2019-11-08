@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,7 +13,11 @@
         android:id="@+id/toolbarEditarPerfil"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/scrollViewEditarPerfil">
 
         <TextView
             android:id="@+id/textViewToolbarTitleEditar"
@@ -25,54 +30,52 @@
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
-
     <ScrollView
+        android:id="@+id/scrollViewEditarPerfil"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarEditarPerfil">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
-
-                <ImageView
-                    android:id="@+id/imageViewEditarPerfilFoto"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/perfil_foto_launcher"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/imageViewEditarPerfilFoto"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/perfil_foto_launcher"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:layout_marginStart="3dp"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginStart="3dp"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <ImageView
-                        android:src="@drawable/perfil_icon"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:src="@drawable/perfil_icon" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_marginLeft="3dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
                         android:textColorHint="@android:color/black">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -89,147 +92,6 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/nascimento_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@android:color/black">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextEditarPerfilDataNascimento"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@android:color/black"
-                            android:hint="Data Nascimento"
-                            android:inputType="datetime"
-                            android:textColor="@android:color/black" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/instituicao_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@android:color/black">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextEditarPerfilInstituicao"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@android:color/black"
-                            android:hint="Instituição"
-                            android:inputType="textCapWords"
-                            android:textColor="@android:color/black" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/turma_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@android:color/black">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextEditarPerfilTurma"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@android:color/black"
-                            android:hint="Turma"
-                            android:inputType="textCapWords"
-                            android:textColor="@android:color/black" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/email_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@android:color/black">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextEditarPerfilEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@android:color/black"
-                            android:hint="E-mail"
-                            android:inputType="textEmailAddress"
-                            android:textColor="@android:color/black" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:src="@drawable/endereco_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColorHint="@android:color/black">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextEditarPerfilEndereco"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@android:color/black"
-                            android:hint="Endereço"
-                            android:inputType="textCapWords"
-                            android:textColor="@android:color/black" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
-
 
             </LinearLayout>
 
@@ -237,4 +99,4 @@
 
     </ScrollView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
