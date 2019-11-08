@@ -79,7 +79,7 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //recuperar usuario
+        //recupera usuario
         try {
             Student student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
 

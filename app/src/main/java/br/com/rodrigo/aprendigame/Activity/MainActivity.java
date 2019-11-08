@@ -20,7 +20,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import br.com.rodrigo.aprendigame.Fragments.LeitorQRFragment;
 import br.com.rodrigo.aprendigame.Fragments.CourseUnitFragment;
-import br.com.rodrigo.aprendigame.Fragments.RankingFragment;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
                 switch (item.getItemId()) {
-                    case R.id.navigation_ranking:
-                        trocarFragmento(new RankingFragment(), "inicio");
+                    case R.id.navigation_course_unit:
+                        trocarFragmento(new CourseUnitFragment(), "inicio");
                         return true;
 
-                    case R.id.navigation_questionarios:
-                        trocarFragmento(new CourseUnitFragment(), "questionario");
-                        return true;
+                    /*case R.id.navigation_ranking:
+                        trocarFragmento(new RankingFragment(), "inicio");
+                        return true; */
 
                     case R.id.navigation_presença:
                         if (ContextCompat.checkSelfPermission(MainActivity.this,
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        trocarFragmento(new RankingFragment(), "inicio");
+        trocarFragmento(new CourseUnitFragment(), "inicio");
 
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         setSupportActionBar(toolbar);
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
             alerta.setTitle("Atenção!").setPositiveButton("Sim", (dialog, which) -> finish()).setNegativeButton("Não", null).setMessage("Deseja Sair do Aplicativo?").show();
         } else {
-            navView.setSelectedItemId(R.id.navigation_ranking);
+            navView.setSelectedItemId(R.id.navigation_course_unit);
         }
     }
 }

@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,8 @@ import br.com.rodrigo.aprendigame.Adapter.CoursesUnitAdapter;
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,6 +37,10 @@ public class CourseUnitFragment extends Fragment {
     private CoursesUnitAdapter coursesUnitAdapter;
     private List<CoursesUnit> coursesUnits;
 
+    @BindView(R.id.navViewMain)
+    BottomNavigationView bottomNavigationView;
+
+
     public CourseUnitFragment() {
         // Required empty public constructor
     }
@@ -42,7 +50,33 @@ public class CourseUnitFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
+        ButterKnife.bind(this, getActivity());
         return inflater.inflate(R.layout.fragment_course_unit, container, false);
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.toolbar_main_perfil, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.perfil:
+                getFragmentManager().beginTransaction().replace(R.id.linearLayoutMainActivity, new PerfilFragment()).commit();
+                bottomNavigationView.setVisibility(View.GONE);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bottomNavigationView.setVisibility(View.VISIBLE);
     }
 
     @Override
