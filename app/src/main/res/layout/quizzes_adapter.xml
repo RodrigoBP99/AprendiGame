@@ -6,17 +6,13 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="1dp"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorBackground"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="5dp"
         app:cardElevation="1dp"
         app:cardMaxElevation="1dp"
-        app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

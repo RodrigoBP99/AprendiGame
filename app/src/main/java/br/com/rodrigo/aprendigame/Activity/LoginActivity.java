@@ -52,9 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         usuarioDAO = new StudentDAO(getApplicationContext());
-
-        editTextUserMatriculaLogin.setText("1");
-        editTextSenhaLogin.setText("1");
     }
 
     @OnClick(R.id.textViewCadastroRedirect)
@@ -73,11 +70,10 @@ public class LoginActivity extends AppCompatActivity {
         userName = editTextUserMatriculaLogin.getText().toString().trim();
         senha = editTextSenhaLogin.getText().toString().trim();
         buttonLogin.setClickable(false);
-        autenticaLogin(Long.valueOf(userName));
+        autenticaLogin();
     }
 
-    public void autenticaLogin(Long userName){
-
+    public void autenticaLogin(){
         // autenticar login e recuperar usuario
         try {
             SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {

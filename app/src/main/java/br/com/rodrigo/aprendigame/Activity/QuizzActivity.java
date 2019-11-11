@@ -36,7 +36,7 @@ public class QuizzActivity extends AppCompatActivity {
 
         recyclerViewQuizz.setLayoutManager(new LinearLayoutManager(this));
         getQuizzList();
-        adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, getApplicationContext());
+        adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, this);
         recyclerViewQuizz.setAdapter(adapter);
     }
 

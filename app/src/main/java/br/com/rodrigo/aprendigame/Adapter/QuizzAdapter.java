@@ -1,6 +1,8 @@
 package br.com.rodrigo.aprendigame.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.rodrigo.aprendigame.Activity.QuizzQuestionActivity;
 import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
@@ -43,14 +46,13 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
         quizzViewHolder.textViewCourseUnitQuizz.setText(quizz.getCourseUnit().getName());
         quizzViewHolder.textViewAmountQuestionsQuizz.setText(quizz.getAmountOfQuestions());
 
-//        quizzViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context, context.getString(R.string.abrindo) + " " + quizz.getTitle(), Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(context, QuizzActivity.class);
-//                context.startActivity(intent);
-//            }
-//        });
+        quizzViewHolder.itemView.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("Atenção").setMessage("Você deseja começar o questionario?").setPositiveButton("Sim", (dialogInterface, i) -> {
+                Intent intent = new Intent(context, QuizzQuestionActivity.class);
+                context.startActivity(intent);
+            }).setNegativeButton("Não", null).create().show();
+        });
     }
 
     @Override
