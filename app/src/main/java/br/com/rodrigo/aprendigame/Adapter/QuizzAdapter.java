@@ -24,6 +24,7 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
 
     private Context context;
     private ArrayList<Quizz> quizzes;
+    public final static String QUESTIONARIO = "questionario";
 
     public QuizzAdapter(ArrayList<Quizz> questionarios, Context context){
         this.quizzes = questionarios;
@@ -38,18 +39,19 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final QuizzViewHolder quizzViewHolder, final int posicao) {
+    public void onBindViewHolder(@NonNull final QuizzViewHolder holder, final int posicao) {
 
-        final Quizz quizz = quizzes.get(posicao);
-        quizzViewHolder.textViewTitleQuizz.setText(quizz.getTitle());
-        quizzViewHolder.textViewTeacherQuizz.setText(quizz.getTeacher().getName());
-        quizzViewHolder.textViewCourseUnitQuizz.setText(quizz.getCourseUnit().getName());
-        quizzViewHolder.textViewAmountQuestionsQuizz.setText(quizz.getAmountOfQuestions());
+        Quizz quizz = quizzes.get(posicao);
+        holder.textViewTitleQuizz.setText(quizz.getTitle());
+        holder.textViewTeacherQuizz.setText(quizz.getTeacher().getName());
+        holder.textViewCourseUnitQuizz.setText(quizz.getCourseUnit().getName());
+        holder.textViewAmountQuestionsQuizz.setText(quizz.getAmountOfQuestions());
 
-        quizzViewHolder.itemView.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Atenção").setMessage("Você deseja começar o questionario?").setPositiveButton("Sim", (dialogInterface, i) -> {
                 Intent intent = new Intent(context, QuizzQuestionActivity.class);
+//                intent.putExtra(QUESTIONARIO, quizz.getId());
                 context.startActivity(intent);
             }).setNegativeButton("Não", null).create().show();
         });

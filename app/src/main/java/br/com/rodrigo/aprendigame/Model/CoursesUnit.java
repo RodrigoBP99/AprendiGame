@@ -4,6 +4,7 @@ import java.util.List;
 
 import lombok.Data;
 
+
 @Data
 public class CoursesUnit {
 
@@ -11,6 +12,5 @@ public class CoursesUnit {
     private String name;
     private List<Teacher> teacher;
     private List<CourseClass> courseClasses;
-
 
 }

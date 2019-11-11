@@ -11,4 +11,5 @@ public class CourseClass {
     private List<Student> students;
     private CoursesUnit coursesUnit;
     private String status;
+
 }

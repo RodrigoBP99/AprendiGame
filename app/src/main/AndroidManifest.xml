@@ -12,10 +12,16 @@
         android:roundIcon="@mipmap/logo_app_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.QuizzQuestionActivity"></activity>
+        <activity android:name=".Activity.QuizzQuestionActivity" />
         <activity
             android:name=".Activity.QuizzActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
+            android:configChanges="orientation|screenSize|keyboardHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Activity.CourseClassActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
@@ -34,11 +40,7 @@
         <activity
             android:name=".Activity.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -26,40 +26,17 @@
             <TextView
                 android:id="@+id/textViewNameCourseUnit"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Nome da Aula/Matéria" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/textViewTeachersCourseUnit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_alignParentStart="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/linearLayoutAulasQuantidade"
-                    tools:text="Nome do professor que da a aula" />
-
-
                 <LinearLayout
                     android:id="@+id/linearLayoutAulasQuantidade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textViewTotalCourseClass"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        tools:text="Total de aulas" />
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textViewAulasPresente"
@@ -67,11 +44,18 @@
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         tools:text="Aulas presente" />
+                    <TextView
+                        android:text=" - "
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/textViewTotalCourseClass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        tools:text="Aulas Totais" />
                 </LinearLayout>
-
-
-            </RelativeLayout>
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

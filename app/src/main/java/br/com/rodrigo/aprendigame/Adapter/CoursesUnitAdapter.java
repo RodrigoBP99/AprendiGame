@@ -15,7 +15,6 @@ import java.util.List;
 
 import br.com.rodrigo.aprendigame.Activity.CourseClassActivity;
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
-import br.com.rodrigo.aprendigame.Model.Teacher;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,28 +42,14 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
         final CoursesUnit coursesUnit = coursesUnits.get(posicao);
 
         courseUnitViewHolder.textViewNameCourseUnit.setText(coursesUnit.getName());
-
-        courseUnitViewHolder.textViewTeachersCourseUnit.setText(getTeachersName(coursesUnit));
-        courseUnitViewHolder.textViewCourseClassTotal.setText(context.getString(R.string.aula) +" \n" + coursesUnit.getCourseClasses().size());
-        courseUnitViewHolder.textViewCourseClassPresent.setText(context.getString(R.string.presencas) + " \n");
+        courseUnitViewHolder.textViewCourseClassPresent.setText(" " + context.getString(R.string.presencas));
+        courseUnitViewHolder.textViewCourseClassTotal.setText( coursesUnit.getCourseClasses().size() + " " + context.getString(R.string.aulas));
         courseUnitViewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, CourseClassActivity.class);
             intent.putExtra(COURSEUNIT, String.valueOf(coursesUnit.getId()));
             context.startActivity(intent);
         });
 
-    }
-
-    private String getTeachersName(CoursesUnit coursesUnit) {
-        String teachersName = "";
-        for(Teacher teacher : coursesUnit.getTeacher()){
-            if (coursesUnit.getTeacher().size() > 1) {
-                teachersName += teacher.getName() + "; ";
-            } else {
-                teachersName = teacher.getName();
-            }
-        }
-        return teachersName;
     }
 
     @Override
@@ -84,8 +69,6 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
     public class CourseUnitViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.textViewNameCourseUnit)
         TextView textViewNameCourseUnit;
-        @BindView(R.id.textViewTeachersCourseUnit)
-        TextView textViewTeachersCourseUnit;
         @BindView(R.id.textViewTotalCourseClass)
         TextView textViewCourseClassTotal;
         @BindView(R.id.textViewAulasPresente)

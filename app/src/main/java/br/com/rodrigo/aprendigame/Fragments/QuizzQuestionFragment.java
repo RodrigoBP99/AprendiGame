@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -29,7 +28,14 @@ public class QuizzQuestionFragment extends Fragment {
     private int respostaId;
     @BindView(R.id.textViewQuestionTitle)
     TextView textViewQuizzTitle;
-
+    @BindView(R.id.radioButtonAnswerOne)
+    RadioButton radioButtonOne;
+    @BindView(R.id.radioButtonAnswerTwo)
+    RadioButton radioButtonTwo;
+    @BindView(R.id.radioButtonAnswerThree)
+    RadioButton radioButtonThree;
+    @BindView(R.id.radioButtonAnswerFour)
+    RadioButton radioButtonFour;
     @BindView(R.id.radioGroupAnswers)
     RadioGroup radioGroup;
 
@@ -65,5 +71,16 @@ public class QuizzQuestionFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this,getActivity());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        textViewQuizzTitle.setText("Pergunta");
+        radioButtonOne.setText("Primeira Resposta");
+        radioButtonTwo.setText("Segunda Resposta");
+        radioButtonThree.setText("Terceira Resposta");
+        radioButtonFour.setText("Quarta Resposta");
     }
 }

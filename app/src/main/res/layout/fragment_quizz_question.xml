@@ -21,7 +21,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             tools:text="Pergunta"
-            android:layout_marginBottom="1dp"
+            android:layout_marginBottom="3dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -33,37 +33,33 @@
             <RadioButton
                 android:id="@+id/radioButtonAnswerOne"
                 android:elevation="1dp"
-                android:background="@color/colorPrimaryDark"
-                android:layout_marginBottom="1dp"
+                android:layout_marginBottom="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Resposta 1" />
+                tools:text="Resposta 1" />
 
             <RadioButton
                 android:id="@+id/radioButtonAnswerTwo"
                 android:elevation="1dp"
-                android:background="@color/colorPrimaryDark"
-                android:layout_marginBottom="1dp"
+                android:layout_marginBottom="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Resposta 2" />
+                tools:text="Resposta 2" />
 
             <RadioButton
                 android:id="@+id/radioButtonAnswerThree"
                 android:elevation="1dp"
-                android:background="@color/colorPrimaryDark"
-                android:layout_marginBottom="1dp"
+                android:layout_marginBottom="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Resposta 3" />
+                tools:text="Resposta 3" />
 
             <RadioButton
                 android:id="@+id/radioButtonAnswerFour"
                 android:elevation="1dp"
-                android:background="@color/colorPrimaryDark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Resposta 4" />
+                tools:text="Resposta 4" />
         </RadioGroup>
 
         <Button
