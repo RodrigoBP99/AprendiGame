@@ -51,7 +51,7 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Atenção").setMessage("Você deseja começar o questionario?").setPositiveButton("Sim", (dialogInterface, i) -> {
                 Intent intent = new Intent(context, QuizzQuestionActivity.class);
-//                intent.putExtra(QUESTIONARIO, quizz.getId());
+                intent.putExtra(QUESTIONARIO, quizz.getTitle());
                 context.startActivity(intent);
             }).setNegativeButton("Não", null).create().show();
         });

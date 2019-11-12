@@ -3,7 +3,6 @@ package br.com.rodrigo.aprendigame.Fragments;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,13 +23,9 @@ import br.com.rodrigo.aprendigame.Activity.CourseUnitActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
+import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
-import br.com.rodrigo.aprendigame.ws.SetupRest;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -39,7 +34,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     private ZXingScannerView ScannerView;
     private String idAluno;
 
-    private String[] arrayPresenca;
+    private Student student;
 
     public LeitorQRFragment() {
         // Required empty public constructor
@@ -52,6 +47,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         ScannerView = new ZXingScannerView(getActivity());
         idAluno = getActivity().getIntent().getStringExtra(LoginActivity.STUDENT);
         setHasOptionsMenu(true);
+        student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
 
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         return ScannerView;
@@ -85,10 +81,8 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     public void handleResult(Result rawResult) {
         rawResult.toString();
 
-        String texto = String.valueOf(rawResult);
-        arrayPresenca = texto.split("&");
+        String scannedCode = student.getId() + "&" + getData() + "&" + rawResult;
 
-        createNewPresenca(texto);
     }
 
     private void createNewPresenca(String texto) {
@@ -98,29 +92,30 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
             onResume();
         } else {
             try {
-                Presenca presenca = new Presenca();
-                presenca.setId(texto);
-                presenca.setAula(arrayPresenca[1]);
-                presenca.setProfessor(arrayPresenca[2]);
-                presenca.setIdAluno(idAluno);
-                presenca.setData(getHora());
-
-                createPresenca(presenca);
+//                Presenca presenca = new Presenca();
+//                presenca.setId(texto);
+//                presenca.setAula(arrayPresenca[1]);
+//                presenca.setProfessor(arrayPresenca[2]);
+//                presenca.setIdAluno(idAluno);
+//                presenca.setData(getData());
+//
+//                createPresenca(presenca);
 
             } catch (Exception e){
                 e.printStackTrace();
                 Toast.makeText(getContext(), getString(R.string.qrCode_invalido), Toast.LENGTH_SHORT).show();
             }
         }
+        onResume();
     }
 
-    private String getHora() {
+    private String getData() {
         Calendar agora = Calendar.getInstance();
         Date date = agora.getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String horaAtual = simpleDateFormat.format(date);
+        String horaDataAtual = simpleDateFormat.format(date);
 
-        return horaAtual;
+        return horaDataAtual;
     }
 
     @Override
@@ -139,23 +134,23 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
 
     public void createPresenca(final Presenca presenca){
         try {
-            SetupRest.apiService.createPresenca(arrayPresenca[1],presenca).enqueue(new Callback<Presenca>() {
-                PresencaDAO presencaDAO = new PresencaDAO(getContext());
-                @Override
-                public void onResponse(Call<Presenca> call, Response<Presenca> response) {
-                    if (response.isSuccessful()){
-
-                        Toast.makeText(getContext(), getString(R.string.presenca_atualizada), Toast.LENGTH_SHORT).show();
-                    } else{
-                        presencaDAO.inserirPresenca(presenca);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Presenca> call, Throwable t) {
-                    Log.e("SendPresencaErro: ", t.getMessage());
-                }
-            });
+//            SetupRest.apiService.createPresenca(arrayPresenca[1],presenca).enqueue(new Callback<Presenca>() {
+//                PresencaDAO presencaDAO = new PresencaDAO(getContext());
+//                @Override
+//                public void onResponse(Call<Presenca> call, Response<Presenca> response) {
+//                    if (response.isSuccessful()){
+//
+//                        Toast.makeText(getContext(), getString(R.string.presenca_atualizada), Toast.LENGTH_SHORT).show();
+//                    } else{
+//                        presencaDAO.inserirPresenca(presenca);
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<Presenca> call, Throwable t) {
+//                    Log.e("SendPresencaErro: ", t.getMessage());
+//                }
+//            });
         } catch (Exception e){
 
         }
