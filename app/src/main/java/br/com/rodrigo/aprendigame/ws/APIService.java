@@ -1,6 +1,5 @@
 package br.com.rodrigo.aprendigame.ws;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
@@ -17,11 +16,11 @@ import retrofit2.http.Path;
 
 public interface APIService {
 
-    @POST("novaPresenca/{idAula}")
-    Call<Presenca> createPresenca(@Path("idAula") String idAula, @Body Presenca presenca);
+    @POST("novaPresenca")
+    Call<Presenca> createPresenca(@Body Presenca presenca);
 
-    @POST("listaPresencas/{idAula}")
-    Call<List<Presenca>> sendList(@Path("idAula") String idAula, @Body ArrayList<Presenca> presencas);
+    @POST("listaPresencas")
+    Call<List<Presenca>> sendList(@Body List<Presenca> presencas);
 
     @Headers({
             "Content-Type: application/json",

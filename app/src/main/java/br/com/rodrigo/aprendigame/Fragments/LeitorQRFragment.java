@@ -3,6 +3,7 @@ package br.com.rodrigo.aprendigame.Fragments;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,7 +26,12 @@ import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -82,24 +88,21 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         rawResult.toString();
 
         String scannedCode = student.getId() + "&" + getData() + "&" + rawResult;
+        createNewPresenca(scannedCode);
 
     }
 
-    private void createNewPresenca(String texto) {
+    private void createNewPresenca(String scannedCode) {
         PresencaDAO presencaDAO = new PresencaDAO(getContext());
-        if (presencaDAO.checkScannedPresenca(texto)){
+        if (presencaDAO.checkScannedPresenca(scannedCode)){
             Toast.makeText(getContext(), getString(R.string.qrCode_ja_lido), Toast.LENGTH_SHORT).show();
             onResume();
         } else {
             try {
-//                Presenca presenca = new Presenca();
-//                presenca.setId(texto);
-//                presenca.setAula(arrayPresenca[1]);
-//                presenca.setProfessor(arrayPresenca[2]);
-//                presenca.setIdAluno(idAluno);
-//                presenca.setData(getData());
-//
-//                createPresenca(presenca);
+                Presenca presenca = new Presenca();
+                presenca.setId(scannedCode);
+
+                createPresenca(presenca);
 
             } catch (Exception e){
                 e.printStackTrace();
@@ -112,7 +115,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     private String getData() {
         Calendar agora = Calendar.getInstance();
         Date date = agora.getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
         String horaDataAtual = simpleDateFormat.format(date);
 
         return horaDataAtual;
@@ -134,23 +137,23 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
 
     public void createPresenca(final Presenca presenca){
         try {
-//            SetupRest.apiService.createPresenca(arrayPresenca[1],presenca).enqueue(new Callback<Presenca>() {
-//                PresencaDAO presencaDAO = new PresencaDAO(getContext());
-//                @Override
-//                public void onResponse(Call<Presenca> call, Response<Presenca> response) {
-//                    if (response.isSuccessful()){
-//
-//                        Toast.makeText(getContext(), getString(R.string.presenca_atualizada), Toast.LENGTH_SHORT).show();
-//                    } else{
-//                        presencaDAO.inserirPresenca(presenca);
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<Presenca> call, Throwable t) {
-//                    Log.e("SendPresencaErro: ", t.getMessage());
-//                }
-//            });
+            SetupRest.apiService.createPresenca(presenca).enqueue(new Callback<Presenca>() {
+                PresencaDAO presencaDAO = new PresencaDAO(getContext());
+                @Override
+                public void onResponse(Call<Presenca> call, Response<Presenca> response) {
+                    if (response.isSuccessful()){
+
+                        Toast.makeText(getContext(), getString(R.string.presenca_atualizada), Toast.LENGTH_SHORT).show();
+                    } else{
+                        presencaDAO.inserirPresenca(presenca);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Presenca> call, Throwable t) {
+                    Log.e("SendPresencaErro: ", t.getMessage());
+                }
+            });
         } catch (Exception e){
 
         }

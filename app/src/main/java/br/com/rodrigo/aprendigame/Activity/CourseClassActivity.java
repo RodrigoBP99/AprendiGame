@@ -20,8 +20,6 @@ import butterknife.ButterKnife;
 
 public class CourseClassActivity extends AppCompatActivity {
 
-    private PresencaAdapter adapter;
-    private String idAula;
     private PresencaDAO presencaDAO;
     @BindView(R.id.recycleViewCourseClass) RecyclerView recyclerViewCourseClass;
     @BindView(R.id.toolbarCourseClass)
@@ -36,17 +34,8 @@ public class CourseClassActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         //pega o id do aluno e da aula escolhida para recuperar as respectivas presenças
-        Intent intent = getIntent();
-        idAula = intent.getStringExtra("courseUnit");
 
         recyclerViewCourseClass.setLayoutManager(new LinearLayoutManager(CourseClassActivity.this));
-
-        presencaDAO = new PresencaDAO(CourseClassActivity.this);
-
-        ArrayList<Presenca> list = (ArrayList<Presenca>) presencaDAO.buscarPresencaAula(idAula);
-
-        adapter = new PresencaAdapter(list, this);
-        recyclerViewCourseClass.setAdapter(adapter);
     }
 
     @Override

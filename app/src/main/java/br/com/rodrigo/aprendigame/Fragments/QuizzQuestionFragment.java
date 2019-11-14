@@ -58,11 +58,9 @@ public class QuizzQuestionFragment extends Fragment {
         radioButton = getActivity().findViewById(radioId);
         if (radioButton == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("Tem certeza que deseja avançar sem marcar uma resposta?").setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+            builder.setMessage("Tem certeza que deseja avançar sem marcar uma resposta?").setPositiveButton("Sim", (dialogInterface, i) ->
+            {
 
-                }
             }).setNegativeButton("Não", null).show();
         }
     }
