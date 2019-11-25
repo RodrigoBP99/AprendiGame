@@ -2,17 +2,14 @@ package br.com.rodrigo.aprendigame.Activity;
 
 import android.Manifest;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
 
-import android.os.Build;
 import android.os.Bundle;
 
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import br.com.rodrigo.aprendigame.Fragments.LeitorQRFragment;
 import br.com.rodrigo.aprendigame.Fragments.CourseUnitFragment;
+import br.com.rodrigo.aprendigame.Fragments.PerfilFragment;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
                         trocarFragmento(new CourseUnitFragment(), "inicio");
                         return true;
 
-                    /*case R.id.navigation_ranking:
-                        trocarFragmento(new RankingFragment(), "inicio");
-                        return true; */
+                    case R.id.navigation_perfil:
+                        trocarFragmento(new PerfilFragment(), "perfil");
+                        return true;
 
                     case R.id.navigation_presença:
                         if (ContextCompat.checkSelfPermission(MainActivity.this,
