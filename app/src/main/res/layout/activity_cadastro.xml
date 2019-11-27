@@ -27,8 +27,9 @@
                 android:id="@+id/imageViewStudentRegister"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerCrop"
                 app:srcCompat="@mipmap/perfil_foto_launcher_round" />
 
             <LinearLayout

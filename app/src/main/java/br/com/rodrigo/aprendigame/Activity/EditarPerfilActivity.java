@@ -1,7 +1,14 @@
 package br.com.rodrigo.aprendigame.Activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,11 +19,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 
+import java.io.IOException;
 import java.util.Objects;
 
 import br.com.rodrigo.aprendigame.Model.Student;
@@ -24,6 +34,7 @@ import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,6 +49,9 @@ public class EditarPerfilActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.textViewTitleToolbarMain)
     TextView textViewTitleToolbar;
+
+    private String fotoSelecionada;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +78,9 @@ public class EditarPerfilActivity extends AppCompatActivity {
                         Student student = response.body();
                         editTextPerfilNome.setText(student.getName());
                         Glide.with(EditarPerfilActivity.this).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
+                        Log.e("Photo", student.getPhoto().toString());
                     }
                 }
-
                 @Override
                 public void onFailure(Call<Student> call, Throwable t) {
 
@@ -75,6 +89,29 @@ public class EditarPerfilActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @OnClick(R.id.imageViewEditarPerfilFoto) void trocarFoto() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 0) {
+            fotoSelecionada = String.valueOf(data.getData());
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(fotoSelecionada));
+                Glide.with(EditarPerfilActivity.this).load(new BitmapDrawable(bitmap)).circleCrop().into(imageViewPerfil);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private void setToolbar() {
@@ -87,7 +124,10 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-            finish();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Deseja mesmo cancelar a edição do perfil?").setPositiveButton(getString(R.string.sim),
+                    (dialogInterface, i) -> finish())
+                    .setNegativeButton(getString(R.string.nao), null).show();
         });
     }
 

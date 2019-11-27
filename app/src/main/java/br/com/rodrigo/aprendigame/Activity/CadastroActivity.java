@@ -1,7 +1,12 @@
 package br.com.rodrigo.aprendigame.Activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -10,9 +15,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.bumptech.glide.Glide;
+
+import java.io.IOException;
 
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
@@ -24,6 +34,7 @@ import butterknife.OnClick;
 public class CadastroActivity extends AppCompatActivity {
 
     private Student usuario = new Student();
+    private String fotoSelecionada;
 
     @BindView(R.id.editTextUserMatriculaCadastro)
     EditText editTextUserMatricula;
@@ -39,6 +50,8 @@ public class CadastroActivity extends AppCompatActivity {
     Toolbar toolbar;
     @BindView(R.id.textViewTitleToolbarMain)
     TextView textViewToolbar;
+    @BindView(R.id.imageViewStudentRegister)
+    ImageView imageViewRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +65,25 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.imageViewStudentRegister) void carregarImagem(){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 0) {
+            fotoSelecionada = String.valueOf(data.getData());
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(fotoSelecionada));
+                Glide.with(CadastroActivity.this).load(new BitmapDrawable(bitmap)).circleCrop().into(imageViewRegister);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 

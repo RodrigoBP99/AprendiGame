@@ -93,7 +93,7 @@ public class PerfilFragment extends Fragment {
         try {
             Student student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
 
-            Glide.with(getView()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
+            Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
             textViewNameStudent.setText(student.getName());
             textViewCourse.setText(student.getCourse());
             textViewPoints.setText(String.valueOf(student.getPoints()));
