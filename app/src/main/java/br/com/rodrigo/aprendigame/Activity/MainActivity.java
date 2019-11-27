@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         if (fragment != null && fragment.isVisible()){
             AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
             alerta.setTitle(getString(R.string.atencao)).setPositiveButton(R.string.sim, (dialog, which) ->
-                    finish()).setNegativeButton(R.string.nao, null).setMessage("Deseja Sair do Aplicativo?").show();
+                    finish()).setNegativeButton(R.string.nao, null).setMessage(getString(R.string.deseja_sair_do_app)).show();
         } else {
             navView.setSelectedItemId(R.id.navigation_course_unit);
         }

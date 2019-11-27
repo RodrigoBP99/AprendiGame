@@ -6,10 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
@@ -26,26 +29,30 @@ public class CadastroActivity extends AppCompatActivity {
     EditText editTextUserMatricula;
     @BindView(R.id.editTextNomeCadastro)
     EditText editTextNome;
-    @BindView(R.id.editTextDataNascimentoCadastro)
-    EditText editTextDataNascimento;
-    @BindView(R.id.editTextTurmaCadastro)
+    @BindView(R.id.editTextCursoCadastro)
     EditText editTextTurma;
-    @BindView(R.id.editTextInstituicaoCadastro)
-    EditText editTextInstituicao;
-    @BindView(R.id.editTextEmailCadastro)
-    EditText editTextEmail;
-    @BindView(R.id.editTextEnderecoCadastro)
-    EditText editTextEndereco;
     @BindView(R.id.editTextSenhaCadastro)
     EditText editTextSenha;
     @BindView(R.id.editTextConfirmaSenhaCadastro)
     EditText editTextConfrimarSenha;
+    @BindView(R.id.toolbarCadastro)
+    Toolbar toolbar;
+    @BindView(R.id.textViewTitleToolbarMain)
+    TextView textViewToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
         ButterKnife.bind(this);
+
+        toolbar.setElevation(0);
+        textViewToolbar.setText("Cadastro");
+
+    }
+
+    @OnClick(R.id.imageViewStudentRegister) void carregarImagem(){
+
     }
 
     @OnClick(R.id.buttonConfirmarCadastro) void confirmRegister(){
@@ -72,11 +79,7 @@ public class CadastroActivity extends AppCompatActivity {
     public void cadastroUsuario(){
         final String userMatricula = editTextUserMatricula.getText().toString().trim();
         final String nome = editTextNome.getText().toString().trim();
-        final String dataNascimento = editTextDataNascimento.getText().toString().trim();
         final String turma = editTextTurma.getText().toString().trim();
-        final String instituicao = editTextInstituicao.getText().toString().trim();
-        final String email = editTextEmail.getText().toString().trim();
-        final String endereco = editTextEndereco.getText().toString().trim();
         final String senha = editTextSenha.getText().toString();
         final String confirmarSenha = editTextConfrimarSenha.getText().toString();
 
@@ -89,34 +92,30 @@ public class CadastroActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
         // Testa se os campos estão vazios
-        if (userMatricula.isEmpty() || nome.isEmpty() || dataNascimento.isEmpty()
-                || turma.isEmpty() || instituicao.isEmpty() || email.isEmpty()
-                || endereco.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty())
+        if (userMatricula.isEmpty() || nome.isEmpty() || turma.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty())
         {
             Toast.makeText(CadastroActivity.this, getString(R.string.preencha_campos_vazios), Toast.LENGTH_LONG).show();
         } else {
             // checa se o nome de usuario já existe
-            checkPasswordRegister(userMatricula, nome, dataNascimento, turma, instituicao, email, endereco, senha, confirmarSenha, bdUsuario);
+            checkPasswordRegister(userMatricula, nome, turma, senha, confirmarSenha, bdUsuario);
         }
     }
 
-    private void checkPasswordRegister(String userMatricula, String nome, String dataNascimento, String turma,
-                                       String instituicao, String email, String endereco, String senha, String confirmarSenha,
+    private void checkPasswordRegister(String userMatricula, String nome, String turma, String senha, String confirmarSenha,
                                        StudentDAO bdUsuario) {
         //verificação da senha
         if (senha.length() < 6) {
             Toast.makeText(CadastroActivity.this, getString(R.string.senha_deve_ter_mais_caracteres), Toast.LENGTH_LONG).show();
         } else {
             if (confirmarSenha.equals(senha)) {
-                registerUser(userMatricula, nome, dataNascimento, turma, instituicao, email, endereco, senha, bdUsuario);
+                registerUser(userMatricula, nome, turma, senha, bdUsuario);
             } else {
                 Toast.makeText(CadastroActivity.this, getString(R.string.confirma_senha_incorreta), Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private void registerUser(String userMatricula, String nome, String dataNascimento, String turma,
-                              String instituicao, String email, String endereco, String senha, StudentDAO bdUsuario) {
+    private void registerUser(String userMatricula, String nome, String turma, String senha, StudentDAO bdUsuario) {
         try {
             Toast.makeText(CadastroActivity.this, getString(R.string.sucesso_cadastro), Toast.LENGTH_SHORT).show();
             finish();

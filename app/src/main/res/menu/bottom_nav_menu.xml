@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
         android:id="@+id/navigation_course_unit"
-        android:icon="@drawable/diciplinas_icon"
+        android:icon="@drawable/course_unit_icon"
         android:title="Diciplinas" />
+
     <item
         android:id="@+id/navigation_presença"
         android:icon="@drawable/presenca_icon"
         android:title="Presença" />
+
     <item
         android:id="@+id/navigation_perfil"
         android:icon="@drawable/perfil_icon"
         android:title="Perfil" />
-
 </menu>

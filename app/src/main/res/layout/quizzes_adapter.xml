@@ -31,7 +31,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 tools:text="Titulo do Questionario"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorAccent"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
                 tools:text="Nome do autor do Questionario"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorAccent"
                 android:textSize="14dp" />
 
             <TextView
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 tools:text="Materia a qual o questionario pertence"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorAccent"
                 android:textSize="12dp" />
         </LinearLayout>
 
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 tools:text="Nota"
-                android:textColor="@android:color/black" />
+                android:textColor="@color/colorAccent" />
         </FrameLayout>
 
 

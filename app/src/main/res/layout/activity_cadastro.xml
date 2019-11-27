@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.CadastroActivity"
     android:orientation="vertical"
-    android:background="@color/colorBackground">
-
+    android:background="@color/colorPrimary">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,16 +21,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <include android:id="@+id/toolbarCadastro" layout="@layout/toolbar"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/imageViewStudentRegister"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:text="CADASTRO"
-                android:textColor="@android:color/black"
-                android:textSize="30dp"
-                android:textStyle="bold" />
+                app:srcCompat="@mipmap/perfil_foto_launcher_round" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,16 +45,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:textColorHint="@android:color/black">
+                    android:textColorHint="@color/colorEditText">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextUserMatriculaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/black"
+                        android:backgroundTint="@color/colorEditText"
                         android:hint="Matricula"
                         android:inputType="number"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -76,16 +74,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:textColorHint="@android:color/black">
+                    android:textColorHint="@color/colorEditText">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextNomeCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/black"
+                        android:backgroundTint="@color/colorEditText"
                         android:hint="Nome"
                         android:inputType="textShortMessage|textCapWords"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -98,136 +96,22 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/nascimento_icon" />
+                    android:src="@drawable/course_unit_register_icon" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:textColorHint="@android:color/black">
+                    android:textColorHint="@color/colorEditText">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextDataNascimentoCadastro"
+                        android:id="@+id/editTextCursoCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/black"
-                        android:hint="Data de Nascimento"
-                        android:inputType="date"
-                        android:textColor="@android:color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/instituicao_icon" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:textColorHint="@android:color/black">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextInstituicaoCadastro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/black"
-                        android:hint="Instituicao"
+                        android:backgroundTint="@color/colorEditText"
+                        android:hint="Curso"
                         android:inputType="textShortMessage|textCapWords"
-                        android:textColor="@android:color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/turma_icon" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:textColorHint="@android:color/black">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextTurmaCadastro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/black"
-                        android:hint="Turma"
-                        android:inputType="textShortMessage|textCapWords"
-                        android:textColor="@android:color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/email_icon" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:textColorHint="@android:color/black">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextEmailCadastro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/black"
-                        android:hint="E-mail"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@android:color/black" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/endereco_icon" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:textColorHint="@android:color/black">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextEnderecoCadastro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/black"
-                        android:hint="Endereço"
-                        android:inputType="textCapWords"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -246,16 +130,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:textColorHint="@android:color/black">
+                    android:textColorHint="@color/colorEditText">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextSenhaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/black"
+                        android:backgroundTint="@color/colorEditText"
                         android:hint="Senha"
                         android:inputType="textPassword"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -274,16 +158,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:textColorHint="@android:color/black">
+                    android:textColorHint="@color/colorEditText">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextConfirmaSenhaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@android:color/black"
+                        android:backgroundTint="@color/colorEditText"
                         android:hint="Confirme a Senha"
                         android:inputType="textPassword"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 

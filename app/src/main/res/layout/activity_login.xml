@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.LoginActivity"
-    android:background="@color/colorBackground">
+    android:background="@color/colorPrimary">
 
     <ImageView
         android:id="@+id/imageViewLoginLogo"
@@ -46,7 +46,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
             android:text="APRENDIGAME"
-            android:textColor="@color/colorText"
+            android:textColor="@color/colorAccent"
             android:textSize="40dp" />
 
 
@@ -55,16 +55,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:textColorHint="@android:color/black">
+            android:textColorHint="@color/colorEditText">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextLoginUserMatricula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/black"
+                android:backgroundTint="@color/colorEditText"
                 android:hint="Matricula"
                 android:inputType="number"
-                android:textColor="@android:color/black" />
+                android:textColor="@color/colorEditText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -74,16 +74,16 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:textColorHint="@android:color/black">
+            android:textColorHint="@color/colorEditText">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextLoginSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/black"
+                android:backgroundTint="@color/colorEditText"
                 android:hint="Senha"
                 android:inputType="textPassword"
-                android:textColor="@android:color/black" />
+                android:textColor="@color/colorEditText" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,9 +93,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorBackground"
             android:text="LOGIN"
-            android:textColor="@color/design_default_color_primary" />
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:text="Você não possui uma Conta?"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorBackground"
             android:textSize="18sp" />
 
         <TextView
@@ -112,9 +112,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Registre-se!"
-            android:textColor="@color/design_default_color_primary"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textColor="#4CAF50"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

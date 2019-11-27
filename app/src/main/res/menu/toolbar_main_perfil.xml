@@ -5,7 +5,7 @@
     <item
         android:id="@+id/perfil"
         android:icon="@drawable/perfil_icon"
-        android:iconTint="@color/colorText"
+        android:iconTint="@color/colorItensAplication"
         android:title="Perfil"
         app:showAsAction="ifRoom" />
 

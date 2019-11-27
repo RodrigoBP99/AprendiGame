@@ -34,6 +34,7 @@
     <string name="cancelar">Cancelar</string>
     <string name="permissao_negada">Permissão Negada</string>
     <string name="atencao">Atenção!</string>
+    <string name="deseja_sair_do_app">Deseja Sair do Aplicativo?</string>
     <!-- adapters -->
     <string name="professor">Professor:</string>
     <string name="aula">Aula:</string>

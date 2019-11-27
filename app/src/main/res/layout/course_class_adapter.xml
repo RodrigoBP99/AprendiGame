@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             tools:text="Data da presença"
             android:layout_gravity="center_horizontal"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorAccent"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -32,14 +32,14 @@
             tools:text="Aula que pertence a presença"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/textViewPresencaProfessor"
             tools:text="Professor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/textViewPresencaHora"
@@ -49,7 +49,7 @@
             android:layout_gravity="end"
             android:textAlignment="center"
             android:layout_marginEnd="5dp"
-            android:textColor="@android:color/black" />
+            android:textColor="@color/colorAccent" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

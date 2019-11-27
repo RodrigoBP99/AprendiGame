@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#20000000</color>
-    <color name="colorAccent">#4CAF50</color>
-    <color name="colorBackground">#80FFFFF5</color>
-    <color name="colorText">#000000</color>
-    <color name="colorBackgroundRecycleView">#B9B9B9</color>
+    <color name="colorPrimary">#b14399</color>
+    <color name="colorPrimaryDark">#b14399</color>
+    <color name="colorAccent">#000000</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorItensAplication">#FFFFFF</color>
+    <color name="colorEditText">#FFFFFF</color>
+    <color name="colorBackgroundRecycleView">#EBEAEA</color>
 </resources>
