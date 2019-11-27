@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.buttonLogin)
     Button buttonLogin;
+
+    @BindView(R.id.progressBarLogin)
+    ProgressBar progressBar;
 
     @BindView(R.id.textViewCadastroRedirect)
     TextView textViewCadastro;
@@ -69,14 +73,16 @@ public class LoginActivity extends AppCompatActivity {
         }
         userName = editTextUserMatriculaLogin.getText().toString().trim();
         senha = editTextSenhaLogin.getText().toString().trim();
-        buttonLogin.setClickable(false);
+        buttonLogin.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        textViewCadastro.setClickable(false);
         autenticaLogin();
     }
 
     public void autenticaLogin(){
         // autenticar login e recuperar usuario
         try {
-            SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
+            SetupRest.apiService.getStudent(85L).enqueue(new Callback<Student>() {
                 @Override
                 public void onResponse(Call<Student> call, Response<Student> response) {
                     if (response.isSuccessful()) {
@@ -86,14 +92,18 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(mainActivity);
                         finish();
                     } else if(response.isSuccessful()){
-                        buttonLogin.setClickable(true);
+                        buttonLogin.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        textViewCadastro.setClickable(true);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Student> call, Throwable t) {
                     Toast.makeText(LoginActivity.this, getString(R.string.erro_logar), Toast.LENGTH_LONG).show();
-                    buttonLogin.setClickable(true);
+                    buttonLogin.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    textViewCadastro.setClickable(true);
                 }
             });
         } catch (Exception e) {

@@ -2,7 +2,6 @@ package br.com.rodrigo.aprendigame.Fragments;
 
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
