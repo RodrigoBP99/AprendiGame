@@ -102,7 +102,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/course_unit_register_icon" />
+                    android:src="@drawable/course_icon" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
