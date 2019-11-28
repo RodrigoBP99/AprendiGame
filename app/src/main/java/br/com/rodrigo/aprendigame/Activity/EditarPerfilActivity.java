@@ -157,4 +157,16 @@ public class EditarPerfilActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onBackPressed() {
+        View view = getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Deseja mesmo cancelar a edição do perfil?").setPositiveButton(getString(R.string.sim),
+                (dialogInterface, i) -> finish())
+                .setNegativeButton(getString(R.string.nao), null).show();
+    }
 }
