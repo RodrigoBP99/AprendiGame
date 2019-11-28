@@ -34,23 +34,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorText"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
-            android:backgroundTint="@color/colorBackground"
+            android:backgroundTint="#FAFAFA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
+            android:elevation="10dp"
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="vertical"
                 android:paddingBottom="10dp">
 
@@ -63,7 +65,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/course_icon_profile" />
+                        android:src="@drawable/actual_level_icon" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -74,19 +76,18 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Curso"
-                            android:textColor="@color/colorAccent"
+                            android:text="Level"
+                            android:textColor="@color/colorText"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/textViewCourseStudentPerfil"
+                            android:id="@+id/textViewActualLevelPerfil"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="18dp" />
+                            android:textColor="@color/colorText"
+                            android:textSize="18sp" />
                     </LinearLayout>
-
 
                 </LinearLayout>
 
@@ -111,7 +112,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Pontos"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorText"
                             android:textSize="12sp" />
 
                         <TextView
@@ -119,11 +120,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="@color/colorText"
                             android:textSize="18dp" />
                     </LinearLayout>
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -135,7 +134,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/actual_level_icon" />
+                        android:src="@drawable/course_icon_profile" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -146,19 +145,18 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Level"
-                            android:textColor="@color/colorAccent"
+                            android:text="Curso"
+                            android:textColor="@color/colorText"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/textViewActualLevelPerfil"
+                            android:id="@+id/textViewCourseStudentPerfil"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="18sp" />
+                            android:textColor="@color/colorText"
+                            android:textSize="18dp" />
                     </LinearLayout>
-
                 </LinearLayout>
 
             </LinearLayout>

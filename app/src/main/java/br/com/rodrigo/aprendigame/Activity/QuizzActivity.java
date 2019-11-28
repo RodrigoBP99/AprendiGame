@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,6 +35,8 @@ public class QuizzActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quizz);
         ButterKnife.bind(this);
 
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerViewQuizz.addItemDecoration(itemDecoration);
         recyclerViewQuizz.setLayoutManager(new LinearLayoutManager(this));
         getQuizzList();
         adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, this);

@@ -56,7 +56,7 @@ public class QuizzQuestionFragment extends Fragment {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = getActivity().findViewById(radioId);
         if (radioButton == null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogCustom);
             builder.setMessage("Tem certeza que deseja avançar sem marcar uma resposta?").setPositiveButton("Sim", (dialogInterface, i) ->
             {
 

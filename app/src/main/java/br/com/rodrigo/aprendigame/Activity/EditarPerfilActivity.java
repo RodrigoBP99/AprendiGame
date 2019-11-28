@@ -123,7 +123,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogCustom);
             builder.setMessage("Deseja mesmo cancelar a edição do perfil?").setPositiveButton(getString(R.string.sim),
                     (dialogInterface, i) -> finish())
                     .setNegativeButton(getString(R.string.nao), null).show();
@@ -164,7 +164,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogCustom);
         builder.setMessage("Deseja mesmo cancelar a edição do perfil?").setPositiveButton(getString(R.string.sim),
                 (dialogInterface, i) -> finish())
                 .setNegativeButton(getString(R.string.nao), null).show();

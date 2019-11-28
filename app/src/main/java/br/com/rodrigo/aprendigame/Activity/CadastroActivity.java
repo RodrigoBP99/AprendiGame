@@ -92,7 +92,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.buttonCancelarCadastro) void cancelRegister(){
-        AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this);
+        AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this, R.style.AlertDialogCustom);
         alerta.setTitle(getString(R.string.titulo_alerta_cancelar_cadastro))
                 .setPositiveButton(getString(R.string.sim), (dialog, which) ->
                         finish()).setNegativeButton(getString(R.string.nao), null)
@@ -101,7 +101,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this);
+        AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this, R.style.AlertDialogCustom);
         alerta.setTitle(R.string.titulo_alerta_cancelar_cadastro)
                 .setPositiveButton(R.string.sim, (dialog, which) ->
                 finish()).setNegativeButton(R.string.nao, null)

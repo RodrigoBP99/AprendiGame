@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void requestCameraPermission(){
         if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.CAMERA)){
-            new AlertDialog.Builder(MainActivity.this)
+            new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogCustom)
                     .setTitle(getString(R.string.title_permissao_camera))
                     .setMessage(getString(R.string.message_permissao_camera))
                     .setPositiveButton(getString(R.string.ok), (dialog, which) ->
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         Fragment fragment = getSupportFragmentManager().findFragmentByTag("inicio");
         if (fragment != null && fragment.isVisible()){
-            AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
+            AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogCustom);
             alerta.setTitle(getString(R.string.atencao)).setPositiveButton(R.string.sim, (dialog, which) ->
                     finish()).setNegativeButton(R.string.nao, null).setMessage(getString(R.string.deseja_sair_do_app)).show();
         } else {

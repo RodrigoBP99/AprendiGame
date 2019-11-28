@@ -48,7 +48,7 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
         holder.textViewAmountQuestionsQuizz.setText(quizz.getAmountOfQuestions());
 
         holder.itemView.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
             builder.setTitle("Atenção").setMessage("Você deseja começar o questionario?").setPositiveButton("Sim", (dialogInterface, i) -> {
                 Intent intent = new Intent(context, QuizzQuestionActivity.class);
                 intent.putExtra(QUESTIONARIO, quizz.getTitle());

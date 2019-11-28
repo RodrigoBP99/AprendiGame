@@ -46,7 +46,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
             android:text="APRENDIGAME"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorText"
             android:textSize="40dp" />
 
         <com.google.android.material.textfield.TextInputLayout

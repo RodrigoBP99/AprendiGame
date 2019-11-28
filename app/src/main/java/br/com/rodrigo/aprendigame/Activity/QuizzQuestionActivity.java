@@ -29,7 +29,7 @@ public class QuizzQuestionActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogCustom);
         builder.setTitle("Atenção!!!").setMessage("Você tem certeza que deseja sair do questionario?")
                 .setPositiveButton("Sim", (dialogInterface, i) -> finish())
                 .setNegativeButton("Continuar Avaliação", null).show();

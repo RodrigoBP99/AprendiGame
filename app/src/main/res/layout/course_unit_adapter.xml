@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_marginTop="2dp"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -30,7 +29,7 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorText"
                 tools:text="Nome da Aula/Matéria" />
                 <LinearLayout
                     android:id="@+id/linearLayoutAulasQuantidade"
@@ -44,19 +43,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorText"
                         tools:text="Aulas presente" />
                     <TextView
                         android:text=" - "
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorText"
                         android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/textViewTotalCourseClass"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/colorText"
                         android:textAlignment="center"
                         tools:text="Aulas Totais" />
                 </LinearLayout>

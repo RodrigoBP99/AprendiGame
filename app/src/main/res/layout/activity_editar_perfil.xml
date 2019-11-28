@@ -38,7 +38,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/perfil_foto_launcher"
+                tools:src="@mipmap/perfil_foto_launcher"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/perfil_icon" />
+                        android:src="@drawable/perfil_icon_black" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
