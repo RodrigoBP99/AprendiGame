@@ -47,6 +47,7 @@
     <string name="perfil">Perfil</string>
     <string name="lvl">Lvl.</string>
     <string name="presencas">Presenças</string>
+    <string name="deseja_cancelar_edicao">Deseja mesmo cancelar a edição do perfil?</string>
 
 
 </resources>

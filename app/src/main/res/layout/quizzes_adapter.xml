@@ -31,7 +31,7 @@
                 android:layout_marginTop="5dp"
                 tools:text="Titulo do Questionario"
                 android:textColor="@color/colorText"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -42,7 +42,7 @@
                 android:layout_marginTop="20dp"
                 tools:text="Nome do autor do Questionario"
                 android:textColor="@color/colorText"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/textViewCourseUnitQuizz"
@@ -51,7 +51,7 @@
                 android:layout_marginStart="5dp"
                 tools:text="Materia a qual o questionario pertence"
                 android:textColor="@color/colorText"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <FrameLayout
