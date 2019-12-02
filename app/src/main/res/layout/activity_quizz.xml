@@ -15,7 +15,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/recycleViewQuizz"/>
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutQuizzActivityInfo"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutQuizzActivityInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/colorItensAplication"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarQuizzActivity"
+        app:layout_constraintBottom_toTopOf="@+id/recycleViewQuizz">
+
+        <TextView
+            android:id="@+id/textViewQuizzPointsMax"
+            android:text="Total de pontos disputados: 1000"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/textViewQuizzPointsGain"
+            android:text="Total de pontos obitidos: 1000"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/textViewQuizzStudentPosition"
+            android:text="Posição: 1º"
+            android:textSize="16sp"
+            android:textColor="@color/colorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewQuizz"
@@ -24,6 +59,6 @@
         android:background="@color/colorBackgroundRecycleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarQuizzActivity"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutQuizzActivityInfo"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

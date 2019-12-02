@@ -43,9 +43,8 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
 
         Quizz quizz = quizzes.get(posicao);
         holder.textViewTitleQuizz.setText(quizz.getTitle());
-        holder.textViewTeacherQuizz.setText(quizz.getTeacher().getName());
-        holder.textViewCourseUnitQuizz.setText(quizz.getCourseUnit().getName());
-        holder.textViewAmountQuestionsQuizz.setText(quizz.getAmountOfQuestions());
+        holder.textViewQuizzAnswers.setText(  "10/"+ quizz.getAmountOfQuestions());
+//        holder.textViewQuizzCreateDate.setText();
 
         holder.itemView.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
@@ -75,12 +74,10 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
 
         @BindView(R.id.textViewTitleQuizz)
         TextView textViewTitleQuizz;
-        @BindView(R.id.textViewTeacherQuizz)
-        TextView textViewTeacherQuizz;
-        @BindView(R.id.textViewCourseUnitQuizz)
-        TextView textViewCourseUnitQuizz;
-        @BindView(R.id.textViewAmountQuestionsQuizz)
-        TextView textViewAmountQuestionsQuizz;
+        @BindView(R.id.textViewAnswersQuizz)
+        TextView textViewQuizzAnswers;
+        @BindView(R.id.textViewDateQuizz)
+        TextView textViewQuizzCreateDate;
 
         public QuizzViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -42,7 +42,7 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
         final CoursesUnit coursesUnit = coursesUnits.get(posicao);
 
         courseUnitViewHolder.textViewNameCourseUnit.setText(coursesUnit.getName());
-        courseUnitViewHolder.textViewCourseClassPresent.setText(" " + context.getString(R.string.presencas));
+        courseUnitViewHolder.textViewCourseClassPresent.setText("1 " + context.getString(R.string.presencas));
         courseUnitViewHolder.textViewCourseClassTotal.setText( coursesUnit.getCourseClasses().size() + " " + context.getString(R.string.aulas));
         courseUnitViewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, CourseClassActivity.class);
