@@ -5,26 +5,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.CourseClassActivity"
-    android:orientation="vertical">
-
-    <include
-        android:id="@+id/toolbarCourseClass"
-        layout="@layout/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/recycleViewCourseClass"/>
+    tools:context=".Fragments.CourseClassFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewCourseClass"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/colorBackgroundRecycleView"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLerPresenca"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarCourseClass">
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/buttonLerPresenca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ler Presenca"
+        android:textColor="@android:color/white"
+        android:background="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@+id/recycleViewCourseClass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

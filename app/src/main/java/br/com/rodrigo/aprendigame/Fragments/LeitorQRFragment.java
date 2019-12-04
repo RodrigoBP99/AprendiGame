@@ -1,32 +1,32 @@
 package br.com.rodrigo.aprendigame.Fragments;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.zxing.Result;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import br.com.rodrigo.aprendigame.Activity.CourseUnitActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,9 +38,12 @@ import retrofit2.Response;
 public class LeitorQRFragment extends Fragment implements ZXingScannerView.ResultHandler {
 
     private ZXingScannerView ScannerView;
-    private String idAluno;
-
     private Student student;
+
+    @BindView(R.id.toolbarMainActivity)
+    Toolbar toolbar;
+    @BindView(R.id.navViewMain)
+    BottomNavigationView bottomNavigationView;
 
     public LeitorQRFragment() {
         // Required empty public constructor
@@ -51,8 +54,6 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ScannerView = new ZXingScannerView(getActivity());
-        idAluno = getActivity().getIntent().getStringExtra(LoginActivity.STUDENT);
-        setHasOptionsMenu(true);
         student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
 
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -60,27 +61,17 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-        inflater.inflate(R.menu.toolbar_main_presenca, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case(R.id.buttonPresenca):
-                Intent presencaIntent = new Intent(getContext(), CourseUnitActivity.class);
-                startActivity(presencaIntent);
-        }
-        return super.onOptionsItemSelected(item);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ButterKnife.bind(this, getActivity());
     }
 
     @Override
     public void onStop() {
         super.onStop();
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        toolbar.setVisibility(View.VISIBLE);
+        bottomNavigationView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -157,5 +148,12 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         } catch (Exception e){
 
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        toolbar.setVisibility(View.GONE);
+        bottomNavigationView.setVisibility(View.GONE);
     }
 }

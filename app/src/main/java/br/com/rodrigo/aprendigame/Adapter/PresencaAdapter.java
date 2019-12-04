@@ -38,14 +38,12 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PresencaViewHolder presencaViewHolder, int posicao) {
+    public void onBindViewHolder(@NonNull PresencaViewHolder holder, int posicao) {
         final Presenca presenca = presencas.get(posicao);
 
-        presencaViewHolder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, QuizzActivity.class);
-            intent.putExtra("presenca", presenca.getId());
-            context.startActivity(intent);
-        });
+        holder.textViewProfessor.setText(presenca.getAula());
+        holder.textViewData.setText(presenca.getData());
+        holder.textViewHora.setText(presenca.getHora());
     }
 
     @Override
@@ -65,10 +63,8 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
     public class PresencaViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.textViewPresencaData)
         TextView textViewData;
-        @BindView(R.id.textViewPresencaProfessor)
+        @BindView(R.id.textViewPresencaAulaDaPresenca)
         TextView textViewProfessor;
-        @BindView(R.id.textviewPresencaAula)
-        TextView textViewAula;
         @BindView(R.id.textViewPresencaHora)
         TextView textViewHora;
 

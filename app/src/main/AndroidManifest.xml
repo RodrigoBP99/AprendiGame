@@ -19,9 +19,6 @@
             android:configChanges="orientation|screenSize|keyboardHidden" >
         </activity>
         <activity
-            android:name=".Activity.CourseClassActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
-        <activity
             android:name=".Activity.CourseUnitActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
