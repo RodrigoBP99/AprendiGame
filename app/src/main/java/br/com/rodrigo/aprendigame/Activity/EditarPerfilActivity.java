@@ -99,14 +99,15 @@ public class EditarPerfilActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 0) {
-            assert data != null;
-            String fotoSelecionada = String.valueOf(data.getData());
-            Bitmap bitmap;
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(fotoSelecionada));
-                Glide.with(EditarPerfilActivity.this).load(new BitmapDrawable(bitmap)).circleCrop().into(imageViewPerfil);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (data != null) {
+                String fotoSelecionada = String.valueOf(data.getData());
+                Bitmap bitmap;
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(fotoSelecionada));
+                    Glide.with(EditarPerfilActivity.this).load(new BitmapDrawable(bitmap)).circleCrop().into(imageViewPerfil);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 

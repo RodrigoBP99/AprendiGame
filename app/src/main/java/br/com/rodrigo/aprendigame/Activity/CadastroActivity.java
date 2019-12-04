@@ -75,13 +75,15 @@ public class CadastroActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 0) {
-            fotoSelecionada = String.valueOf(data.getData());
-            Bitmap bitmap = null;
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(fotoSelecionada));
-                Glide.with(CadastroActivity.this).load(new BitmapDrawable(bitmap)).circleCrop().into(imageViewRegister);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (data != null){
+                fotoSelecionada = String.valueOf(data.getData());
+                Bitmap bitmap;
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(fotoSelecionada));
+                    Glide.with(CadastroActivity.this).load(new BitmapDrawable(bitmap)).circleCrop().into(imageViewRegister);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
