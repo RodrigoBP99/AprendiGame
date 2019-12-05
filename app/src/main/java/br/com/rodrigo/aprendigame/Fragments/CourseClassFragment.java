@@ -5,9 +5,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -18,11 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import br.com.rodrigo.aprendigame.Activity.MainActivity;
 import br.com.rodrigo.aprendigame.Adapter.PresencaAdapter;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.R;
@@ -84,33 +80,7 @@ public class CourseClassFragment extends Fragment {
                 Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutMainActivity, new LeitorQRFragment(), "leitorQR").commit();
         } else {
-            requestCameraPermission();
-        }
-
-    }
-
-    private void requestCameraPermission(){
-        if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CAMERA)){
-            new AlertDialog.Builder(getContext(), R.style.AlertDialogCustom)
-                    .setTitle(getString(R.string.title_permissao_camera))
-                    .setMessage(getString(R.string.message_permissao_camera))
-                    .setPositiveButton(getString(R.string.ok), (dialog, which) ->
-                            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, CameraPermission))
-                    .setNegativeButton(getString(R.string.cancelar), (dialog, which) -> dialog.dismiss())
-                    .create().show();
-        } else {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, CameraPermission);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == CameraPermission){
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutMainActivity, new LeitorQRFragment(), "leitorQR").commit();
-            } else {
-                Toast.makeText(getContext(), getString(R.string.permissao_negada), Toast.LENGTH_SHORT).show();
-            }
         }
     }
 }
