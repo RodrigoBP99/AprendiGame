@@ -1,6 +1,7 @@
 package br.com.rodrigo.aprendigame.Model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
@@ -12,5 +13,6 @@ public class Quizz implements Serializable {
     private Teacher teacher;
     private CoursesUnit courseUnit;
     private String amountOfQuestions;
+    private List<Question> questions;
 
 }

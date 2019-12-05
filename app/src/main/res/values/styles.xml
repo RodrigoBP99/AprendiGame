@@ -10,4 +10,11 @@
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:colorAccent">#FC5656</item>
     </style>
+
+    <style name="EditTextCustom" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorAccent">#000</item>
+        <item name="android:colorPrimary">#000</item>
+        <item name="android:colorPrimaryDark">#000</item>
+    </style>
+
 </resources>
