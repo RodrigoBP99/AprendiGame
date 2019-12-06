@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,8 @@ public class NewQuizzActivity extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.recycleViewNewQuizz)
     RecyclerView recyclerView;
+    @BindView(R.id.tabLayoutNewQuiz)
+    TabLayout tabLayout;
 
     private NewQuizzAdadpter newQuizzAdadpter;
     private List<Quizz> quizzes = new ArrayList<>();
@@ -47,7 +51,7 @@ public class NewQuizzActivity extends AppCompatActivity {
         Question question3 = new Question();
         question3.setQuestionTitle("Quanto tempo durou a segunda guerra?");
         Question question4 = new Question();
-        question4.setQuestionTitle("Quais paises participaram da segunda guerra");
+        question4.setQuestionTitle("Quais paises participaram da segunda guerra?");
         Question question5 = new Question();
         question5.setQuestionTitle("Quais as maiores invenções durante a guerra?");
         Question question6 = new Question();
@@ -61,6 +65,7 @@ public class NewQuizzActivity extends AppCompatActivity {
         Question question10 = new Question();
         question10.setQuestionTitle("Quem venceu a segunda Guerra?");
 
+/*
         questions.add(question1);
         questions.add(question2);
         questions.add(question3);
@@ -71,34 +76,55 @@ public class NewQuizzActivity extends AppCompatActivity {
         questions.add(question8);
         questions.add(question9);
         questions.add(question10);
+*/
 
-        Quizz quizz = new Quizz();
-        quizz.setQuestions(questions);
-        quizz.setTitle("Segunda Guerra mundial");
 
         Quizz quizz1 = new Quizz();
+        quizz1.setTitle("Primeira Guerra");
         quizz1.setQuestions(questions);
-        quizz1.setTitle("Guerra Civil Americana");
 
         Quizz quizz2 = new Quizz();
+        quizz2.setTitle("Segunda Guerra");
         quizz2.setQuestions(questions);
-        quizz2.setTitle("Geografia");
 
         Quizz quizz3 = new Quizz();
+        quizz3.setTitle("Guerra do Confederados");
         quizz3.setQuestions(questions);
-        quizz3.setTitle("Matématica");
 
         Quizz quizz4 = new Quizz();
+        quizz4.setTitle("Revolução Industrial");
         quizz4.setQuestions(questions);
-        quizz4.setTitle("Portugues");
 
-        quizzes.add(quizz);
+        Quizz quizz5 = new Quizz();
+        quizz5.setTitle("Revolta das Vacinas");
+        quizz5.setQuestions(questions);
+
+        Quizz quizz6 = new Quizz();
+        quizz6.setTitle("Descoberta do Brasil");
+        quizz6.setQuestions(questions);
+
+        Quizz quizz7 = new Quizz();
+        quizz7.setTitle("Independencia do País");
+        quizz7.setQuestions(questions);
+
+        Quizz quizz8 = new Quizz();
+        quizz8.setTitle("Revolta de 86");
+        quizz8.setQuestions(questions);
+
         quizzes.add(quizz1);
         quizzes.add(quizz2);
         quizzes.add(quizz3);
         quizzes.add(quizz4);
+        quizzes.add(quizz5);
+        quizzes.add(quizz6);
+        quizzes.add(quizz7);
+        quizzes.add(quizz8);
 
-        newQuizzAdadpter = new NewQuizzAdadpter(quizzes,this);
+        for (Quizz quizz : quizzes){
+            tabLayout.addTab(tabLayout.newTab().setText(quizz.getTitle()));
+        }
+
+        newQuizzAdadpter = new NewQuizzAdadpter(questions,this);
 
         recyclerView.setAdapter(newQuizzAdadpter);
     }
