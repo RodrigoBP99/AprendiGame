@@ -20,21 +20,23 @@
         android:id="@+id/tabLayoutNewQuiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutNewQuizz"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="1dp"
-        android:background="@color/colorItensAplication"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarNewQuizzActivity"
         app:tabGravity="fill"
-        app:tabIndicatorFullWidth="true"
-        app:tabMode="scrollable">
+        app:tabIndicatorColor="@color/colorItensAplication"
+        app:tabIndicatorGravity="bottom"
+        app:tabIndicatorHeight="5dp"
+        app:tabMode="scrollable"
+        app:tabTextColor="@color/colorItensAplication">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabItemNewQuizz"
-            android:text="Novo Questionario"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="Novo Questionario" />
     </com.google.android.material.tabs.TabLayout>
     <LinearLayout
         android:id="@+id/linearLayoutNewQuizz"

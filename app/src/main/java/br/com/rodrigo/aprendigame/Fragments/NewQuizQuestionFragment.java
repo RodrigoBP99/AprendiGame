@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,7 @@ import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,13 +37,15 @@ public class NewQuizQuestionFragment extends Fragment {
     TextView textView;
     @BindView(R.id.recycleViewNewQuizz)
     RecyclerView recyclerView;
+    @BindView(R.id.tabLayoutNewQuiz)
+    TabLayout tabLayout;
 
+    private Quizz quizz;
     private List<Question> questions = new ArrayList<>();
 
     public NewQuizQuestionFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +59,7 @@ public class NewQuizQuestionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
 
-        Quizz quizz = NewQuizzActivity.quizzes.get(NewQuizzActivity.quizId);
+        quizz = NewQuizzActivity.quizzes.get(NewQuizzActivity.quizId);
 
         textView.setText(quizz.getTitle());
         for (Question question : quizz.getQuestions()){
@@ -65,6 +70,13 @@ public class NewQuizQuestionFragment extends Fragment {
         NewQuizzAdadpter newQuizzAdadpter = new NewQuizzAdadpter(questions, getActivity());
 
         recyclerView.setAdapter(newQuizzAdadpter);
+    }
 
+    @OnClick(R.id.buttonAddQuestions) void addQuestions(){
+        //adicionar questões selecionadas para uma lista e tirar aula da lista.
+
+
+        //remove aula do tabLayout
+        tabLayout.removeTabAt(tabLayout.getSelectedTabPosition());
     }
 }
