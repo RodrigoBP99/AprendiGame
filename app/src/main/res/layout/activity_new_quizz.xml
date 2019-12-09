@@ -12,62 +12,37 @@
         android:id="@+id/toolbarNewQuizzActivity"
         layout="@layout/toolbar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textInputNewQuizz"
+        app:layout_constraintBottom_toTopOf="@+id/tabLayoutNewQuiz"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputNewQuizz"
-            android:hint="Titulo"
-            android:textColorHint="@color/colorText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorItensAplication"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayoutNewQuiz"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarNewQuizzActivity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextTituloNewQuizz"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textShortMessage"
-                android:textColor="@color/colorText"/>
-        </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutNewQuiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/recycleViewNewQuizz"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutNewQuizz"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="1dp"
         android:background="@color/colorItensAplication"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputNewQuizz"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarNewQuizzActivity"
         app:tabGravity="fill"
         app:tabIndicatorFullWidth="true"
         app:tabMode="scrollable">
 
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItemNewQuizz"
+            android:text="Novo Questionario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </com.google.android.material.tabs.TabLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewNewQuizz"
+    <LinearLayout
+        android:id="@+id/linearLayoutNewQuizz"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonConfirmarNovoQuizz"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayoutNewQuiz" />
-
-    <Button
-        android:id="@+id/buttonConfirmarNovoQuizz"
-        android:text="Salvar"
-        android:background="#8977"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycleViewNewQuizz"/>
+        app:layout_constraintTop_toBottomOf="@+id/tabLayoutNewQuiz"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
