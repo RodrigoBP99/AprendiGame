@@ -3,10 +3,15 @@ package br.com.rodrigo.aprendigame.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.TaskExecutors;
@@ -34,6 +39,10 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     @BindView(R.id.editTextAuthenticationCode)
     EditText editText;
+    @BindView(R.id.progressBarAuthentication)
+    ProgressBar progressBar;
+    @BindView(R.id.buttonConfirmCode)
+    Button button;
 
     public static final String STUDENT = "student";
     private String verificacaoId;
@@ -50,6 +59,8 @@ public class AuthenticationActivity extends AppCompatActivity {
         if (firebaseAuth.getCurrentUser() != null){
             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
             firebaseUser.getPhoneNumber();
+            progressBarVisibility(View.GONE, View.VISIBLE);
+
             getStudent();
         }
 
@@ -74,10 +85,14 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     @OnClick(R.id.buttonConfirmCode) void confirmCode(){
         String code = editText.getText().toString();
+        progressBarVisibility(View.GONE, View.VISIBLE);
+        hideKeybord();
         Snackbar.make(getCurrentFocus(), "Logando", Snackbar.LENGTH_SHORT).show();
         if (code.isEmpty() || code.length() < 6){
             editText.setError("Codigo invalido");
             editText.requestFocus();
+
+            progressBarVisibility(View.VISIBLE, View.GONE);
         } else {
             try {
                 verifyCodeSent(code);
@@ -86,6 +101,19 @@ public class AuthenticationActivity extends AppCompatActivity {
                 Snackbar.make(getCurrentFocus(), "Código expirado", Snackbar.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void hideKeybord() {
+        View view = getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    private void progressBarVisibility(int visible, int gone) {
+        button.setVisibility(visible);
+        progressBar.setVisibility(gone);
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -138,12 +166,14 @@ public class AuthenticationActivity extends AppCompatActivity {
                     finish();
                 } else {
                     Snackbar.make(getCurrentFocus(), "Erro ao logar. Servidor dormindo!", Snackbar.LENGTH_SHORT).show();
+                    progressBarVisibility(View.VISIBLE, View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
                 Snackbar.make(getCurrentFocus(), "Usuario não existente!", Snackbar.LENGTH_SHORT).show();
+                progressBarVisibility(View.VISIBLE, View.GONE);
             }
         });
     }

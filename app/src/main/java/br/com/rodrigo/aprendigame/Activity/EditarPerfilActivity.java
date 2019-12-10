@@ -158,6 +158,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

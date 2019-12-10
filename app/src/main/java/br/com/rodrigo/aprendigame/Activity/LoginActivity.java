@@ -26,8 +26,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static br.com.rodrigo.aprendigame.Activity.AuthenticationActivity.STUDENT;
-
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -61,9 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (firebaseAuth.getCurrentUser() != null){
             getStudent();
-            buttonLogin.setVisibility(View.GONE);
-            progressBar.setVisibility(View.VISIBLE);
-            textViewCadastro.setClickable(false);
+            progressBarVisibility(View.GONE, View.VISIBLE, false);
         }
 
         usuarioDAO = new StudentDAO(getApplicationContext());
@@ -76,29 +72,34 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.buttonLogin) void login(){
-        //metodo fechar teclado
-        View view = getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+        metodoFecharTeclado();
         userName = editTextUserMatriculaLogin.getText().toString().trim();
 
-        buttonLogin.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
-        textViewCadastro.setClickable(false);
+        progressBarVisibility(View.GONE, View.VISIBLE, false);
 
         if(userName.isEmpty() || userName.length() < 10){
             editTextUserMatriculaLogin.setError("Entre com um número válido");
             editTextUserMatriculaLogin.requestFocus();
-            buttonLogin.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
-            textViewCadastro.setClickable(true);
+            progressBarVisibility(View.VISIBLE, View.GONE, true);
         } else {
             Intent intent = new Intent(getApplicationContext(), AuthenticationActivity.class);
             intent.putExtra(NUMERO, userName);
             startActivity(intent);
             finish();
+        }
+    }
+
+    private void progressBarVisibility(int gone, int visible, boolean b) {
+        buttonLogin.setVisibility(gone);
+        progressBar.setVisibility(visible);
+        textViewCadastro.setClickable(b);
+    }
+
+    private void metodoFecharTeclado() {
+        View view = getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 
@@ -122,9 +123,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<Student> call, Throwable t) {
                 Snackbar.make(getCurrentFocus(), "Usuario não existente!", Snackbar.LENGTH_SHORT).show();
 
-                buttonLogin.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
-                textViewCadastro.setClickable(true);
+                progressBarVisibility(View.VISIBLE, View.GONE, true);
             }
         });
     }

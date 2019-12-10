@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -81,13 +82,15 @@ public class PerfilFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.buttonEditarPerfil:
-                Intent editarPerfil = new Intent(getContext(), EditarPerfilActivity.class);
-                startActivity(editarPerfil);
             case R.id.buttonLogOut:
                 FirebaseAuth.getInstance().signOut();
                 getActivity().finish();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
+                return true;
+            case R.id.buttonEditarPerfil:
+                Intent editarPerfil = new Intent(getContext(), EditarPerfilActivity.class);
+                startActivity(editarPerfil);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

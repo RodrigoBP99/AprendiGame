@@ -6,31 +6,43 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:context=".Activity.AuthenticationActivity">
-
-    <EditText
-        android:id="@+id/editTextAuthenticationCode"
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorEditText"
-        android:hint="Código"
-        android:digits="0123456789"
-        android:maxLength="10"
-        android:textColor="@color/colorEditText"
-        android:textColorHint="@color/colorEditText"
-        app:layout_constraintBottom_toTopOf="@+id/buttonConfirmCode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/buttonConfirmCode"
-        android:text="Verificar"
-        android:textColor="@color/colorPrimary"
-        android:background="@color/colorItensAplication"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAuthenticationCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/editTextAuthenticationCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorEditText"
+            android:hint="Código"
+            android:digits="0123456789"
+            android:maxLength="10"
+            android:textColor="@color/colorEditText"
+            android:textColorHint="@color/colorEditText" />
+
+        <ProgressBar
+            android:id="@+id/progressBarAuthentication"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/buttonConfirmCode"
+            android:text="Verificar"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorPrimary"
+            android:background="@color/colorItensAplication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
