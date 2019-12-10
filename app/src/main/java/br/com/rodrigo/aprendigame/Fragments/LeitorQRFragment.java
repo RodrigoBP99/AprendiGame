@@ -55,7 +55,12 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ScannerView = new ZXingScannerView(getActivity());
-        student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
+        student = new Student();
+        if (getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT) != null) {
+            student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
+        } else if (getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT) != null) {
+            student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
+        }
 
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         return ScannerView;

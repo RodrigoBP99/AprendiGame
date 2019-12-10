@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.rodrigo.aprendigame.Activity.AuthenticationActivity;
 import br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity;
@@ -83,6 +84,10 @@ public class PerfilFragment extends Fragment {
             case R.id.buttonEditarPerfil:
                 Intent editarPerfil = new Intent(getContext(), EditarPerfilActivity.class);
                 startActivity(editarPerfil);
+            case R.id.buttonLogOut:
+                FirebaseAuth.getInstance().signOut();
+                getActivity().finish();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -92,7 +97,12 @@ public class PerfilFragment extends Fragment {
         super.onResume();
         //recupera usuario
         try {
-            Student student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
+            Student student = new Student();
+            if (getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT) != null) {
+                student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
+            } else if (getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT) != null) {
+                student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
+            }
 
             Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
             textViewNameStudent.setText(student.getName());

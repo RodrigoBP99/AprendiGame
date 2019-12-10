@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -35,7 +36,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     EditText editText;
 
     public static final String STUDENT = "student";
-    private String mVerificacaoId;
+    private String verificacaoId;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -46,6 +47,11 @@ public class AuthenticationActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null){
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            firebaseUser.getPhoneNumber();
+            getStudent();
+        }
 
         String numero = getIntent().getStringExtra(LoginActivity.NUMERO);
         sendAuthenticationCode(numero);
@@ -61,7 +67,7 @@ public class AuthenticationActivity extends AppCompatActivity {
     }
 
     private void verifyCodeSent(String codigo) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificacaoId, codigo);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificacaoId, codigo);
         signInWithPhoneAuthCredential(credential);
     }
 
@@ -72,33 +78,35 @@ public class AuthenticationActivity extends AppCompatActivity {
         if (code.isEmpty() || code.length() < 6){
             editText.setError("Codigo invalido");
             editText.requestFocus();
-        }
-        try {
-            verifyCodeSent(code);
-        } catch (Exception e){
-            Snackbar.make(getCurrentFocus(), "Código expirado", Snackbar.LENGTH_SHORT).show();
+        } else {
+            try {
+                verifyCodeSent(code);
+            } catch (Exception e) {
+                Log.e("ErroCodigo: ", e.getMessage());
+                Snackbar.make(getCurrentFocus(), "Código expirado", Snackbar.LENGTH_SHORT).show();
+            }
         }
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-            String codigo = phoneAuthCredential.getSmsCode();
-            if (codigo != null) {
-                editText.setText(codigo);
-                verifyCodeSent(codigo);
+            String code = phoneAuthCredential.getSmsCode();
+            if (code != null) {
+                editText.setText(code);
+                verifyCodeSent(code);
             }
         }
 
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            Log.e("erro login: ", e.getMessage());
+            Log.e("ErroFireBaseCode: ", e.getMessage());
         }
 
         @Override
         public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
-            mVerificacaoId = s;
+            verificacaoId = s;
         }
     };
 
@@ -106,32 +114,37 @@ public class AuthenticationActivity extends AppCompatActivity {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(AuthenticationActivity.this, task -> {
             try {
                 if (task.isSuccessful()) {
-                    SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
-                        @Override
-                        public void onResponse(Call<Student> call, Response<Student> response) {
-                            if (response.isSuccessful()){
-                                Student student = response.body();
-
-                                Intent intent = new Intent(AuthenticationActivity.this, MainActivity.class);
-                                intent.putExtra(STUDENT, student);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Snackbar.make(getCurrentFocus(), "Erro ao logar. Servidor dormindo!", Snackbar.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Student> call, Throwable t) {
-                            Snackbar.make(getCurrentFocus(), "Usuario não existente!", Snackbar.LENGTH_SHORT).show();
-                        }
-                    });
+                    getStudent();
                 }
             } catch (Exception e) {
+                Log.e("ErroStudentLogin: ", e.getMessage());
                 Toast toast = Toast.makeText(this, "Verificação não realizada", Toast.LENGTH_SHORT);
                 toast.show();
             }
 
+        });
+    }
+
+    private void getStudent() {
+        SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                if (response.isSuccessful()){
+                    Student student = response.body();
+
+                    Intent intent = new Intent(AuthenticationActivity.this, MainActivity.class);
+                    intent.putExtra(STUDENT, student);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Snackbar.make(getCurrentFocus(), "Erro ao logar. Servidor dormindo!", Snackbar.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Snackbar.make(getCurrentFocus(), "Usuario não existente!", Snackbar.LENGTH_SHORT).show();
+            }
         });
     }
 

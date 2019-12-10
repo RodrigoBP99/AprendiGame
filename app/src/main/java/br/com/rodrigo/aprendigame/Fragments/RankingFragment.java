@@ -56,7 +56,13 @@ public class RankingFragment extends Fragment {
         ButterKnife.bind(this, getActivity());
 
         try {
-            Student student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
+            Student student = new Student();
+            if (getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT) != null) {
+                student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
+            } else if (getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT) != null) {
+                student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
+            }
+
             textViewName.setText(student.getName());
             textViewPoints.setText(student.getPoints() + "/" + student.getRequiredPoints());
             textViewActualLevel.setText(getString(R.string.lvl) + ". " + student.getActualLevel());
