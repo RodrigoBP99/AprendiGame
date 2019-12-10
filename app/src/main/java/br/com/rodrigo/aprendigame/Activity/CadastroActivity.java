@@ -59,9 +59,7 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
         ButterKnife.bind(this);
 
-        toolbar.setElevation(0);
-        textViewToolbar.setText("Cadastro");
-
+        textViewToolbar.setText(getString(R.string.cadastro));
     }
 
     @OnClick(R.id.imageViewStudentRegister) void carregarImagem(){
@@ -86,23 +84,27 @@ public class CadastroActivity extends AppCompatActivity {
                 }
             }
         }
-
     }
 
     @OnClick(R.id.buttonConfirmarCadastro) void confirmRegister(){
+        String userMatricula = editTextUserMatricula.getText().toString().trim();
+        String nome = editTextNome.getText().toString().trim();
+        String turma = editTextTurma.getText().toString().trim();
+        String senha = editTextSenha.getText().toString();
+        String confirmarSenha = editTextConfrimarSenha.getText().toString();
         cadastroUsuario();
     }
 
     @OnClick(R.id.buttonCancelarCadastro) void cancelRegister(){
-        AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this, R.style.AlertDialogCustom);
-        alerta.setTitle(getString(R.string.titulo_alerta_cancelar_cadastro))
-                .setPositiveButton(getString(R.string.sim), (dialog, which) ->
-                        finish()).setNegativeButton(getString(R.string.nao), null)
-                .setMessage(getString(R.string.messagem_cancelar_cadastro)).show();
+        alertaRegisterCancel();
     }
 
     @Override
     public void onBackPressed() {
+        alertaRegisterCancel();
+    }
+
+    private void alertaRegisterCancel() {
         AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this, R.style.AlertDialogCustom);
         alerta.setTitle(R.string.titulo_alerta_cancelar_cadastro)
                 .setPositiveButton(R.string.sim, (dialog, which) ->
@@ -111,50 +113,11 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     public void cadastroUsuario(){
-        final String userMatricula = editTextUserMatricula.getText().toString().trim();
-        final String nome = editTextNome.getText().toString().trim();
-        final String turma = editTextTurma.getText().toString().trim();
-        final String senha = editTextSenha.getText().toString();
-        final String confirmarSenha = editTextConfrimarSenha.getText().toString();
-
-        StudentDAO bdUsuario = new StudentDAO(getApplicationContext());
-
         //Metodo para fechar teclado
         View view = getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-        // Testa se os campos estão vazios
-        if (userMatricula.isEmpty() || nome.isEmpty() || turma.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty())
-        {
-            Toast.makeText(CadastroActivity.this, getString(R.string.preencha_campos_vazios), Toast.LENGTH_LONG).show();
-        } else {
-            // checa se o nome de usuario já existe
-            checkPasswordRegister(userMatricula, nome, turma, senha, confirmarSenha, bdUsuario);
-        }
-    }
-
-    private void checkPasswordRegister(String userMatricula, String nome, String turma, String senha, String confirmarSenha,
-                                       StudentDAO bdUsuario) {
-        //verificação da senha
-        if (senha.length() < 6) {
-            Toast.makeText(CadastroActivity.this, getString(R.string.senha_deve_ter_mais_caracteres), Toast.LENGTH_LONG).show();
-        } else {
-            if (confirmarSenha.equals(senha)) {
-                registerUser(userMatricula, nome, turma, senha, bdUsuario);
-            } else {
-                Toast.makeText(CadastroActivity.this, getString(R.string.confirma_senha_incorreta), Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    private void registerUser(String userMatricula, String nome, String turma, String senha, StudentDAO bdUsuario) {
-        try {
-            Toast.makeText(CadastroActivity.this, getString(R.string.sucesso_cadastro), Toast.LENGTH_SHORT).show();
-            finish();
-        }catch (Exception e){
-            Log.w("Cadastro: ", e.getMessage());
         }
     }
 }

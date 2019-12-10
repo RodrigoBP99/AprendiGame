@@ -13,17 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.NewQuizzActivity"></activity>
+        <activity android:name=".Activity.AuthenticationActivity"></activity>
+        <activity android:name=".Activity.NewQuizzActivity" />
         <activity android:name=".Activity.QuizzQuestionActivity" />
         <activity
             android:name=".Activity.QuizzActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity
             android:name=".Activity.CourseUnitActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
@@ -39,7 +34,11 @@
         <activity
             android:name=".Activity.LoginActivity"
             android:configChanges="orientation|screenSize|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

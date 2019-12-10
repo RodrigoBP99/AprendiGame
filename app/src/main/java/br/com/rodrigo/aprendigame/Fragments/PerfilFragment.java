@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 
+import br.com.rodrigo.aprendigame.Activity.AuthenticationActivity;
 import br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.Model.Student;
@@ -91,7 +92,7 @@ public class PerfilFragment extends Fragment {
         super.onResume();
         //recupera usuario
         try {
-            Student student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
+            Student student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
 
             Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
             textViewNameStudent.setText(student.getName());

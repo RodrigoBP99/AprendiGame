@@ -12,6 +12,7 @@
     <string name="titulo_alerta_cancelar_cadastro">Um momento, amigo(a)!</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
+    <string name="cadastro">Cadastro</string>
     <string name="messagem_cancelar_cadastro">Tem certeza que deseja cancelar seu Cadastro?</string>
     <string name="senha_deve_ter_mais_caracteres">A senha deve conter mais de 6 caracteres</string>
     <string name="confirma_senha_incorreta">Confirmação de Senha incorreta</string>

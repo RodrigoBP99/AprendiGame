@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import br.com.rodrigo.aprendigame.Activity.AuthenticationActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
@@ -54,7 +55,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ScannerView = new ZXingScannerView(getActivity());
-        student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
+        student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
 
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         return ScannerView;
