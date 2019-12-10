@@ -3,7 +3,6 @@ package br.com.rodrigo.aprendigame.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -18,7 +17,6 @@ import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class NewQuizzActivity extends AppCompatActivity {
 
@@ -27,16 +25,20 @@ public class NewQuizzActivity extends AppCompatActivity {
     @BindView(R.id.tabLayoutNewQuiz)
     TabLayout tabLayout;
 
+    public static String titleQuizz;
     public static int quizId = 0;
     public static List<Quizz> quizzes = new ArrayList<>();
-    public static List<Question> questions = new ArrayList<>();
+
+    public static List<Question> selectedQuestions = new ArrayList<>();
+    private List<Question> questions = new ArrayList<>();
+    private List<Quizz> quizzes1 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_quizz);
         ButterKnife.bind(this);
-        textView.setText("Criar Questionário");
+        textView.setText("Novo Quiz");
 
         getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, new NewQuizFragment()).commit();
 
@@ -85,7 +87,18 @@ public class NewQuizzActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
+        questions.addAll(selectedQuestions);
+        quizzes1.addAll(quizzes);
+        selectedQuestions.clear();
         quizzes.clear();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        quizzes.addAll(quizzes1);
+        selectedQuestions.addAll(questions);
     }
 
     private void novoQuestionario() {
@@ -123,6 +136,7 @@ public class NewQuizzActivity extends AppCompatActivity {
         questions.add(question10);
 
         Quizz quizz2 = new Quizz();
+        quizz2.setId(2L);
         quizz2.setTitle("Segunda Guerra");
         quizz2.setQuestions(questions);
 
@@ -164,6 +178,7 @@ public class NewQuizzActivity extends AppCompatActivity {
         questions.add(question10);
 
         Quizz quizz1 = new Quizz();
+        quizz1.setId(1L);
         quizz1.setTitle("Funcionou!!!!!!!!!!!!!!!!!");
         quizz1.setQuestions(questions);
 

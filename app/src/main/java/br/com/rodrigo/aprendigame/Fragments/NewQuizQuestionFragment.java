@@ -40,8 +40,9 @@ public class NewQuizQuestionFragment extends Fragment {
     @BindView(R.id.tabLayoutNewQuiz)
     TabLayout tabLayout;
 
+    private NewQuizzAdadpter newQuizzAdadpter;
     private Quizz quizz;
-    private List<Question> questions = new ArrayList<>();
+    private List<Question> selectedQuestions = new ArrayList<>();
 
     public NewQuizQuestionFragment() {
         // Required empty public constructor
@@ -62,21 +63,29 @@ public class NewQuizQuestionFragment extends Fragment {
         quizz = NewQuizzActivity.quizzes.get(NewQuizzActivity.quizId);
 
         textView.setText(quizz.getTitle());
-        for (Question question : quizz.getQuestions()){
-            questions.add(question);
-        }
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        NewQuizzAdadpter newQuizzAdadpter = new NewQuizzAdadpter(questions, getActivity());
+        newQuizzAdadpter = new NewQuizzAdadpter(quizz.getQuestions(), getActivity(), new NewQuizzAdadpter.OnItemCheckListener() {
+            @Override
+            public void onItemCheck(Question question) {
+                selectedQuestions.add(question);
+            }
 
+            @Override
+            public void onItemUncheck(Question question) {
+                selectedQuestions.remove(question);
+            }
+        });
         recyclerView.setAdapter(newQuizzAdadpter);
     }
 
     @OnClick(R.id.buttonAddQuestions) void addQuestions(){
         //adicionar questões selecionadas para uma lista e tirar aula da lista.
-
+        NewQuizzActivity.selectedQuestions.addAll(selectedQuestions);
 
         //remove aula do tabLayout
         tabLayout.removeTabAt(tabLayout.getSelectedTabPosition());
+        NewQuizzActivity.quizzes.remove(quizz.getId());
     }
 }
