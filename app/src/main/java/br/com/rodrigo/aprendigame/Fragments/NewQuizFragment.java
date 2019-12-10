@@ -39,7 +39,6 @@ public class NewQuizFragment extends Fragment {
     RecyclerView recyclerView;
 
     private static List<Question> questions = new ArrayList<>();
-    private NewQuizzAdadpter newQuizzAdadpter;
 
     public NewQuizFragment() {
         // Required empty public constructor
@@ -59,7 +58,7 @@ public class NewQuizFragment extends Fragment {
         ButterKnife.bind(this, getActivity());
 
         questions = NewQuizzActivity.selectedQuestions;
-        newQuizzAdadpter = new NewQuizzAdadpter(questions, getActivity(), new NewQuizzAdadpter.OnItemCheckListener() {
+        NewQuizzAdadpter newQuizzAdadpter = new NewQuizzAdadpter(questions, getActivity(), new NewQuizzAdadpter.OnItemCheckListener() {
             @Override
             public void onItemCheck(Question question) {
 

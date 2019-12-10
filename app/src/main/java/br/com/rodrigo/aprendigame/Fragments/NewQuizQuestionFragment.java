@@ -40,7 +40,6 @@ public class NewQuizQuestionFragment extends Fragment {
     @BindView(R.id.tabLayoutNewQuiz)
     TabLayout tabLayout;
 
-    private NewQuizzAdadpter newQuizzAdadpter;
     private Quizz quizz;
     private List<Question> selectedQuestions = new ArrayList<>();
 
@@ -66,7 +65,7 @@ public class NewQuizQuestionFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        newQuizzAdadpter = new NewQuizzAdadpter(quizz.getQuestions(), getActivity(), new NewQuizzAdadpter.OnItemCheckListener() {
+        NewQuizzAdadpter newQuizzAdadpter = new NewQuizzAdadpter(quizz.getQuestions(), getActivity(), new NewQuizzAdadpter.OnItemCheckListener() {
             @Override
             public void onItemCheck(Question question) {
                 selectedQuestions.add(question);
