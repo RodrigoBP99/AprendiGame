@@ -15,10 +15,16 @@ import com.bumptech.glide.Glide;
 
 import br.com.rodrigo.aprendigame.Activity.AuthenticationActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
+import br.com.rodrigo.aprendigame.Activity.MainActivity;
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +44,8 @@ public class RankingFragment extends Fragment {
     @BindView(R.id.progressBarRanking)
     ProgressBar progressBarRanking;
 
+    private Student student;
+
     public RankingFragment() {
         // Required empty public constructor
     }
@@ -55,13 +63,9 @@ public class RankingFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
 
+
         try {
-            Student student = new Student();
-            if (getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT) != null) {
-                student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
-            } else if (getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT) != null) {
-                student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
-            }
+            student = MainActivity.student;
 
             textViewName.setText(student.getName());
             textViewPoints.setText(student.getPoints() + "/" + student.getRequiredPoints());

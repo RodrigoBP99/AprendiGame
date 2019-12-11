@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,10 +20,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import br.com.rodrigo.aprendigame.Activity.AuthenticationActivity;
 import br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
+import br.com.rodrigo.aprendigame.Activity.MainActivity;
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,6 +49,7 @@ public class PerfilFragment extends Fragment {
 
     @BindView(R.id.textViewTitleToolbarMain)
     TextView textViewTittleToolbar;
+    private Student student;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -75,7 +81,7 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.toolbar_perfil_edit, menu);
+        inflater.inflate(R.menu.toolbar_perfil_fragment, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -100,19 +106,13 @@ public class PerfilFragment extends Fragment {
         super.onResume();
         //recupera usuario
         try {
-            Student student = new Student();
-            if (getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT) != null) {
-                student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
-            } else if (getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT) != null) {
-                student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
-            }
+            student = MainActivity.student;
 
             Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
             textViewNameStudent.setText(student.getName());
             textViewCourse.setText(student.getCourse());
             textViewPoints.setText(String.valueOf(student.getPoints()));
             textViewLevel.setText(String.valueOf(student.getActualLevel()));
-
         } catch (Exception e) {
             e.printStackTrace();
         }

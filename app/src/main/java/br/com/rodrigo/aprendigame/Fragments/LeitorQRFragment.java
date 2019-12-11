@@ -21,7 +21,9 @@ import java.util.Date;
 
 import br.com.rodrigo.aprendigame.Activity.AuthenticationActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
+import br.com.rodrigo.aprendigame.Activity.MainActivity;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Presenca;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
@@ -55,13 +57,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ScannerView = new ZXingScannerView(getActivity());
-        student = new Student();
-        if (getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT) != null) {
-            student = (Student) getActivity().getIntent().getSerializableExtra(AuthenticationActivity.STUDENT);
-        } else if (getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT) != null) {
-            student = (Student) getActivity().getIntent().getSerializableExtra(LoginActivity.STUDENT);
-        }
-
+        student = MainActivity.student;
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         return ScannerView;
     }
@@ -152,7 +148,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
                 }
             });
         } catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 

@@ -68,21 +68,11 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     private void setUserInformation() {
         try {
-            SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
-                @Override
-                public void onResponse(Call<Student> call, Response<Student> response) {
-                    if (response.isSuccessful()) {
-                        Student student = response.body();
-                        editTextPerfilNome.setText(student.getName());
-                        editTextCurso.setText(student.getCourse());
-                        Glide.with(EditarPerfilActivity.this).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
-                    }
-                }
-                @Override
-                public void onFailure(Call<Student> call, Throwable t) {
+            Student student = MainActivity.student;
 
-                }
-            });
+            editTextPerfilNome.setText(student.getName());
+            editTextCurso.setText(student.getCourse());
+            Glide.with(EditarPerfilActivity.this).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -145,12 +135,10 @@ public class EditarPerfilActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.salvarPerfil) {
             final String nome = editTextPerfilNome.getText().toString();
-
             if (nome.isEmpty())
             {
                 Toast.makeText(EditarPerfilActivity.this, getString(R.string.preencha_campos_vazios), Toast.LENGTH_LONG).show();
             } else {
-
                 finish();
             }
             View view = getCurrentFocus();

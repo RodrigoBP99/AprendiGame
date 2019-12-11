@@ -25,6 +25,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
@@ -44,9 +45,9 @@ public class AuthenticationActivity extends AppCompatActivity {
     @BindView(R.id.buttonConfirmCode)
     Button button;
 
-    public static final String STUDENT = "student";
     private String verificacaoId;
     private FirebaseAuth firebaseAuth;
+    private String numero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +55,9 @@ public class AuthenticationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_authentication);
         ButterKnife.bind(this);
         FirebaseApp.initializeApp(this);
-
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null){
-            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-            firebaseUser.getPhoneNumber();
-            progressBarVisibility(View.GONE, View.VISIBLE);
 
-            getStudent();
-        }
-
-        String numero = getIntent().getStringExtra(LoginActivity.NUMERO);
+        numero = getIntent().getStringExtra(LoginActivity.NUMERO);
         sendAuthenticationCode(numero);
     }
 
@@ -78,27 +71,23 @@ public class AuthenticationActivity extends AppCompatActivity {
     }
 
     private void verifyCodeSent(String codigo) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificacaoId, codigo);
-        signInWithPhoneAuthCredential(credential);
+        signInWithPhoneAuthCredential(PhoneAuthProvider.getCredential(verificacaoId, codigo));
     }
-
 
     @OnClick(R.id.buttonConfirmCode) void confirmCode(){
         String code = editText.getText().toString();
-        progressBarVisibility(View.GONE, View.VISIBLE);
         hideKeybord();
-        Snackbar.make(getCurrentFocus(), "Logando", Snackbar.LENGTH_SHORT).show();
         if (code.isEmpty() || code.length() < 6){
             editText.setError("Codigo invalido");
             editText.requestFocus();
-
-            progressBarVisibility(View.VISIBLE, View.GONE);
         } else {
             try {
                 verifyCodeSent(code);
+                Snackbar.make(getCurrentFocus(), "Logando", Snackbar.LENGTH_INDEFINITE).show();
             } catch (Exception e) {
                 Log.e("ErroCodigo: ", e.getMessage());
                 Snackbar.make(getCurrentFocus(), "Código expirado", Snackbar.LENGTH_SHORT).show();
+                progressBarVisibility(View.VISIBLE, View.GONE);
             }
         }
     }
@@ -142,7 +131,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(AuthenticationActivity.this, task -> {
             try {
                 if (task.isSuccessful()) {
-                    getStudent();
+                    getStudent(Long.valueOf(numero));
                 }
             } catch (Exception e) {
                 Log.e("ErroStudentLogin: ", e.getMessage());
@@ -153,26 +142,31 @@ public class AuthenticationActivity extends AppCompatActivity {
         });
     }
 
-    private void getStudent() {
-        SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
+    private void getStudent(Long numero) {
+        SetupRest.apiService.getStudent(numero).enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()){
                     Student student = response.body();
 
+                    StudentDAO studentDAO = new StudentDAO(AuthenticationActivity.this);
+                    studentDAO.clearStudent();
+                    studentDAO.salvarUsuario(student);
+
                     Intent intent = new Intent(AuthenticationActivity.this, MainActivity.class);
-                    intent.putExtra(STUDENT, student);
+                    intent.putExtra(LoginActivity.NUMERO, numero);
                     startActivity(intent);
                     finish();
                 } else {
-                    Snackbar.make(getCurrentFocus(), "Erro ao logar. Servidor dormindo!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(getCurrentFocus(), "Ops! Parece que ocorreu um erro.", Snackbar.LENGTH_LONG).show();
                     progressBarVisibility(View.VISIBLE, View.GONE);
                 }
             }
 
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
-                Snackbar.make(getCurrentFocus(), "Usuario não existente!", Snackbar.LENGTH_SHORT).show();
+                Log.e("GetStudentErro: ", t.getMessage());
+                Snackbar.make(getCurrentFocus(), "Você não tem conexão com a Internet!", Snackbar.LENGTH_LONG).show();
                 progressBarVisibility(View.VISIBLE, View.GONE);
             }
         });

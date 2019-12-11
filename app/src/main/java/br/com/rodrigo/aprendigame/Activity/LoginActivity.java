@@ -9,11 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
@@ -44,10 +46,13 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextUserMatriculaLogin;
 
     public static String NUMERO = "numero";
-    public static String STUDENT = "student";
 
-    private String userName;
-    private String senha;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private StudentDAO studentDAO;
+
+    private String phoneNumber;
+    private Student student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +60,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        studentDAO = new StudentDAO(LoginActivity.this);
 
-        if (firebaseAuth.getCurrentUser() != null){
-            getStudent();
-            progressBarVisibility(View.GONE, View.VISIBLE, false);
+        if (firebaseUser != null){
+            getStudent(Long.valueOf(firebaseUser.getPhoneNumber()));
+            progressBarVisibility(View.GONE, View.GONE, View.VISIBLE, false);
         }
-
-        usuarioDAO = new StudentDAO(getApplicationContext());
     }
 
     @OnClick(R.id.textViewCadastroRedirect)
@@ -73,23 +78,24 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.buttonLogin) void login(){
         metodoFecharTeclado();
-        userName = editTextUserMatriculaLogin.getText().toString().trim();
+        phoneNumber = editTextUserMatriculaLogin.getText().toString().trim();
 
-        progressBarVisibility(View.GONE, View.VISIBLE, false);
+        progressBarVisibility(View.GONE, View.GONE, View.VISIBLE, false);
 
-        if(userName.isEmpty() || userName.length() < 10){
+        if(phoneNumber.isEmpty() || phoneNumber.length() < 10){
             editTextUserMatriculaLogin.setError("Entre com um número válido");
             editTextUserMatriculaLogin.requestFocus();
-            progressBarVisibility(View.VISIBLE, View.GONE, true);
+            progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
         } else {
             Intent intent = new Intent(getApplicationContext(), AuthenticationActivity.class);
-            intent.putExtra(NUMERO, userName);
+            intent.putExtra(NUMERO, phoneNumber);
             startActivity(intent);
             finish();
         }
     }
 
-    private void progressBarVisibility(int gone, int visible, boolean b) {
+    private void progressBarVisibility(int visibility, int gone, int visible, boolean b) {
+        editTextUserMatriculaLogin.setVisibility(visibility);
         buttonLogin.setVisibility(gone);
         progressBar.setVisibility(visible);
         textViewCadastro.setClickable(b);
@@ -103,29 +109,39 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void getStudent() {
-        SetupRest.apiService.getStudent(1L).enqueue(new Callback<Student>() {
+    private void getStudent(Long numero) {
+        SetupRest.apiService.getStudent(numero).enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()){
-                    Student student = response.body();
+                    student = response.body();
 
+                    studentDAO.clearStudent();
+                    studentDAO.salvarUsuario(student);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra(STUDENT, student);
                     startActivity(intent);
                     finish();
                 } else {
-                    Snackbar.make(getCurrentFocus(), "Erro ao logar. Servidor dormindo!", Snackbar.LENGTH_SHORT).show();
+                    progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
+                    if (studentDAO.selectUsuario(String.valueOf(numero)) != null) {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    Snackbar.make(getCurrentFocus(), "Ops! Parece que ocorreu um erro.", Snackbar.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
-                Snackbar.make(getCurrentFocus(), "Usuario não existente!", Snackbar.LENGTH_SHORT).show();
-
-                progressBarVisibility(View.VISIBLE, View.GONE, true);
+                Toast.makeText(LoginActivity.this, "Você está desconectado!", Toast.LENGTH_LONG).show();
+                if (studentDAO.selectUsuario(String.valueOf(numero)) != null) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
             }
         });
     }
-
 }

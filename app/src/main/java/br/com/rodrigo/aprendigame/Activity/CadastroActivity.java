@@ -24,7 +24,6 @@ import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 
-import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;

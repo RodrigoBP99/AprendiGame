@@ -80,7 +80,7 @@ public class CourseUnitFragment extends Fragment {
                 }
             });
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 }

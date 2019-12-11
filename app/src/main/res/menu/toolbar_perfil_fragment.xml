@@ -6,7 +6,7 @@
         android:id="@+id/buttonEditarPerfil"
         android:icon="@drawable/editar_perfil_icon"
         android:title="Editar"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/buttonLogOut"

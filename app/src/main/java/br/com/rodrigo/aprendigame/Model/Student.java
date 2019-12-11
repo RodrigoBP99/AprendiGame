@@ -21,7 +21,14 @@ public class Student implements Serializable {
 
     public ContentValues getValues() {
         ContentValues valores = new ContentValues();
-        valores.put(DBHelper.COLUNA_ID_STUDENT, id);
+        valores.put(DBHelper.COLUN_ID_STUDENT, id);
+        valores.put(DBHelper.COLUN_NOME_STUDENT, name);
+        valores.put(DBHelper.COLUN_COURSE_STUDENT, course);
+        valores.put(DBHelper.COLUN_PHOTO_STUDENT, photo);
+        valores.put(DBHelper.COLUN_POINTS_STUDENT, points);
+        valores.put(DBHelper.COLUN_REQUIRED_POINTS_STUDENT, requiredPoints);
+        valores.put(DBHelper.COLUN_ACTUAL_LEVEL_STUDENT, actualLevel);
+        valores.put(DBHelper.COLUN_NEXT_LEVEL_STUDENT, nextLevel);
 
         return valores;
     }

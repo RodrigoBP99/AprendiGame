@@ -68,7 +68,7 @@ public class CourseUnitActivity extends AppCompatActivity {
                 }
             });
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 }

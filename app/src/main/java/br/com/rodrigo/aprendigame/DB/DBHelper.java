@@ -8,12 +8,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String BANCO_NOME = "aprendigame";
 
-    public static final String TABELA_STUDENT = "student";
-
-    public static final String COLUNA_ID_STUDENT = "ID";
+    public static final String TABLE_STUDENT = "student";
+    public static final String COLUN_ID_STUDENT = "ID";
+    public static final String COLUN_NOME_STUDENT = "NAME";
+    public static final String COLUN_COURSE_STUDENT = "COURSE";
+    public static final String COLUN_PHOTO_STUDENT = "PHOTO";
+    public static final String COLUN_POINTS_STUDENT = "POINTS";
+    public static final String COLUN_REQUIRED_POINTS_STUDENT = "REQUIREDPOINTS";
+    public static final String COLUN_ACTUAL_LEVEL_STUDENT = "ACTUALLEVEL";
+    public static final String COLUN_NEXT_LEVEL_STUDENT = "NEXTLEVEL";
 
     public static final String TABELA_PRESENCA = "presenca";
-
     public static final String COLUNA_ID_PRESENCA = "ID";
     public static final String COLUNA_DATA_PRESENCA = "DATA";
     public static final String COLUNA_AULA_PRESENCA = "AULA";
@@ -22,15 +27,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUNA_HORA_PRESENCA = "HORA";
 
 
-    public static final String TABELA_AULA = "aula";
-
-    public static final String COLUNA_ID_AULA = "ID";
-    public static final String COLUNA_TITULO_AULA = "TITULO";
-    public static final String COLUNA_CURSO_AULA = "CURSO";
-
     private static final String CREATE_TABLE_STUDENT = "CREATE TABLE " +
-            TABELA_STUDENT + "( " +
-            COLUNA_ID_STUDENT + " INTEGER PRIMARY KEY)";
+            TABLE_STUDENT + "( " +
+            COLUN_ID_STUDENT + " INTEGER PRIMARY KEY, " +
+            COLUN_NOME_STUDENT + " TEXT, " +
+            COLUN_COURSE_STUDENT + " TEXT, " +
+            COLUN_PHOTO_STUDENT + " TEXT, " +
+            COLUN_POINTS_STUDENT + " REAL, " +
+            COLUN_REQUIRED_POINTS_STUDENT + " REAL, " +
+            COLUN_ACTUAL_LEVEL_STUDENT + " INTEGER, " +
+            COLUN_NEXT_LEVEL_STUDENT + " INTEGER)";
 
     private static final String CREATE_TABLE_PRESENCA = "CREATE TABLE " +
             TABELA_PRESENCA + "( " +
@@ -54,7 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_PRESENCA);
-        db.execSQL("DROP TABLE IF EXISTS " + TABELA_STUDENT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STUDENT);
         onCreate(db);
     }
 }
