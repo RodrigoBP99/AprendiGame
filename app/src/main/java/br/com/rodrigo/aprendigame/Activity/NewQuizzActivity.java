@@ -27,7 +27,7 @@ public class NewQuizzActivity extends AppCompatActivity {
 
     public static String titleQuizz;
     public static int quizId = 0;
-    public static List<Quizz> quizzes = new ArrayList<>();
+    public static ArrayList<Quizz> quizzes = new ArrayList<>();
 
     public static List<Question> selectedQuestions = new ArrayList<>();
 
@@ -37,6 +37,7 @@ public class NewQuizzActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_quizz);
         ButterKnife.bind(this);
         textView.setText("Novo Quiz");
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, new NewQuizFragment()).commit();
 
@@ -70,10 +71,11 @@ public class NewQuizzActivity extends AppCompatActivity {
     }
 
     private void createTabItems() {
+
         for (Quizz quizz : quizzes){
-            int posicao = quizzes.indexOf(quizz) + 1;
             int tag = quizzes.indexOf(quizz);
-            tabLayout.addTab(tabLayout.newTab().setText("Aula " + posicao).setTag(tag));
+            tabLayout.addTab(tabLayout.newTab().setText("Aula ").setTag(tag));
+
         }
     }
 

@@ -46,13 +46,13 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextUserMatriculaLogin;
 
     public static String NUMERO = "numero";
+    public static Student student;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private StudentDAO studentDAO;
 
     private String phoneNumber;
-    public static Student student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

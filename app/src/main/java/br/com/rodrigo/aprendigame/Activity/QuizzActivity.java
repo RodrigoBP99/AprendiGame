@@ -2,6 +2,7 @@ package br.com.rodrigo.aprendigame.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +29,7 @@ import retrofit2.Response;
 public class QuizzActivity extends AppCompatActivity {
 
     private QuizzAdapter adapter;
-    private List<Quizz> quizzes;
+    private static List<Quizz> quizzes;
     @BindView(R.id.recycleViewQuizz)
     RecyclerView recyclerViewQuizz;
     @BindView(R.id.textViewTitleToolbarMain)
