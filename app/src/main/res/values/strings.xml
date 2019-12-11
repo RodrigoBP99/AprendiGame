@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">AprendiGame</string>
     <string name="title_activity_bottom_menu">BottomMenuActivity</string>
     <string name="title_home">Home</string>
@@ -7,6 +7,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="com.crashlytics.useFirebaseAppId" tools:ignore="ExtraTranslation">true</string>
 
     <!-- Cadastro Activity -->
     <string name="titulo_alerta_cancelar_cadastro">Um momento, amigo(a)!</string>
@@ -39,7 +41,6 @@
     <!-- adapters -->
     <string name="professor">Professor:</string>
     <string name="aula">Aula:</string>
-    <string name="abrindo">Abrindo</string>
     <!-- leitor QR fragment -->
     <string name="qrCode_ja_lido">Essa presença já foi realizada!!!</string>
     <string name="qrCode_invalido">QR Code Invalido!</string>
@@ -49,6 +50,7 @@
     <string name="lvl">Lvl.</string>
     <string name="presencas">Presenças</string>
     <string name="deseja_cancelar_edicao">Deseja mesmo cancelar a edição do perfil?</string>
+    <string name="abrindo">Abrindo</string>
 
 
 </resources>
