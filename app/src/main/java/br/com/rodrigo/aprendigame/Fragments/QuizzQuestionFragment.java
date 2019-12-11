@@ -14,6 +14,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import br.com.rodrigo.aprendigame.Adapter.QuizzAdapter;
+import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +39,9 @@ public class QuizzQuestionFragment extends Fragment {
     RadioButton radioButtonFour;
     @BindView(R.id.radioGroupAnswers)
     RadioGroup radioGroup;
+    @BindView(R.id.textViewTitleToolbarMain)
+    TextView textViewTitle;
+    private Quizz quizz;
 
     private RadioButton radioButton;
 
@@ -68,6 +73,9 @@ public class QuizzQuestionFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this,getActivity());
+
+        quizz = (Quizz) getActivity().getIntent().getSerializableExtra(QuizzAdapter.QUESTIONARIO);
+        textViewTitle.setText(quizz.getTitle());
     }
 
     @Override
