@@ -63,7 +63,7 @@
                 android:digits="0123456789"
                 android:drawablePadding="5dp"
                 android:inputType="phone"
-                android:maxLength="12"
+                android:maxLength="11"
                 android:hint="Telefone"
                 android:textColor="@color/colorEditText" />
         </com.google.android.material.textfield.TextInputLayout>

@@ -153,7 +153,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                     studentDAO.salvarUsuario(student);
 
                     Intent intent = new Intent(AuthenticationActivity.this, MainActivity.class);
-                    intent.putExtra(LoginActivity.NUMERO, numero);
+                    LoginActivity.student = student;
                     startActivity(intent);
                     finish();
                 } else {
