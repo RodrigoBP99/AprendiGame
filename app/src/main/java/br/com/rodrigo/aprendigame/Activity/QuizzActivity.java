@@ -28,6 +28,7 @@ import retrofit2.Response;
 
 public class QuizzActivity extends AppCompatActivity {
 
+    public static String QUIZ = "quiz";
     private QuizzAdapter adapter;
     private static List<Quizz> quizzes;
     @BindView(R.id.recycleViewQuizz)
@@ -53,6 +54,7 @@ public class QuizzActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.itemNewQuizz:
                     Intent intent = new Intent(QuizzActivity.this, NewQuizzActivity.class);
+                    intent.putExtra("quiz", (ArrayList<Quizz>) quizzes);
                     startActivity(intent);
             }
             return false;

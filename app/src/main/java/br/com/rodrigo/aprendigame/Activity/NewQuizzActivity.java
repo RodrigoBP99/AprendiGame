@@ -38,6 +38,10 @@ public class NewQuizzActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         textView.setText("Novo Quiz");
 
+        ArrayList<Quizz> quizzActivity = (ArrayList<Quizz>) getIntent().getSerializableExtra(QuizzActivity.QUIZ);
+        for (Quizz quizz : quizzActivity){
+            quizzes.add(quizz);
+        }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, new NewQuizFragment()).commit();
 
@@ -71,11 +75,11 @@ public class NewQuizzActivity extends AppCompatActivity {
     }
 
     private void createTabItems() {
-
+        int i = 1;
         for (Quizz quizz : quizzes){
             int tag = quizzes.indexOf(quizz);
-            tabLayout.addTab(tabLayout.newTab().setText("Aula ").setTag(tag));
-
+            tabLayout.addTab(tabLayout.newTab().setText("Aula " + i).setTag(tag));
+            i++;
         }
     }
 
