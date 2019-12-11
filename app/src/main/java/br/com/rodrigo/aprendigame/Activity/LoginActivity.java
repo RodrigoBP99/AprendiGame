@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private StudentDAO studentDAO;
 
     private String phoneNumber;
-    private Student student;
+    public static Student student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

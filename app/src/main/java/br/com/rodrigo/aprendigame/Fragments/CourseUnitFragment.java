@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -16,8 +17,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.rodrigo.aprendigame.Activity.LoginActivity;
+import br.com.rodrigo.aprendigame.Activity.MainActivity;
 import br.com.rodrigo.aprendigame.Adapter.CoursesUnitAdapter;
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
+import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
@@ -38,7 +42,7 @@ public class CourseUnitFragment extends Fragment {
     RecyclerView recyclerView;
     @BindView(R.id.navViewMain)
     BottomNavigationView bottomNavigationView;
-
+    private Student student;
 
     public CourseUnitFragment() {
         // Required empty public constructor
@@ -56,27 +60,36 @@ public class CourseUnitFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
+        student = LoginActivity.student;
 
         DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        getCourseUnit();
+
         coursesUnitAdapter = new CoursesUnitAdapter((ArrayList<CoursesUnit>) coursesUnits, getContext());
         recyclerView.setAdapter(coursesUnitAdapter);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getCourseUnit();
+    }
+
     private void getCourseUnit() {
         try {
-            SetupRest.apiService.getListCourseUnit(1L).enqueue(new Callback<List<CoursesUnit>>() {
+            SetupRest.apiService.getListCourseUnit(LoginActivity.student.getId().longValue()).enqueue(new Callback<List<CoursesUnit>>() {
                 @Override
                 public void onResponse(Call<List<CoursesUnit>> call, Response<List<CoursesUnit>> response) {
-                    coursesUnits = response.body();
-                    coursesUnitAdapter.atualiza(coursesUnits);
+                    if (response.isSuccessful()) {
+                        coursesUnits = response.body();
+                        coursesUnitAdapter.atualiza(coursesUnits);
+                    }
                 }
 
                 @Override
                 public void onFailure(Call<List<CoursesUnit>> call, Throwable t) {
-
+                    Toast.makeText(getContext(), "Você está desconectado!", Toast.LENGTH_LONG).show();
                 }
             });
         }catch (Exception e){

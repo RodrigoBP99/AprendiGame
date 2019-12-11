@@ -65,7 +65,7 @@ public class RankingFragment extends Fragment {
 
 
         try {
-            student = MainActivity.student;
+            student = LoginActivity.student;
 
             textViewName.setText(student.getName());
             textViewPoints.setText(student.getPoints() + "/" + student.getRequiredPoints());

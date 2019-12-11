@@ -78,7 +78,7 @@ public class AuthenticationActivity extends AppCompatActivity {
         String code = editText.getText().toString();
         hideKeybord();
         if (code.isEmpty() || code.length() < 6){
-            editText.setError("Codigo invalido");
+            editText.setError("Código Incorreto, digite o código correto!");
             editText.requestFocus();
         } else {
             try {
@@ -86,7 +86,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                 Snackbar.make(getCurrentFocus(), "Logando", Snackbar.LENGTH_INDEFINITE).show();
             } catch (Exception e) {
                 Log.e("ErroCodigo: ", e.getMessage());
-                Snackbar.make(getCurrentFocus(), "Código expirado", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getCurrentFocus(), "Código Invalido", Snackbar.LENGTH_SHORT).show();
                 progressBarVisibility(View.VISIBLE, View.GONE);
             }
         }

@@ -9,14 +9,13 @@
     android:background="@color/colorItensAplication"
     android:orientation="vertical">
 
-
     <TextView
         android:id="@+id/textViewPresencaAulaDaPresenca"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/colorText"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutAdapterCourseClass"
         app:layout_constraintStart_toStartOf="parent"

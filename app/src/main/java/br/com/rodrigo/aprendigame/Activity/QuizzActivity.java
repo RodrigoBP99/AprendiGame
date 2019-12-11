@@ -43,12 +43,6 @@ public class QuizzActivity extends AppCompatActivity {
 
         toolbarMenu();
 
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerViewQuizz.addItemDecoration(itemDecoration);
-        recyclerViewQuizz.setLayoutManager(new LinearLayoutManager(this));
-        getQuizzList();
-        adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, this);
-        recyclerViewQuizz.setAdapter(adapter);
     }
 
     private void toolbarMenu() {
@@ -66,7 +60,14 @@ public class QuizzActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         textViewTitleToolbar.setText(getString(R.string.questionarios));
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerViewQuizz.addItemDecoration(itemDecoration);
+        recyclerViewQuizz.setLayoutManager(new LinearLayoutManager(this));
+        getQuizzList();
+        adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, this);
+        recyclerViewQuizz.setAdapter(adapter);
     }
 
     private void getQuizzList() {
@@ -74,8 +75,8 @@ public class QuizzActivity extends AppCompatActivity {
             SetupRest.apiService.getListQuizz().enqueue(new Callback<List<Quizz>>() {
                 @Override
                 public void onResponse(Call<List<Quizz>> call, Response<List<Quizz>> response) {
-                        quizzes = response.body();
-                        adapter.updateQuizzes(quizzes);
+                    quizzes = response.body();
+                    adapter.updateQuizzes(quizzes);
                 }
 
                 @Override

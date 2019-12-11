@@ -106,7 +106,7 @@ public class PerfilFragment extends Fragment {
         super.onResume();
         //recupera usuario
         try {
-            student = MainActivity.student;
+            student = LoginActivity.student;
 
             Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
             textViewNameStudent.setText(student.getName());

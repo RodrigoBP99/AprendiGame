@@ -68,7 +68,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     private void setUserInformation() {
         try {
-            Student student = MainActivity.student;
+            Student student = LoginActivity.student;
 
             editTextPerfilNome.setText(student.getName());
             editTextCurso.setText(student.getCourse());

@@ -15,17 +15,13 @@ import retrofit2.http.Path;
 
 
 public interface APIService {
-
-    @POST("novaPresenca")
-    Call<Presenca> createPresenca(@Body Presenca presenca);
-
-    @POST("listaPresencas")
-    Call<List<Presenca>> sendList(@Body List<Presenca> presencas);
-
     @Headers({
             "Content-Type: application/json",
             "Accept: application/json"
     })
+
+    @POST("novaPresenca")
+    Call<Presenca> createPresenca(@Body Presenca presenca);
 
     @GET("students/{idStudent}")
     Call<Student> getStudent(@Path("idStudent") Long idStudent);
