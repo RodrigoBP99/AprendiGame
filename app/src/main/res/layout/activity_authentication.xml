@@ -32,6 +32,7 @@
             android:id="@+id/progressBarAuthentication"
             android:visibility="gone"
             android:layout_marginTop="10dp"
+            android:indeterminateTint="#FFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

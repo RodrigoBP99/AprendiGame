@@ -7,10 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.PerfilFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -21,271 +20,278 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageViewPerfil"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerCrop"
-            tools:src="@mipmap/perfil_foto_launcher" />
-
-        <TextView
-            android:id="@+id/textViewNameStudentPerfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorText"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <androidx.cardview.widget.CardView
-            android:backgroundTint="#FAFAFA"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:elevation="10dp"
-            app:cardUseCompatPadding="true">
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imageViewPerfil"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                tools:src="@mipmap/perfil_foto_launcher" />
+
+            <TextView
+                android:id="@+id/textViewNameStudentPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="vertical"
-                android:paddingBottom="10dp">
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#FAFAFA"
+                android:elevation="10dp"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/actual_level_icon" />
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical">
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/actual_level_icon" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Level"
-                            android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textViewActualLevelPerfil"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:textColor="@color/colorText"
-                            android:textSize="18sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Level"
+                                android:textColor="@color/colorText"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/textViewActualLevelPerfil"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textColor="@color/colorText"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
                     </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/actual_points_icon" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical">
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/actual_points_icon" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Pontos"
-                            android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textViewPointsPerfil"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:textColor="@color/colorText"
-                            android:textSize="18sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pontos"
+                                android:textColor="@color/colorText"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/textViewPointsPerfil"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textColor="@color/colorText"
+                                android:textSize="18sp" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/course_icon_profile" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical">
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/course_icon_profile" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Curso"
-                            android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textViewCourseStudentPerfil"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:textColor="@color/colorText"
-                            android:textSize="18sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Curso"
+                                android:textColor="@color/colorText"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/textViewCourseStudentPerfil"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textColor="@color/colorText"
+                                android:textSize="18sp" />
+                        </LinearLayout>
                     </LinearLayout>
+
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:backgroundTint="#FAFAFA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="8dp"
-            android:elevation="10dp"
-            app:cardUseCompatPadding="true">
-
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="vertical"
-                android:paddingBottom="10dp">
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#FAFAFA"
+                android:elevation="10dp"
+                app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/title_icon"/>
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical">
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/title_icon" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Titulo"
-                            android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:text="Historiador"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:textColor="@color/colorText"
-                            android:textSize="18sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Titulo"
+                                android:textColor="@color/colorText"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Historiador"
+                                android:textColor="@color/colorText"
+                                android:textSize="18sp" />
+                        </LinearLayout>
+
                     </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/star_icon"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical">
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/star_icon" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Melhor Desempenho"
-                            android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:text="Segunda Guerra Mundial"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:textColor="@color/colorText"
-                            android:textSize="18sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Melhor Desempenho"
+                                android:textColor="@color/colorText"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Segunda Guerra Mundial"
+                                android:textColor="@color/colorText"
+                                android:textSize="18sp" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/podium_icon"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical">
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
-                        <TextView
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/podium_icon" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Ranking"
-                            android:textColor="@color/colorText"
-                            android:textSize="12sp" />
+                            android:layout_marginStart="10dp"
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:text="1º Posição"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:textColor="@color/colorText"
-                            android:textSize="18sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ranking"
+                                android:textColor="@color/colorText"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="1º Posição"
+                                android:textColor="@color/colorText"
+                                android:textSize="18sp" />
+                        </LinearLayout>
                     </LinearLayout>
+
                 </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
