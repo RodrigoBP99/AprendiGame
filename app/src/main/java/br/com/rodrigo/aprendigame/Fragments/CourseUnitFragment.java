@@ -78,7 +78,7 @@ public class CourseUnitFragment extends Fragment {
 
     private void getCourseUnit() {
         try {
-            SetupRest.apiService.getListCourseUnit(LoginActivity.student.getId().longValue()).enqueue(new Callback<List<CoursesUnit>>() {
+            SetupRest.apiService.getListCourseUnit(student.getId()).enqueue(new Callback<List<CoursesUnit>>() {
                 @Override
                 public void onResponse(Call<List<CoursesUnit>> call, Response<List<CoursesUnit>> response) {
                     if (response.isSuccessful()) {

@@ -37,16 +37,6 @@
                 android:scaleType="centerCrop"
                 app:srcCompat="@mipmap/perfil_foto_launcher_round" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/user_icon" />
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -57,24 +47,13 @@
                         android:id="@+id/editTextUserMatriculaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/user_icon"
                         android:backgroundTint="@color/colorEditText"
                         android:hint="Matricula"
                         android:inputType="number"
                         android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/perfil_icon" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -86,23 +65,13 @@
                         android:id="@+id/editTextNomeCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/perfil_icon"
                         android:backgroundTint="@color/colorEditText"
                         android:hint="Nome"
                         android:inputType="textShortMessage|textCapWords"
                         android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/course_icon" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -114,23 +83,12 @@
                         android:id="@+id/editTextCursoCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/course_icon"
                         android:backgroundTint="@color/colorEditText"
                         android:hint="Curso"
                         android:inputType="textShortMessage|textCapWords"
                         android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/senha_icon" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -142,23 +100,12 @@
                         android:id="@+id/editTextSenhaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/senha_icon"
                         android:backgroundTint="@color/colorEditText"
                         android:hint="Senha"
                         android:inputType="textPassword"
                         android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/confirma_senha" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -170,13 +117,12 @@
                         android:id="@+id/editTextConfirmaSenhaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/confirma_senha"
                         android:backgroundTint="@color/colorEditText"
                         android:hint="Confirme a Senha"
                         android:inputType="textPassword"
                         android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
