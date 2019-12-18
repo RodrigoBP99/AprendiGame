@@ -40,16 +40,17 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="3dp"
                     android:textColorHint="@color/colorEditText">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextUserMatriculaCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/user_icon"
+                        android:drawableStart="@drawable/user_icon"
                         android:backgroundTint="@color/colorEditText"
-                        android:hint="Matricula"
+                        android:hint="Celular"
+                        android:maxLength="14"
                         android:inputType="number"
                         android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -58,14 +59,14 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="3dp"
                     android:textColorHint="@color/colorEditText">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextNomeCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/perfil_icon"
+                        android:drawableStart="@drawable/perfil_icon"
                         android:backgroundTint="@color/colorEditText"
                         android:hint="Nome"
                         android:inputType="textShortMessage|textCapWords"
@@ -76,51 +77,17 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="3dp"
                     android:textColorHint="@color/colorEditText">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextCursoCadastro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/course_icon"
+                        android:drawableStart="@drawable/course_icon"
                         android:backgroundTint="@color/colorEditText"
                         android:hint="Curso"
                         android:inputType="textShortMessage|textCapWords"
-                        android:textColor="@color/colorEditText" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:textColorHint="@color/colorEditText">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextSenhaCadastro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/senha_icon"
-                        android:backgroundTint="@color/colorEditText"
-                        android:hint="Senha"
-                        android:inputType="textPassword"
-                        android:textColor="@color/colorEditText" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:textColorHint="@color/colorEditText">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextConfirmaSenhaCadastro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/confirma_senha"
-                        android:backgroundTint="@color/colorEditText"
-                        android:hint="Confirme a Senha"
-                        android:inputType="textPassword"
                         android:textColor="@color/colorEditText" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -134,7 +101,7 @@
                     android:id="@+id/buttonCancelarCadastro"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginEnd="30dp"
                     android:background="@android:color/transparent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/botao_cancelar_icon" />

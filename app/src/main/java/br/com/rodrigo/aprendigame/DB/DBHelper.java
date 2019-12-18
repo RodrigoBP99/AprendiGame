@@ -13,6 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COLUN_NOME_STUDENT = "NAME";
     public static final String COLUN_COURSE_STUDENT = "COURSE";
     public static final String COLUN_PHOTO_STUDENT = "PHOTO";
+    public static final String COLUN_BIRTHDAY_STUDENT = "BIRTHDAY";
     public static final String COLUN_POINTS_STUDENT = "POINTS";
     public static final String COLUN_REQUIRED_POINTS_STUDENT = "REQUIREDPOINTS";
     public static final String COLUN_ACTUAL_LEVEL_STUDENT = "ACTUALLEVEL";
@@ -33,6 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
             COLUN_NOME_STUDENT + " TEXT, " +
             COLUN_COURSE_STUDENT + " TEXT, " +
             COLUN_PHOTO_STUDENT + " TEXT, " +
+            COLUN_BIRTHDAY_STUDENT + " TEXT," +
             COLUN_POINTS_STUDENT + " REAL, " +
             COLUN_REQUIRED_POINTS_STUDENT + " REAL, " +
             COLUN_ACTUAL_LEVEL_STUDENT + " INTEGER, " +

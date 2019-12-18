@@ -3,6 +3,7 @@ package br.com.rodrigo.aprendigame.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -67,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (firebaseUser != null){
             progressBarVisibility(View.GONE, View.GONE, View.VISIBLE, false);
-            getStudent(Long.valueOf(Objects.requireNonNull(firebaseUser.getPhoneNumber())));
+            getStudent(Long.parseLong(firebaseUser.getProviderId()));
         }
     }
 
@@ -92,11 +93,39 @@ public class LoginActivity extends AppCompatActivity {
             editTextUserMatriculaLogin.requestFocus();
             progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
         } else {
-            Intent intent = new Intent(getApplicationContext(), AuthenticationActivity.class);
-            intent.putExtra(NUMERO, phoneNumber);
-            startActivity(intent);
-            finish();
+            try {
+                checkUserPhone();
+            } catch (Exception e){
+                Log.e("PhoneError: ", e.getMessage());
+                progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
+            }
         }
+    }
+
+    private void checkUserPhone() {
+        SetupRest.apiService.getUserExistence(phoneNumber).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()) {
+                    if (response.body()) {
+                        Intent intent = new Intent(getApplicationContext(), AuthenticationActivity.class);
+                        intent.putExtra(NUMERO, phoneNumber);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        editTextUserMatriculaLogin.setError("Número não registrado");
+                    }
+                }
+                progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "Parece que ocorreu um erro", Toast.LENGTH_LONG).show();
+                Log.e("PhoneAPI: ", t.getMessage());
+                progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
+            }
+        });
     }
 
     private void progressBarVisibility(int visibilityInput, int gone, int visible, boolean b) {
@@ -114,8 +143,8 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void getStudent(Long numero) {
-        SetupRest.apiService.getStudent(numero).enqueue(new Callback<Student>() {
+    private void getStudent(Long idStudent) {
+        SetupRest.apiService.getStudent(idStudent).enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()){
@@ -128,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
-                    recoverLocalStudent(numero);
+                    recoverLocalStudent(idStudent);
                     Snackbar.make(getCurrentFocus(), "Ops! Parece que ocorreu um erro.", Snackbar.LENGTH_LONG).show();
                 }
             }
@@ -136,14 +165,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Você está desconectado!", Toast.LENGTH_LONG).show();
-                recoverLocalStudent(numero);
+                recoverLocalStudent(idStudent);
                 progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
             }
         });
     }
 
-    private void recoverLocalStudent(Long numero) {
-        student = studentDAO.selectUsuario(String.valueOf(numero));
+    private void recoverLocalStudent(Long idStudent) {
+        student = studentDAO.selectUsuario(String.valueOf(idStudent));
         if (student != null) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);

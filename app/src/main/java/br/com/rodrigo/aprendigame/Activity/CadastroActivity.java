@@ -7,7 +7,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -26,25 +25,28 @@ import java.io.IOException;
 
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CadastroActivity extends AppCompatActivity {
 
-    private Student usuario = new Student();
+    private Student student = new Student();
     private String fotoSelecionada;
+    private String turma;
+    private String nome;
+    private String userPhone;
 
     @BindView(R.id.editTextUserMatriculaCadastro)
-    EditText editTextUserMatricula;
+    EditText editTextUserPhone;
     @BindView(R.id.editTextNomeCadastro)
     EditText editTextNome;
     @BindView(R.id.editTextCursoCadastro)
     EditText editTextTurma;
-    @BindView(R.id.editTextSenhaCadastro)
-    EditText editTextSenha;
-    @BindView(R.id.editTextConfirmaSenhaCadastro)
-    EditText editTextConfrimarSenha;
     @BindView(R.id.toolbarCadastro)
     Toolbar toolbar;
     @BindView(R.id.textViewTitleToolbarMain)
@@ -61,7 +63,8 @@ public class CadastroActivity extends AppCompatActivity {
         textViewToolbar.setText(getString(R.string.cadastro));
     }
 
-    @OnClick(R.id.imageViewStudentRegister) void carregarImagem(){
+    @OnClick(R.id.imageViewStudentRegister)
+    void carregarImagem() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, 0);
@@ -72,7 +75,7 @@ public class CadastroActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 0) {
-            if (data != null){
+            if (data != null) {
                 fotoSelecionada = String.valueOf(data.getData());
                 Bitmap bitmap;
                 try {
@@ -85,16 +88,16 @@ public class CadastroActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.buttonConfirmarCadastro) void confirmRegister(){
-        String userMatricula = editTextUserMatricula.getText().toString().trim();
-        String nome = editTextNome.getText().toString().trim();
-        String turma = editTextTurma.getText().toString().trim();
-        String senha = editTextSenha.getText().toString();
-        String confirmarSenha = editTextConfrimarSenha.getText().toString();
+    @OnClick(R.id.buttonConfirmarCadastro)
+    void confirmRegister() {
+        userPhone = editTextUserPhone.getText().toString().trim();
+        nome = editTextNome.getText().toString().trim();
+        turma = editTextTurma.getText().toString().trim();
         cadastroUsuario();
     }
 
-    @OnClick(R.id.buttonCancelarCadastro) void cancelRegister(){
+    @OnClick(R.id.buttonCancelarCadastro)
+    void cancelRegister() {
         alertaRegisterCancel();
     }
 
@@ -107,16 +110,53 @@ public class CadastroActivity extends AppCompatActivity {
         AlertDialog.Builder alerta = new AlertDialog.Builder(CadastroActivity.this, R.style.AlertDialogCustom);
         alerta.setTitle(R.string.titulo_alerta_cancelar_cadastro)
                 .setPositiveButton(R.string.sim, (dialog, which) ->
-                finish()).setNegativeButton(R.string.nao, null)
+                        finish()).setNegativeButton(R.string.nao, null)
                 .setMessage(R.string.messagem_cancelar_cadastro).show();
     }
 
-    public void cadastroUsuario(){
+    public void cadastroUsuario() {
         //Metodo para fechar teclado
         View view = getCurrentFocus();
         if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+        if (userPhone.isEmpty()) {
+            editTextUserPhone.setError("Campo vazio");
+        } else if (nome.isEmpty()) {
+            editTextNome.setError("Campo vazio");
+        } else if (turma.isEmpty()) {
+            editTextTurma.setError("Campo vazio");
+        } else if (fotoSelecionada == null || fotoSelecionada.isEmpty()) {
+            Toast.makeText(this, "Selecione uma foto!", Toast.LENGTH_LONG).show();
+        } else {
+            student.setId(Long.parseLong(userPhone));
+            student.setName(nome);
+            student.setCourse(turma);
+            student.setPhoto(fotoSelecionada);
+            student.setActualLevel(0);
+            student.setNextLevel(1);
+            student.setPoints(0);
+            student.setRequiredPoints(200);
+
+            createStudent(student);
+        }
+    }
+
+    private void createStudent(Student student) {
+        SetupRest.apiService.createStudent(student).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(CadastroActivity.this, "Usuário criado om sucesso", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
     }
 }

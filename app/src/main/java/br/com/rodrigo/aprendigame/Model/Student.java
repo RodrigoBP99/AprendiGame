@@ -3,6 +3,7 @@ package br.com.rodrigo.aprendigame.Model;
 import android.content.ContentValues;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import br.com.rodrigo.aprendigame.DB.DBHelper;
 import lombok.Data;
@@ -14,6 +15,7 @@ public class Student implements Serializable {
     private String name;
     private String course;
     private String photo;
+    private Date birthday;
     private double points;
     private double requiredPoints;
     private int actualLevel;

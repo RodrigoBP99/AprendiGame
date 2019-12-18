@@ -19,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -75,10 +76,12 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     @OnClick(R.id.buttonConfirmCode) void confirmCode(){
         String code = editText.getText().toString();
+        progressBarVisibility(View.GONE, View.VISIBLE);
         hideKeybord();
         if (code.isEmpty() || code.length() < 6){
             editText.setError("Código Incorreto, digite o código correto!");
             editText.requestFocus();
+            progressBarVisibility(View.VISIBLE, View.GONE);
         } else {
             try {
                 verifyCodeSent(code);
@@ -130,7 +133,10 @@ public class AuthenticationActivity extends AppCompatActivity {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(AuthenticationActivity.this, task -> {
             try {
                 if (task.isSuccessful()) {
-                    getStudent(Long.valueOf(numero));
+                    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                    if (firebaseUser != null) {
+                        getStudent(Long.parseLong(firebaseUser.getProviderId()));
+                    }
                 }
             } catch (Exception e) {
                 Log.e("ErroStudentLogin: ", e.getMessage());
@@ -141,8 +147,8 @@ public class AuthenticationActivity extends AppCompatActivity {
         });
     }
 
-    private void getStudent(Long numero) {
-        SetupRest.apiService.getStudent(numero).enqueue(new Callback<Student>() {
+    private void getStudent(Long idStudent) {
+        SetupRest.apiService.getStudent(idStudent).enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()){
