@@ -25,11 +25,16 @@ public class NewQuizzActivity extends AppCompatActivity {
     @BindView(R.id.tabLayoutNewQuiz)
     TabLayout tabLayout;
 
+    public static String LISTQUIZ = "listQuiz";
+    public static String QUIZID = "quizID";
+    public static String SELECTEDQUESTION = "selectedQuestion";
     public static String titleQuizz;
-    public static int quizId = 0;
-    public static ArrayList<Quizz> quizzes = new ArrayList<>();
+    private int quizId = 0;
+    private ArrayList<Quizz> quizzes = new ArrayList<>();
+    private NewQuizQuestionFragment quizQuestionFragment;
+    private NewQuizFragment newQuizFragment;
 
-    public static List<Question> selectedQuestions = new ArrayList<>();
+    public static ArrayList<Question> selectedQuestions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +43,24 @@ public class NewQuizzActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         textView.setText("Novo Quiz");
 
-        ArrayList<Quizz> quizzActivity = (ArrayList<Quizz>) getIntent().getSerializableExtra(QuizzActivity.QUIZ);
+        /*ArrayList<Quizz> quizzActivity = (ArrayList<Quizz>) getIntent().getSerializableExtra(QuizzActivity.QUIZ);
         for (Quizz quizz : quizzActivity){
             quizzes.add(quizz);
-        }
+        }*/
+
+        Question question = new Question();
+        question.setQuestionTitle("oalaolaolaooal");
+        List<Question> questions = new ArrayList<>();
+        questions.add(question);
+        Quizz quizz = new Quizz();
+        quizz.setTitle("ola");
+        quizz.setQuestions(questions);
+        quizzes.add(quizz);
+
+        Quizz quizz2 = new Quizz();
+        quizz2.setTitle("ola");
+        quizz2.setQuestions(questions);
+        quizzes.add(quizz2);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, new NewQuizFragment()).commit();
 
@@ -55,10 +74,12 @@ public class NewQuizzActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, new NewQuizFragment()).commit();
+                    sendArgToNewQuizFrag();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, newQuizFragment).commit();
                 } else {
                     quizId = (int) tab.getTag();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, new NewQuizQuestionFragment()).commit();
+                    sendArgToQuestionFrag();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, quizQuestionFragment).commit();
                 }
             }
 
@@ -72,6 +93,21 @@ public class NewQuizzActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void sendArgToNewQuizFrag() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(SELECTEDQUESTION, selectedQuestions);
+        newQuizFragment = new NewQuizFragment();
+        newQuizFragment.setArguments(bundle);
+    }
+
+    private void sendArgToQuestionFrag() {
+        Bundle listQuiz = new Bundle();
+        listQuiz.putSerializable(LISTQUIZ, quizzes);
+        listQuiz.putInt(QUIZID, quizId);
+        quizQuestionFragment = new NewQuizQuestionFragment();
+        quizQuestionFragment.setArguments(listQuiz);
     }
 
     private void createTabItems() {

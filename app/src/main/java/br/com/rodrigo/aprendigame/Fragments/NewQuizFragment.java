@@ -39,6 +39,8 @@ public class NewQuizFragment extends Fragment {
     RecyclerView recyclerView;
 
     private static List<Question> questions = new ArrayList<>();
+    private ArrayList<Question> selectedQuestions = new ArrayList<>();
+    private NewQuizzAdadpter newQuizzAdadpter;
 
     public NewQuizFragment() {
         // Required empty public constructor
@@ -57,8 +59,11 @@ public class NewQuizFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
 
-        questions = NewQuizzActivity.selectedQuestions;
-        NewQuizzAdadpter newQuizzAdadpter = new NewQuizzAdadpter(questions, getActivity(), new NewQuizzAdadpter.OnItemCheckListener() {
+        if (getArguments() != null) {
+            selectedQuestions = (ArrayList<Question>) getArguments().getSerializable(NewQuizzActivity.SELECTEDQUESTION);
+        }
+        questions = selectedQuestions;
+        newQuizzAdadpter = new NewQuizzAdadpter(questions, getActivity(), new NewQuizzAdadpter.OnItemCheckListener() {
             @Override
             public void onItemCheck(Question question) {
 
@@ -69,6 +74,7 @@ public class NewQuizFragment extends Fragment {
 
             }
         });
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(newQuizzAdadpter);
@@ -101,7 +107,7 @@ public class NewQuizFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        questions =  NewQuizzActivity.selectedQuestions;
+        questions =  selectedQuestions;
         editTextTitleNewQuizz.setText(NewQuizzActivity.titleQuizz);
     }
 }

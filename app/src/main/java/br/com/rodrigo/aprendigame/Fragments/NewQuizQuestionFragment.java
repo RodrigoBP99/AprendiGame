@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class NewQuizQuestionFragment extends Fragment {
 
     private Quizz quizz;
     private List<Question> selectedQuestions = new ArrayList<>();
+    private ArrayList<Quizz> quizzes = new ArrayList<>();
 
     public NewQuizQuestionFragment() {
         // Required empty public constructor
@@ -59,7 +61,11 @@ public class NewQuizQuestionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
 
-        quizz = NewQuizzActivity.quizzes.get(NewQuizzActivity.quizId);
+
+        quizzes = (ArrayList<Quizz>) getArguments().getSerializable(NewQuizzActivity.LISTQUIZ);
+        int quizID = getArguments().getInt(NewQuizzActivity.QUIZID);
+
+        quizz = quizzes.get(quizID);
 
         textView.setText(quizz.getTitle());
 
@@ -85,6 +91,6 @@ public class NewQuizQuestionFragment extends Fragment {
 
         //remove aula do tabLayout
         tabLayout.removeTabAt(tabLayout.getSelectedTabPosition());
-        NewQuizzActivity.quizzes.remove(quizz.getId());
+        quizzes.remove(quizz.getId());
     }
 }
