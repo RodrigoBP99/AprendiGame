@@ -43,24 +43,10 @@ public class NewQuizzActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         textView.setText("Novo Quiz");
 
-        /*ArrayList<Quizz> quizzActivity = (ArrayList<Quizz>) getIntent().getSerializableExtra(QuizzActivity.QUIZ);
+        ArrayList<Quizz> quizzActivity = (ArrayList<Quizz>) getIntent().getSerializableExtra(QuizzActivity.LISTQUIZ);
         for (Quizz quizz : quizzActivity){
             quizzes.add(quizz);
-        }*/
-
-        Question question = new Question();
-        question.setQuestionTitle("oalaolaolaooal");
-        List<Question> questions = new ArrayList<>();
-        questions.add(question);
-        Quizz quizz = new Quizz();
-        quizz.setTitle("ola");
-        quizz.setQuestions(questions);
-        quizzes.add(quizz);
-
-        Quizz quizz2 = new Quizz();
-        quizz2.setTitle("ola");
-        quizz2.setQuestions(questions);
-        quizzes.add(quizz2);
+        }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, new NewQuizFragment()).commit();
 

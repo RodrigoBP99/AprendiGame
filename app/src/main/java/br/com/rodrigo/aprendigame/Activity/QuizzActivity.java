@@ -2,9 +2,9 @@ package br.com.rodrigo.aprendigame.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,7 @@ import retrofit2.Response;
 
 public class QuizzActivity extends AppCompatActivity {
 
-    public static String QUIZ = "quiz";
+    public static String LISTQUIZ = "quiz";
     private QuizzAdapter adapter;
     private static List<Quizz> quizzes;
     @BindView(R.id.recycleViewQuizz)
@@ -53,9 +52,13 @@ public class QuizzActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()){
                 case R.id.itemNewQuizz:
-                    Intent intent = new Intent(QuizzActivity.this, NewQuizzActivity.class);
-                    intent.putExtra("quiz", (ArrayList<Quizz>) quizzes);
-                    startActivity(intent);
+                    if (quizzes != null) {
+                        Intent intent = new Intent(QuizzActivity.this, NewQuizzActivity.class);
+                        intent.putExtra(LISTQUIZ, (ArrayList<Quizz>) quizzes);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(QuizzActivity.this, "Parece que essa aula não contem nenhum Quizz", Toast.LENGTH_LONG).show();
+                    }
             }
             return false;
         });
