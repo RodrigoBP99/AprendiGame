@@ -3,7 +3,7 @@ package br.com.rodrigo.aprendigame.Model;
 import android.content.ContentValues;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
 import br.com.rodrigo.aprendigame.DB.DBHelper;
 import lombok.Data;
@@ -13,9 +13,14 @@ public class Student implements Serializable {
 
     private Long id;
     private String name;
-    private String course;
+    private String courseName;
     private String photo;
-    private Date birthday;
+    private String schoolName;
+    private String birthday;
+    private String details;
+    private String course;
+    private List<Presenc> presences;
+    private List<CourseClass> listClass;
     private double points;
     private double requiredPoints;
     private int actualLevel;
@@ -25,7 +30,7 @@ public class Student implements Serializable {
         ContentValues valores = new ContentValues();
         valores.put(DBHelper.COLUN_ID_STUDENT, id);
         valores.put(DBHelper.COLUN_NOME_STUDENT, name);
-        valores.put(DBHelper.COLUN_COURSE_STUDENT, course);
+        valores.put(DBHelper.COLUN_COURSE_STUDENT, courseName);
         valores.put(DBHelper.COLUN_PHOTO_STUDENT, photo);
         valores.put(DBHelper.COLUN_POINTS_STUDENT, points);
         valores.put(DBHelper.COLUN_REQUIRED_POINTS_STUDENT, requiredPoints);

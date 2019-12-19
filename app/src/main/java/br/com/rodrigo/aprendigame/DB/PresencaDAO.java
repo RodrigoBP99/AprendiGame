@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 
-import br.com.rodrigo.aprendigame.Model.Presenca;
+import br.com.rodrigo.aprendigame.Model.Presenc;
 
 public class PresencaDAO extends DBHelper{
 
@@ -13,8 +13,8 @@ public class PresencaDAO extends DBHelper{
         super(applicationContext);
     }
 
-    public void inserirPresenca(Presenca presenca) {
-        getWritableDatabase().insert(TABELA_PRESENCA, null, presenca.getValues());
+    public void inserirPresenca(Presenc presenc) {
+        getWritableDatabase().insert(TABELA_PRESENCA, null, presenc.getValues());
     }
 
     public void limparPresencas(){

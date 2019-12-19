@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import br.com.rodrigo.aprendigame.Adapter.PresencaAdapter;
-import br.com.rodrigo.aprendigame.Model.Presenca;
+import br.com.rodrigo.aprendigame.Model.Presenc;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +34,7 @@ public class CourseClassFragment extends Fragment {
     private int CameraPermission = 1;
     @BindView(R.id.recycleViewCourseClass)
     RecyclerView recyclerViewCourseClass;
-    private ArrayList<Presenca> presencas = new ArrayList<>();
+    private ArrayList<Presenc> presencs = new ArrayList<>();
 
     public CourseClassFragment() {
         // Required empty public constructor
@@ -57,20 +57,16 @@ public class CourseClassFragment extends Fragment {
         recyclerViewCourseClass.addItemDecoration(itemDecoration);
         recyclerViewCourseClass.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        Presenca presenca = new Presenca();
-        presenca.setAula("Pesquisa Operacional");
-        presenca.setData("05/12/2019");
-        presenca.setHora("20:30");
-        presencas.add(presenca);
+        Presenc presenc = new Presenc();
 
-        Presenca presenca1 = new Presenca();
-        presenca1.setAula("Tecnicas de Projeto");
-        presenca1.setData("06/12/2019");
-        presenca1.setHora("18:35");
+        presencs.add(presenc);
 
-        presencas.add(presenca1);
+        Presenc presenc1 = new Presenc();
 
-        PresencaAdapter presencaAdapter = new PresencaAdapter(presencas, getContext());
+
+        presencs.add(presenc1);
+
+        PresencaAdapter presencaAdapter = new PresencaAdapter(presencs, getContext());
 
         recyclerViewCourseClass.setAdapter(presencaAdapter);
     }

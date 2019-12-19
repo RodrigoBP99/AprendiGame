@@ -27,8 +27,8 @@ public class StudentDAO extends DBHelper {
         Student student = new Student();
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String[] collumns = {COLUN_ID_STUDENT, COLUN_NOME_STUDENT, COLUN_COURSE_STUDENT, COLUN_PHOTO_STUDENT, COLUN_POINTS_STUDENT,
-                COLUN_REQUIRED_POINTS_STUDENT, COLUN_ACTUAL_LEVEL_STUDENT, COLUN_NEXT_LEVEL_STUDENT};
+        String[] collumns = {COLUN_ID_STUDENT, COLUN_NOME_STUDENT, COLUN_COURSE_STUDENT, COLUN_PHOTO_STUDENT, COLUN_BIRTHDAY_STUDENT,
+                COLUN_POINTS_STUDENT, COLUN_REQUIRED_POINTS_STUDENT, COLUN_ACTUAL_LEVEL_STUDENT, COLUN_NEXT_LEVEL_STUDENT};
         String selection = COLUN_ID_STUDENT + " = ?";
         String[] selectionArgs = {phoneNumber};
 
@@ -39,6 +39,7 @@ public class StudentDAO extends DBHelper {
             student.setName(cursor.getString(cursor.getColumnIndex(COLUN_NOME_STUDENT)));
             student.setCourse(cursor.getString(cursor.getColumnIndex(COLUN_COURSE_STUDENT)));
             student.setPhoto(cursor.getString(cursor.getColumnIndex(COLUN_PHOTO_STUDENT)));
+            student.setBirthday(cursor.getString(cursor.getColumnIndex(COLUN_BIRTHDAY_STUDENT)));
             student.setPoints(cursor.getDouble(cursor.getColumnIndex(COLUN_POINTS_STUDENT)));
             student.setRequiredPoints(cursor.getDouble(cursor.getColumnIndex(COLUN_REQUIRED_POINTS_STUDENT)));
             student.setActualLevel(cursor.getInt(cursor.getColumnIndex(COLUN_ACTUAL_LEVEL_STUDENT)));

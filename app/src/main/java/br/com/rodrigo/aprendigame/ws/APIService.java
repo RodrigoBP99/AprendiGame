@@ -3,7 +3,7 @@ package br.com.rodrigo.aprendigame.ws;
 import java.util.List;
 
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
-import br.com.rodrigo.aprendigame.Model.Presenca;
+import br.com.rodrigo.aprendigame.Model.Presenc;
 import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.Model.Student;
 import retrofit2.Call;
@@ -21,7 +21,7 @@ public interface APIService {
     })
 
     @POST("novaPresenca")
-    Call<Presenca> createPresenca(@Body Presenca presenca);
+    Call<Presenc> createPresenca(@Body Presenc presenc);
 
     @POST("save")
     Call<String> createStudent(@Body Student student);

@@ -19,12 +19,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import br.com.rodrigo.aprendigame.Activity.AuthenticationActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
-import br.com.rodrigo.aprendigame.Activity.MainActivity;
 import br.com.rodrigo.aprendigame.DB.PresencaDAO;
-import br.com.rodrigo.aprendigame.DB.StudentDAO;
-import br.com.rodrigo.aprendigame.Model.Presenca;
+import br.com.rodrigo.aprendigame.Model.Presenc;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
@@ -92,10 +89,10 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
             onResume();
         } else {
             try {
-                Presenca presenca = new Presenca();
-                presenca.setId(scannedCode);
+                Presenc presenc = new Presenc();
+                presenc.setId(scannedCode);
 
-                createPresenca(presenca);
+                createPresenca(presenc);
 
             } catch (Exception e){
                 e.printStackTrace();
@@ -128,22 +125,22 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
         ScannerView.startCamera();
     }
 
-    public void createPresenca(final Presenca presenca){
+    public void createPresenca(final Presenc presenc){
         try {
-            SetupRest.apiService.createPresenca(presenca).enqueue(new Callback<Presenca>() {
+            SetupRest.apiService.createPresenca(presenc).enqueue(new Callback<Presenc>() {
                 PresencaDAO presencaDAO = new PresencaDAO(getContext());
                 @Override
-                public void onResponse(Call<Presenca> call, Response<Presenca> response) {
+                public void onResponse(Call<Presenc> call, Response<Presenc> response) {
                     if (response.isSuccessful()){
 
                         Toast.makeText(getContext(), getString(R.string.presenca_atualizada), Toast.LENGTH_SHORT).show();
                     } else{
-                        presencaDAO.inserirPresenca(presenca);
+                        presencaDAO.inserirPresenca(presenc);
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Presenca> call, Throwable t) {
+                public void onFailure(Call<Presenc> call, Throwable t) {
                     Log.e("SendPresencaErro: ", t.getMessage());
                 }
             });

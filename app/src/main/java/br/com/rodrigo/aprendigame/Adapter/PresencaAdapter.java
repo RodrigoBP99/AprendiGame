@@ -1,7 +1,6 @@
 package br.com.rodrigo.aprendigame.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.rodrigo.aprendigame.Activity.QuizzActivity;
-import br.com.rodrigo.aprendigame.Model.Presenca;
+import br.com.rodrigo.aprendigame.Model.Presenc;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.PresencaViewHolder> {
 
-    private ArrayList<Presenca> presencas;
+    private ArrayList<Presenc> presencs;
     private Context context;
 
-    public PresencaAdapter(ArrayList<Presenca> presencas, Context context) {
-        this.presencas = presencas;
+    public PresencaAdapter(ArrayList<Presenc> presencs, Context context) {
+        this.presencs = presencs;
         this.context = context;
     }
 
@@ -39,24 +37,21 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
 
     @Override
     public void onBindViewHolder(@NonNull PresencaViewHolder holder, int posicao) {
-        final Presenca presenca = presencas.get(posicao);
+        final Presenc presenc = presencs.get(posicao);
 
-        holder.textViewProfessor.setText(presenca.getAula());
-        holder.textViewData.setText(presenca.getData());
-        holder.textViewHora.setText(presenca.getHora());
     }
 
     @Override
     public int getItemCount() {
-        if (presencas != null){
-            return presencas.size();
+        if (presencs != null){
+            return presencs.size();
         } else {
             return 0;
         }
     }
 
-    public void update(List<Presenca> presencasLista){
-        this.presencas = (ArrayList<Presenca>) presencasLista;
+    public void update(List<Presenc> presencasLista){
+        this.presencs = (ArrayList<Presenc>) presencasLista;
         notifyDataSetChanged();
     }
 

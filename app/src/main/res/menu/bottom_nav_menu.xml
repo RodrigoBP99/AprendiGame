@@ -8,7 +8,7 @@
     <item
         android:id="@+id/navigation_presença"
         android:icon="@drawable/presenca_icon"
-        android:title="@string/presencas" />
+        android:title="@string/presencs" />
 
     <item
         android:id="@+id/navigation_perfil"
