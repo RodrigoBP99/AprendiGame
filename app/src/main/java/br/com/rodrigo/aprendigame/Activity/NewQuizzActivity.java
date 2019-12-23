@@ -18,7 +18,7 @@ import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewQuizzActivity extends AppCompatActivity {
+public class NewQuizzActivity extends AppCompatActivity  implements NewQuizQuestionFragment.CheckedQuestionsPass, NewQuizFragment.TitleNewQuizPass {
 
     @BindView(R.id.textViewTitleToolbarMain)
     TextView textView;
@@ -27,14 +27,14 @@ public class NewQuizzActivity extends AppCompatActivity {
 
     public static String LISTQUIZ = "listQuiz";
     public static String QUIZID = "quizID";
-    public static String SELECTEDQUESTION = "selectedQuestion";
-    public static String titleQuizz;
+    public static String CHECKEDQUESTIONS = "checkQuestions";
+    public static String TITLENEWQUIZ = "titleNewQuiz";
     private int quizId = 0;
     private ArrayList<Quizz> quizzes = new ArrayList<>();
+    private ArrayList<Question> checkedQuestions = new ArrayList<>();
     private NewQuizQuestionFragment quizQuestionFragment;
-    private NewQuizFragment newQuizFragment;
-
-    public static ArrayList<Question> selectedQuestions = new ArrayList<>();
+    private Bundle listQuiz = new Bundle();
+    private String titleNewQuiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +49,27 @@ public class NewQuizzActivity extends AppCompatActivity {
         }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, new NewQuizFragment()).commit();
-
         createTabItems();
-
         tabNavigation();
+
     }
+
 
     private void tabNavigation() {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0){
-                    sendArgToNewQuizFrag();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, newQuizFragment).commit();
+                    if (checkedQuestions.size() > 0) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable(CHECKEDQUESTIONS, checkedQuestions);
+                        bundle.putString(TITLENEWQUIZ, titleNewQuiz);
+                        NewQuizFragment newQuizFragment = new NewQuizFragment();
+                        newQuizFragment.setArguments(bundle);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, newQuizFragment).commit();
+                    } else{
+                        getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutNewQuizz, new NewQuizFragment()).commit();
+                    }
                 } else {
                     quizId = (int) tab.getTag();
                     sendArgToQuestionFrag();
@@ -81,15 +89,17 @@ public class NewQuizzActivity extends AppCompatActivity {
         });
     }
 
-    private void sendArgToNewQuizFrag() {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(SELECTEDQUESTION, selectedQuestions);
-        newQuizFragment = new NewQuizFragment();
-        newQuizFragment.setArguments(bundle);
+    @Override
+    public void listQuestion(ArrayList<Question> questions) {
+        checkedQuestions.addAll(questions);
+    }
+
+    @Override
+    public void titleNewQuiz(String titleNewQuiz) {
+        this.titleNewQuiz = titleNewQuiz;
     }
 
     private void sendArgToQuestionFrag() {
-        Bundle listQuiz = new Bundle();
         listQuiz.putSerializable(LISTQUIZ, quizzes);
         listQuiz.putInt(QUIZID, quizId);
         quizQuestionFragment = new NewQuizQuestionFragment();
@@ -103,14 +113,5 @@ public class NewQuizzActivity extends AppCompatActivity {
             tabLayout.addTab(tabLayout.newTab().setText("Aula " + i).setTag(tag));
             i++;
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        titleQuizz = "";
-        selectedQuestions.clear();
-        quizzes.clear();
     }
 }

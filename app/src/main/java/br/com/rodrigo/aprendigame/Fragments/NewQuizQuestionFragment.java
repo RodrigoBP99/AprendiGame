@@ -1,6 +1,7 @@
 package br.com.rodrigo.aprendigame.Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -15,9 +16,7 @@ import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import br.com.rodrigo.aprendigame.Activity.NewQuizzActivity;
 import br.com.rodrigo.aprendigame.Adapter.NewQuizzAdadpter;
@@ -42,8 +41,10 @@ public class NewQuizQuestionFragment extends Fragment {
     TabLayout tabLayout;
 
     private Quizz quizz;
-    private List<Question> selectedQuestions = new ArrayList<>();
+    private ArrayList<Question> selectedQuestions = new ArrayList<>();
     private ArrayList<Quizz> quizzes = new ArrayList<>();
+    private ArrayList<Question> quizQuestions = new ArrayList<>();
+    private NewQuizzAdadpter newQuizzAdadpter;
 
     public NewQuizQuestionFragment() {
         // Required empty public constructor
@@ -61,17 +62,14 @@ public class NewQuizQuestionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
 
-
         quizzes = (ArrayList<Quizz>) getArguments().getSerializable(NewQuizzActivity.LISTQUIZ);
         int quizID = getArguments().getInt(NewQuizzActivity.QUIZID);
-
         quizz = quizzes.get(quizID);
-
         textView.setText(quizz.getTitle());
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        quizQuestions = (ArrayList<Question>) quizz.getQuestions();
 
-        NewQuizzAdadpter newQuizzAdadpter = new NewQuizzAdadpter(quizz.getQuestions(), getActivity(), new NewQuizzAdadpter.OnItemCheckListener() {
+        newQuizzAdadpter = new NewQuizzAdadpter(quizQuestions, getActivity(), new NewQuizzAdadpter.OnItemCheckListener() {
             @Override
             public void onItemCheck(Question question) {
                 selectedQuestions.add(question);
@@ -85,12 +83,39 @@ public class NewQuizQuestionFragment extends Fragment {
         recyclerView.setAdapter(newQuizzAdadpter);
     }
 
-    @OnClick(R.id.buttonAddQuestions) void addQuestions(){
-        //adicionar questões selecionadas para uma lista e tirar aula da lista.
-        NewQuizzActivity.selectedQuestions.addAll(selectedQuestions);
+    private CheckedQuestionsPass mCallback;
 
-        //remove aula do tabLayout
-        tabLayout.removeTabAt(tabLayout.getSelectedTabPosition());
-        quizzes.remove(quizz.getId());
+    public interface CheckedQuestionsPass {
+        void listQuestion(ArrayList<Question> questions);
+    }
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        // This makes sure that the host activity has implemented the callback interface
+        // If not, it throws an exception
+        try
+        {
+            mCallback = (CheckedQuestionsPass) context;
+        }
+        catch (ClassCastException e)
+        {
+            throw new ClassCastException(context.toString()+ " must implement OnImageClickListener");
+        }
+    }
+
+    @OnClick(R.id.buttonAddQuestions) void addQuestions(){
+        if (selectedQuestions.size() != 0) {
+            //adicionar questões selecionadas para uma lista e tirar aula da lista.
+            mCallback.listQuestion(selectedQuestions);
+            //remove questões selecionadas da aula
+            quizQuestions.removeAll(selectedQuestions);
+            newQuizzAdadpter.update(quizQuestions);
+            if (quizQuestions.size() == 0){
+                tabLayout.removeTabAt(tabLayout.getSelectedTabPosition());
+                quizzes.remove(quizz.getId());
+            }
+        }
     }
 }

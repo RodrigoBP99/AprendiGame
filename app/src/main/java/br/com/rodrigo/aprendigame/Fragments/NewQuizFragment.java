@@ -1,6 +1,7 @@
 package br.com.rodrigo.aprendigame.Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -38,6 +39,7 @@ public class NewQuizFragment extends Fragment {
     @BindView(R.id.recycleViewNewQuizQuestions)
     RecyclerView recyclerView;
 
+    private String titleNewQuiz;
     private static List<Question> questions = new ArrayList<>();
     private ArrayList<Question> selectedQuestions = new ArrayList<>();
     private NewQuizzAdadpter newQuizzAdadpter;
@@ -55,13 +57,45 @@ public class NewQuizFragment extends Fragment {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        titleNewQuiz = editTextTitleNewQuizz.getText().toString();
+        mCallback.titleNewQuiz(titleNewQuiz);
+    }
+
+    private TitleNewQuizPass mCallback;
+
+    public interface TitleNewQuizPass {
+        void titleNewQuiz(String titleNewQuiz);
+    }
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        // This makes sure that the host activity has implemented the callback interface
+        // If not, it throws an exception
+        try
+        {
+            mCallback = (TitleNewQuizPass) context;
+        }
+        catch (ClassCastException e)
+        {
+            throw new ClassCastException(context.toString()+ " must implement OnImageClickListener");
+        }
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
 
-        if (getArguments() != null) {
-            selectedQuestions = (ArrayList<Question>) getArguments().getSerializable(NewQuizzActivity.SELECTEDQUESTION);
-        }
+       /* if (savedInstanceState != null) {
+            editTextTitleNewQuizz.setText(savedInstanceState.getString("titleQuiz"));
+        }*/
+        getAgs();
+
+        editTextTitleNewQuizz.setText(titleNewQuiz);
         questions = selectedQuestions;
         newQuizzAdadpter = new NewQuizzAdadpter(questions, getActivity(), new NewQuizzAdadpter.OnItemCheckListener() {
             @Override
@@ -75,17 +109,25 @@ public class NewQuizFragment extends Fragment {
             }
         });
 
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(newQuizzAdadpter);
     }
 
-    @OnClick(R.id.buttonConfirmarNovoQuizz) void newQuiz(){
-        String texto = editTextTitleNewQuizz.getText().toString();
-        if (!texto.isEmpty() && questions.size() >0) {
+    private void getAgs() {
+        if (getArguments() != null) {
+            ArrayList<Question> argQuestions = (ArrayList<Question>) getArguments().getSerializable(NewQuizzActivity.CHECKEDQUESTIONS);
+            selectedQuestions.addAll(argQuestions);
+            titleNewQuiz = getArguments().getString(NewQuizzActivity.TITLENEWQUIZ);
+        }
+    }
+
+    @OnClick(R.id.buttonConfirmarNovoQuizz)
+    void newQuiz() {
+        titleNewQuiz = editTextTitleNewQuizz.getText().toString();
+        if (!titleNewQuiz.isEmpty() && questions.size() > 0) {
             try {
                 Quizz quizz = new Quizz();
-                quizz.setTitle(texto);
+                quizz.setTitle(titleNewQuiz);
                 quizz.setQuestions(questions);
                 quizz.setAmountOfQuestions(String.valueOf(questions.size()));
             } catch (Exception e) {
@@ -96,18 +138,4 @@ public class NewQuizFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        NewQuizzActivity.titleQuizz = editTextTitleNewQuizz.getText().toString();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        questions =  selectedQuestions;
-        editTextTitleNewQuizz.setText(NewQuizzActivity.titleQuizz);
-    }
 }
