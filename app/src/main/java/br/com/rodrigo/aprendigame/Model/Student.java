@@ -13,6 +13,8 @@ public class Student implements Serializable {
 
     private Long id;
     private String name;
+    private String registration;
+    private String password;
     private String courseName;
     private String photo;
     private String schoolName;

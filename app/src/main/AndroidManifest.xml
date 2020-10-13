@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.AuthenticationActivity"></activity>
         <activity android:name=".Activity.NewQuizzActivity" />
         <activity android:name=".Activity.QuizzQuestionActivity" />
         <activity

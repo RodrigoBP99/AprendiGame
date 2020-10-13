@@ -16,7 +16,7 @@ public class SetupRest {
                 .addInterceptor(interceptor).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://aprendi-game.herokuapp.com/")
+                .baseUrl("http://192.168.1.11:8080")
                 .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();

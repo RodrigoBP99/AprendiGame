@@ -26,8 +26,11 @@ public interface APIService {
     @POST("save")
     Call<String> createStudent(@Body Student student);
 
-    @GET("login/{idStudent}")
-    Call<Student> getStudent(@Path("idStudent") Long idStudent);
+    @POST("/api/student/login")
+    Call<Student> getStudent(@Body Student student);
+
+    /*@GET("login/{idStudent}")
+    Call<Student> getStudent(@Path("idStudent") Long idStudent);*/
 
     @GET("quizzes")
     Call<List<Quizz>> getListQuizz();

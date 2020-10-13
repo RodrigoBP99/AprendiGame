@@ -12,15 +12,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.crashlytics.android.Crashlytics;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Objects;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
@@ -30,6 +30,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.fabric.sdk.android.Fabric;
+import okhttp3.MediaType;
+import okhttp3.ResponseBody;
+import okio.BufferedSource;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,17 +46,25 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     @BindView(R.id.textViewCadastroRedirect)
     TextView textViewCadastro;
-    @BindView(R.id.editTextLoginUserMatricula)
-    EditText editTextUserMatriculaLogin;
-    @BindView(R.id.textInputPhoneNumber)
-    TextInputLayout textInputEditText;
+    @BindView(R.id.editTextLoginStudentRegistration)
+    EditText editTextLoginStudentRegistration;
+    @BindView(R.id.textInputStudentRegistration)
+    TextInputLayout textInputStudentRegistration;
+
+    @BindView(R.id.editTextLoginStudentPassword)
+    EditText editTextStudentPassword;
+
+    @BindView(R.id.textInputStudentPassword)
+    TextInputLayout textInputStudentPassword;
 
     public static String NUMERO = "numero";
     public static Student student;
 
+    public Student studentLogin;
     private StudentDAO studentDAO;
 
-    private String phoneNumber;
+    private String registration;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +73,8 @@ public class LoginActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         ButterKnife.bind(this);
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         studentDAO = new StudentDAO(LoginActivity.this);
 
-        if (firebaseUser != null){
-            progressBarVisibility(View.GONE, View.GONE, View.VISIBLE, false);
-            getStudent(Long.parseLong(firebaseUser.getProviderId()));
-        }
     }
 
     @OnClick(R.id.textViewCadastroRedirect)
@@ -80,7 +85,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.buttonLogin) void login(){
         metodoFecharTeclado();
-        phoneNumber = editTextUserMatriculaLogin.getText().toString().trim();
+        registration = editTextLoginStudentRegistration.getText().toString().trim();
+        password = editTextStudentPassword.getText().toString().trim();
 
         progressBarVisibility(View.GONE, View.GONE, View.VISIBLE, false);
 
@@ -88,48 +94,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void testPhoneNumber() {
-        if(phoneNumber.isEmpty() || phoneNumber.length() < 10){
-            editTextUserMatriculaLogin.setError("Entre com um número válido");
-            editTextUserMatriculaLogin.requestFocus();
+        if(registration.isEmpty()){
+            editTextLoginStudentRegistration.setError("Campo nao pode ser vazio");
+            editTextLoginStudentRegistration.requestFocus();
             progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
-        } else {
-            try {
-                checkUserPhone();
-            } catch (Exception e){
-                Log.e("PhoneError: ", e.getMessage());
+        } else if (password.isEmpty()){
+                editTextStudentPassword.setError("Campo nao pode ser vazio");
+                editTextStudentPassword.requestFocus();
                 progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
-            }
+        } else {
+            studentLogin = new Student();
+            studentLogin.setRegistration(registration);
+            studentLogin.setPassword(password);
+
+            getStudent();
         }
     }
 
-    private void checkUserPhone() {
-        SetupRest.apiService.getUserExistence(phoneNumber).enqueue(new Callback<Boolean>() {
-            @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                if (response.isSuccessful()) {
-                    if (response.body()) {
-                        Intent intent = new Intent(getApplicationContext(), AuthenticationActivity.class);
-                        intent.putExtra(NUMERO, phoneNumber);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        editTextUserMatriculaLogin.setError("Número não registrado");
-                    }
-                }
-                progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
-            }
-
-            @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Parece que ocorreu um erro", Toast.LENGTH_LONG).show();
-                Log.e("PhoneAPI: ", t.getMessage());
-                progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
-            }
-        });
-    }
-
     private void progressBarVisibility(int visibilityInput, int gone, int visible, boolean b) {
-        textInputEditText.setVisibility(visibilityInput);
+        textInputStudentRegistration.setVisibility(visibilityInput);
+        textInputStudentPassword.setVisibility(visibilityInput);
         buttonLogin.setVisibility(gone);
         progressBar.setVisibility(visible);
         textViewCadastro.setClickable(b);
@@ -143,32 +127,57 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void getStudent(Long idStudent) {
-        SetupRest.apiService.getStudent(idStudent).enqueue(new Callback<Student>() {
+    private void getStudent() {
+        SetupRest.apiService.getStudent(studentLogin).enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()){
                     student = response.body();
 
-                    studentDAO.clearStudent();
-                    studentDAO.salvarUsuario(student);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-                    finish();
                 } else {
                     progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
-                    recoverLocalStudent(idStudent);
-                    Snackbar.make(getCurrentFocus(), "Ops! Parece que ocorreu um erro.", Snackbar.LENGTH_LONG).show();
+                    try {
+                        String errormesage = getErroMessage(response);
+                        Toast.makeText(LoginActivity.this, errormesage.toString(), Toast.LENGTH_LONG).show();
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
 
+
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Você está desconectado!", Toast.LENGTH_LONG).show();
-                recoverLocalStudent(idStudent);
+                Toast.makeText(LoginActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
                 progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
             }
         });
+    }
+
+
+    private String getErroMessage(Response<Student> response) throws IOException {
+        ResponseBody responseBody = new ResponseBody() {
+            @Nullable
+            @Override
+            public MediaType contentType() {
+                return null;
+            }
+
+            @Override
+            public long contentLength() {
+                return 0;
+            }
+
+            @Override
+            public BufferedSource source() {
+                return null;
+            }
+        };
+
+        responseBody = response.errorBody();
+        return responseBody.string();
     }
 
     private void recoverLocalStudent(Long idStudent) {

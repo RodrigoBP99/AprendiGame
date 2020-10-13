@@ -13,18 +13,11 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 
-import br.com.rodrigo.aprendigame.Activity.AuthenticationActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
-import br.com.rodrigo.aprendigame.Activity.MainActivity;
-import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
-import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
