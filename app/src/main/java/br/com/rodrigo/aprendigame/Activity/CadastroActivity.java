@@ -34,6 +34,9 @@ import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.MediaType;
+import okhttp3.ResponseBody;
+import okio.BufferedSource;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,25 +45,34 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
 
     private Student student = new Student();
     private String fotoSelecionada;
+    private String schoolName;
     private String cursoNome;
     private String nome;
-    private String userPhone;
+    private String userRegistration;
     private String dataNascimento;
+    private String password;
+    private String confirmPassword;
 
     @BindView(R.id.editTextUserMatriculaCadastro)
-    EditText editTextUserPhone;
+            EditText editTextRegistrationCadastro;
     @BindView(R.id.editTextNomeCadastro)
-    EditText editTextNome;
+            EditText editTextNome;
+    @BindView(R.id.editTextSchoolNameCadastro)
+            EditText editTextSchoolNameCadastro;
     @BindView(R.id.editTextCursoCadastro)
-    EditText editTextCourseName;
+            EditText editTextCourseName;
     @BindView(R.id.toolbarCadastro)
-    Toolbar toolbar;
+            Toolbar toolbar;
     @BindView(R.id.textViewTitleToolbarMain)
-    TextView textViewToolbar;
+            TextView textViewToolbar;
     @BindView(R.id.imageViewStudentRegister)
-    ImageView imageViewRegister;
+            ImageView imageViewRegister;
     @BindView(R.id.editTextBirthDayRegister)
-    EditText editTextBirthDay;
+            EditText editTextBirthDay;
+    @BindView(R.id.editTextPasswordCadastro)
+            EditText editTextPassword;
+    @BindView(R.id.editTextConfirmPasswordCadastro)
+            EditText editTextConfirmPassword;
 
     int dia, mes, ano;
     int diaFinal, mesFinal, anoFinal;
@@ -102,8 +114,6 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
         }
     }
 
-
-
     @OnClick(R.id.imageViewStudentRegister)
     void carregarImagem() {
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -131,10 +141,13 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
 
     @OnClick(R.id.buttonConfirmarCadastro)
     void confirmRegister() {
-        userPhone = editTextUserPhone.getText().toString().trim();
+        userRegistration = editTextRegistrationCadastro.getText().toString().trim();
         nome = editTextNome.getText().toString().trim();
         cursoNome = editTextCourseName.getText().toString().trim();
+        schoolName = editTextSchoolNameCadastro.getText().toString().trim();
         dataNascimento = editTextBirthDay.getText().toString().trim();
+        password = editTextPassword.getText().toString().trim();
+        confirmPassword = editTextConfirmPassword.getText().toString().trim();
         cadastroUsuario();
     }
 
@@ -158,50 +171,91 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
 
     public void cadastroUsuario() {
         //Metodo para fechar teclado
+        fecharTeclado();
+        if (nome.isEmpty()) {
+            editTextNome.setError("Campo vazio");
+        } else if (userRegistration.isEmpty()) {
+            editTextRegistrationCadastro.setError("Campo vazio");
+        } else if (schoolName.isEmpty()) {
+            editTextSchoolNameCadastro.setError("Campo vazio");
+        } else if (cursoNome.isEmpty()) {
+            editTextCourseName.setError("Campo vazio");
+        } else if (dataNascimento.isEmpty()) {
+            Toast.makeText(this, "Preencha sua Data de Nascimento", Toast.LENGTH_LONG).show();
+        }  else if (password.isEmpty()) {
+            editTextPassword.setError("Campo Vazio");
+        } else if (confirmPassword.isEmpty()) {
+            editTextConfirmPassword.setError("Campo vazio");
+        } else if (!confirmPassword.equals(password)){
+            editTextConfirmPassword.setError("As senhas devem ser iguais");
+        } else if (fotoSelecionada == null || fotoSelecionada.isEmpty()) {
+            Toast.makeText(this, "Selecione uma foto!", Toast.LENGTH_LONG).show();
+        } else {
+            student.setName(nome);
+            student.setRegistration(userRegistration);
+            student.setSchoolName(schoolName);
+            student.setCourseName(cursoNome);
+            student.setPhoto(fotoSelecionada);
+            student.setBirthday(dataNascimento);
+            student.setPassword(password);
+
+
+            createStudent(student);
+        }
+    }
+
+    private void fecharTeclado() {
         View view = getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-        if (userPhone.isEmpty()) {
-            editTextUserPhone.setError("Campo vazio");
-        } else if (nome.isEmpty()) {
-            editTextNome.setError("Campo vazio");
-        } else if (cursoNome.isEmpty()) {
-            editTextCourseName.setError("Campo vazio");
-        }else if (dataNascimento.isEmpty()){
-            Toast.makeText(this, "Preencha sua Data de Nascimento", Toast.LENGTH_LONG).show();
-        } else if (fotoSelecionada == null || fotoSelecionada.isEmpty()) {
-            Toast.makeText(this, "Selecione uma foto!", Toast.LENGTH_LONG).show();
-        } else {
-            student.setId(2L);
-            student.setName(nome);
-            student.setCourseName(cursoNome);
-            student.setPhoto(fotoSelecionada);
-            student.setBirthday(dataNascimento);
-            student.setActualLevel(0);
-            student.setNextLevel(1);
-            student.setPoints(0);
-            student.setRequiredPoints(200);
-
-            //createStudent(student);
-        }
     }
 
     private void createStudent(Student student) {
-        SetupRest.apiService.createStudent(student).enqueue(new Callback<String>() {
+        SetupRest.apiService.createStudent(student).enqueue(new Callback<Student>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(CadastroActivity.this, response.body(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(CadastroActivity.this, "Usuario '" + response.body().getName() + "' cadastrado com sucesso!", Toast.LENGTH_LONG).show();
                     finish();
+                } else {
+                    try {
+                        String errormesage = getErrorMesage(response);
+                        Toast.makeText(CadastroActivity.this, errormesage.toString(), Toast.LENGTH_LONG).show();
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-
+            public void onFailure(Call<Student> call, Throwable t) {
+                Toast.makeText(CadastroActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
+
+    private String getErrorMesage(Response<Student> response) throws IOException {
+        ResponseBody responseBody = new ResponseBody() {
+            @Nullable
+            @Override
+            public MediaType contentType() {
+                return null;
+            }
+
+            @Override
+            public long contentLength() {
+                return 0;
+            }
+
+            @Override
+            public BufferedSource source() {
+                return null;
+            }
+        };
+        responseBody = response.errorBody();
+        return responseBody.string();
+    }
+
 }

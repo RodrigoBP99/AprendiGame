@@ -23,14 +23,11 @@ public interface APIService {
     @POST("novaPresenca")
     Call<Presenc> createPresenca(@Body Presenc presenc);
 
-    @POST("save")
-    Call<String> createStudent(@Body Student student);
+    @POST("/api/student/register")
+    Call<Student> createStudent(@Body Student student);
 
     @POST("/api/student/login")
     Call<Student> getStudent(@Body Student student);
-
-    /*@GET("login/{idStudent}")
-    Call<Student> getStudent(@Path("idStudent") Long idStudent);*/
 
     @GET("quizzes")
     Call<List<Quizz>> getListQuizz();
