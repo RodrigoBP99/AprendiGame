@@ -44,7 +44,6 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
         Quizz quizz = quizzes.get(posicao);
         holder.textViewTitleQuizz.setText(quizz.getTitle());
         holder.textViewQuizzAnswers.setText(  "10/"+ quizz.getAmountOfQuestions());
-//        holder.textViewQuizzCreateDate.setText();
 
         holder.itemView.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogCustom);

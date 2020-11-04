@@ -2,6 +2,7 @@ package br.com.rodrigo.aprendigame.ws;
 
 import java.util.List;
 
+import br.com.rodrigo.aprendigame.Model.CourseClass;
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.Model.Presenc;
 import br.com.rodrigo.aprendigame.Model.Quizz;
@@ -31,6 +32,9 @@ public interface APIService {
 
     @GET("/api/student/getStudent/{id}")
     Call<Student> getStudent(@Path("id") Long id);
+
+    @GET("/api/courseClass/getCourseClass/{id}")
+    Call<CourseClass> getCourseClass(@Path("id") Long id);
 
 //    @GET("quizzes")
 //    Call<List<Quizz>> getListQuizz();

@@ -2,7 +2,6 @@ package br.com.rodrigo.aprendigame.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,15 +11,18 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.rodrigo.aprendigame.Adapter.QuizzAdapter;
+import br.com.rodrigo.aprendigame.Model.CourseClass;
 import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,17 +69,47 @@ public class QuizzActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         textViewTitleToolbar.setText(getString(R.string.questionarios));
+        Intent intent = getIntent();
+        String courseClassId = intent.getStringExtra("courseUnit");
+
+        getQuizzList(Long.valueOf(courseClassId));
+    }
+
+    private void getQuizzList(Long id) {
+        SetupRest.apiService.getCourseClass(id).enqueue(new Callback<CourseClass>() {
+            @Override
+            public void onResponse(Call<CourseClass> call, Response<CourseClass> response) {
+                if (response.isSuccessful()){
+                    getCourseClassQuizzes(response);
+                } else {
+                    try {
+                        String errormesage = getErroMessage(response);
+                        Toast.makeText(QuizzActivity.this, errormesage.toString(), Toast.LENGTH_LONG).show();
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CourseClass> call, Throwable t) {
+                Toast.makeText(QuizzActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void getCourseClassQuizzes(Response<CourseClass> response) {
+        quizzes = response.body().getQuizzes();
         DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerViewQuizz.addItemDecoration(itemDecoration);
         recyclerViewQuizz.setLayoutManager(new LinearLayoutManager(this));
-        getQuizzList();
         adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, this);
         recyclerViewQuizz.setAdapter(adapter);
     }
 
-    private void getQuizzList() {
-
+    private String getErroMessage(Response<CourseClass> response) throws IOException {
+        ResponseBody responseBody = response.errorBody();
+        return responseBody.string();
     }
 }
