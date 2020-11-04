@@ -71,7 +71,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
             Student student = LoginActivity.student;
 
             editTextPerfilNome.setText(student.getName());
-            editTextCurso.setText(student.getCoursesUnit().getName());
+            editTextCurso.setText(student.getCourseUnit().getName());
             Glide.with(EditarPerfilActivity.this).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
         }catch (Exception e){
             e.printStackTrace();

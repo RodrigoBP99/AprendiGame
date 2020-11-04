@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
@@ -82,7 +83,8 @@ public class PerfilFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.buttonLogOut:
-                FirebaseAuth.getInstance().signOut();
+                StudentDAO studentDAO = new StudentDAO(getContext());
+                studentDAO.clearStudent();
                 getActivity().finish();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 return true;
@@ -103,7 +105,7 @@ public class PerfilFragment extends Fragment {
 
             Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
             textViewNameStudent.setText(student.getName());
-            textViewCourse.setText(student.getCoursesUnit().getName());
+            textViewCourse.setText(student.getCourseUnit().getName());
             textViewPoints.setText(String.valueOf(student.getPoints()));
             textViewLevel.setText(String.valueOf(student.getActualLevel()));
         } catch (Exception e) {

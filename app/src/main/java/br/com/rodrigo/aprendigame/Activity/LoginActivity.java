@@ -3,6 +3,7 @@ package br.com.rodrigo.aprendigame.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -70,6 +71,12 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         studentDAO = new StudentDAO(LoginActivity.this);
+        studentLogin = studentDAO.checkIfDataExists();
+
+        if (studentLogin.getRegistration() != null){
+            progressBarVisibility(View.GONE, View.GONE, View.VISIBLE, false);
+            getStudent(studentLogin);
+        }
 
     }
 
@@ -103,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
             studentLogin.setRegistration(registration);
             studentLogin.setPassword(password);
 
-            getStudent();
+            getStudent(studentLogin);
         }
     }
 
@@ -123,13 +130,15 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void getStudent() {
-        SetupRest.apiService.studentLogin(studentLogin).enqueue(new Callback<Student>() {
+    private void getStudent(Student studentL) {
+        SetupRest.apiService.studentLogin(studentL).enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()){
                     student = response.body();
 
+                    studentDAO.clearStudent();
+                    studentDAO.salvarUsuario(student);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -143,11 +152,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
 
-
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                recoverLocalStudent();
                 progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
+                Toast.makeText(LoginActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -159,12 +168,12 @@ public class LoginActivity extends AppCompatActivity {
         return responseBody.string();
     }
 
-//    private void recoverLocalStudent(Long idStudent) {
-//        student = studentDAO.selectUsuario(String.valueOf(idStudent));
-//        if (student != null) {
-//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
-//    }
+    private void recoverLocalStudent() {
+        student = studentDAO.checkIfDataExists();
+        if (student.getRegistration() != null) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 }
