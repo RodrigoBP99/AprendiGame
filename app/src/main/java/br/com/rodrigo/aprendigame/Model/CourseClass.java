@@ -8,8 +8,9 @@ import lombok.Data;
 public class CourseClass {
 
     private Long id;
+    private String name;
     private List<Student> students;
     private CoursesUnit coursesUnit;
-    private String status;
-
+    private Teacher teacher;
+    private List<Quizz> quizzes;
 }

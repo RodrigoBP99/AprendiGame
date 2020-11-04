@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.rodrigo.aprendigame.Activity.QuizzActivity;
+import br.com.rodrigo.aprendigame.Model.CourseClass;
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
@@ -21,25 +22,25 @@ import butterknife.ButterKnife;
 
 public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.CourseUnitViewHolder> {
 
-    private ArrayList<CoursesUnit> coursesUnits;
+    private ArrayList<CourseClass> courseClasses;
     private Context context;
     private String COURSEUNIT = "courseUnit";
 
-    public CoursesUnitAdapter(ArrayList<CoursesUnit> coursesUnits, Context context) {
-        this.coursesUnits = coursesUnits;
+    public CoursesUnitAdapter(ArrayList<CourseClass> courseClasses, Context context) {
+        this.courseClasses = courseClasses;
         this.context = context;
     }
 
     @NonNull
     @Override
     public CourseUnitViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.course_unit_adapter, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.course_class_adapter, viewGroup, false);
         return new CourseUnitViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CourseUnitViewHolder courseUnitViewHolder, int posicao) {
-        final CoursesUnit coursesUnit = coursesUnits.get(posicao);
+        final CourseClass courseClass = courseClasses.get(posicao);
 
         courseUnitViewHolder.textViewNameCourseUnit.setText(coursesUnit.getName());
         courseUnitViewHolder.textViewCourseClassPresent.setText("1 " + context.getString(R.string.presencs));

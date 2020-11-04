@@ -15,12 +15,11 @@ public class Student implements Serializable {
     private String name;
     private String registration;
     private String password;
-    private String courseName;
+    private CoursesUnit coursesUnit;
+    private String courseUnitCode;
     private String photo;
     private String schoolName;
     private String birthday;
-    private String details;
-    private String course;
     private List<Presenc> presences;
     private List<CourseClass> listClass;
     private double points;
@@ -32,7 +31,6 @@ public class Student implements Serializable {
         ContentValues valores = new ContentValues();
         valores.put(DBHelper.COLUN_ID_STUDENT, id);
         valores.put(DBHelper.COLUN_NOME_STUDENT, name);
-        valores.put(DBHelper.COLUN_COURSE_STUDENT, courseName);
         valores.put(DBHelper.COLUN_PHOTO_STUDENT, photo);
         valores.put(DBHelper.COLUN_POINTS_STUDENT, points);
         valores.put(DBHelper.COLUN_REQUIRED_POINTS_STUDENT, requiredPoints);

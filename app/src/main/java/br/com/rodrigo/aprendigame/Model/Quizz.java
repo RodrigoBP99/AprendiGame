@@ -9,10 +9,11 @@ import lombok.Data;
 public class Quizz implements Serializable {
 
     private Long id;
+    private String code;
     private String title;
-    private Teacher teacher;
-    private CoursesUnit courseUnit;
+    private CourseClass courseClass;
     private String amountOfQuestions;
     private List<Question> questions;
+    private Double points;
 
 }

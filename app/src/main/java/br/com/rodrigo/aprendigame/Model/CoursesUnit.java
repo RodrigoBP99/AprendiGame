@@ -11,7 +11,9 @@ public class CoursesUnit implements Serializable {
 
     private Long id;
     private String name;
-    private List<Teacher> teacher;
+    private String code;
+    private List<Teacher> teachers;
     private List<CourseClass> courseClasses;
+    private List<Student> students;
 
 }

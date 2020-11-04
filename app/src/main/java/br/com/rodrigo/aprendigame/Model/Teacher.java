@@ -11,5 +11,7 @@ public class Teacher implements Serializable {
     private Long id;
     private String name;
     private List<CoursesUnit> courses;
+    private String photo;
+    private List<CourseClass> courseClasses;
 
 }
