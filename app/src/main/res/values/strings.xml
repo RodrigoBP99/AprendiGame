@@ -21,7 +21,6 @@
     <string name="sucesso_cadastro">Cadastro Realizado Com Sucesso!</string>
 
     <!-- Course class & course unit -->
-    <string name="aulas">Aulas</string>
     <string name="diciplinas">Diciplinas</string>
     <!-- Editar perfil -->
     <string name="preencha_campos_vazios">Preencha os campos vazios</string>

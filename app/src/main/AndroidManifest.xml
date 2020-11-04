@@ -19,9 +19,6 @@
             android:name=".Activity.QuizzActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity
-            android:name=".Activity.CourseUnitActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden" />
-        <activity
             android:name=".Activity.CadastroActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity

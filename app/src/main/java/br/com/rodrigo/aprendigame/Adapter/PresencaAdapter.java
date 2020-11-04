@@ -31,7 +31,7 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
     @NonNull
     @Override
     public PresencaViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.course_class_adapter, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.presenc_adapter, viewGroup, false);
         return new PresencaViewHolder(view);
     }
 

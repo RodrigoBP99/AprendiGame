@@ -45,6 +45,8 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     @BindView(R.id.navViewMain)
     BottomNavigationView bottomNavigationView;
 
+    private Presenc presenc;
+
     public LeitorQRFragment() {
         // Required empty public constructor
     }
@@ -75,24 +77,29 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
 
     @Override
     public void handleResult(Result rawResult) {
-        rawResult.toString();
+        String resultado = rawResult.toString();
+        String[] result = resultado.split("&");
 
-        String scannedCode = student.getId() + "&" + getData() + "&" + rawResult;
-        createNewPresenca(scannedCode);
+        presenc.setCode(result[1]);
+        presenc.setDate(result[2]);
+        presenc.setCourseClassId(Long.getLong(result[3]));
+
+        Toast.makeText(getContext(), presenc.getCourseClassId().toString(), Toast.LENGTH_LONG).show();
+//        String scannedCode = student.getId() + "&" + getData() + "&" + rawResult;
+//        createNewPresenca(presenc);
 
     }
 
-    private void createNewPresenca(String scannedCode) {
+    private void createNewPresenca(Presenc presenc) {
         PresencaDAO presencaDAO = new PresencaDAO(getContext());
-        if (presencaDAO.checkScannedPresenca(scannedCode)){
+        if (presencaDAO.checkScannedPresenca(presenc.getCode())){
             Toast.makeText(getContext(), getString(R.string.qrCode_ja_lido), Toast.LENGTH_SHORT).show();
             onResume();
+        } else if (!presenc.getDate().equals(getData())){
+            Toast.makeText(getContext(), "Data da presença ultrapassada", Toast.LENGTH_LONG).show();
         } else {
             try {
-                Presenc presenc = new Presenc();
-                presenc.setId(scannedCode);
 
-                createPresenca(presenc);
 
             } catch (Exception e){
                 e.printStackTrace();
@@ -105,7 +112,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     private String getData() {
         Calendar agora = Calendar.getInstance();
         Date date = agora.getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String horaDataAtual = simpleDateFormat.format(date);
 
         return horaDataAtual;
@@ -126,27 +133,7 @@ public class LeitorQRFragment extends Fragment implements ZXingScannerView.Resul
     }
 
     public void createPresenca(final Presenc presenc){
-        try {
-            SetupRest.apiService.createPresenca(presenc).enqueue(new Callback<Presenc>() {
-                PresencaDAO presencaDAO = new PresencaDAO(getContext());
-                @Override
-                public void onResponse(Call<Presenc> call, Response<Presenc> response) {
-                    if (response.isSuccessful()){
 
-                        Toast.makeText(getContext(), getString(R.string.presenca_atualizada), Toast.LENGTH_SHORT).show();
-                    } else{
-                        presencaDAO.inserirPresenca(presenc);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Presenc> call, Throwable t) {
-                    Log.e("SendPresencaErro: ", t.getMessage());
-                }
-            });
-        } catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
     @Override

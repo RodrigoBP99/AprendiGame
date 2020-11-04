@@ -2,6 +2,7 @@ package br.com.rodrigo.aprendigame.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +16,17 @@ import java.util.List;
 
 import br.com.rodrigo.aprendigame.Activity.QuizzActivity;
 import br.com.rodrigo.aprendigame.Model.CourseClass;
-import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.CourseUnitViewHolder> {
+public class CourseClassAdapter extends RecyclerView.Adapter<CourseClassAdapter.CourseUnitViewHolder> {
 
     private ArrayList<CourseClass> courseClasses;
     private Context context;
-    private String COURSEUNIT = "courseUnit";
+    private String COURSECLASS = "courseUnit";
 
-    public CoursesUnitAdapter(ArrayList<CourseClass> courseClasses, Context context) {
+    public CourseClassAdapter(ArrayList<CourseClass> courseClasses, Context context) {
         this.courseClasses = courseClasses;
         this.context = context;
     }
@@ -42,12 +42,11 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
     public void onBindViewHolder(@NonNull CourseUnitViewHolder courseUnitViewHolder, int posicao) {
         final CourseClass courseClass = courseClasses.get(posicao);
 
-        courseUnitViewHolder.textViewNameCourseUnit.setText(coursesUnit.getName());
-        courseUnitViewHolder.textViewCourseClassPresent.setText("1 " + context.getString(R.string.presencs));
-        courseUnitViewHolder.textViewCourseClassTotal.setText( coursesUnit.getCourseClasses().size() + " " + context.getString(R.string.aulas));
+        courseUnitViewHolder.textViewNameCourseClass.setText(courseClass.getName());
+        courseUnitViewHolder.textViewCourseClassCode.setText("Curso:  " + courseClass.getCourseUnit().getName());
         courseUnitViewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, QuizzActivity.class);
-            intent.putExtra(COURSEUNIT, String.valueOf(coursesUnit.getId()));
+            intent.putExtra(COURSECLASS, String.valueOf(courseClass.getId()));
             context.startActivity(intent);
         });
 
@@ -55,25 +54,23 @@ public class CoursesUnitAdapter extends RecyclerView.Adapter<CoursesUnitAdapter.
 
     @Override
     public int getItemCount() {
-        if(coursesUnits != null){
-            return coursesUnits.size();
+        if(courseClasses != null){
+            return courseClasses.size();
         } else {
             return 0;
         }
     }
 
-    public void atualiza(List<CoursesUnit> coursesUnitList){
-        this.coursesUnits = (ArrayList<CoursesUnit>) coursesUnitList;
+    public void atualiza(List<CourseClass> courseClassList){
+        this.courseClasses = (ArrayList<CourseClass>) courseClassList;
         notifyDataSetChanged();
     }
 
     public class CourseUnitViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.textViewNameCourseUnit)
-        TextView textViewNameCourseUnit;
-        @BindView(R.id.textViewTotalCourseClass)
-        TextView textViewCourseClassTotal;
-        @BindView(R.id.textViewAulasPresente)
-        TextView textViewCourseClassPresent;
+        @BindView(R.id.textViewNameCourseClass)
+        TextView textViewNameCourseClass;
+        @BindView(R.id.textViewCourseClassCode)
+        TextView textViewCourseClassCode;
 
         public CourseUnitViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -67,7 +67,7 @@
                     android:drawableStart="@drawable/user_icon"
                     android:backgroundTint="@color/colorEditText"
                     android:hint="Matricula"
-                    android:inputType="number"
+                    android:inputType="textCapCharacters|textShortMessage"
                     android:textColor="@color/colorEditText" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,8 +100,8 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/course_icon"
                     android:backgroundTint="@color/colorEditText"
-                    android:hint="Curso"
-                    android:inputType="textShortMessage|textCapWords"
+                    android:hint="Código do Curso"
+                    android:inputType="textShortMessage|textCapCharacters"
                     android:textColor="@color/colorEditText" />
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -194,7 +194,7 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
             student.setName(nome);
             student.setRegistration(userRegistration);
             student.setSchoolName(schoolName);
-            student.setCourseName(cursoNome);
+            student.setCourseUnitCode(cursoNome);
             student.setPhoto(fotoSelecionada);
             student.setBirthday(dataNascimento);
             student.setPassword(password);
@@ -237,24 +237,7 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
     }
 
     private String getErrorMesage(Response<Student> response) throws IOException {
-        ResponseBody responseBody = new ResponseBody() {
-            @Nullable
-            @Override
-            public MediaType contentType() {
-                return null;
-            }
-
-            @Override
-            public long contentLength() {
-                return 0;
-            }
-
-            @Override
-            public BufferedSource source() {
-                return null;
-            }
-        };
-        responseBody = response.errorBody();
+        ResponseBody responseBody = response.errorBody();
         return responseBody.string();
     }
 

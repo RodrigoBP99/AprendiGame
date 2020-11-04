@@ -78,21 +78,6 @@ public class QuizzActivity extends AppCompatActivity {
     }
 
     private void getQuizzList() {
-        try {
-            SetupRest.apiService.getListQuizz().enqueue(new Callback<List<Quizz>>() {
-                @Override
-                public void onResponse(Call<List<Quizz>> call, Response<List<Quizz>> response) {
-                    quizzes = response.body();
-                    adapter.updateQuizzes(quizzes);
-                }
 
-                @Override
-                public void onFailure(Call<List<Quizz>> call, Throwable t) {
-                    Log.e("QuizzCallbackErro: ", t.getMessage());
-                }
-            });
-        } catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }

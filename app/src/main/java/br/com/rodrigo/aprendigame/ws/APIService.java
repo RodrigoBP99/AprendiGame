@@ -20,21 +20,24 @@ public interface APIService {
             "Accept: application/json"
     })
 
-    @POST("novaPresenca")
-    Call<Presenc> createPresenca(@Body Presenc presenc);
+//    @POST("novaPresenca")
+//    Call<Presenc> createPresenca(@Body Presenc presenc);
 
     @POST("/api/student/register")
     Call<Student> createStudent(@Body Student student);
 
     @POST("/api/student/login")
-    Call<Student> getStudent(@Body Student student);
+    Call<Student> studentLogin(@Body Student student);
 
-    @GET("quizzes")
-    Call<List<Quizz>> getListQuizz();
+    @GET("/api/student/getStudent/{id}")
+    Call<Student> getStudent(@Path("id") Long id);
 
-    @GET("courses/{id}")
-    Call<List<CoursesUnit>> getListCourseUnit(@Path("id") Long idStudent);
-
-    @GET("students/exist/{telefone}")
-    Call<Boolean> getUserExistence(@Path("telefone") String telefone);
+//    @GET("quizzes")
+//    Call<List<Quizz>> getListQuizz();
+//
+//    @GET("courses/{id}")
+//    Call<List<CoursesUnit>> getListCourseUnit(@Path("id") Long idStudent);
+//
+//    @GET("students/exist/{telefone}")
+//    Call<Boolean> getUserExistence(@Path("telefone") String telefone);
 }

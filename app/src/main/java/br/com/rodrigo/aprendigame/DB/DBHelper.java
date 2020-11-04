@@ -24,9 +24,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TABELA_PRESENCA = "presenca";
     public static final String COLUNA_ID_PRESENCA = "ID";
     public static final String COLUNA_DATA_PRESENCA = "DATA";
-    public static final String COLUNA_AULA_PRESENCA = "AULA";
-    public static final String COLUNA_PROFESSOR_PRESENCA = "PROFESSOR";
-    public static final String COLUNA_ID_ALUNO = "IDALUNO";
+    public static final String COLUNA_ID_AULA_PRESENCA = "AULA";
+    public static final String COLUNA_MATRICULA_ALUNO = "IDALUNO";
     public static final String COLUNA_HORA_PRESENCA = "HORA";
 
 
@@ -36,7 +35,6 @@ public class DBHelper extends SQLiteOpenHelper {
             COLUN_NOME_STUDENT + " TEXT, " +
             COLUN_REGISTRATION_STUDENT + " TEXT, " +
             COLUN_PASSWORD_STUDENT + " TEXT, " +
-            COLUN_COURSE_STUDENT + " TEXT, " +
             COLUN_PHOTO_STUDENT + " TEXT, " +
             COLUN_BIRTHDAY_STUDENT + " TEXT," +
             COLUN_POINTS_STUDENT + " REAL, " +
@@ -48,9 +46,8 @@ public class DBHelper extends SQLiteOpenHelper {
             TABELA_PRESENCA + "( " +
             COLUNA_ID_PRESENCA + " TEXT PRIMARY KEY, " +
             COLUNA_DATA_PRESENCA + " TEXT, " +
-            COLUNA_AULA_PRESENCA + " TEXT, " +
-            COLUNA_ID_ALUNO + " TEXT, " +
-            COLUNA_PROFESSOR_PRESENCA + " TEXT, " +
+            COLUNA_ID_AULA_PRESENCA + " TEXT, " +
+            COLUNA_MATRICULA_ALUNO + " TEXT, " +
             COLUNA_HORA_PRESENCA + " TEXT)";
 
     public DBHelper(Context context) {

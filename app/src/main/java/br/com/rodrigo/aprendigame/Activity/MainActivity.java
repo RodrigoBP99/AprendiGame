@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment;
 import com.crashlytics.android.Crashlytics;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import br.com.rodrigo.aprendigame.Fragments.PresencCourseClassFragment;
 import br.com.rodrigo.aprendigame.Fragments.CourseClassFragment;
-import br.com.rodrigo.aprendigame.Fragments.CourseUnitFragment;
 import br.com.rodrigo.aprendigame.Fragments.PerfilFragment;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             = item -> {
                 switch (item.getItemId()) {
                     case R.id.navigation_course_unit:
-                        trocarFragmento(new CourseUnitFragment(), "inicio");
+                        trocarFragmento(new CourseClassFragment(), "inicio");
                         return true;
 
                     case R.id.navigation_perfil:
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.navigation_presença:
-                        trocarFragmento(new CourseClassFragment(), "presencas");
+                        trocarFragmento(new PresencCourseClassFragment(), "presencas");
                         return true;
                 }
                 return false;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         Fabric.with(this, new Crashlytics());
 
-        trocarFragmento(new CourseUnitFragment(), "inicio");
+        trocarFragmento(new CourseClassFragment(), "inicio");
         ButterKnife.bind(this);
 
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

@@ -103,7 +103,7 @@ public class PerfilFragment extends Fragment {
 
             Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
             textViewNameStudent.setText(student.getName());
-            textViewCourse.setText(student.getCourse());
+            textViewCourse.setText(student.getCoursesUnit().getName());
             textViewPoints.setText(String.valueOf(student.getPoints()));
             textViewLevel.setText(String.valueOf(student.getActualLevel()));
         } catch (Exception e) {

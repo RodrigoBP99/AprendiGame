@@ -3,7 +3,6 @@ package br.com.rodrigo.aprendigame.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -17,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.android.material.textfield.TextInputLayout;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -57,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.textInputStudentPassword)
     TextInputLayout textInputStudentPassword;
 
-    public static String NUMERO = "numero";
     public static Student student;
 
     public Student studentLogin;
@@ -90,10 +86,10 @@ public class LoginActivity extends AppCompatActivity {
 
         progressBarVisibility(View.GONE, View.GONE, View.VISIBLE, false);
 
-        testPhoneNumber();
+        validatRegistrationAndPassword();
     }
 
-    private void testPhoneNumber() {
+    private void validatRegistrationAndPassword() {
         if(registration.isEmpty()){
             editTextLoginStudentRegistration.setError("Campo nao pode ser vazio");
             editTextLoginStudentRegistration.requestFocus();
@@ -128,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getStudent() {
-        SetupRest.apiService.getStudent(studentLogin).enqueue(new Callback<Student>() {
+        SetupRest.apiService.studentLogin(studentLogin).enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()){
@@ -158,34 +154,17 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private String getErroMessage(Response<Student> response) throws IOException {
-        ResponseBody responseBody = new ResponseBody() {
-            @Nullable
-            @Override
-            public MediaType contentType() {
-                return null;
-            }
+        ResponseBody responseBody = response.errorBody();
 
-            @Override
-            public long contentLength() {
-                return 0;
-            }
-
-            @Override
-            public BufferedSource source() {
-                return null;
-            }
-        };
-
-        responseBody = response.errorBody();
         return responseBody.string();
     }
 
-    private void recoverLocalStudent(Long idStudent) {
-        student = studentDAO.selectUsuario(String.valueOf(idStudent));
-        if (student != null) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
+//    private void recoverLocalStudent(Long idStudent) {
+//        student = studentDAO.selectUsuario(String.valueOf(idStudent));
+//        if (student != null) {
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//    }
 }
