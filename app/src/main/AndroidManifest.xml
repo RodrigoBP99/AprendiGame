@@ -16,7 +16,7 @@
         <activity android:name=".Activity.NewQuizzActivity" />
         <activity android:name=".Activity.QuizzQuestionActivity" />
         <activity
-            android:name=".Activity.QuizzActivity"
+            android:name=".Activity.QuizzListActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity
             android:name=".Activity.CadastroActivity"

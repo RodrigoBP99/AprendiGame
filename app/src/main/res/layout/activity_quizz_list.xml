@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.QuizzActivity"
+    tools:context=".Activity.QuizzListActivity"
     android:orientation="vertical"
     android:id="@+id/questionarioLayout">
 
@@ -30,22 +30,22 @@
         app:layout_constraintBottom_toTopOf="@+id/recycleViewQuizz">
 
         <TextView
-            android:id="@+id/textViewQuizzPointsMax"
-            android:text="Total de pontos disputados: 1000"
+            android:id="@+id/textViewCourseClassName"
+            android:text="Nome da Turma"
             android:textColor="@color/colorText"
             android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/textViewQuizzPointsGain"
-            android:text="Total de pontos obitidos: 1000"
+            android:id="@+id/textViewCourseClassTeacher"
+            android:text="Nome do Professor"
             android:textColor="@color/colorText"
             android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/textViewQuizzStudentPosition"
-            android:text="Posição: 1º"
+            android:id="@+id/textViewQuizzCount"
+            android:text="Total de Questionarios"
             android:textSize="16sp"
             android:textColor="@color/colorText"
             android:layout_width="wrap_content"
@@ -56,6 +56,7 @@
         android:id="@+id/recycleViewQuizz"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="2dp"
         android:background="@color/colorBackgroundRecycleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
