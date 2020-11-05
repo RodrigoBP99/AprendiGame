@@ -12,6 +12,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 
@@ -35,6 +36,9 @@ public interface APIService {
 
     @GET("/api/courseClass/getCourseClass/{id}")
     Call<CourseClass> getCourseClass(@Path("id") Long id);
+
+    @PUT("/api/student/update/{id}")
+    Call<Student> updateStudent(@Path("id") Long id, @Body Student student);
 
 //    @GET("quizzes")
 //    Call<List<Quizz>> getListQuizz();

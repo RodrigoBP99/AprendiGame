@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:orientation="vertical"
+    android:id="@+id/layoutEditPerfil"
     tools:context=".Activity.EditarPerfilActivity">
 
     <include
@@ -50,67 +51,58 @@
                 android:layout_marginStart="3dp"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/perfil_icon_black" />
-
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
+                        android:layout_marginStart="3dp"
                         android:textColorHint="@android:color/black">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextEditarPerfilNome"
+                            android:id="@+id/editTextNameEditPerfil"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/perfil_icon_black"
                             android:backgroundTint="@android:color/black"
                             android:hint="Nome"
-                            android:inputType="textCapWords"
-                            android:textColor="@android:color/black"
-                            android:textColorHighlight="@android:color/holo_green_light"
-                            android:textColorLink="@android:color/holo_green_light" />
-
+                            android:inputType="textShortMessage|textCapWords"
+                            android:textColor="@android:color/black" />
                     </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/course_icon_profile" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
+                        android:layout_marginStart="3dp"
                         android:textColorHint="@android:color/black">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextEditarPerfilCurso"
+                            android:id="@+id/editTextSchoolNameEditPerfil"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@android:color/black"
-                            android:hint="Curso"
-                            android:inputType="textCapWords"
-                            android:textColor="@android:color/black"
-                            android:textColorHighlight="@android:color/holo_green_light"
-                            android:textColorLink="@android:color/holo_green_light" />
-
+                            android:drawableStart="@drawable/course_icon_profile"
+                            android:hint="Escola"
+                            android:inputType="textShortMessage|textCapWords"
+                            android:textColor="@android:color/black" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:textColorHint="@android:color/black">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextBirthDayEditPerfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@android:color/black"
+                        android:drawableStart="@android:drawable/ic_menu_my_calendar"
+                        android:hint="Data de Nascimento"
+                        android:focusable="false"
+                        android:textColor="@android:color/black" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
