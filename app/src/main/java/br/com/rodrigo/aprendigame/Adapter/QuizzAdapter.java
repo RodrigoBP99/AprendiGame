@@ -43,13 +43,14 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
 
         Quizz quizz = quizzes.get(posicao);
         holder.textViewTitleQuizz.setText(quizz.getTitle());
-        holder.textViewQuizzAnswers.setText(  "10/"+ quizz.getAmountOfQuestions());
+        holder.textViewQuizzAnswers.setText(quizz.getAmountOfQuestions()  + " Questões");
+        holder.textViewCodeQuizz.setText("Código: " + quizz.getCode());
 
         holder.itemView.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
             builder.setTitle("Atenção").setMessage("Você deseja começar o questionario?").setPositiveButton("Sim", (dialogInterface, i) -> {
                 Intent intent = new Intent(context, QuizzQuestionActivity.class);
-                intent.putExtra(QUESTIONARIO, quizz);
+                intent.putExtra(QUESTIONARIO, quizz.getId());
                 context.startActivity(intent);
             }).setNegativeButton("Não", null).create().show();
         });
@@ -75,8 +76,8 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
         TextView textViewTitleQuizz;
         @BindView(R.id.textViewAnswersQuizz)
         TextView textViewQuizzAnswers;
-        @BindView(R.id.textViewDateQuizz)
-        TextView textViewQuizzCreateDate;
+        @BindView(R.id.textViewCodeQuizz)
+        TextView textViewCodeQuizz;
 
         public QuizzViewHolder(@NonNull View itemView) {
             super(itemView);

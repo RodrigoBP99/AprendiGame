@@ -27,22 +27,29 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class QuizzActivity extends AppCompatActivity {
+public class QuizzListActivity extends AppCompatActivity {
 
     public static String LISTQUIZ = "quiz";
     private QuizzAdapter adapter;
     private static List<Quizz> quizzes;
+    private CourseClass courseClass;
     @BindView(R.id.recycleViewQuizz)
     RecyclerView recyclerViewQuizz;
     @BindView(R.id.textViewTitleToolbarMain)
     TextView textViewTitleToolbar;
     @BindView(R.id.toolbarQuizzActivity)
     Toolbar toolbar;
+    @BindView(R.id.textViewCourseClassName)
+    TextView textViewCourseClassName;
+    @BindView(R.id.textViewCourseClassTeacher)
+    TextView textViewCourseClassTeacher;
+    @BindView(R.id.textViewQuizzCount)
+    TextView textViewQuizzCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quizz);
+        setContentView(R.layout.activity_quizz_list);
         ButterKnife.bind(this);
 
         toolbarMenu();
@@ -55,11 +62,11 @@ public class QuizzActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.itemNewQuizz:
                     if (quizzes != null) {
-                        Intent intent = new Intent(QuizzActivity.this, NewQuizzActivity.class);
+                        Intent intent = new Intent(QuizzListActivity.this, NewQuizzActivity.class);
                         intent.putExtra(LISTQUIZ, (ArrayList<Quizz>) quizzes);
                         startActivity(intent);
                     }else {
-                        Toast.makeText(QuizzActivity.this, "Parece que essa aula não contem nenhum Quizz", Toast.LENGTH_LONG).show();
+                        Toast.makeText(QuizzListActivity.this, "Parece que essa aula não contem nenhum Quizz", Toast.LENGTH_LONG).show();
                     }
             }
             return false;
@@ -81,11 +88,12 @@ public class QuizzActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<CourseClass> call, Response<CourseClass> response) {
                 if (response.isSuccessful()){
-                    getCourseClassQuizzes(response);
+                    courseClass = response.body();
+                    getCourseClassQuizzes(courseClass);
                 } else {
                     try {
                         String errormesage = getErroMessage(response);
-                        Toast.makeText(QuizzActivity.this, errormesage.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(QuizzListActivity.this, errormesage.toString(), Toast.LENGTH_LONG).show();
                     } catch (Exception e){
                         e.printStackTrace();
                     }
@@ -94,18 +102,26 @@ public class QuizzActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CourseClass> call, Throwable t) {
-                Toast.makeText(QuizzActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(QuizzListActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    private void getCourseClassQuizzes(Response<CourseClass> response) {
-        quizzes = response.body().getQuizzes();
+    private void getCourseClassQuizzes(CourseClass courseClass) {
+        quizzes = courseClass.getQuizzes();
         DividerItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         recyclerViewQuizz.addItemDecoration(itemDecoration);
         recyclerViewQuizz.setLayoutManager(new LinearLayoutManager(this));
         adapter = new QuizzAdapter((ArrayList<Quizz>) quizzes, this);
         recyclerViewQuizz.setAdapter(adapter);
+
+        textViewCourseClassName.setText("Turma: " + courseClass.getName());
+        if (courseClass.getTeacher() != null) {
+            textViewCourseClassTeacher.setText("Professsor: " + courseClass.getTeacher().getName());
+        } else {
+            textViewCourseClassTeacher.setText("Professsor: --------");
+        }
+        textViewQuizzCount.setText("Questionarios: " + quizzes.size());
     }
 
     private String getErroMessage(Response<CourseClass> response) throws IOException {
