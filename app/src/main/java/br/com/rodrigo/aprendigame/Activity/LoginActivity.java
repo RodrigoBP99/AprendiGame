@@ -3,19 +3,17 @@ package br.com.rodrigo.aprendigame.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
@@ -28,9 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.fabric.sdk.android.Fabric;
-import okhttp3.MediaType;
 import okhttp3.ResponseBody;
-import okio.BufferedSource;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -78,6 +74,11 @@ public class LoginActivity extends AppCompatActivity {
             getStudent(studentLogin);
         }
 
+    }
+
+    private void createSnackBar(String message) {
+        View parentLayout = findViewById(R.id.layoutLogin);
+        Snackbar.make(parentLayout, message, Snackbar.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.textViewCadastroRedirect)
@@ -141,11 +142,12 @@ public class LoginActivity extends AppCompatActivity {
                     studentDAO.salvarUsuario(student);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
                     try {
                         String errormesage = getErroMessage(response);
-                        Toast.makeText(LoginActivity.this, errormesage.toString(), Toast.LENGTH_LONG).show();
+                        createSnackBar(errormesage);
                     } catch (Exception e){
                         e.printStackTrace();
                     }
@@ -156,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<Student> call, Throwable t) {
                 recoverLocalStudent();
                 progressBarVisibility(View.VISIBLE, View.VISIBLE, View.GONE, true);
-                Toast.makeText(LoginActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                createSnackBar(t.getMessage());
             }
         });
     }
@@ -164,7 +166,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private String getErroMessage(Response<Student> response) throws IOException {
         ResponseBody responseBody = response.errorBody();
-
         return responseBody.string();
     }
 
