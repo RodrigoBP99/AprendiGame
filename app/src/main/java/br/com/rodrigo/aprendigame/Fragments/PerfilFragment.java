@@ -1,7 +1,14 @@
 package br.com.rodrigo.aprendigame.Fragments;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,20 +17,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.IOException;
+
+import br.com.rodrigo.aprendigame.Activity.CadastroActivity;
 import br.com.rodrigo.aprendigame.Activity.EditarPerfilActivity;
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,6 +62,7 @@ public class PerfilFragment extends Fragment {
     @BindView(R.id.textViewTitleToolbarMain)
     TextView textViewTittleToolbar;
     private Student student;
+    private StudentDAO studentDAO;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -55,6 +74,7 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
+        studentDAO = new StudentDAO(getContext());
 
         return inflater.inflate(R.layout.fragment_perfil, container, false);
     }
@@ -99,18 +119,51 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //recupera usuario
-        try {
-            student = LoginActivity.student;
+        student = studentDAO.checkIfDataExists();
 
+        SetupRest.apiService.getStudent(student.getId()).enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                if (response.isSuccessful()){
+                    student = response.body();
+                    setStudentData(student);
+                } else {
+                    try {
+                        String erroMessage = getErroMessage(response);
+                        Toast.makeText(getActivity(), erroMessage, Toast.LENGTH_LONG).show();
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                textViewNameStudent.setText(student.getName());
+                textViewCourse.setText(" ------ ");
+                textViewPoints.setText(String.valueOf(student.getPoints()));
+                textViewLevel.setText(String.valueOf(student.getActualLevel()));
+                Glide.with(getContext()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
+            }
+        });
+    }
+
+    private String getErroMessage(Response<Student> response) throws IOException {
+        ResponseBody responseBody = response.errorBody();
+        return responseBody.string();
+    }
+
+    private void setStudentData(Student student) {
+        textViewNameStudent.setText(student.getName());
+        textViewCourse.setText(student.getCourseUnit().getName());
+        textViewPoints.setText(String.valueOf(student.getPoints()));
+        textViewLevel.setText(String.valueOf(student.getActualLevel()));
+        try {
             Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
-            textViewNameStudent.setText(student.getName());
-            textViewCourse.setText(student.getCourseUnit().getName());
-            textViewPoints.setText(String.valueOf(student.getPoints()));
-            textViewLevel.setText(String.valueOf(student.getActualLevel()));
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e){
+            Log.e("ErroFoto: ", e.toString());
         }
+
     }
 
 }
