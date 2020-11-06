@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class Question implements Serializable {
     private Long id;
-    private String questionTitle;
+    private String questionTittle;
     private List<Answer> answers;
     private Quizz quizz;
 }

@@ -4,19 +4,148 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.transition.Fade;
+import android.transition.TransitionManager;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import br.com.rodrigo.aprendigame.Fragments.QuizzQuestionFragment;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.rodrigo.aprendigame.Model.Question;
+import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class QuizzQuestionActivity extends AppCompatActivity {
 
+    public static String QUESTION = "question";
+    public static String CORRECTANSWERS = "correctAnswers";
+
+    private List<Question> questions = new ArrayList<>();
+    private List<Question> correctQuestions= new ArrayList<>();
+
+    private Quizz quizz;
+    private int position = 0;
+
+    @BindView(R.id.textViewQuestionTitle)
+    TextView textViewQuestionTitle;
+    @BindView(R.id.radioButtonAnswerOne)
+    RadioButton radioButtonOne;
+    @BindView(R.id.radioButtonAnswerTwo)
+    RadioButton radioButtonTwo;
+    @BindView(R.id.radioButtonAnswerThree)
+    RadioButton radioButtonThree;
+    @BindView(R.id.radioButtonAnswerFour)
+    RadioButton radioButtonFour;
+    @BindView(R.id.radioGroupAnswers)
+    RadioGroup radioGroup;
+    @BindView(R.id.textViewTitleToolbarMain)
+    TextView textViewTitle;
+
+    private ViewGroup rootView;
+
+    private RadioButton radioButton;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz_question);
+        ButterKnife.bind(this);
+        String id = getIntent().getStringExtra("questionario");
+        getQuizz(Long.valueOf(id));
+        handler = new Handler();
+    }
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.linearLayoutQuizzQuestionaActivity, new QuizzQuestionFragment()).commit();
+    private void getQuizz(Long id) {
+        SetupRest.apiService.getQuizz(id).enqueue(new Callback<Quizz>() {
+            @Override
+            public void onResponse(Call<Quizz> call, Response<Quizz> response) {
+                if (response.isSuccessful()){
+                    quizz = response.body();
+                    questions = quizz.getQuestions();
+
+                    setValues();
+                } else {
+                    try {
+                        String messageErro = getErroMessage(response);
+                        Toast.makeText(QuizzQuestionActivity.this, messageErro, Toast.LENGTH_LONG).show();
+                        finish();
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Quizz> call, Throwable t) {
+                Toast.makeText(QuizzQuestionActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
+    }
+
+    private void setValues() {
+        Question question = questions.get(position);
+        textViewTitle.setText(quizz.getTitle());
+        textViewQuestionTitle.setText(question.getQuestionTittle());
+        radioButtonOne.setText(question.getAnswers().get(0).getText());
+        radioButtonTwo.setText(question.getAnswers().get(1).getText());
+        radioButtonThree.setText(question.getAnswers().get(2).getText());
+        radioButtonFour.setText(question.getAnswers().get(3).getText());
+    }
+
+    @OnClick(R.id.buttonGetAnswer) void proximaQuestao(){
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = this.findViewById(radioId);
+        if (radioButton == null) {
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this, R.style.AlertDialogCustom);
+            builder.setMessage("Tem certeza que deseja avançar sem marcar uma resposta?").setPositiveButton("Sim", (dialogInterface, i) ->
+            {
+                checkPositionAndSetValues();
+
+            }).setNegativeButton("Não", null).show();
+        } else {
+            checkPositionAndSetValues();
+        }
+    }
+
+    private void checkPositionAndSetValues() {
+        if (position == (questions.size() -1)) {
+            Toast.makeText(this, "voce concluiu o questionario", Toast.LENGTH_LONG).show();
+            finish();
+        } else {
+            position++;
+
+            radioGroup.clearCheck();
+            rootView = findViewById(R.id.linearLayoutQuizzQuestionaActivity);
+            handler.postDelayed(() -> TransitionManager.beginDelayedTransition(rootView, new Fade(Fade.OUT)), 1000);
+
+            setValues();
+            handler.postDelayed(() -> TransitionManager.beginDelayedTransition(rootView, new Fade(Fade.IN)), 2200);
+
+        }
+    }
+
+    private String getErroMessage(Response<Quizz> response) throws IOException {
+        ResponseBody responseBody = response.errorBody();
+        return responseBody.string();
     }
 
     @Override

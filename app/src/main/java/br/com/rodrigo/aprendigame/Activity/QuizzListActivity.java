@@ -52,8 +52,7 @@ public class QuizzListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quizz_list);
         ButterKnife.bind(this);
 
-        toolbarMenu();
-
+        //toolbarMenu();
     }
 
     private void toolbarMenu() {
