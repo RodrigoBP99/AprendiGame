@@ -2,7 +2,6 @@ package br.com.rodrigo.aprendigame.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.rodrigo.aprendigame.Activity.QuizzActivity;
+import br.com.rodrigo.aprendigame.Activity.QuizzListActivity;
 import br.com.rodrigo.aprendigame.Model.CourseClass;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
@@ -45,7 +44,7 @@ public class CourseClassAdapter extends RecyclerView.Adapter<CourseClassAdapter.
         courseUnitViewHolder.textViewNameCourseClass.setText(courseClass.getName());
         courseUnitViewHolder.textViewCourseClassCode.setText("Curso:  " + courseClass.getCourseUnit().getName());
         courseUnitViewHolder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, QuizzActivity.class);
+            Intent intent = new Intent(context, QuizzListActivity.class);
             intent.putExtra(COURSECLASS, String.valueOf(courseClass.getId()));
             context.startActivity(intent);
         });

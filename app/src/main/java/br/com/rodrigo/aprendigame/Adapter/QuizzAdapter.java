@@ -3,6 +3,7 @@ package br.com.rodrigo.aprendigame.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,6 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
 
     private Context context;
     private ArrayList<Quizz> quizzes;
-    public final static String QUESTIONARIO = "questionario";
 
     public QuizzAdapter(ArrayList<Quizz> questionarios, Context context){
         this.quizzes = questionarios;
@@ -49,9 +49,9 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
         holder.itemView.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogCustom);
             builder.setTitle("Atenção").setMessage("Você deseja começar o questionario?").setPositiveButton("Sim", (dialogInterface, i) -> {
-                Intent intent = new Intent(context, QuizzQuestionActivity.class);
-                intent.putExtra(QUESTIONARIO, quizz.getId());
-                context.startActivity(intent);
+                Intent intent = new Intent(v.getContext(), QuizzQuestionActivity.class);
+                intent.putExtra("questionario", String.valueOf(quizz.getId()));
+                v.getContext().startActivity(intent);
             }).setNegativeButton("Não", null).create().show();
         });
     }
