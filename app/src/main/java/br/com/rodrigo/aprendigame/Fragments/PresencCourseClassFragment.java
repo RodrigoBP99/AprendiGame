@@ -57,15 +57,6 @@ public class PresencCourseClassFragment extends Fragment {
         recyclerViewCourseClass.addItemDecoration(itemDecoration);
         recyclerViewCourseClass.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        Presenc presenc = new Presenc();
-
-        presencs.add(presenc);
-
-        Presenc presenc1 = new Presenc();
-
-
-        presencs.add(presenc1);
-
         PresencaAdapter presencaAdapter = new PresencaAdapter(presencs, getContext());
 
         recyclerViewCourseClass.setAdapter(presencaAdapter);

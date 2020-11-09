@@ -15,10 +15,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Answer;
 import br.com.rodrigo.aprendigame.Model.AnswerType;
 import br.com.rodrigo.aprendigame.Model.Question;
 import br.com.rodrigo.aprendigame.Model.Quizz;
+import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
@@ -57,6 +59,8 @@ public class QuizzQuestionActivity extends AppCompatActivity {
 
     private RadioButton radioButton;
     private Handler handler;
+    private Double pointsGet;
+    private Double quizzValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,15 +127,13 @@ public class QuizzQuestionActivity extends AppCompatActivity {
 
     private void checkPositionAndSetValues() {
         if (position == (questions.size() -1)) {
-            Double value = (quizz.getValue()/quizz.getQuestions().size());
-
+            quizzValue = (quizz.getValue()/quizz.getQuestions().size());
             int questionsCorrect = correctQuestions.size();
-
-            Double pointsGet = (value * questionsCorrect);
+            pointsGet = (quizzValue * questionsCorrect);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogCustom);
             builder.setTitle("Parabéns, você concluiu o Quiz!!").setMessage("Sua nota foi: " + pointsGet + " pontos.").setPositiveButton("Ok", (dialogInterface, i) -> {
-                finish();
+                updateStudentPoints();
             }).setCancelable(false).show();
         } else {
             position++;
@@ -140,6 +142,46 @@ public class QuizzQuestionActivity extends AppCompatActivity {
             setValues();
         }
     }
+
+    private void updateStudentPoints() {
+        quizzValue = (quizz.getValue()/quizz.getQuestions().size());
+
+        int questionsCorrect = correctQuestions.size();
+
+        pointsGet = (quizzValue * questionsCorrect);
+
+        quizz.setPoints(pointsGet);
+        StudentDAO studentDAO = new StudentDAO(this);
+        Student student = studentDAO.checkIfDataExists();
+        SetupRest.apiService.updateLevelAndPoints(student.getId(), quizz).enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                if (response.isSuccessful()){
+                    studentDAO.clearStudent();
+                    studentDAO.salvarUsuario(response.body());
+                    finish();
+                } else {
+                    try {
+                        String erroMessage = getErroMessageStudent(response);
+                        Toast.makeText(QuizzQuestionActivity.this, erroMessage, Toast.LENGTH_SHORT).show();
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Toast.makeText(QuizzQuestionActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private String getErroMessageStudent(Response<Student> response) throws IOException {
+        ResponseBody responseBody = response.errorBody();
+        return responseBody.string();
+    }
+
 
     private void verifyIfAnswerIsCorrect() {
         int index = radioGroup.indexOfChild(radioButton);
@@ -159,8 +201,11 @@ public class QuizzQuestionActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogCustom);
-        builder.setTitle("Atenção!!!").setMessage("Você tem certeza que deseja sair do questionario?")
-                .setPositiveButton("Sim", (dialogInterface, i) -> finish())
+        builder.setTitle("Você tem certeza que deseja sair do questionario?").setMessage("Sua nota será salva de acordo com o progresso atual!")
+                .setPositiveButton("Sim", (dialogInterface, i) -> {
+                    updateStudentPoints();
+                    finish();
+                })
                 .setNegativeButton("Continuar Avaliação", null).show();
     }
 }

@@ -43,6 +43,9 @@ public interface APIService {
     @GET("/api/quizz/getQuizz/{id}")
     Call<Quizz> getQuizz(@Path("id") Long id);
 
+    @PUT("/api/student/{id}/updatePointsAndLevel")
+    Call<Student> updateLevelAndPoints(@Path("id") Long id, @Body Quizz quizz);
+
 //    @GET("quizzes")
 //    Call<List<Quizz>> getListQuizz();
 //

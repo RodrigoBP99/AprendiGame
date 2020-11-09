@@ -139,11 +139,7 @@ public class PerfilFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
-                textViewNameStudent.setText(student.getName());
-                textViewCourse.setText(" ------ ");
-                textViewPoints.setText(String.valueOf(student.getPoints()));
-                textViewLevel.setText(String.valueOf(student.getActualLevel()));
-                Glide.with(getContext()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
+                setStudentData(student);
             }
         });
     }
@@ -155,7 +151,14 @@ public class PerfilFragment extends Fragment {
 
     private void setStudentData(Student student) {
         textViewNameStudent.setText(student.getName());
-        textViewCourse.setText(student.getCourseUnit().getName());
+
+        try {
+            textViewCourse.setText(student.getCourseUnit().getName());
+        } catch (Exception e ){
+            e.printStackTrace();
+            textViewCourse.setText("---------");
+        }
+
         textViewPoints.setText(String.valueOf(student.getPoints()));
         textViewLevel.setText(String.valueOf(student.getActualLevel()));
         try {

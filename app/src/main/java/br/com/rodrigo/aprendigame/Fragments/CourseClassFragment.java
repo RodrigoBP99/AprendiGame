@@ -82,7 +82,7 @@ public class CourseClassFragment extends Fragment {
                 } else {
                     try {
                         String errormesage = getErroMessage(response);
-                        Toast.makeText(getContext(), errormesage.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), errormesage, Toast.LENGTH_LONG).show();
                     } catch (Exception e){
                         e.printStackTrace();
                     }
@@ -91,7 +91,7 @@ public class CourseClassFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Student> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage().toString(), Toast.LENGTH_LONG).show();
+
             }
         });
     }
