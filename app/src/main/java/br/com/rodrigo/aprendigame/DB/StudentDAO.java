@@ -3,7 +3,6 @@ package br.com.rodrigo.aprendigame.DB;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import br.com.rodrigo.aprendigame.Model.Student;
 

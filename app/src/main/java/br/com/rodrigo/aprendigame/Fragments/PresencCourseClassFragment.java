@@ -22,12 +22,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.rodrigo.aprendigame.Adapter.CourseClassAdapter;
 import br.com.rodrigo.aprendigame.Adapter.PresencCourseClassAdapter;
-import br.com.rodrigo.aprendigame.Adapter.PresencaAdapter;
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.CourseClass;
-import br.com.rodrigo.aprendigame.Model.Presenc;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
@@ -39,9 +36,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class PresencCourseClassFragment extends Fragment {
 
     private int CameraPermission = 1;

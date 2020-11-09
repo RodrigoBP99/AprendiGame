@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.rodrigo.aprendigame.Activity.PresencActivity;
-import br.com.rodrigo.aprendigame.Activity.QuizzListActivity;
 import br.com.rodrigo.aprendigame.Model.CourseClass;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;

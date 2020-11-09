@@ -1,7 +1,6 @@
 package br.com.rodrigo.aprendigame.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -95,7 +94,6 @@ public class PresencActivity extends AppCompatActivity {
 
         for (Presenc presenc : presencList){
             if (presenc.getCourseClass().getId().equals(courseClass.getId())){
-                Log.d("Presenc: ", presencList.toString());
                 filtredPresencList.add(presenc);
             }
         }
