@@ -93,7 +93,7 @@ public class NewQuizFragment extends Fragment {
        /* if (savedInstanceState != null) {
             editTextTitleNewQuizz.setText(savedInstanceState.getString("titleQuiz"));
         }*/
-        getAgs();
+        getArgs();
 
         editTextTitleNewQuizz.setText(titleNewQuiz);
         questions = selectedQuestions;
@@ -113,7 +113,7 @@ public class NewQuizFragment extends Fragment {
         recyclerView.setAdapter(newQuizzAdadpter);
     }
 
-    private void getAgs() {
+    private void getArgs() {
         if (getArguments() != null) {
             ArrayList<Question> argQuestions = (ArrayList<Question>) getArguments().getSerializable(NewQuizzActivity.CHECKEDQUESTIONS);
             selectedQuestions.addAll(argQuestions);

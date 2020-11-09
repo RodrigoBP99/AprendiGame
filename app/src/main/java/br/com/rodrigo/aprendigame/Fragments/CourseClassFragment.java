@@ -21,6 +21,7 @@ import java.util.List;
 
 import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.Adapter.CourseClassAdapter;
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.CourseClass;
 import br.com.rodrigo.aprendigame.Model.CoursesUnit;
 import br.com.rodrigo.aprendigame.Model.Student;
@@ -68,12 +69,12 @@ public class CourseClassFragment extends Fragment {
     public void onResume() {
         super.onResume();
         getCourseUnit();
-
     }
 
     private void getCourseUnit() {
-        Long studentId = LoginActivity.student.getId();
-        SetupRest.apiService.getStudent(studentId).enqueue(new Callback<Student>() {
+        StudentDAO studentDAO = new StudentDAO(getContext());
+        Student student = studentDAO.checkIfDataExists();
+        SetupRest.apiService.getStudent(student.getId()).enqueue(new Callback<Student>() {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()){

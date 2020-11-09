@@ -46,7 +46,7 @@ public class NewQuizzAdadpter extends RecyclerView.Adapter<NewQuizzAdadpter.NewQ
     public void onBindViewHolder(@NonNull NewQuizzViewHolder holder, int position) {
         Question question = questions.get(position);
 
-        holder.checkBox.setText(question.getQuestionTitle());
+        holder.checkBox.setText(question.getQuestionTittle());
 
         holder.setOnClickListener(view -> {
             holder.checkBox.setChecked(!holder.checkBox.isChecked());

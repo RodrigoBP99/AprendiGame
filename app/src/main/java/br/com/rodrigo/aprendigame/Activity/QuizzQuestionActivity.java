@@ -5,12 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.transition.Fade;
-import android.transition.TransitionManager;
-import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -20,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.rodrigo.aprendigame.Model.Answer;
+import br.com.rodrigo.aprendigame.Model.AnswerType;
 import br.com.rodrigo.aprendigame.Model.Question;
 import br.com.rodrigo.aprendigame.Model.Quizz;
 import br.com.rodrigo.aprendigame.R;
@@ -33,12 +30,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class QuizzQuestionActivity extends AppCompatActivity {
-
-    public static String QUESTION = "question";
-    public static String CORRECTANSWERS = "correctAnswers";
-
     private List<Question> questions = new ArrayList<>();
     private List<Question> correctQuestions= new ArrayList<>();
+    private List<Answer> answers = new ArrayList<>();
+    private Question question = new Question();
 
     private Quizz quizz;
     private int position = 0;
@@ -102,7 +97,8 @@ public class QuizzQuestionActivity extends AppCompatActivity {
     }
 
     private void setValues() {
-        Question question = questions.get(position);
+        question = questions.get(position);
+        answers = question.getAnswers();
         textViewTitle.setText(quizz.getTitle());
         textViewQuestionTitle.setText(question.getQuestionTittle());
         radioButtonOne.setText(question.getAnswers().get(0).getText());
@@ -116,30 +112,42 @@ public class QuizzQuestionActivity extends AppCompatActivity {
         radioButton = this.findViewById(radioId);
         if (radioButton == null) {
             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this, R.style.AlertDialogCustom);
-            builder.setMessage("Tem certeza que deseja avançar sem marcar uma resposta?").setPositiveButton("Sim", (dialogInterface, i) ->
+            builder.setMessage("Você deve selecionar uma resposta para poder avançar!!").setPositiveButton("OK", (dialogInterface, i) ->
             {
-                checkPositionAndSetValues();
-
-            }).setNegativeButton("Não", null).show();
+            }).show();
         } else {
+            verifyIfAnswerIsCorrect();
             checkPositionAndSetValues();
         }
     }
 
     private void checkPositionAndSetValues() {
         if (position == (questions.size() -1)) {
-            Toast.makeText(this, "voce concluiu o questionario", Toast.LENGTH_LONG).show();
-            finish();
+            Double value = (quizz.getValue()/quizz.getQuestions().size());
+
+            int questionsCorrect = correctQuestions.size();
+
+            Double pointsGet = (value * questionsCorrect);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogCustom);
+            builder.setTitle("Parabéns, você concluiu o Quiz!!").setMessage("Sua nota foi: " + pointsGet + " pontos.").setPositiveButton("Ok", (dialogInterface, i) -> {
+                finish();
+            }).setCancelable(false).show();
         } else {
             position++;
-
             radioGroup.clearCheck();
             rootView = findViewById(R.id.linearLayoutQuizzQuestionaActivity);
-            handler.postDelayed(() -> TransitionManager.beginDelayedTransition(rootView, new Fade(Fade.OUT)), 1000);
-
             setValues();
-            handler.postDelayed(() -> TransitionManager.beginDelayedTransition(rootView, new Fade(Fade.IN)), 2200);
+        }
+    }
 
+    private void verifyIfAnswerIsCorrect() {
+        int index = radioGroup.indexOfChild(radioButton);
+
+        Answer answer = answers.get(index);
+
+        if (answer.getAnswerType().equals(AnswerType.CORRECT)){
+            correctQuestions.add(question);
         }
     }
 

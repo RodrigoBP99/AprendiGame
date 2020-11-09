@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import br.com.rodrigo.aprendigame.Fragments.NewQuizFragment;
 import br.com.rodrigo.aprendigame.Fragments.NewQuizQuestionFragment;
@@ -43,7 +42,7 @@ public class NewQuizzActivity extends AppCompatActivity  implements NewQuizQuest
         ButterKnife.bind(this);
         textView.setText("Novo Quiz");
 
-        ArrayList<Quizz> quizzActivity = (ArrayList<Quizz>) getIntent().getSerializableExtra(QuizzActivity.LISTQUIZ);
+        ArrayList<Quizz> quizzActivity = (ArrayList<Quizz>) getIntent().getSerializableExtra(QuizzListActivity.LISTQUIZ);
         for (Quizz quizz : quizzActivity){
             quizzes.add(quizz);
         }

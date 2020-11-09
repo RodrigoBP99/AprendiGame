@@ -26,6 +26,7 @@ public class Student implements Serializable {
     private double requiredPoints;
     private int actualLevel;
     private int nextLevel;
+    private List<Quizz> answeredQuizz;
 
     public ContentValues getValues() {
         ContentValues valores = new ContentValues();
