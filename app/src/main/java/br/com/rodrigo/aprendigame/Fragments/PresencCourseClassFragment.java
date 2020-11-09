@@ -16,15 +16,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
+import br.com.rodrigo.aprendigame.Adapter.CourseClassAdapter;
+import br.com.rodrigo.aprendigame.Adapter.PresencCourseClassAdapter;
 import br.com.rodrigo.aprendigame.Adapter.PresencaAdapter;
+import br.com.rodrigo.aprendigame.DB.StudentDAO;
+import br.com.rodrigo.aprendigame.Model.CourseClass;
 import br.com.rodrigo.aprendigame.Model.Presenc;
+import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,10 +45,10 @@ import butterknife.OnClick;
 public class PresencCourseClassFragment extends Fragment {
 
     private int CameraPermission = 1;
+    private PresencCourseClassAdapter courseClassAdapter;
+    private List<CourseClass> courseClasses = new ArrayList<>();
     @BindView(R.id.recycleViewCourseClass)
     RecyclerView recyclerViewCourseClass;
-    private ArrayList<Presenc> presencs = new ArrayList<>();
-
     public PresencCourseClassFragment() {
         // Required empty public constructor
     }
@@ -49,18 +62,58 @@ public class PresencCourseClassFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getCourseUnit();
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ButterKnife.bind(this, getActivity());
+    }
+
+    private void createCourseClassList() {
+        courseClassAdapter = new PresencCourseClassAdapter((ArrayList<CourseClass>) courseClasses, getContext());
 
         DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         recyclerViewCourseClass.addItemDecoration(itemDecoration);
         recyclerViewCourseClass.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        PresencaAdapter presencaAdapter = new PresencaAdapter(presencs, getContext());
-
-        recyclerViewCourseClass.setAdapter(presencaAdapter);
+        recyclerViewCourseClass.setAdapter(courseClassAdapter);
     }
+
+    private void getCourseUnit() {
+        StudentDAO studentDAO = new StudentDAO(getContext());
+        Student student = studentDAO.checkIfDataExists();
+        SetupRest.apiService.getStudent(student.getId()).enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                if (response.isSuccessful()){
+                    courseClasses = response.body().getListClass();
+                    createCourseClassList();
+                } else {
+                    try {
+                        String errormesage = getErroMessage(response);
+                        Toast.makeText(getContext(), errormesage, Toast.LENGTH_LONG).show();
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private String getErroMessage(Response<Student> response) throws IOException {
+        ResponseBody responseBody = response.errorBody();
+        return responseBody.string();
+    }
+
 
     @OnClick(R.id.buttonLerPresenca) void lerPresenca(){
         if (ContextCompat.checkSelfPermission(getContext(),

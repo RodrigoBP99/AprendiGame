@@ -39,6 +39,10 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
     public void onBindViewHolder(@NonNull PresencaViewHolder holder, int posicao) {
         final Presenc presenc = presencs.get(posicao);
 
+        holder.textViewCourseClassCode.setText("Turma: " + presenc.getCourseClass().getCode());
+        holder.textViewCode.setText(presenc.getCode());
+        holder.textViewDate.setText(presenc.getDate());
+        holder.textViewHour.setText(presenc.getHour());
     }
 
     @Override
@@ -56,12 +60,14 @@ public class PresencaAdapter extends RecyclerView.Adapter<PresencaAdapter.Presen
     }
 
     public class PresencaViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.textViewPresencaData)
-        TextView textViewData;
-        @BindView(R.id.textViewPresencaAulaDaPresenca)
-        TextView textViewProfessor;
-        @BindView(R.id.textViewPresencaHora)
-        TextView textViewHora;
+        @BindView(R.id.textViewPresencDate)
+        TextView textViewDate;
+        @BindView(R.id.textViewPresencCourseClassCode)
+        TextView textViewCourseClassCode;
+        @BindView(R.id.textViewPresencHour)
+        TextView textViewHour;
+        @BindView(R.id.textViewPresencCode)
+        TextView textViewCode;
 
         public PresencaViewHolder(@NonNull View itemView) {
             super(itemView);

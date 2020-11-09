@@ -10,18 +10,33 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textViewPresencaAulaDaPresenca"
+        android:id="@+id/textViewPresencCode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutAdapterCourseClass"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPresencCourseClassCode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Aula a qual a presença pertence" />
+        tools:text="Código da Presença" />
+
+    <TextView
+        android:id="@+id/textViewPresencCourseClassCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:textColor="@color/colorText"
+        android:textAlignment="textStart"
+        android:layout_marginStart="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayoutAdapterCourseClass"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPresencCode"
+        tools:text="Código da Turma"/>
 
     <LinearLayout
         android:id="@+id/linearLayoutAdapterCourseClass"
@@ -31,10 +46,10 @@
         android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPresencaAulaDaPresenca">
+        app:layout_constraintTop_toBottomOf="@+id/textViewPresencCode">
 
         <TextView
-            android:id="@+id/textViewPresencaData"
+            android:id="@+id/textViewPresencDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorText"
@@ -47,13 +62,11 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/textViewPresencaHora"
+            android:id="@+id/textViewPresencHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@color/colorText"
             tools:text="Hora" />
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

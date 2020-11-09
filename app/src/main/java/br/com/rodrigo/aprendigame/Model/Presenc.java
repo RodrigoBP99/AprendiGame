@@ -12,6 +12,7 @@ public class Presenc implements Serializable {
 
     private String id;
     private String code;
+    private CourseClass courseClass;
     private String date;
     private String hour;
     private Student student;

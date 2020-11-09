@@ -13,11 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.PresencActivity"></activity>
         <activity android:name=".Activity.NewQuizzActivity" />
         <activity android:name=".Activity.QuizzQuestionActivity" />
         <activity
             android:name=".Activity.QuizzListActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".Activity.CadastroActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
