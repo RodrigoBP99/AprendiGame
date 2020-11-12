@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import com.crashlytics.android.Crashlytics;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import br.com.rodrigo.aprendigame.Fragments.PresencCourseClassFragment;
 import br.com.rodrigo.aprendigame.Fragments.CourseClassFragment;
@@ -18,7 +18,7 @@ import br.com.rodrigo.aprendigame.Fragments.PerfilFragment;
 import br.com.rodrigo.aprendigame.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.fabric.sdk.android.Fabric;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Fabric.with(this, new Crashlytics());
+        FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+        crashlytics.setCrashlyticsCollectionEnabled(true);
+        crashlytics.log("E/TAG: chrashErro");
 
         trocarFragmento(new CourseClassFragment(), "inicio");
         ButterKnife.bind(this);

@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/salvarPerfil"
-        android:icon="@drawable/confirma_icon"
+        android:icon="@drawable/confirm_button_icon"
         android:title="Salvar"
         app:showAsAction="always" />
 </menu>
