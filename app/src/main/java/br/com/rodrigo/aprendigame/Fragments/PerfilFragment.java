@@ -38,8 +38,6 @@ import retrofit2.Response;
 
 public class PerfilFragment extends Fragment {
 
-    private static int RESULT_CODE = 1;
-
     @BindView(R.id.textViewNameStudentPerfil)
     TextView textViewNameStudent;
     @BindView(R.id.textViewPointsPerfil)
@@ -50,6 +48,12 @@ public class PerfilFragment extends Fragment {
     TextView textViewLevel;
     @BindView(R.id.imageViewPerfil)
     ImageView imageViewPerfil;
+    @BindView(R.id.textViewSchoolPerfil)
+    TextView textViewSchool;
+    @BindView(R.id.textViewRegistrationPerfil)
+    TextView textViewRegistration;
+    @BindView(R.id.textViewBirthDayPerfil)
+    TextView textViewBithDay;
 
     @BindView(R.id.textViewTitleToolbarMain)
     TextView textViewTittleToolbar;
@@ -143,6 +147,9 @@ public class PerfilFragment extends Fragment {
 
     private void setStudentData(Student student) {
         textViewNameStudent.setText(student.getName());
+        textViewSchool.setText(student.getSchoolName());
+        textViewRegistration.setText(student.getRegistration());
+        textViewBithDay.setText(student.getBirthday());
 
         try {
             textViewCourse.setText(student.getCourseUnit().getName());

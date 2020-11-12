@@ -11,9 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +21,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
@@ -31,7 +28,7 @@
                 android:layout_height="105dp"
                 app:cardCornerRadius="50dp"
                 android:elevation="10dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:layout_gravity="center_horizontal"
                 android:backgroundTint="@android:color/black"
                 >
@@ -59,6 +56,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
+                app:cardCornerRadius="10dp"
                 android:backgroundTint="#FAFAFA"
                 android:elevation="10dp"
                 app:cardUseCompatPadding="true">
@@ -185,6 +183,7 @@
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="#FAFAFA"
                 android:elevation="10dp"
+                app:cardCornerRadius="10dp"
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
@@ -204,7 +203,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:src="@drawable/title_icon" />
+                            android:src="@drawable/school_icon" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -215,15 +214,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Titulo"
+                                android:text="Instituição"
                                 android:textColor="@color/colorText"
                                 android:textSize="12sp" />
 
                             <TextView
+                                android:id="@+id/textViewSchoolPerfil"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="Historiador"
                                 android:textColor="@color/colorText"
                                 android:textSize="18sp" />
                         </LinearLayout>
@@ -239,7 +238,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:src="@drawable/star_icon" />
+                            android:src="@drawable/registration_icon" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -250,15 +249,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Melhor Desempenho"
+                                android:text="Matricula"
                                 android:textColor="@color/colorText"
                                 android:textSize="12sp" />
 
                             <TextView
+                                android:id="@+id/textViewRegistrationPerfil"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="Segunda Guerra Mundial"
                                 android:textColor="@color/colorText"
                                 android:textSize="18sp" />
                         </LinearLayout>
@@ -273,7 +272,7 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:src="@drawable/podium_icon" />
+                            android:src="@drawable/calendar_icon" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -284,15 +283,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Ranking"
+                                android:text="Data de Nascimento"
                                 android:textColor="@color/colorText"
                                 android:textSize="12sp" />
 
                             <TextView
+                                android:id="@+id/textViewBirthDayPerfil"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="1º Posição"
                                 android:textColor="@color/colorText"
                                 android:textSize="18sp" />
                         </LinearLayout>
