@@ -2,10 +2,10 @@
 <resources>
     <color name="colorPrimary">#77015E</color>
     <color name="colorPrimaryDark">#77015E</color>
-    <color name="colorAccent">#6081E2</color>
+    <color name="colorAccent">#2B0000</color>
     <color name="colorText">#000000</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorItensAplication">#FFFFFF</color>
-    <color name="colorEditText">#FFFFFF</color>
+    <color name="colorEditText">#000000</color>
     <color name="colorBackgroundRecycleView">#EBEAEA</color>
 </resources>
