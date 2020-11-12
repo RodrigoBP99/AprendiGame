@@ -101,15 +101,23 @@
                         android:textColor="@color/colorEditText" />
             </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/buttonLogin"
+                <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    app:cardCornerRadius="50dp"
+                    android:elevation="10dp"
                     android:layout_marginTop="8dp"
-                    android:backgroundTint="@color/colorBackground"
-                    android:text="LOGIN"
-                    android:textColor="@color/colorPrimary" />
+                    android:backgroundTint="@color/colorBackground">
+                    <Button
+                        android:id="@+id/buttonLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/colorBackground"
+                        android:text="LOGIN"
+                        android:textColor="@color/colorPrimary" />
+
+                </androidx.cardview.widget.CardView>
 
                 <ProgressBar
                     android:id="@+id/progressBarLogin"

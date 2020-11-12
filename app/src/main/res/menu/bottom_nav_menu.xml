@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_course_unit"
-        android:icon="@drawable/course_icon"
+        android:icon="@drawable/navbar_course_icon"
         android:title="@string/diciplinas" />
 
     <item
         android:id="@+id/navigation_presença"
-        android:icon="@drawable/presenca_icon"
+        android:icon="@drawable/navbar_presenc_icon"
         android:title="@string/presencs" />
 
     <item
         android:id="@+id/navigation_perfil"
-        android:icon="@drawable/person_icon"
+        android:icon="@drawable/navbar_person_icon"
         android:title="@string/perfil" />
 </menu>

@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/buttonEditarPerfil"
-        android:icon="@drawable/editar_perfil_icon"
+        android:icon="@drawable/edit_perfil_icon"
         android:title="Editar"
         app:showAsAction="never" />
 

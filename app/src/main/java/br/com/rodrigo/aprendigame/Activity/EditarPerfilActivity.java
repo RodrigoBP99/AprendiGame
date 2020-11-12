@@ -190,7 +190,7 @@ public class EditarPerfilActivity extends AppCompatActivity implements DatePicke
     private void setToolbar() {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationIcon(R.drawable.voltar_icon);
+        toolbar.setNavigationIcon(R.drawable.return_icon);
         toolbar.setNavigationOnClickListener(v -> {
             alertCancelarEdicao();
         });
