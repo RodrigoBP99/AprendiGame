@@ -37,6 +37,7 @@ import java.util.Objects;
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.glide.GlideApp;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -127,7 +128,7 @@ public class EditarPerfilActivity extends AppCompatActivity implements DatePicke
             editTextSchoolName.setText(student.getSchoolName());
             fotoSelecionada = student.getPhoto();
             editTextBirthday.setText(student.getBirthday());
-            Glide.with(EditarPerfilActivity.this).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
+            GlideApp.with(EditarPerfilActivity.this).load(student.getPhoto()).placeholder(R.mipmap.perfil_foto_launcher_round).circleCrop().into(imageViewPerfil);
         }catch (Exception e){
             e.printStackTrace();
         }

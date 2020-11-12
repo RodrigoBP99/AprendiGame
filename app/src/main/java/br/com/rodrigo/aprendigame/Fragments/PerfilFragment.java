@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 
 import java.io.IOException;
 
@@ -25,6 +27,7 @@ import br.com.rodrigo.aprendigame.Activity.LoginActivity;
 import br.com.rodrigo.aprendigame.DB.StudentDAO;
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.glide.GlideApp;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +37,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PerfilFragment extends Fragment {
+
+    private static int RESULT_CODE = 1;
 
     @BindView(R.id.textViewNameStudentPerfil)
     TextView textViewNameStudent;
@@ -149,7 +154,7 @@ public class PerfilFragment extends Fragment {
         textViewPoints.setText(String.valueOf(student.getPoints()));
         textViewLevel.setText(String.valueOf(student.getActualLevel()));
         try {
-            Glide.with(getActivity()).load(student.getPhoto()).circleCrop().into(imageViewPerfil);
+           GlideApp.with(getActivity()).load(student.getPhoto()).circleCrop().placeholder(R.mipmap.perfil_foto_launcher_round).into(imageViewPerfil);
         } catch (Exception e){
             Log.e("ErroFoto: ", e.toString());
         }

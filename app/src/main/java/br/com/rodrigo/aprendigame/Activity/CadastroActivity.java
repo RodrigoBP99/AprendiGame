@@ -30,6 +30,7 @@ import java.util.Date;
 
 import br.com.rodrigo.aprendigame.Model.Student;
 import br.com.rodrigo.aprendigame.R;
+import br.com.rodrigo.aprendigame.glide.GlideApp;
 import br.com.rodrigo.aprendigame.ws.SetupRest;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -129,7 +130,7 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
                 Bitmap bitmap;
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(fotoSelecionada));
-                    Glide.with(CadastroActivity.this).load(new BitmapDrawable(bitmap)).circleCrop().into(imageViewRegister);
+                    GlideApp.with(CadastroActivity.this).load(new BitmapDrawable(bitmap)).circleCrop().placeholder(R.mipmap.perfil_foto_launcher_round).into(imageViewRegister);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
