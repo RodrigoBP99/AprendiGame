@@ -41,8 +41,8 @@ public class CourseClassAdapter extends RecyclerView.Adapter<CourseClassAdapter.
     public void onBindViewHolder(@NonNull CourseUnitViewHolder courseUnitViewHolder, int posicao) {
         final CourseClass courseClass = courseClasses.get(posicao);
 
-        courseUnitViewHolder.textViewNameCourseClass.setText(courseClass.getName());
-        courseUnitViewHolder.textViewCourseClassCode.setText("Curso:  " + courseClass.getCourseUnit().getName());
+        courseUnitViewHolder.textViewNameCourseClass.setText(courseClass.getName().toUpperCase());
+        courseUnitViewHolder.textViewCourseClassCode.setText(courseClass.getCourseUnit().getCode() + " - " + courseClass.getCourseUnit().getName());
         courseUnitViewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, QuizzListActivity.class);
             intent.putExtra(COURSECLASS, String.valueOf(courseClass.getId()));

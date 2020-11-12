@@ -42,7 +42,7 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
 
         Quizz quizz = quizzes.get(posicao);
         holder.textViewTitleQuizz.setText(quizz.getTitle());
-        holder.textViewQuizzAnswers.setText(quizz.getAmountOfQuestions()  + " Questões");
+        holder.textViewQuizzValue.setText(quizz.getValue().toString());
         holder.textViewCodeQuizz.setText("Código: " + quizz.getCode());
 
         holder.itemView.setOnClickListener(v -> {
@@ -73,8 +73,8 @@ public class QuizzAdapter extends RecyclerView.Adapter<QuizzAdapter.QuizzViewHol
 
         @BindView(R.id.textViewTitleQuizz)
         TextView textViewTitleQuizz;
-        @BindView(R.id.textViewAnswersQuizz)
-        TextView textViewQuizzAnswers;
+        @BindView(R.id.textViewQuizzValue)
+        TextView textViewQuizzValue;
         @BindView(R.id.textViewCodeQuizz)
         TextView textViewCodeQuizz;
 

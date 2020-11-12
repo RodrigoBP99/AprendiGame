@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.QuizzListActivity"
     android:orientation="vertical"
+    android:background="@color/colorBackgroundRecycleView"
     android:id="@+id/questionarioLayout">
 
     <include
@@ -15,51 +16,63 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutQuizzActivityInfo"/>
+        app:layout_constraintBottom_toTopOf="@+id/cardViewQuizzList"/>
 
-    <LinearLayout
-        android:id="@+id/linearLayoutQuizzActivityInfo"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewQuizzList"
+        app:cardElevation="1dp"
+        app:cardMaxElevation="1dp"
+        app:cardCornerRadius="5dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginStart="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/colorItensAplication"
         app:layout_constraintTop_toBottomOf="@+id/toolbarQuizzActivity"
         app:layout_constraintBottom_toTopOf="@+id/recycleViewQuizz">
+        <LinearLayout
+            android:id="@+id/linearLayoutQuizzActivityInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="3dp"
+            android:background="@color/colorItensAplication">
 
-        <TextView
-            android:id="@+id/textViewCourseClassName"
-            android:text="Nome da Turma"
-            android:textColor="@color/colorText"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/textViewCourseClassTeacher"
-            android:text="Nome do Professor"
-            android:textColor="@color/colorText"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/textViewQuizzCount"
-            android:text="Total de Questionarios"
-            android:textSize="16sp"
-            android:textColor="@color/colorText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textViewCourseClassName"
+                android:text="Nome da Turma"
+                android:textColor="@color/colorText"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/textViewCourseClassTeacher"
+                android:text="Nome do Professor"
+                android:textColor="@color/colorText"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/textViewQuizzCount"
+                android:text="Total de Questionarios"
+                android:textSize="16sp"
+                android:textColor="@color/colorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewQuizz"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="2dp"
-        android:background="@color/colorBackgroundRecycleView"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutQuizzActivityInfo"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewQuizzList"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

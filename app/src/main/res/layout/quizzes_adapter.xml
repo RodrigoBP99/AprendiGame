@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="1dp"
+    android:layout_marginEnd="3dp"
+    android:layout_marginStart="3dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
@@ -13,6 +15,7 @@
         android:layout_height="wrap_content"
         app:cardElevation="1dp"
         app:cardMaxElevation="1dp"
+        app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +26,7 @@
             android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_marginTop="3dp"
             android:orientation="horizontal">
 
             <TextView
@@ -67,16 +70,27 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
-                    android:id="@+id/textViewAnswersQuizz"
+                    android:text="Valor"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/textViewQuizzValue"
                     tools:text="5/10"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="@color/colorText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <LinearLayout
+            android:layout_gravity="end"
+            android:layout_width="5dp"
+            android:background="@color/colorPrimary"
+            android:layout_height="match_parent" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
