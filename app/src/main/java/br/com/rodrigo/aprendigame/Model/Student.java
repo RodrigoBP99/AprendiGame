@@ -21,7 +21,7 @@ public class Student implements Serializable {
     private String schoolName;
     private String birthday;
     private List<Presenc> presences;
-    private List<CourseClass> listClass;
+    private List<CourseClass> courseClasses;
     private double points;
     private double requiredPoints;
     private int actualLevel;

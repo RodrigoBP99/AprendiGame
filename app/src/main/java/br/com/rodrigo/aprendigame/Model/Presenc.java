@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class Presenc implements Serializable {
 
-    private String id;
+    private Long id;
     private String code;
     private CourseClass courseClass;
     private String date;

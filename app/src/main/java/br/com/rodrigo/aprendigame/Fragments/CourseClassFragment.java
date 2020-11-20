@@ -91,7 +91,7 @@ public class CourseClassFragment extends Fragment {
     }
 
     private void createCourseClassList(Response<Student> response) {
-        courseClasses = response.body().getListClass();
+        courseClasses = response.body().getCourseClasses();
         courseClassAdapter = new CourseClassAdapter((ArrayList<CourseClass>) courseClasses, getContext());
         DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);

@@ -84,7 +84,7 @@ public class PresencCourseClassFragment extends Fragment {
             @Override
             public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.isSuccessful()){
-                    courseClasses = response.body().getListClass();
+                    courseClasses = response.body().getCourseClasses();
                     createCourseClassList();
                 } else {
                     try {
