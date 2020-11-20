@@ -31,7 +31,7 @@
         android:id="@+id/navViewMain"
         style="@style/Animation.AppCompat.DropDownUp"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:background="@color/colorPrimary"
         app:itemHorizontalTranslationEnabled="true"
         app:itemIconTint="@color/colorItensAplication"
