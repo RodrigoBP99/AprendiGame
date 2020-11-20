@@ -37,12 +37,25 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:layout_marginStart="5dp"
-                app:layout_constraintBottom_toTopOf="@+id/textViewCodeQuizz"
+                android:layout_marginStart="2dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewQuizzAmountOfQuestions"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Titulo do Questionario" />
+
+            <TextView
+                android:id="@+id/textViewQuizzAmountOfQuestions"
+                android:text="Total de Questões"
+                android:textSize="14sp"
+                android:layout_width="0dp"
+                android:layout_marginStart="2dp"
+                android:textColor="@color/colorText"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/textViewCodeQuizz"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitleQuizz"/>
 
             <TextView
                 android:id="@+id/textViewCodeQuizz"
@@ -50,20 +63,22 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorText"
                 android:textSize="14sp"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTitleQuizz"
+                app:layout_constraintTop_toBottomOf="@+id/textViewQuizzAmountOfQuestions"
                 tools:text="Código do Questionario" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="45dp"
+                android:layout_height="0dp"
                 android:orientation="vertical"
-                android:layout_marginEnd="10dp"
-                android:gravity="center_horizontal"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:background="@drawable/retangle_border"
                 app:layout_constraintStart_toEndOf="@+id/textViewTitleQuizz"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -74,11 +89,11 @@
                     android:textSize="16sp"
                     android:textColor="@color/colorText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:id="@+id/textViewQuizzValue"
-                    tools:text="5/10"
+                    tools:text="100"
                     android:textSize="16sp"
                     android:textColor="@color/colorText"
                     android:layout_width="wrap_content"
@@ -87,10 +102,10 @@
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <LinearLayout
-            android:layout_gravity="end"
-            android:layout_width="5dp"
+            android:layout_gravity="top"
+            android:layout_width="match_parent"
             android:background="@color/colorPrimary"
-            android:layout_height="match_parent" />
+            android:layout_height="2dp" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
