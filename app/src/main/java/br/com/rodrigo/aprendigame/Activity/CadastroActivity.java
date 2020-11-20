@@ -45,7 +45,6 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
     private Student student = new Student();
     private String fotoSelecionada;
     private String schoolName;
-    private String cursoNome;
     private String nome;
     private String userRegistration;
     private String dataNascimento;
@@ -58,8 +57,6 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
             EditText editTextNome;
     @BindView(R.id.editTextSchoolNameCadastro)
             EditText editTextSchoolNameCadastro;
-    @BindView(R.id.editTextCursoCadastro)
-            EditText editTextCourseName;
     @BindView(R.id.toolbarCadastro)
             Toolbar toolbar;
     @BindView(R.id.textViewTitleToolbarMain)
@@ -142,7 +139,6 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
     void confirmRegister() {
         userRegistration = editTextRegistrationCadastro.getText().toString().trim();
         nome = editTextNome.getText().toString().trim();
-        cursoNome = editTextCourseName.getText().toString().trim();
         schoolName = editTextSchoolNameCadastro.getText().toString().trim();
         dataNascimento = editTextBirthDay.getText().toString().trim();
         password = editTextPassword.getText().toString().trim();
@@ -177,8 +173,6 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
             editTextRegistrationCadastro.setError("Campo vazio");
         } else if (schoolName.isEmpty()) {
             editTextSchoolNameCadastro.setError("Campo vazio");
-        } else if (cursoNome.isEmpty()) {
-            editTextCourseName.setError("Campo vazio");
         } else if (dataNascimento.isEmpty()) {
             Toast.makeText(this, "Preencha sua Data de Nascimento", Toast.LENGTH_LONG).show();
         }  else if (password.isEmpty()) {
@@ -193,7 +187,6 @@ public class CadastroActivity extends AppCompatActivity implements DatePickerDia
             student.setName(nome);
             student.setRegistration(userRegistration);
             student.setSchoolName(schoolName);
-            student.setCourseUnitCode(cursoNome);
             student.setPhoto(fotoSelecionada);
             student.setBirthday(dataNascimento);
             student.setPassword(password);

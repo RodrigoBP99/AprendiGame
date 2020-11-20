@@ -109,25 +109,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/retangle_border"
-                android:textColorHint="@color/colorEditText">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextCursoCadastro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/course_icon"
-                    android:backgroundTint="@color/colorEditText"
-                    android:hint="Código do Curso"
-                    android:inputType="textShortMessage|textCapCharacters"
-                    android:textColor="@color/colorEditText" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="10dp"
                 android:focusable="false"
                 android:clickable="false"
                 android:background="@drawable/retangle_border"
