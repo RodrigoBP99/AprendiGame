@@ -13,69 +13,107 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutQuizzQuestionaActivity"/>
+        app:layout_constraintBottom_toTopOf="@+id/scrollViewQuizzQuestion"/>
 
-    <LinearLayout
-        android:id="@+id/linearLayoutQuizzQuestionaActivity"
+    <ScrollView
+        android:id="@+id/scrollViewQuizzQuestion"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGetAnswer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarQuizzQuestionActivity">
 
-        <TextView
-            android:id="@+id/textViewQuestionTitle"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            tools:text="Pergunta"
-            android:layout_marginBottom="3dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <RadioGroup
-            android:id="@+id/radioGroupAnswers"
+        <LinearLayout
+            android:id="@+id/linearLayoutQuizzQuestionaActivity"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-            <RadioButton
-                android:id="@+id/radioButtonAnswerOne"
-                android:elevation="1dp"
-                android:layout_marginBottom="3dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Resposta 1" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/radioButtonAnswerTwo"
-                android:elevation="1dp"
-                android:layout_marginBottom="3dp"
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="15dp"
+                app:cardElevation="10dp"
+                android:layout_marginHorizontal="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Resposta 2" />
+                android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textViewQuestionTitle"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorText"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="10dp"
+                    tools:text="Pergunta asdas dasd sad as das das das das"
+                    android:layout_marginBottom="3dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-            <RadioButton
-                android:id="@+id/radioButtonAnswerThree"
-                android:elevation="1dp"
-                android:layout_marginBottom="3dp"
+            </androidx.cardview.widget.CardView>
+
+            <RadioGroup
+                android:layout_marginTop="15dp"
+                android:divider="@color/colorText"
+                android:id="@+id/radioGroupAnswers"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Resposta 3" />
+                android:layout_height="wrap_content" >
+                <RadioButton
+                    android:id="@+id/radioButtonAnswerOne"
+                    android:elevation="20dp"
+                    android:textSize="18sp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/retangle_border_answer"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Resposta 1" />
 
-            <RadioButton
-                android:id="@+id/radioButtonAnswerFour"
-                android:elevation="1dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Resposta 4" />
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radioButtonAnswerTwo"
+                    android:elevation="20dp"
+                    android:textSize="18sp"
+                    android:background="@drawable/retangle_border_answer"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Resposta 2" />
 
-        <Button
-            android:id="@+id/buttonGetAnswer"
-            android:layout_marginTop="20dp"
-            android:text="Proxima Questão"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+                <RadioButton
+                    android:id="@+id/radioButtonAnswerThree"
+                    android:elevation="20dp"
+                    android:textSize="18sp"
+                    android:background="@drawable/retangle_border_answer"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Resposta 3" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonAnswerFour"
+                    android:elevation="20dp"
+                    android:textSize="18sp"
+                    android:background="@drawable/retangle_border_answer"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Resposta 4" />
+            </RadioGroup>
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/buttonGetAnswer"
+        android:text="Confirmar Resposta"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/colorBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewQuizzQuestion"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
